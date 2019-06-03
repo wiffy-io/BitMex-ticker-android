@@ -15,6 +15,6 @@ class SplashPresenter(act: SplashContract.View):SplashContract.Presenter {
     }
 
     override fun moveToMain() {
-        Handler().postDelayed({mView.moveToMain()},1200)
+        Handler().postDelayed({mView.moveToMain()},4000) // splashTest
     }
 }
