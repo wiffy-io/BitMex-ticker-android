@@ -3,9 +3,20 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="mainDark">#092336</color>
-    <color name="mainDark_spash">#0A1722</color>
-    <color name="main">#182947</color>
-    <color name="mainLight">#223863</color>
-    <color name="mainDeepDark">#112334</color>
+
+    <color name="splash_background">#0b1722</color>
+
+    <color name="dark_navi">#223863</color> <!--Dark_navi-->
+    <color name="dark_table_out">#082335</color> <!--Dark_table_out-->
+    <color name="dark_table_in">#183148</color> <!--Dark_table_in-->
+    <color name="dark_title">#ffffffff</color> <!--Dark_title-->
+    <color name="dark_title2">#61ffffff</color> <!--Dark_title2-->
+
+    <color name="light_navi">#45A4B3</color> <!--Light_navi-->
+    <color name="light_table_out">#efeff3</color> <!--Light_table_out-->
+    <color name="light_table_in">#fff2ff</color> <!--Light_table_in-->
+    <color name="light_title">#ff303030</color> <!--Light_title-->
+    <color name="light_title2">#ff646464</color> <!--Light_title2-->
+
+
 </resources>

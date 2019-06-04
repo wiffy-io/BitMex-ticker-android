@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/mainDark_spash"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/dark_table_out"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/splash_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/bitmex"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            app:srcCompat="@drawable/bitmex"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
 
+            android:id="@+id/splash_icon"
+            android:layout_centerHorizontal="true"/>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@+id/splash_icon"
+          android:id="@+id/splash_text"
+          android:layout_marginTop="20dp"
+          android:textColor="@color/dark_title"
+          android:text="BitMEX Ticker"
+/>
 </RelativeLayout>

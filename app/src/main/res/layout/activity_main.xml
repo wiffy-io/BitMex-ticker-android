@@ -2,31 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:background="@color/mainDark"
+                android:background="@color/dark_table_out"
                 android:layout_height="match_parent">
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/mainLight"
-            android:layout_alignParentTop="true">
+    <include
+            layout="@layout/app_bar_main"
+            android:id="@+id/toolbar"
+    />
 
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="#ffffff"
-                android:textSize="20sp"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical"
-                android:text="Ticker"/>
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="25dp" android:layout_height="25dp"
-                android:id="@+id/setting_main"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/setting"/>
-    </RelativeLayout>
 
     <RelativeLayout
             android:layout_width="match_parent"
