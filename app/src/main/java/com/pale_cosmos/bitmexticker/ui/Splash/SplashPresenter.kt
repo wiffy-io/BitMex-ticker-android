@@ -2,39 +2,30 @@ package com.pale_cosmos.bitmexticker.Splash
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Handler
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
 
-class SplashPresenter(act: SplashContract.View) : SplashContract.Presenter {
+class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.Presenter {
 
     private val mView = act
-
+    private val mContext = cnt
 
     @SuppressLint("CommitPrefEdits")
     override fun startPresent() {
-        val sharedPreferences =
-            mView.appContext.getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        val flag = sharedPreferences.getBoolean("mode", true)
-        editor.putBoolean("mode", flag)
-        editor.apply()
-
-        moveToMain(flag)
-
-//        True -> Dark Mode (Deafault)
-//        False -> Light Mode (Mode)
+        val sharedPreferences = mContext.getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
+        Util.dark_theme = sharedPreferences.getBoolean("mode", true)
+        moveToMain()
+        //True -> Dark Mode (Default)
+        //False -> Light Mode (Mode)
     }
 
-    override fun moveToMain(flag: Boolean) {
+    private fun moveToMain() {
         Handler().postDelayed({
-            mView.moveToMain(flag)
-            mView.finishActivity()
-        }, 4000)
+            mView.moveToMain()
+            //mView.finishActivity()
+        }, 1000)
     }
-
 
 }

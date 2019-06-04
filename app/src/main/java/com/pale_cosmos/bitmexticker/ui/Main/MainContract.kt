@@ -1,16 +1,14 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
-import android.content.Context
+
 
 interface MainContract {
     interface View{
-        fun changeStatusBar()
-        fun initPresenter()
-        fun hideActionBar()
-        fun setInApplication()
-        var appContext: Context
+        fun changeStatusBar(color:Int)
+        fun append_text(str:String)
     }
     interface Presenter{
-
+        fun change_UI()
+        fun make_socket()
     }
 }

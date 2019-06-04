@@ -16,13 +16,16 @@
             android:id="@+id/addLayout"
             android:layout_alignParentBottom="true">
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/addPanelgood"
-                android:layout_alignParentBottom="true"
-                android:background="#ffffff"/>
-
     </RelativeLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:id="@+id/test"/>
 
 </RelativeLayout>

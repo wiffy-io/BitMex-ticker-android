@@ -1,55 +1,38 @@
 package com.pale_cosmos.bitmexticker.Splash
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.model.bit_MEX_App
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
-    override var appContext = applicationContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        changeStatusBar()
-        hideActionBar()
-        setInApplication()
-        initPresenter()
 
-    }
-
-    override fun changeStatusBar() {
-        bit_MEX_App.updateStatusBarColor(
-            window,
-            bit_MEX_App.defaultPresenter.colorDark_table_out
-        )
-    }
-
-    override fun hideActionBar() {
         supportActionBar?.hide()
-    }
+        changeStatusBar()
 
-    override fun initPresenter() {
-        mPresenter = SplashPresenter(this)
+        mPresenter = SplashPresenter(this,applicationContext)
         mPresenter.startPresent()
 
     }
 
-    override fun moveToMain(flag:Boolean) {
+    private fun changeStatusBar() {
+        //로딩 화면은 항상 다크모드임으로 상태바색 다크로 고정
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = getResources().getColor(R.color.dark_table_out);
+    }
+
+    override fun moveToMain() {
         val intent = Intent(this,MainActivity::class.java)
-        intent.putExtra("mode",flag)
         startActivity(intent)
         finish()
     }
 
-    override fun setInApplication() {
-        bit_MEX_App.splash = this
-    }
 }
