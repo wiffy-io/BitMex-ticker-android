@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:name=".model.bit_MEX_App"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Splash.SplashActivity">
+        <activity android:name=".ui.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

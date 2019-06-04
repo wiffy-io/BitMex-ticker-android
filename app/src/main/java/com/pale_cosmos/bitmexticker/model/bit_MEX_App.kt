@@ -5,16 +5,15 @@ import android.app.Application
 import android.graphics.Color
 import android.view.Window
 import android.view.WindowManager
-import com.pale_cosmos.bitmexticker.Splash.SplashActivity
+import com.pale_cosmos.bitmexticker.ui.Splash.SplashActivity
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
-import java.net.URI
 
 
 open class bit_MEX_App : Application(), bit_MEX_AppContract.Application {
     override lateinit var mPresenter: bit_MEX_AppPresenter
     companion object{
         @JvmStatic
-        lateinit var splash:SplashActivity
+        lateinit var splash: SplashActivity
 
 
         @SuppressLint("StaticFieldLeak")

@@ -1,15 +1,12 @@
-package com.pale_cosmos.bitmexticker.Splash
+package com.pale_cosmos.bitmexticker.ui.Splash
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.Splash.SplashPresenter
 import com.pale_cosmos.bitmexticker.model.bit_MEX_App
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
-import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter

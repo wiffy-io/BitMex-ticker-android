@@ -32,7 +32,6 @@ class SplashPresenter(act: SplashContract.View) : SplashContract.Presenter {
     override fun moveToMain(flag: Boolean) {
         Handler().postDelayed({
             mView.moveToMain(flag)
-            mView.finishActivity()
         }, 4000)
     }
 
