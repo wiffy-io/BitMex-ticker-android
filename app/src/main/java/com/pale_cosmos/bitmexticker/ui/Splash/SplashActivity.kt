@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.Splash
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
+    override var appContext = applicationContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +26,10 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     }
 
     override fun changeStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = Color.parseColor("#092336") // mainDark
+        bit_MEX_App.updateStatusBarColor(
+            window,
+            bit_MEX_App.defaultPresenter.colorDark_table_out
+        )
     }
 
     override fun hideActionBar() {
@@ -38,11 +42,10 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     }
 
-    override fun moveToMain() {
-        startActivity(Intent(this,MainActivity::class.java))
-    }
-
-    override fun finishActivity() {
+    override fun moveToMain(flag:Boolean) {
+        val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("mode",flag)
+        startActivity(intent)
         finish()
     }
 

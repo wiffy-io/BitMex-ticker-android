@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.model
 
 import android.app.Application
+import android.view.Window
 import org.java_websocket.client.WebSocketClient
 import java.net.URI
 
@@ -18,6 +19,17 @@ interface bit_MEX_AppContract {
         var myApp: bit_MEX_App
         var uri: URI
         var socket: Client
+        var colorDark_navi: String
+        var colorDark_table_out: String
+        var colorDark_table_in: String
+        var colorDark_title:String
+        var colorDark_title2:String
+
+        var colorLight_navi: String
+        var colorLight_table_out: String
+        var colorLight_table_in: String
+        var colorLight_title:String
+        var colorLight_title2:String
     }
 
     interface SocketClient {

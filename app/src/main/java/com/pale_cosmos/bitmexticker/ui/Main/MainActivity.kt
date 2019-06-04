@@ -13,6 +13,7 @@ import com.pale_cosmos.bitmexticker.model.bit_MEX_App
 class MainActivity : AppCompatActivity(), MainContract.View {
     lateinit var mPresenter: MainPresenter
     lateinit var menuButton: ImageView
+    override var appContext = applicationContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +25,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun changeStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = Color.parseColor("#223863") // mainLight
+        bit_MEX_App.updateStatusBarColor(
+            window,
+            bit_MEX_App.defaultPresenter.colorDark_navi
+            )
     }
 
     override fun initPresenter() {
