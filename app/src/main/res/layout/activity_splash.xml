@@ -11,15 +11,17 @@
             android:layout_height="130dp"
             app:srcCompat="@drawable/bitmex"
             android:layout_centerVertical="true"
-
             android:id="@+id/splash_icon"
             android:layout_centerHorizontal="true"/>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_below="@+id/splash_icon"
-          android:id="@+id/splash_text"
-          android:layout_marginTop="20dp"
-          android:textColor="@color/dark_title"
-          android:text="BitMEX Ticker"
-/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:layout_below="@+id/splash_icon"
+              android:id="@+id/splash_text"
+              android:layout_marginTop="20dp"
+              android:textColor="@color/dark_title"
+              android:text="BitMEX Ticker"/>
+
+
 </RelativeLayout>

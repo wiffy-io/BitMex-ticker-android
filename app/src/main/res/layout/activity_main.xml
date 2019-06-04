@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:background="@color/dark_table_out"
-                android:layout_height="match_parent">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/dark_table_out"
+        android:layout_height="match_parent">
+
     <include
             layout="@layout/app_bar_main"
-            android:id="@+id/toolbar"
-    />
-
+            android:id="@+id/toolbar"/>
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -20,10 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/addPanelgood"
-
                 android:layout_alignParentBottom="true"
                 android:background="#ffffff"/>
 
-
     </RelativeLayout>
+
 </RelativeLayout>
