@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.model.bit_MEX_App
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     lateinit var mPresenter: MainPresenter
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         changeStatusBar()
         hideActionBar()
+        setInApplication()
+        initPresenter()
     }
 
     override fun changeStatusBar() {
@@ -32,5 +35,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun hideActionBar() {
         supportActionBar?.hide()
 
+    }
+
+    override fun setInApplication() {
+        bit_MEX_App.main = this
     }
 }

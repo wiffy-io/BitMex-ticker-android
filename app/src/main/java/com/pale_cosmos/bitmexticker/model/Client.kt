@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.model
 
+import android.util.Log
 import android.widget.Toast
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.drafts.Draft
@@ -21,18 +22,21 @@ class Client : WebSocketClient, bit_MEX_AppContract.SocketClient {
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {
+//        Log.d("TESTSTART","SOCKET_ON")
         send(msg)
+//        Log.d("TESTSTART",msg)
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
-
+//        Log.d("TESTSTART","SOCKET_OFF")
     }
 
     override fun onMessage(message: String?) {
-       Toast.makeText( mPresenter.myApp.applicationContext,message,Toast.LENGTH_SHORT).show()
+//        Log.d("TESTSTART","msg : $message")
     }
 
     override fun onError(ex: Exception?) {
-
+//        Log.d("TESTSTART","Error")
+//        ex?.printStackTrace()
     }
 }

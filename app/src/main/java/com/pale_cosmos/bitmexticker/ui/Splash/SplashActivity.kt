@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.model.bit_MEX_App
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
@@ -17,6 +18,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         setContentView(R.layout.activity_splash)
         changeStatusBar()
         hideActionBar()
+        setInApplication()
         initPresenter()
 
     }
@@ -38,5 +40,13 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     override fun moveToMain() {
         startActivity(Intent(this,MainActivity::class.java))
+    }
+
+    override fun finishActivity() {
+        finish()
+    }
+
+    override fun setInApplication() {
+        bit_MEX_App.splash = this
     }
 }

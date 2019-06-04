@@ -6,6 +6,8 @@ interface SplashContract {
         fun hideActionBar()
         fun initPresenter()
         fun moveToMain()
+        fun finishActivity()
+        fun setInApplication()
     }
 
     interface Presenter {

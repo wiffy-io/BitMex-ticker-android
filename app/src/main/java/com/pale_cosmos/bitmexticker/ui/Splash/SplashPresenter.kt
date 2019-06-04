@@ -8,13 +8,16 @@ import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
 class SplashPresenter(act: SplashContract.View):SplashContract.Presenter {
 
-    val mView = act
-
+    private val mView = act
+    private val run = Runnable {
+        mView.moveToMain()
+        mView.finishActivity()
+    }
     override fun startPresent() {
         moveToMain()
     }
 
     override fun moveToMain() {
-        Handler().postDelayed({mView.moveToMain()},4000) // splashTest
+        Handler().postDelayed(run,4000) // splashTest
     }
 }

@@ -5,6 +5,7 @@ interface MainContract {
         fun changeStatusBar()
         fun initPresenter()
         fun hideActionBar()
+        fun setInApplication()
     }
     interface Presenter{
 
