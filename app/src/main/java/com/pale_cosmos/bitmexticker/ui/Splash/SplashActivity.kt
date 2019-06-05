@@ -26,13 +26,15 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     private fun changeStatusBar() {
         //로딩 화면은 항상 다크모드임으로 상태바색 다크로 고정
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = getResources().getColor(R.color.dark_table_out);
+        window.statusBarColor = resources.getColor(R.color.dark_table_out);
     }
 
     override fun moveToMain() {
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.not_move_activity)
         finish()
+//        overridePendingTransition()
     }
 
 }

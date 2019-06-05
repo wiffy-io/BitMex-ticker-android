@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/dark_table_out"
+        android:id="@+id/parent_setting"
+        android:layout_height="match_parent">
+
+    <include
+            layout="@layout/app_bar_setting"
+            android:id="@+id/toolbar_setting"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/addLayout"
+            android:layout_alignParentBottom="true">
+
+    </RelativeLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:id="@+id/test"/>
+
+</RelativeLayout>
