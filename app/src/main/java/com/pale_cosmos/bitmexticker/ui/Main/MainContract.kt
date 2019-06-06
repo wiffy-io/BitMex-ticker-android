@@ -5,7 +5,8 @@ import android.view.View
 
 interface MainContract {
     interface View{
-        fun changeStatusBarAndView(theme:Boolean)
+        fun changeDark()
+        fun changeLight()
         fun append_text(str:String)
         fun addBrightnessListener(listener:android.view.View.OnClickListener)
         fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
