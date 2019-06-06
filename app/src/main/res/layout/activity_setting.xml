@@ -4,12 +4,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/dark_table_out"
-        android:id="@+id/parent_main"
+        android:id="@+id/parent_setting"
         android:layout_height="match_parent">
 
     <include
-            layout="@layout/app_bar_main"
-            android:id="@+id/toolbar_main"/>
+            layout="@layout/app_bar_setting"
+            android:id="@+id/toolbar_setting"/>
 
     <RelativeLayout
             android:layout_width="match_parent"

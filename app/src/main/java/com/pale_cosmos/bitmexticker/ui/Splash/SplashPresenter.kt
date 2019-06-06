@@ -14,8 +14,10 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
 
     @SuppressLint("CommitPrefEdits")
     override fun startPresent() {
-        val sharedPreferences = mContext.getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
-        Util.dark_theme = sharedPreferences.getBoolean("mode", true)
+        Util.sharedPreferences_theme = mContext.getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
+        Util.sharedPreferences_editor_theme = Util.sharedPreferences_theme.edit() // editor를 static으로 선언함으로써 변경을 용이하게함
+
+        Util.dark_theme = Util.sharedPreferences_theme.getBoolean("mode", true)
         moveToMain()
         //True -> Dark Mode (Default)
         //False -> Light Mode (Mode)
@@ -25,7 +27,7 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
         Handler().postDelayed({
             mView.moveToMain()
             //mView.finishActivity()
-        }, 1000)
+        }, 650)
     }
 
 }
