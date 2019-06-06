@@ -5,7 +5,8 @@ import android.view.View
 interface SettingContract {
     interface View
     {
-        fun changeStatusBarAndView(theme:Boolean)
+        fun changeDark()
+        fun changeLight()
         fun moveToMain()
         fun addTickerButtonListener(listener: android.view.View.OnClickListener)
     }

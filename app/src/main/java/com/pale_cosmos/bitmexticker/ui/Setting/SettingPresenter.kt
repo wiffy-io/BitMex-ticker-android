@@ -7,7 +7,11 @@ class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
     private val mView = act
 
     override fun change_UI() {
-        mView.changeStatusBarAndView(Util.dark_theme)
+        if (Util.dark_theme){
+            mView.changeDark()
+        }else{
+            mView.changeLight()
+        }
         mView.addTickerButtonListener(listener = View.OnClickListener {
             mView.moveToMain()
         })
