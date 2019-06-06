@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,8 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>) : Rec
     fun update(modelList:ArrayList<ConcurrentHashMap<String, String>>){
         items = modelList
         notifyDataSetChanged()
+        //Log.d("asdasd",modelList[0].get("price"))
+        //notifyItemRangeChanged(0, items.size);
     }
 
     fun deleteItem(position:Int)

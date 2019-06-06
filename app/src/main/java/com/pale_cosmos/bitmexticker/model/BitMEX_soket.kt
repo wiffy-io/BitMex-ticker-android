@@ -8,12 +8,17 @@ import java.net.URI
 
 class BitMEX_soket: WebSocketClient {
 
-    var msg:String = ""
-    var callback_:(String)->Unit
+    //var msg:String = ""
+    var callback_:(String)->Unit?
+    var sendback_:(String)->Unit?
 
-    constructor(serverUri: URI,str:String) : super(serverUri) {
+    constructor(serverUri: URI) : super(serverUri) {
         callback_ = {}
-        msg = str
+        sendback_ = {}
+    }
+
+    fun set_sendback(callback: ((String)->Unit)){
+        sendback_ = callback
     }
 
     fun set_callback(callback: ((String)->Unit)){
@@ -39,7 +44,8 @@ class BitMEX_soket: WebSocketClient {
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {
-        send(msg)
+        //send(msg)
+        sendback_.invoke("")
     }
 
 }
