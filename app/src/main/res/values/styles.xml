@@ -23,4 +23,10 @@
 
     </style>
 
+    <style name="AppPreferenceTheme" parent="@style/PreferenceThemeOverlay">
+        <item name="android:textColor">@color/dark_title</item>
+        <item name="android:textColorSecondary">@color/light_title</item>
+
+    </style>
+
 </resources>

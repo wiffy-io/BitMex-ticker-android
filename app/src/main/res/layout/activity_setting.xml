@@ -10,26 +10,9 @@
     <include
             layout="@layout/app_bar_setting"
             android:id="@+id/toolbar_setting"/>
-    <ScrollView android:layout_width="match_parent"
-                android:layout_below="@id/toolbar_setting"
-                android:layout_height="match_parent">
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/addLayout">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:text="INFO" android:textColor="@color/dark_title2"
-                      android:id="@+id/info_setting"
-                      android:layout_marginStart="20dp"
-                      android:layout_marginTop="30dp"/>
-            <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:background="@drawable/button_selector_dark"
-                    android:text="OpenSource"
-                    android:id="@+id/openSource"
-                    android:layout_below="@id/info_setting"
-                    android:textColor="#ffffff"
-            />
-
-        </RelativeLayout>
-    </ScrollView>
+    <FrameLayout
+            android:layout_below="@id/toolbar_setting"
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </RelativeLayout>
