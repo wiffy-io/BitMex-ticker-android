@@ -3,15 +3,42 @@ package com.pale_cosmos.bitmexticker.ui.Main
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.getUrlText
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
+import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
+import java.lang.Exception
 import java.net.URI
-
+import java.util.concurrent.ConcurrentHashMap
 
 class MainPresenter(act: MainContract.View):MainContract.Presenter {
+
     private val mView = act
+    private var init_coin = ArrayList<ConcurrentHashMap<String,String>>()
+
+    override fun get_coin() {
+        Thread(Runnable {
+            try{
+                var get_server = "http://jungh0.com/symbol".getUrlText().split("\n")
+                for(i in 0..get_server.size-1){
+                    var tmp = get_server[i].split(",")
+                    var hmap = ConcurrentHashMap<String,String>()
+                    hmap.put("Symbol",tmp[0])
+                    hmap.put("price",tmp[1])
+                    hmap.put("is_new",tmp[2])
+                    hmap.put("name_info",tmp[3])
+                    hmap.put("before_p",tmp[4])
+                    hmap.put("chart_symbol",tmp[5])
+                    hmap.put("parse_str",tmp[5])
+                    init_coin.add(hmap)
+                    //var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
+                    Log.d("aaa",init_coin[i].get("Symbol"))
+                }
+                mView.set_recycler(init_coin)
+            }catch (e:Exception){
+            }
+        }).start()
+    }
 
     override fun change_UI() {
         //테마 상태에 따라아 ui 디자인해줌
@@ -40,12 +67,7 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
         var msg = "{\"op\": \"subscribe\", \"args\": [\"orderBook10:XBTUSD\"]}"
         var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"),msg)
         socket.set_callback {
-            //            Log.d("testSet",it)
-            mView.run {
-
-            }
-            mView.append_text(it)
-
+            //mView.update_recycler(init_coin)
         }
         socket.connect()
     }
