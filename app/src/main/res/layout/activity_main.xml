@@ -8,25 +8,17 @@
         android:layout_height="match_parent">
 
     <include
-            layout="@layout/app_bar_main"
-            android:id="@+id/toolbar_main"/>
+        layout="@layout/app_bar_main"
+        android:id="@+id/toolbar_main"/>
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/toolbar_main"
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/addLayout"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent">
 
-    </RelativeLayout>
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Name"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textColor="#ffffff"
-            android:id="@+id/test"/>
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

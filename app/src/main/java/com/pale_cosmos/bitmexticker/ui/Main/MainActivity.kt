@@ -11,32 +11,50 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     lateinit var mPresenter: MainPresenter
-
+    var myAdapter: MainAdapter? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        test.text = "앙기모띠"
 
         mPresenter = MainPresenter(this)
         mPresenter.change_UI()
         mPresenter.make_socket()
-
+        mPresenter.get_coin()
 
     }
 
+    override fun set_recycler(init_coin:ArrayList<ConcurrentHashMap<String, String>>) {
+        Handler(applicationContext.mainLooper).post {
+            var myAdapter = MainAdapter(init_coin)
+            recycler.adapter = myAdapter
+            recycler.layoutManager = LinearLayoutManager(this)
+            //myAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun update_recycler(mod_coin:ArrayList<ConcurrentHashMap<String, String>>) {
+        Handler(applicationContext.mainLooper).post {
+            myAdapter?.update(mod_coin)
+        }
+    }
 
     override fun changeDark() {
-
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(R.color.dark_navi)
         brightness_main.setImageResource(R.drawable.to_darks)
@@ -45,19 +63,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun changeLight() {
-
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(R.color.light_navi)
         brightness_main.setImageResource(R.drawable.to_lights)
         toolbar_main.background = resources.getDrawable(R.color.light_navi)
         parent_main.background = resources.getDrawable(R.color.light_table_out)
-    }
-
-    override fun append_text(str: String) {
-//        Log.d("testset", str)
-        Handler(applicationContext.mainLooper).post { test.text = str }
-
-
     }
 
     override fun addBrightnessListener(listener: View.OnClickListener) {
