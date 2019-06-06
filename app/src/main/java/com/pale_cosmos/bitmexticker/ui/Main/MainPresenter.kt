@@ -15,6 +15,7 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
 
     private val mView = act
     private var init_coin = ArrayList<ConcurrentHashMap<String,String>>()
+    private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
 
     override fun get_coin() {
         Thread(Runnable {
@@ -64,11 +65,48 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
     }
 
     override fun make_socket() {
-        var msg = "{\"op\": \"subscribe\", \"args\": [\"orderBook10:XBTUSD\"]}"
-        var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"),msg)
         socket.set_callback {
-            //mView.update_recycler(init_coin)
+            socket_callback(it)
+        }
+        socket.set_sendback {
+            socket_subscribe()
         }
         socket.connect()
+    }
+
+    private fun socket_subscribe(){
+        for(i in 0..init_coin.size-1){
+            var tmp = init_coin[i].get("Symbol").toString()
+            var msg = "{\"op\": \"subscribe\", \"args\": [\"tradeBin1m:" + tmp + "\"]}"
+            socket.send_msg(msg)
+        }
+    }
+
+    private fun socket_callback(it:String){
+        Log.d("asdasd",it)
+        for(i in 0..init_coin.size-1){
+            var tmp = init_coin[i].get("Symbol").toString()
+            if (it.contains("\"table\":\"tradeBin1m\"")){
+                if (it.contains("\"symbol\":\"" + tmp + "\",")){
+                    var msg = "{\"op\": \"unsubscribe\", \"args\": [\"tradeBin1m:" + tmp + "\"]}"
+                    socket.send_msg(msg)
+                    msg = "{\"op\": \"subscribe\", \"args\": [\"trade:" + tmp + "\"]}"
+                    socket.send_msg(msg)
+
+                    var tmp = it.split("\"symbol\":\"" + tmp + "\",")[1]
+                    var price = tmp.split("\"close\":")[1].split(",")[0]
+                    init_coin[i].set("price",price)
+
+                }
+            }
+            if (it.contains("\"table\":\"trade\"")){
+                if (it.contains("\"symbol\":\"" + tmp + "\",")){
+                    var tmp = it.split("\"symbol\":\"" + tmp + "\",")[1]
+                    var price = tmp.split("\"price\":")[1].split(",")[0]
+                    init_coin[i].set("price",price)
+                }
+            }
+        }
+        mView.update_recycler(init_coin)
     }
 }

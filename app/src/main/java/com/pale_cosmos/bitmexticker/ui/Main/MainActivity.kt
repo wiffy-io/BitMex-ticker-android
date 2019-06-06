@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentMap
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     lateinit var mPresenter: MainPresenter
-    var myAdapter: MainAdapter? =null
+    var myAdapter: MainAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,24 +34,25 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         mPresenter = MainPresenter(this)
         mPresenter.change_UI()
-        mPresenter.make_socket()
         mPresenter.get_coin()
 
     }
 
     override fun set_recycler(init_coin:ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
-            var myAdapter = MainAdapter(init_coin)
+            myAdapter = MainAdapter(init_coin)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
             //myAdapter.notifyDataSetChanged()
         }
+        mPresenter.make_socket()
     }
 
     override fun update_recycler(mod_coin:ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update(mod_coin)
         }
+
     }
 
     override fun changeDark() {
