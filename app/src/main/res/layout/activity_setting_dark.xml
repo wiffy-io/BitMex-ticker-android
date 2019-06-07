@@ -37,6 +37,7 @@
                             android:layout_width="match_parent"
                             android:clickable="true"
                             android:focusable="true"
+                            android:id="@+id/dark_table1"
                             android:background="@drawable/setting_button_dark" >
                 <TextView
                         android:layout_width="match_parent"
@@ -63,6 +64,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
+                            android:id="@+id/dark_table2"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark">
                 <TextView
@@ -106,6 +108,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
+                            android:id="@+id/dark_table3"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark"
                            >
@@ -133,6 +136,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
+                            android:id="@+id/dark_table4"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark">
                 <TextView
