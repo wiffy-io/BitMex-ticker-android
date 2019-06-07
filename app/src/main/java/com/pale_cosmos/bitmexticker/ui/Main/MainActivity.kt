@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     }
 
-    override fun set_recycler(init_coin:ArrayList<ConcurrentHashMap<String, String>>) {
+    override fun set_recycler(init_coin: ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin,this, Util.dark_theme)
+            myAdapter = MainAdapter(init_coin, this, Util.dark_theme)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
             //myAdapter.notifyDataSetChanged()
@@ -46,7 +46,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.make_socket()
     }
 
-    override fun update_recycler(mod_coin:ArrayList<ConcurrentHashMap<String, String>>) {
+
+    override fun update_recycler_theme() {
+        Handler(applicationContext.mainLooper).post {
+            myAdapter?.update_theme(Util.dark_theme)
+        }
+    }
+
+    override fun update_recycler(mod_coin: ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update(mod_coin)
         }

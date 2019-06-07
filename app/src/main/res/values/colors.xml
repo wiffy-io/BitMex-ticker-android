@@ -14,7 +14,7 @@
 
     <color name="light_navi">#45A4B3</color> <!--Light_navi-->
     <color name="light_table_out">#efeff3</color> <!--Light_table_out-->
-    <color name="light_table_in">#fff2ff</color> <!--Light_table_in-->
+    <color name="light_table_in">#ffffff</color> <!--Light_table_in-->
     <color name="light_title">#ff303030</color> <!--Light_title-->
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
 

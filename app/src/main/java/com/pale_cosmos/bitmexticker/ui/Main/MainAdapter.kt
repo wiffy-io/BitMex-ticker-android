@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.get_table_in
+import com.pale_cosmos.bitmexticker.extension.get_title
+import com.pale_cosmos.bitmexticker.extension.get_title2
 import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context:Context, var is_dark: Boolean)
-    : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context: Context, var is_dark: Boolean) :
+    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 //
 //    var items = ArrayList<ConcurrentHashMap<String, String>>()
 //
@@ -28,51 +31,50 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         items[position].let { item ->
             with(holder) {
-                if (is_dark){
-                    bg.setCardBackgroundColor(ContextCompat.getColor(context,R.color.dark_table_out))
-                }else{
-                    bg.setCardBackgroundColor(ContextCompat.getColor(context,R.color.light_table_out))
-                }
+                bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                symbol.setTextColor(ContextCompat.getColor(context, get_title()))
+                name_info.setTextColor(ContextCompat.getColor(context, get_title2()))
+
                 symbol.text = item.get("Symbol")
                 name_info.text = item.get("name_info")
                 price.text = item.get("price")
-                if (item.get("before_p") == "n"){
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context,R.color.normal))
-                }else if (item.get("before_p") == "r"){
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context,R.color.red))
-                }else if (item.get("before_p") == "g"){
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context,R.color.green))
+                if (item.get("before_p") == "n") {
+                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
+                } else if (item.get("before_p") == "r") {
+                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
+                } else if (item.get("before_p") == "g") {
+                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
                 }
             }
         }
     }
 
-    fun update_theme(theme:Boolean){
+    fun update_theme(theme: Boolean) {
         is_dark = theme
         notifyDataSetChanged()
     }
 
-    fun update(modelList:ArrayList<ConcurrentHashMap<String, String>>){
+    fun update(modelList: ArrayList<ConcurrentHashMap<String, String>>) {
         items = modelList
         notifyDataSetChanged()
         //Log.d("asdasd",modelList[0].get("price"))
         //notifyItemRangeChanged(0, items.size);
     }
 
-    fun deleteItem(position:Int)
-    {
+    fun deleteItem(position: Int) {
         items.removeAt(position)
         notifyItemRemoved(position)
-        notifyItemChanged(position,items.size)
+        notifyItemChanged(position, items.size)
     }
-    fun deleteAll()
-    {
+
+    fun deleteAll() {
         items = ArrayList()
         notifyDataSetChanged()
     }
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.main_adapter, parent, false)) {
+        LayoutInflater.from(parent.context).inflate(R.layout.main_adapter, parent, false)
+    ) {
         val symbol = itemView.Symbol
         val name_info = itemView.name_info
         val price = itemView.price
