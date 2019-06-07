@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Setting
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.ui.Dialog.DialogActivity
 import kotlinx.android.synthetic.main.activity_setting_dark.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 
@@ -127,6 +129,13 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun startDialog(title:String, context:String) {
+        val intents = Intent(this@SettingActivity,DialogActivity::class.java)
+        intents.putExtra("TITLE",title)
+        intents.putExtra("CONTEXT",context)
+        startActivity(intents)
+    }
 
+    override fun getStringTo(id: Int): String {
+        return getString(id)
     }
 }

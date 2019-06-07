@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="#66aa66"/>
-    <item android:state_pressed="true" android:drawable="#335533" tools:ignore="StateListReachable"/>
-    <item android:state_focused="true" android:drawable="#335533"/>
+
+
+
+    <item android:state_pressed="true" >
+        <shape>
+            <stroke
+                    android:color="#335533"/>
+            <corners
+                    android:radius="10dp"/>
+        </shape>
+    </item>
+
+
+    <item android:state_focused="true">
+        <shape>
+            <stroke
+                    android:color="#335533"/>
+            <corners
+                    android:radius="10dp"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <stroke
+                    android:color="#66aa66"/>
+            <corners
+                    android:radius="10dp"/>
+        </shape>
+    </item>
+
 </selector>

@@ -15,20 +15,20 @@ class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
         }
         mView.addTickerButtonListener(
             listener = View.OnClickListener {
-            mView.moveToMain()
-        })
+                mView.moveToMain()
+            })
         mView.addSettingButtonListener(
             listener1 = View.OnClickListener {
-                mView.startDialog("OpenSource", R.string.open_srouce)
+                mView.startDialog("OpenSource", mView.getStringTo(R.string.open_source))
             },
             listener2 = View.OnClickListener {
-
+                mView.startDialog("Version", mView.getStringTo(R.string.version))
             },
             listener3 = View.OnClickListener {
 
             },
             listener4 = View.OnClickListener {
-
+                mView.startDialog(mView.getStringTo(R.string.addmin_mail), "Copied email")
             })
     }
 }

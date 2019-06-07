@@ -16,5 +16,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <style name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</style>
+    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
+    <string name="version">1.0.0(1)</string>
+    <string name="addmin_mail">iveinvalue@gmail.com</string>
 </resources>

@@ -14,6 +14,7 @@ interface SettingContract {
                                      listener3: android.view.View.OnClickListener,
                                      listener4: android.view.View.OnClickListener)
         fun startDialog(title:String,context:String)
+        fun getStringTo(id:Int):String
     }
 
     interface Presenter
