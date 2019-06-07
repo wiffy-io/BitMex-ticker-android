@@ -13,12 +13,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun set_recycler(init_coin:ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin,this)
+            myAdapter = MainAdapter(init_coin,this, Util.dark_theme)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
             //myAdapter.notifyDataSetChanged()

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context:Context)
+class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context:Context, var is_dark: Boolean)
     : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 //
 //    var items = ArrayList<ConcurrentHashMap<String, String>>()
@@ -28,6 +28,11 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         items[position].let { item ->
             with(holder) {
+                if (is_dark){
+                    bg.setCardBackgroundColor(ContextCompat.getColor(context,R.color.dark_table_out))
+                }else{
+                    bg.setCardBackgroundColor(ContextCompat.getColor(context,R.color.light_table_out))
+                }
                 symbol.text = item.get("Symbol")
                 name_info.text = item.get("name_info")
                 price.text = item.get("price")
@@ -40,6 +45,11 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 }
             }
         }
+    }
+
+    fun update_theme(theme:Boolean){
+        is_dark = theme
+        notifyDataSetChanged()
     }
 
     fun update(modelList:ArrayList<ConcurrentHashMap<String, String>>){
@@ -67,5 +77,6 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
         val name_info = itemView.name_info
         val price = itemView.price
         val card_in = itemView.card_in
+        val bg = itemView.bg
     }
 }
