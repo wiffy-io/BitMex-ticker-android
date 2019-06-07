@@ -57,6 +57,8 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
             if(Util.dark_theme)mView.changeDark()
             else mView.changeLight()
             Util.sharedPreferences_editor_theme.putBoolean("mode",Util.dark_theme).apply()
+
+            mView.update_recycler_theme()
         }
         val listener_setting = View.OnClickListener {
             mView.moveToSetting()

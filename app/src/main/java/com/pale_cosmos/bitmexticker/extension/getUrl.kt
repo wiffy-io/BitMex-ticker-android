@@ -10,4 +10,5 @@ fun String.getUrlText(): String {
             inputStream.bufferedReader().readText()
         }
     }
+
 }
