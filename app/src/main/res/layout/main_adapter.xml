@@ -1,45 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_height="wrap_content" android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:background="@color/dark_table_in">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/dark_table_in"
+        android:layout_margin="5dp">
 
-    <TextView
-            android:id="@+id/Symbol"
-            android:textColor="#ffffff"
-            android:text="XBTUSD"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
-    <TextView
-            android:layout_below="@+id/Symbol"
-            android:id="@+id/name_info"
-            android:textColor="#ffffff"
-            android:text="aaaaa"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="12sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/Symbol"
+                android:textColor="#ffffff"
+                android:text="XBTUSD"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    <TextView
-            android:id="@+id/price"
-            android:textColor="#ffffff"
-            android:text="0000"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:layout_centerVertical="true"
-            android:textSize="15sp"
-            android:background="@color/colorAccent"
-            android:layout_width="100dp"
-            android:layout_height="30dp"/>
+        <TextView
+                android:layout_below="@+id/Symbol"
+                android:id="@+id/name_info"
+                android:textColor="#ffffff"
+                android:text="aaaaa"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/card_in"
+                app:cardCornerRadius="3dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+            <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:background="@android:color/transparent">
+
+                <TextView
+                        android:id="@+id/price"
+                        android:textColor="#ffffff"
+                        android:text="0000"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="15sp"/>
+
+            </RelativeLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

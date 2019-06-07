@@ -32,11 +32,12 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 name_info.text = items[position].get("name_info")
                 price.text = items[position].get("price")
                 if (items[position].get("before_p") == "n"){
-                    price.setBackgroundColor(ContextCompat.getColor(context,R.color.normal))
+                    //card_in.setCardBackgroundColor(color);
+                    card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.normal))
                 }else if (items[position].get("before_p") == "r"){
-                    price.setBackgroundColor(ContextCompat.getColor(context,R.color.red))
+                    card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.red))
                 }else if (items[position].get("before_p") == "g"){
-                    price.setBackgroundColor(ContextCompat.getColor(context,R.color.green))
+                    card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.green))
                 }
             }
         }
@@ -66,5 +67,6 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
         val symbol = itemView.Symbol
         val name_info = itemView.name_info
         val price = itemView.price
+        val card_in = itemView.card_in
     }
 }

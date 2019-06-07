@@ -11,13 +11,14 @@
         layout="@layout/app_bar_main"
         android:id="@+id/toolbar_main"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="3dp"
             android:layout_below="@+id/toolbar_main"
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
+            android:layout_height="match_parent"
+            android:paddingBottom="3dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
