@@ -1,21 +1,20 @@
 package com.pale_cosmos.bitmexticker.ui.Setting
 
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.app.Dialog
+import android.content.*
 import android.net.Uri
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
-import com.pale_cosmos.bitmexticker.ui.Dialog.DialogActivity
 import kotlinx.android.synthetic.main.activity_setting_dark.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 
@@ -133,10 +132,30 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun startDialog(title:String, context:String) {
-        val intents = Intent(this@SettingActivity,DialogActivity::class.java)
-        intents.putExtra("TITLE",title)
-        intents.putExtra("CONTEXT",context)
-        startActivity(intents)
+//        val intents = Intent(this@SettingActivity,DialogActivity::class.java)
+//        intents.putExtra("TITLE",title)
+//        intents.putExtra("CONTEXT",context)
+//        startActivity(intents)
+
+        var builder = Dialog(this@SettingActivity)
+        builder.setContentView(R.layout.activity_dialog)
+        builder.setCancelable(false)
+        builder.setCanceledOnTouchOutside(false)
+        builder.setOnShowListener(object:DialogInterface.OnShowListener{
+            override fun onShow(dialog: DialogInterface?) {
+                var x =builder.findViewById<Button>(R.id.OKBUTTON)
+                x.setOnClickListener {
+                    builder.dismiss()
+                }
+                var y = builder.findViewById<TextView>(R.id.contextInDialog)
+                y.text = context
+                var z = builder.findViewById<TextView>(R.id.titleInDialog)
+                z.text=title
+            }
+        })
+        builder.window.setBackgroundDrawableResource(android.R.color.transparent)
+        builder.show()
+
     }
 
     override fun getStringTo(id: Int): String {

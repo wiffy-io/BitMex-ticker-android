@@ -4,27 +4,35 @@
 
 
     <item android:state_pressed="true" >
-        <color android:color="#335533"/>
-        <shape>
+        <shape android:shape="rectangle">
             <corners
-                    android:radius="10dp"/>
+                    android:radius="5dip"/>
+            <gradient
+                    android:startColor="#335533"
+                    android:endColor="#335533"
+            />
         </shape>
     </item>
 
-
     <item android:state_focused="true">
-        <color android:color="#335533"/>
-        <shape>
+        <shape android:shape="rectangle">
             <corners
-                    android:radius="10dp"/>
+                    android:radius="5dip"/>
+            <gradient
+                    android:startColor="#335533"
+                    android:endColor="#335533"
+            />
         </shape>
     </item>
 
     <item>
-        <color  android:color="#66aa66"/>
-        <shape>
+        <shape android:shape="rectangle">
             <corners
-                    android:radius="10dp"/>
+                    android:radius="5dip"/>
+            <gradient
+                    android:startColor="#66aa66"
+                    android:endColor="#66aa66"
+            />
         </shape>
     </item>
 
