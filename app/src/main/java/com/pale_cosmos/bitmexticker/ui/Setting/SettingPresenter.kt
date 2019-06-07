@@ -2,7 +2,6 @@ package com.pale_cosmos.bitmexticker.ui.Setting
 
 import android.view.View
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.model.Util
 
 class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
     private val mView = act

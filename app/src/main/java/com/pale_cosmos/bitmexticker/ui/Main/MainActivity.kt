@@ -1,15 +1,10 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
@@ -21,7 +16,6 @@ import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentMap
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
