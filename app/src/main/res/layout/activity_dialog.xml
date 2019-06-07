@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:background="@drawable/dialog_background"
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="1dp"
+        app:cardBackgroundColor="#ffffff"
+        android:layout_margin="3dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
 
-                android:theme="@style/Theme.AppCompat.Dialog"
-                android:layout_width="250dp"
-                android:layout_height="150dp">
-
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_centerHorizontal="true"
-              android:textColor="@color/light_title2"
-              android:text="Title"
-              android:textAlignment="center"
-              android:textSize="18sp"
-              android:layout_marginTop="10dp"
-              android:id="@+id/titleInDialog"/>
-    <ScrollView android:layout_width="wrap_content"
-                android:layout_height="50dp"
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:textColor="@color/light_title2"
+                  android:text="Title"
+                  android:textAlignment="center"
+                  android:textSize="18sp"
+                  android:layout_marginTop="10dp"
+                  android:id="@+id/titleInDialog"/>
+        <ScrollView android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/titleInDialog">
+            <TextView android:layout_width="220dp"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:textAlignment="center"
+                      android:id="@+id/contextInDialog"
+                      android:text="context"
+                      android:textColor="@color/light_title"
+                      android:layout_marginTop="10dp"
+                      android:layout_centerHorizontal="true"
+            />
+        </ScrollView>
+        <Button
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:background="@drawable/dialog_button"
+                android:text="OK"
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffff"
+                android:id="@+id/OKBUTTON"
+                android:textAlignment="center"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/titleInDialog">
-    <TextView android:layout_width="220dp"
-              android:layout_height="wrap_content"
-            android:layout_gravity="center"
-              android:textAlignment="center"
-              android:id="@+id/contextInDialog"
-              android:text = "context"
-              android:textColor="@color/light_title"
-                android:layout_marginTop="10dp"
-              android:layout_centerHorizontal="true"
-    />
-    </ScrollView>
-    <Button
-            android:layout_width="220dp"
-            android:layout_height="30dp"
-            android:background="@drawable/dialog_button"
-            android:text="OK"
-            android:layout_marginBottom="10dp"
-            android:textColor="#ffffff"
-            android:id="@+id/OKBUTTON"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-    />
-</RelativeLayout>
+                android:layout_alignParentBottom="true"
+        />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
