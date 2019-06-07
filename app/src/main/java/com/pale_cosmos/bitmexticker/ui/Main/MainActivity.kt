@@ -13,6 +13,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.get_brightness
+import com.pale_cosmos.bitmexticker.extension.get_navi
+import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,7 +49,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.make_socket()
     }
 
-
     override fun update_recycler_theme() {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update_theme(Util.dark_theme)
@@ -57,23 +59,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update(mod_coin)
         }
-
     }
 
-    override fun changeDark() {
+    override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.dark_navi)
-        brightness_main.setImageResource(R.drawable.to_darks)
-        toolbar_main.background = resources.getDrawable(R.color.dark_navi)
-        parent_main.background = resources.getDrawable(R.color.dark_table_out)
-    }
-
-    override fun changeLight() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.light_navi)
-        brightness_main.setImageResource(R.drawable.to_lights)
-        toolbar_main.background = resources.getDrawable(R.color.light_navi)
-        parent_main.background = resources.getDrawable(R.color.light_table_out)
+        window.statusBarColor = resources.getColor(get_navi())
+        brightness_main.setImageResource(get_brightness())
+        toolbar_main.background = resources.getDrawable(get_navi())
+        parent_main.background = resources.getDrawable(get_table_out())
     }
 
     override fun addBrightnessListener(listener: View.OnClickListener) {

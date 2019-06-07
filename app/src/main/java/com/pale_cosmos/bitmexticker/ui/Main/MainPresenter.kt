@@ -44,18 +44,10 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
 
     override fun change_UI() {
         //테마 상태에 따라아 ui 디자인해줌
-
-        if (Util.dark_theme){
-            mView.changeDark()
-        }else{
-            mView.changeLight()
-        }
-//        mView.changeStatusBarAndView(Util.dark_theme)
-
+        mView.changeUI()
         val listener_theme = View.OnClickListener {
             Util.dark_theme = Util.dark_theme xor true
-            if(Util.dark_theme)mView.changeDark()
-            else mView.changeLight()
+            mView.changeUI()
             Util.sharedPreferences_editor_theme.putBoolean("mode",Util.dark_theme).apply()
 
             mView.update_recycler_theme()

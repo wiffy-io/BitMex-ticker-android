@@ -6,8 +6,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 interface MainContract {
     interface View{
-        fun changeDark()
-        fun changeLight()
+        fun changeUI()
         fun addBrightnessListener(listener:android.view.View.OnClickListener)
         fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
         fun moveToSetting()

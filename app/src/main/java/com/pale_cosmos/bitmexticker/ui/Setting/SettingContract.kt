@@ -5,8 +5,7 @@ import android.view.View
 interface SettingContract {
     interface View
     {
-        fun changeDark()
-        fun changeLight()
+        fun changeUI()
         fun moveToMain()
         fun addTickerButtonListener(listener: android.view.View.OnClickListener)
         fun addSettingButtonListener(listener1: android.view.View.OnClickListener,

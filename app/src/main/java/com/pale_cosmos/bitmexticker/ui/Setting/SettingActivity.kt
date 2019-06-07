@@ -14,6 +14,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.get_navi
+import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.activity_setting_dark.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
@@ -53,24 +55,11 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         mPresenter.change_UI()
     }
 
-
-    override fun changeDark() {
+    override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.dark_navi)
-
-        toolbar_setting.background = resources.getDrawable(R.color.dark_navi)
-        parent_setting.background = resources.getDrawable(R.color.dark_table_out)
-
-        toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
-    }
-
-    override fun changeLight() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.light_navi)
-
-        toolbar_setting.background = resources.getDrawable(R.color.light_navi)
-        parent_setting.background = resources.getDrawable(R.color.light_table_out)
-
+        window.statusBarColor = resources.getColor(get_navi())
+        toolbar_setting.background = resources.getDrawable(get_navi())
+        parent_setting.background = resources.getDrawable(get_table_out())
         toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
     }
 
