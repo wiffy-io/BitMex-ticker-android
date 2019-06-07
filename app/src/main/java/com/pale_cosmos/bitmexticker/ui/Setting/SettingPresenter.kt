@@ -29,7 +29,7 @@ class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
             },
             listener4 = View.OnClickListener {
                 mView.clipOnBoard(mView.getStringTo(R.string.addmin_mail))
-                mView.startDialog(mView.getStringTo(R.string.addmin_mail), "Copied email")
+                mView.startDialog(mView.getStringTo(R.string.addmin_mail), "E-mail copied in clipboard")
             })
     }
 }
