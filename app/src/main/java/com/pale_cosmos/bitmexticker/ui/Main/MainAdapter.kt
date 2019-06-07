@@ -33,7 +33,8 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 price.text = item.get("price")
                 if (item.get("before_p") == "n"){
                     //card_in.setCardBackgroundColor(color);
-                    card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.normal))
+                    card_in.setCardBackgroundColor(ContextCompat.getColor(context,R.color.normal))
+                    //card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.normal))
                 }else if (item.get("before_p") == "r"){
                     card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.red))
                 }else if (item.get("before_p") == "g"){
