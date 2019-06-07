@@ -29,6 +29,10 @@ class BitMEX_soket: WebSocketClient {
         send(str)
     }
 
+    fun send_msg_filter(str1:String,str2:String,str3:String){
+        send("{\"op\": \"" + str1 + "\", \"args\": [\"" + str2 + ":" + str3 + "\"]}")
+    }
+
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
 
     }
