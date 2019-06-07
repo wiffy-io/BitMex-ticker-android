@@ -15,6 +15,8 @@ interface SettingContract {
                                      listener4: android.view.View.OnClickListener)
         fun startDialog(title:String,context:String)
         fun getStringTo(id:Int):String
+        fun clipOnBoard(clipBoardMessage:String)
+        fun urlParseToMarket(url:String)
     }
 
     interface Presenter

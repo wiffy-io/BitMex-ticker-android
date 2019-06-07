@@ -5,7 +5,7 @@
 
                 android:theme="@style/Theme.AppCompat.Dialog"
                 android:layout_width="250dp"
-                android:layout_height="250dp">
+                android:layout_height="150dp">
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -16,9 +16,13 @@
               android:textSize="18sp"
               android:layout_marginTop="10dp"
               android:id="@+id/titleInDialog"/>
+    <ScrollView android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/titleInDialog">
     <TextView android:layout_width="220dp"
-              android:layout_height="150dp"
-              android:layout_below="@+id/titleInDialog"
+              android:layout_height="wrap_content"
+            android:layout_gravity="center"
               android:textAlignment="center"
               android:id="@+id/contextInDialog"
               android:text = "context"
@@ -26,9 +30,10 @@
                 android:layout_marginTop="10dp"
               android:layout_centerHorizontal="true"
     />
+    </ScrollView>
     <Button
             android:layout_width="220dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:background="@drawable/dialog_button"
             android:text="OK"
             android:layout_marginBottom="10dp"

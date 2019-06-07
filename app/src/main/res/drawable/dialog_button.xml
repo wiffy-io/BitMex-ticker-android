@@ -4,9 +4,8 @@
 
 
     <item android:state_pressed="true" >
+        <color android:color="#335533"/>
         <shape>
-            <stroke
-                    android:color="#335533"/>
             <corners
                     android:radius="10dp"/>
         </shape>
@@ -14,18 +13,16 @@
 
 
     <item android:state_focused="true">
+        <color android:color="#335533"/>
         <shape>
-            <stroke
-                    android:color="#335533"/>
             <corners
                     android:radius="10dp"/>
         </shape>
     </item>
 
     <item>
+        <color  android:color="#66aa66"/>
         <shape>
-            <stroke
-                    android:color="#66aa66"/>
             <corners
                     android:radius="10dp"/>
         </shape>

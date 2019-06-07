@@ -25,9 +25,10 @@ class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
                 mView.startDialog("Version", mView.getStringTo(R.string.version))
             },
             listener3 = View.OnClickListener {
-
+                mView.urlParseToMarket(mView.getStringTo(R.string.store_url))
             },
             listener4 = View.OnClickListener {
+                mView.clipOnBoard(mView.getStringTo(R.string.addmin_mail))
                 mView.startDialog(mView.getStringTo(R.string.addmin_mail), "Copied email")
             })
     }

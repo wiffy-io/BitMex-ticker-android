@@ -1,7 +1,11 @@
 package com.pale_cosmos.bitmexticker.ui.Setting
 
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -18,7 +22,7 @@ import kotlinx.android.synthetic.main.app_bar_setting.*
 
 const val SWIPE_MIN_DISTANCE = 120
 const val SWIPE_MAX_OFF_PATH = 250
-const val SWIPE_THRESHOLD_VELOCITY = 200
+const val SWIPE_THRESHOLD_VELOCITY = 150
 
 
 class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
@@ -137,5 +141,15 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun getStringTo(id: Int): String {
         return getString(id)
+    }
+
+    override fun clipOnBoard(clipBoardMessage: String) {
+        val clip = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("",clipBoardMessage)
+        clip.primaryClip=clipData
+    }
+
+    override fun urlParseToMarket(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
     }
 }
