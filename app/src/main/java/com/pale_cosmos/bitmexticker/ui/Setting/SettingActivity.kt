@@ -153,7 +153,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
                 z.text=title
             }
         })
-        builder.window.setBackgroundDrawableResource(android.R.color.transparent)
+        builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
         builder.show()
 
     }
