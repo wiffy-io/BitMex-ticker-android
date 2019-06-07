@@ -9,6 +9,11 @@ interface SettingContract {
         fun changeLight()
         fun moveToMain()
         fun addTickerButtonListener(listener: android.view.View.OnClickListener)
+        fun addSettingButtonListener(listener1: android.view.View.OnClickListener,
+                                     listener2: android.view.View.OnClickListener,
+                                     listener3: android.view.View.OnClickListener,
+                                     listener4: android.view.View.OnClickListener)
+        fun startDialog(title:String,context:String)
     }
 
     interface Presenter
