@@ -42,29 +42,20 @@
                 app:cardCornerRadius="3dp"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                app:cardBackgroundColor="@color/colorAccent"
                 android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true">
 
-            <RelativeLayout
-                    android:layout_height="match_parent"
+            <TextView
+                    android:id="@+id/price"
+                    android:textColor="#ffffff"
+                    android:text="0000"
+                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:background="@android:color/transparent">
-
-                <TextView
-                        android:id="@+id/price"
-                        android:textColor="#ffffff"
-                        android:text="0000"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:textSize="15sp"/>
-
-            </RelativeLayout>
-
-
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textSize="15sp"/>
 
         </androidx.cardview.widget.CardView>
 

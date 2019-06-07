@@ -28,15 +28,15 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         items[position].let { item ->
             with(holder) {
-                symbol.text = items[position].get("Symbol")
-                name_info.text = items[position].get("name_info")
-                price.text = items[position].get("price")
-                if (items[position].get("before_p") == "n"){
+                symbol.text = item.get("Symbol")
+                name_info.text = item.get("name_info")
+                price.text = item.get("price")
+                if (item.get("before_p") == "n"){
                     //card_in.setCardBackgroundColor(color);
                     card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.normal))
-                }else if (items[position].get("before_p") == "r"){
+                }else if (item.get("before_p") == "r"){
                     card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.red))
-                }else if (items[position].get("before_p") == "g"){
+                }else if (item.get("before_p") == "g"){
                     card_in.setBackgroundColor(ContextCompat.getColor(context,R.color.green))
                 }
             }
