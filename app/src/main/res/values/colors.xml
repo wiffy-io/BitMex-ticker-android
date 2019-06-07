@@ -18,5 +18,8 @@
     <color name="light_title">#ff303030</color> <!--Light_title-->
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
 
+    <color name="red">#CD5858</color> <!--Light_title2-->
+    <color name="green">#58B259</color> <!--Light_title2-->
+    <color name="normal">#A6A5A6</color> <!--Light_title2-->
 
 </resources>

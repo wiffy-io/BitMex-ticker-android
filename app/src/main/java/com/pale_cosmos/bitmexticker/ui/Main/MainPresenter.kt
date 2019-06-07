@@ -105,6 +105,12 @@ class MainPresenter(act: MainContract.View):MainContract.Presenter {
                     val symbol = data.getString("symbol")
                     if (symbol == tmp_symbol){
                         val price = data.getDouble("price")
+                        val before = init_coin[i].get("price")?:"0"
+                        if (before.toDouble() < price ){
+                            init_coin[i].set("before_p","g")
+                        }else if(before.toDouble() > price ){
+                            init_coin[i].set("before_p","r")
+                        }
                         init_coin[i].set("price",change_value(price))
                     }
                 }

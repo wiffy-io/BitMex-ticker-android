@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun set_recycler(init_coin:ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin)
+            myAdapter = MainAdapter(init_coin,this)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
             //myAdapter.notifyDataSetChanged()
