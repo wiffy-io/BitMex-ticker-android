@@ -17,12 +17,6 @@ import java.util.concurrent.ConcurrentHashMap
 
 class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context: Context, var is_dark: Boolean) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
-//
-//    var items = ArrayList<ConcurrentHashMap<String, String>>()
-//
-//    init {
-//        this.items = items
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
 
@@ -35,15 +29,24 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 symbol.setTextColor(ContextCompat.getColor(context, get_title()))
                 name_info.setTextColor(ContextCompat.getColor(context, get_title2()))
 
-                symbol.text = item.get("Symbol")
-                name_info.text = item.get("name_info")
-                price.text = item.get("price")
-                if (item.get("before_p") == "n") {
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
-                } else if (item.get("before_p") == "r") {
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
-                } else if (item.get("before_p") == "g") {
-                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
+//                symbol.text = item.get("Symbol")
+//                name_info.text = item.get("name_info")
+//                price.text = item.get("price")
+//                if (item.get("before_p") == "n") {
+//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
+//                } else if (item.get("before_p") == "r") {
+//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
+//                } else if (item.get("before_p") == "g") {
+//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
+//                }
+                // 코드 간결화 작업
+                symbol.text = item["Symbol"]
+                name_info.text = item["name_info"]
+                price.text = item["price"]
+                when (item["before_p"]) {
+                    "n" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
+                    "r" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
+                    "g" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
                 }
             }
         }
