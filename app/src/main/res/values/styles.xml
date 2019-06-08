@@ -6,30 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/light_title</item>
     </style>
 
     <style name="MainTitle" parent="android:Theme">
-
         <item name="android:windowTitleSize">48dp</item>
-
         <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-
     </style>
 
 
     <style name="CustomWindowTitleBackground">
-
         <item name="android:background">#00000000</item>
-
     </style>
 
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
-
         <item name="windowNoTitle">true</item>
         <item name="colorAccent">#ffffff</item>
         <item name="android:textColorPrimary">#444444</item>
         <item name="android:background">#ffffff</item>
-
     </style>
 
 </resources>

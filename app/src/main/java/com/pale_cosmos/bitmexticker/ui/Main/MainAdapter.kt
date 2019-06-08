@@ -34,18 +34,6 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 symbol.setTextColor(ContextCompat.getColor(context, get_title()))
                 name_info.setTextColor(ContextCompat.getColor(context, get_title2()))
 
-//                symbol.text = item.get("Symbol")
-//                name_info.text = item.get("name_info")
-//                price.text = item.get("price")
-//                if (item.get("before_p") == "n") {
-//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
-//                } else if (item.get("before_p") == "r") {
-//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
-//                } else if (item.get("before_p") == "g") {
-//                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
-//                }
-                // 코드 간결화 작업
-
                 symbol.text = item["Symbol"]
                 name_info.text = item["name_info"]
                 price.text = item["price"]
@@ -59,22 +47,7 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
 //                    bundle.putXXX(XX,XX)
                     mView.moveToInformation(bundle)
                 }
-                itemView.setOnTouchListener { v, event ->
-                    when(event.action)
-                    {
-                        MotionEvent.ACTION_DOWN->{
-                            v.bg.setCardBackgroundColor(get_title())
-                        }
-                        MotionEvent.ACTION_UP->{
-                            v.bg.setCardBackgroundColor(get_table_in())
-                        }
-                        MotionEvent.ACTION_CANCEL->{
-                            v.bg.setCardBackgroundColor(get_table_in())
-                        }
-                        else->{}
-                    }
-                    false
-                }
+
             }
         }
     }
@@ -85,7 +58,14 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
     }
 
     fun update(modelList: ArrayList<ConcurrentHashMap<String, String>>) {
-        items = modelList
+//        items = modelList
+        for(tm in modelList)
+        {
+            for(vm in tm)
+            {
+
+            }
+        }
         notifyDataSetChanged()
         //Log.d("asdasd",modelList[0].get("price"))
         //notifyItemRangeChanged(0, items.size);

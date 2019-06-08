@@ -10,6 +10,8 @@
         app:cardElevation="0dp"
         android:clickable="true"
         android:focusable="true"
+
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/dark_table_in"
         android:layout_margin="5dp" >
 
@@ -22,7 +24,7 @@
                 android:textColor="#ffffff"
                 android:text="XBTUSD"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -34,7 +36,7 @@
                 android:textColor="#ffffff"
                 android:text="aaaaa"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
@@ -45,8 +47,8 @@
                 app:cardCornerRadius="3dp"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true">
 
             <TextView
