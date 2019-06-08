@@ -11,6 +11,7 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_brightness
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
+import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
@@ -55,7 +56,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             myAdapter?.update(mod_coin)
         }
     }
-
+//test
+    override fun update_recycler_coin(coins: ConcurrentHashMap<String, Coin_info> ){
+        Handler(applicationContext.mainLooper).post {
+            myAdapter?.update_coins(coins)
+        }
+    }
+//test
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())

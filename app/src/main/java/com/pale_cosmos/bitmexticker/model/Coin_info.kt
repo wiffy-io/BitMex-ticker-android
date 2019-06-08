@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.model
 
+
 data class Coin_info (
     val Symbol: String,
     var price: String,

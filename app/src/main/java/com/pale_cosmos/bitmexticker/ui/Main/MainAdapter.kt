@@ -15,6 +15,7 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_table_in
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
+import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
@@ -58,19 +59,18 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
     }
 
     fun update(modelList: ArrayList<ConcurrentHashMap<String, String>>) {
-//        items = modelList
-        for(tm in modelList)
-        {
-            for(vm in tm)
-            {
-
-            }
-        }
+        items = modelList
         notifyDataSetChanged()
         //Log.d("asdasd",modelList[0].get("price"))
         //notifyItemRangeChanged(0, items.size);
     }
 
+    //test
+    fun update_coins(coins:ConcurrentHashMap<String, Coin_info>)
+    {
+        // test!
+    }
+    //test
     fun deleteItem(position: Int) {
         items.removeAt(position)
         notifyItemRemoved(position)

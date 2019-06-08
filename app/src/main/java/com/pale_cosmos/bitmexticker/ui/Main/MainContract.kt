@@ -2,6 +2,7 @@ package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.os.Bundle
 import android.view.View
+import com.pale_cosmos.bitmexticker.model.Coin_info
 import java.util.concurrent.ConcurrentHashMap
 
 
@@ -15,6 +16,9 @@ interface MainContract {
         fun update_recycler(mod_coin:ArrayList<ConcurrentHashMap<String, String>>)
         fun update_recycler_theme()
         fun moveToInformation(bundle:Bundle)
+        //test
+        fun update_recycler_coin(coins:ConcurrentHashMap<String, Coin_info>)
+        //test
     }
     interface Presenter{
         fun change_UI()

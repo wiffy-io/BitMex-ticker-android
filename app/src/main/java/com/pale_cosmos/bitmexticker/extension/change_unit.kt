@@ -10,3 +10,9 @@ fun change_value(d:Double): String{
     }
 }
 
+fun cal_value(d:Double):Int{
+    if(d>0)return 1
+    else if (d<0)return -1
+    else return 0
+}
+
