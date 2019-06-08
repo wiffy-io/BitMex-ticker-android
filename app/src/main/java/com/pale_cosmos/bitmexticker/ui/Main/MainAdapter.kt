@@ -2,20 +2,25 @@ package com.pale_cosmos.bitmexticker.ui.Main
 
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_table_in
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
+import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context: Context, var is_dark: Boolean) :
+class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context: Context, var is_dark: Boolean, val mView:MainContract.View) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
@@ -40,6 +45,7 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
 //                    card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
 //                }
                 // 코드 간결화 작업
+
                 symbol.text = item["Symbol"]
                 name_info.text = item["name_info"]
                 price.text = item["price"]
@@ -47,6 +53,27 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                     "n" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
                     "r" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
                     "g" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
+                }
+                itemView.setOnClickListener {
+                    var bundle = Bundle()
+//                    bundle.putXXX(XX,XX)
+                    mView.moveToInformation(bundle)
+                }
+                itemView.setOnTouchListener { v, event ->
+                    when(event.action)
+                    {
+                        MotionEvent.ACTION_DOWN->{
+                            v.bg.setCardBackgroundColor(get_title())
+                        }
+                        MotionEvent.ACTION_UP->{
+                            v.bg.setCardBackgroundColor(get_table_in())
+                        }
+                        MotionEvent.ACTION_CANCEL->{
+                            v.bg.setCardBackgroundColor(get_table_in())
+                        }
+                        else->{}
+                    }
+                    false
                 }
             }
         }

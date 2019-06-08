@@ -13,29 +13,19 @@
             android:layout_height="match_parent"
             android:textColor="#ffffff"
             android:textSize="20sp"
-
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
             android:text="Setting"/>
 
-    <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
-                                                 android:layout_height="match_parent"
-                                                 android:layout_centerInParent="true"
-                                                 android:gravity="center_vertical"
-                             android:id="@+id/toMainFromSetting"
-                                                 android:textSize="18sp"
-                                                 android:layout_alignParentStart="true"
-                                                 android:text="Ticker"
-                                                 android:textColor="@drawable/text_setting_selector"
-    />
-
-    <!--<androidx.appcompat.widget.AppCompatImageView-->
-    <!--android:layout_width="25dp"-->
-    <!--android:layout_height="25dp"-->
-    <!--android:id="@+id/setting_main"-->
-    <!--android:layout_alignParentEnd="true"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginEnd="15dp"-->
-    <!--android:src="@drawable/setting"/>-->
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:id="@+id/toMainFromSetting"
+            android:textSize="18sp"
+            android:layout_alignParentStart="true"
+            android:text="Ticker"
+            android:textColor="@drawable/text_setting_selector"/>
 
 </RelativeLayout>

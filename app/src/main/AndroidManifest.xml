@@ -28,8 +28,8 @@
         <activity
                 android:name=".ui.Setting.SettingActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".ui.Dialog.DialogActivity"
-        android:theme="@style/AppTheme.Dark.Dialog"
+        <activity android:name=".ui.Information.InformationActivity"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         />
     </application>
 

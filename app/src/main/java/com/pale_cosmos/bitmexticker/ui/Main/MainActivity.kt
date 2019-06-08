@@ -12,6 +12,7 @@ import com.pale_cosmos.bitmexticker.extension.get_brightness
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun set_recycler(init_coin: ArrayList<ConcurrentHashMap<String, String>>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin, this, Util.dark_theme)
+            myAdapter = MainAdapter(init_coin, this, Util.dark_theme,this)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
             //myAdapter.notifyDataSetChanged()
@@ -73,6 +74,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun moveToSetting() {
         startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+        overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+    }
+
+    override fun moveToInformation(bundle: Bundle) {
+        var intents = Intent(this@MainActivity, InformationActivity::class.java)
+        intents.putExtra("info",bundle)
+        startActivity(intents)
         overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
     }
 }

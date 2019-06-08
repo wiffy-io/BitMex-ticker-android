@@ -86,10 +86,8 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
     private fun socket_callback(it: String) {
         //Log.d("asdasd",it)
-
         // a .. b - 1 의 형태보다 a until b 의 형태가 권장되어 바꾸어줌.
         // set의 경우 replace가 권장되어 바꾸어줌, 하지만 replace의 경우 대상이 존재하지 않으면 set을 하지 않기때문에 문제가 발생할 수 있음
-        // 이외에도 MAP[index][key] = value 의 형태로도 사용 가능.
         for (i in 0 until init_coin.size) {
 //            var tmp_symbol = init_coin[i].get("Symbol").toString()
             var tmp_symbol = init_coin[i]["Symbol"].toString()
@@ -106,8 +104,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
                         val price = data.getDouble("close")
 //                        init_coin[i].set("price",change_value(price))
-                        //이러한 형태로도 사용가능
-//                        init_coin[i]["price"] = change_value(price)
+
                         init_coin[i].replace("price", change_value(price))
                     }
                 } else if (table_name == "trade") {
@@ -118,15 +115,12 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                         val before = init_coin[i]["price"] ?: "0"
                         if (before.toDouble() < price) {
 //                            init_coin[i].set("before_p","g")
-//                            init_coin[i]["before_p"] = "g"
                             init_coin[i].replace("before_p", "g")
                         } else if (before.toDouble() > price) {
 //                            init_coin[i].set("before_p","r")
-//                            init_coin[i]["before_p"] = "r"
                             init_coin[i].replace("before_p", "r")
                         }
 //                        init_coin[i].set("price",change_value(price))
-//                        init_coin[i]["price"] = change_value(price)
                         init_coin[i].replace("price", change_value(price))
                     }
                 }

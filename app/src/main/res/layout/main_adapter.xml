@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView
-        android:id="@+id/bg"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bg"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:cardCornerRadius="3dp"
         app:cardElevation="0dp"
+        android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/dark_table_in"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp" >
 
     <RelativeLayout
             android:layout_height="match_parent"
