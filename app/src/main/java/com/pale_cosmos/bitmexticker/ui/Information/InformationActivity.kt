@@ -5,12 +5,11 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.get_bottom
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import kotlinx.android.synthetic.main.activity_information.*
-
-
 
 
 class InformationActivity : AppCompatActivity(),
@@ -18,7 +17,7 @@ class InformationActivity : AppCompatActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var mPresenter: InformationPresenter
     lateinit var gestureScanner: GestureDetector
-    lateinit var coinInformation:Coin_info
+    lateinit var coinInformation: Coin_info
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,7 @@ class InformationActivity : AppCompatActivity(),
         supportActionBar?.hide()
         coinInformation = intent.getSerializableExtra("information") as Coin_info
         information_navi.setOnNavigationItemSelectedListener(this)
-       information_navi.menu.findItem(R.id.action_title).title  = coinInformation.Symbol
+        information_navi.menu.findItem(R.id.action_title).title = coinInformation.Symbol
         mPresenter = InformationPresenter(this)
         gestureScanner = GestureDetector(this)
         mPresenter.init()
@@ -34,11 +33,13 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId)
-        {
-            R.id.action_title->{}
-            R.id.action_book->{}
-            R.id.action_detail->{}
+        when (item.itemId) {
+            R.id.action_title -> {
+            }
+            R.id.action_book -> {
+            }
+            R.id.action_detail -> {
+            }
         }
         return true
     }
@@ -49,7 +50,7 @@ class InformationActivity : AppCompatActivity(),
         information_toolbar.background = resources.getDrawable(get_navi())
         information_title.text = coinInformation.Symbol
         parent_information.background = resources.getDrawable(get_table_out())
-        information_navi.background = resources.getDrawable(get_navi())
+        information_navi.background = resources.getDrawable(get_bottom())
 //        information_navi.itemTextColor =
         toMainFromInformation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
     }

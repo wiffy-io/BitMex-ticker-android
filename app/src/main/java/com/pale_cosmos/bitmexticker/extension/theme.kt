@@ -40,3 +40,8 @@ fun get_brightness(): Int {
     else return R.drawable.to_darks
 }
 
+fun get_bottom():Int{
+    if(Util.dark_theme)return R.color.dark_navi
+    else return R.color.light_table_out
+}
+
