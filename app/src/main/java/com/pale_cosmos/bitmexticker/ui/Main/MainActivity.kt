@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     lateinit var mPresenter: MainPresenter
     var myAdapter: MainAdapter? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,13 +57,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             myAdapter?.update(mod_coin)
         }
     }
-//test
-    override fun update_recycler_coin(coins: ConcurrentHashMap<String, Coin_info> ){
-        Handler(applicationContext.mainLooper).post {
-            myAdapter?.update_coins(coins)
-        }
-    }
-//test
+
+
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
@@ -86,7 +82,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun moveToInformation(bundle: Bundle) {
         var intents = Intent(this@MainActivity, InformationActivity::class.java)
-        intents.putExtra("info",bundle)
+        intents.putExtras(bundle)
         startActivity(intents)
         overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
     }

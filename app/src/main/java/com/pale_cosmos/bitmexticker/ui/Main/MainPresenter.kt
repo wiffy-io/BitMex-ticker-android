@@ -16,9 +16,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
     private val mView = act
     private var init_coin = ArrayList<ConcurrentHashMap<String, String>>()
-    //test
-    private var coins = ConcurrentHashMap<String, Coin_info>()
-    //test
+
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
 
     override fun get_coin() = Thread(Runnable {
@@ -43,9 +41,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                 hmap["chart_symbol"] = tmp[5]
                 hmap["parse_str"] = tmp[5]
                 init_coin.add(hmap)
-                //test
-                coins[tmp[0]] = Coin_info(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
-                //test
 
                 //var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
                 //Log.d("asdasd",init_coin[i].get("Symbol"))
@@ -136,39 +131,8 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             } catch (e: Exception) {
             }
         }
-        //test
-        for (info in coins) {
-            var tmpSymbol = info.key
-            try {
-                val jsonContact = JSONObject(it)
-                var data = jsonContact.getJSONArray("data").getJSONObject(0)
-                val symbol = data.getString("symbol")
-//                val table_name = json_contact.getString("table")
 
-                if(symbol == tmpSymbol)
-                when (jsonContact.getString("table")) {
-                    "tradeBin1m" -> {
-                        socket.send_msg_filter("unsubscribe", "tradeBin1m", tmpSymbol)
-                        socket.send_msg_filter("subscribe", "trade", tmpSymbol)
-                        info.value.price = change_value(data.getDouble("close"))
-                    }
-                    "trade" -> {
-                        val before =info.value.price.toDouble()
-                        val price = data.getDouble("price")
-                        when(cal_value(price-before))
-                        {
-                            1->{info.value.before_p = "g"}
-                            -1->{info.value.before_p = "r"}
-                        }
-                        info.value.price = change_value(price)
 
-                    }
-                }
-            } catch (e: Exception) {
-            }
-        }
-        mView.update_recycler_coin(coins)
-        //test
         mView.update_recycler(init_coin)
     }
 }

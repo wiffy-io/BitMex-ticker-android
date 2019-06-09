@@ -45,7 +45,8 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 }
                 itemView.setOnClickListener {
                     var bundle = Bundle()
-//                    bundle.putXXX(XX,XX)
+                    bundle.putSerializable("information",Coin_info(item["Symbol"],item["price"],item["is_new"],
+                        item["name_info"],item["before_p"],item["chart_symbol"],item["parse_str"]))
                     mView.moveToInformation(bundle)
                 }
 
@@ -65,12 +66,6 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
         //notifyItemRangeChanged(0, items.size);
     }
 
-    //test
-    fun update_coins(coins:ConcurrentHashMap<String, Coin_info>)
-    {
-        // test!
-    }
-    //test
     fun deleteItem(position: Int) {
         items.removeAt(position)
         notifyItemRemoved(position)

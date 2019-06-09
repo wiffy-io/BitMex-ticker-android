@@ -37,17 +37,19 @@
     </RelativeLayout>
     <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="wrap_content"
             android:id="@+id/information_frame"
             android:layout_below="@id/information_toolbar"
+            android:layout_above="@+id/information_navi"
     />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/information_navi"
-            android:layout_below="@id/information_frame"
             android:layout_alignParentBottom="true"
+            app:itemIconTint="@drawable/navigation_state"
+            app:itemTextColor="@drawable/navigation_state"
             android:layout_width="match_parent"
-
             app:menu="@menu/information_menu"
-            android:layout_height="@android:dimen/thumbnail_width"/>
+            android:layout_height="50dp"/>
 
 </RelativeLayout>

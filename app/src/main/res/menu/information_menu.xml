@@ -2,20 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/action_one"
+            android:id="@+id/action_title"
             app:showAsAction="ifRoom"
             android:enabled="true"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:icon="@drawable/ic_baseline_bar_chart_24px"
             android:title="title" />
     <item
-            android:id="@+id/action_two"
+            android:id="@+id/action_book"
             app:showAsAction="ifRoom"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:iconTint="@color/light_title2"
+            android:icon="@drawable/ic_baseline_book_24px"
             android:title="OrderBook" />
     <item
-            android:id="@+id/action_three"
+            android:id="@+id/action_detail"
             app:showAsAction="ifRoom"
             android:enabled="true"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:iconTint="@color/light_title2"
+            android:icon="@drawable/ic_baseline_more_24px"
             android:title="Details" />
 </menu>
