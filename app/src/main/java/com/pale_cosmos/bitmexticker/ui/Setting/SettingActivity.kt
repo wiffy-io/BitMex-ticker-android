@@ -108,6 +108,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         return true
     }
 
+
     override fun addSettingButtonListener(
         listener1: View.OnClickListener,
         listener2: View.OnClickListener,
