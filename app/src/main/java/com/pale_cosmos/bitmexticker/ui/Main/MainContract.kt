@@ -16,10 +16,13 @@ interface MainContract {
         fun update_recycler(mod_coin:ArrayList<Coin_info>)
         fun update_recycler_theme()
         fun moveToInformation(bundle:Bundle)
+
     }
     interface Presenter{
         fun change_UI()
         fun make_socket()
         fun get_coin()
+        fun onTouch()
+        fun notonTouch()
     }
 }
