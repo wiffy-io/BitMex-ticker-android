@@ -17,15 +17,15 @@ class InformationActivity : AppCompatActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var mPresenter: InformationPresenter
     lateinit var gestureScanner: GestureDetector
-    lateinit var coinInformation: Coin_info
+    lateinit var coinInformation: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information)
         supportActionBar?.hide()
-        coinInformation = intent.getSerializableExtra("information") as Coin_info
+        coinInformation = intent.getStringExtra("information")
         information_navi.setOnNavigationItemSelectedListener(this)
-        information_navi.menu.findItem(R.id.action_title).title = coinInformation.Symbol
+        information_navi.menu.findItem(R.id.action_title).title = coinInformation
         mPresenter = InformationPresenter(this)
         gestureScanner = GestureDetector(this)
         mPresenter.init()
@@ -51,7 +51,7 @@ class InformationActivity : AppCompatActivity(),
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
         information_toolbar.background = resources.getDrawable(get_navi())
-        information_title.text = coinInformation.Symbol
+        information_title.text = coinInformation
         parent_information.background = resources.getDrawable(get_table_out())
         information_navi.background = resources.getDrawable(get_bottom())
 //        information_navi.itemTextColor =

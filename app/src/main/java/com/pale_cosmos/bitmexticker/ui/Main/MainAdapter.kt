@@ -7,22 +7,32 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_table_in
+import com.pale_cosmos.bitmexticker.extension.get_table_in_reverse
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import kotlinx.android.synthetic.main.main_adapter.view.*
+import java.lang.Exception
 import java.util.concurrent.ConcurrentHashMap
 
 
-class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_dark: Boolean, val mView:MainContract.View) :
+class MainAdapter(
+    var items: ArrayList<Coin_info>,
+    var context: Context,
+    var is_dark: Boolean,
+    val mView: MainContract.View
+) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+    private var istouch = false
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
 
@@ -45,10 +55,40 @@ class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_
                 }
                 itemView.setOnClickListener {
                     var bundle = Bundle()
-                    bundle.putSerializable("information",item)
+                    bundle.putString("information", item.Symbol)
                     mView.moveToInformation(bundle)
                 }
-
+                itemView.setOnTouchListener { v, e ->
+                    when (e?.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            (v as CardView).setCardBackgroundColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    get_table_in_reverse()
+                                )
+                            )
+                            istouch = true
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            (v as CardView).setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                            v.callOnClick()
+                            istouch = false
+                            try {
+                                notifyDataSetChanged()
+                            } catch (e: Exception) {
+                            }
+                        }
+                        MotionEvent.ACTION_CANCEL -> {
+                            (v as CardView).setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                            istouch = false
+                            try {
+                                notifyDataSetChanged()
+                            } catch (e: Exception) {
+                            }
+                        }
+                    }
+                    true
+                }
             }
         }
     }
@@ -60,7 +100,9 @@ class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_
 
     fun update(modelList: ArrayList<Coin_info>) {
         items = modelList
-        notifyDataSetChanged()
+        if (!istouch) {
+            notifyDataSetChanged()
+        }
         //Log.d("asdasd",modelList[0].get("price"))
         //notifyItemRangeChanged(0, items.size);
     }
@@ -85,4 +127,5 @@ class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_
         val card_in = itemView.card_in
         val bg = itemView.bg
     }
+
 }

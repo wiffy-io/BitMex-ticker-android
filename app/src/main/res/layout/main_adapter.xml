@@ -10,7 +10,6 @@
         app:cardElevation="0dp"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="@drawable/item_ripple"
         app:cardBackgroundColor="@color/dark_table_in"
         android:layout_margin="5dp" >
 

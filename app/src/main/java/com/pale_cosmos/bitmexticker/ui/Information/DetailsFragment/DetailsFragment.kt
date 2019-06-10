@@ -12,7 +12,12 @@ class DetailsFragment:Fragment(),DetailsConstract.View {
     lateinit var mPresenter: DetailsPresenter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_details, container,false)
-
+        mPresenter = DetailsPresenter(this)
+        mPresenter.init()
         return myView
+    }
+
+    override fun changeUI() {
+
     }
 }

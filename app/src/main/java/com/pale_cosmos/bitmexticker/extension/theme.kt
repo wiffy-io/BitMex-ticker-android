@@ -45,3 +45,9 @@ fun get_bottom():Int{
     else return R.color.light_table_out
 }
 
+fun get_table_in_reverse():Int{
+    if (Util.dark_theme)
+        return R.color.dark_table_in_click
+    else return R.color.light_table_in_click
+}
+

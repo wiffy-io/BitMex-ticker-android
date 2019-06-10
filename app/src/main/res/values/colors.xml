@@ -22,4 +22,7 @@
     <color name="green">#58B259</color> <!--Light_title2-->
     <color name="normal">#A6A5A6</color> <!--Light_title2-->
     <color name="button_selected">#33686868</color>
+
+    <color name="dark_table_in_click">#1AFFFFFF</color>
+    <color name="light_table_in_click">#1A183148</color>
 </resources>

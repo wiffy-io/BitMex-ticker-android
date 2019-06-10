@@ -7,12 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.pale_cosmos.bitmexticker.R
 
-class OrderBookFragment: Fragment(),OrderBookConstract.View{
-    lateinit var myView:View
-    lateinit var mPresenter:OrderBookPresenter
+class OrderBookFragment : Fragment(), OrderBookConstract.View {
+    lateinit var myView: View
+    lateinit var mPresenter: OrderBookPresenter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        myView = inflater.inflate(R.layout.fragment_orderbook, container,false)
-
+        myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
+        mPresenter = OrderBookPresenter(this)
+        mPresenter.init()
         return myView
+    }
+
+    override fun changeUI() {
+
     }
 }
