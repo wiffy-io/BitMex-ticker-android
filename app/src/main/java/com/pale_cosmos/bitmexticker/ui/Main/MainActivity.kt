@@ -3,6 +3,7 @@ package com.pale_cosmos.bitmexticker.ui.Main
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -85,5 +86,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         intents.putExtras(bundle)
         startActivity(intents)
         overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
+        mPresenter.onTouch()
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return super.dispatchTouchEvent(ev)
+        mPresenter.notonTouch()
     }
 }

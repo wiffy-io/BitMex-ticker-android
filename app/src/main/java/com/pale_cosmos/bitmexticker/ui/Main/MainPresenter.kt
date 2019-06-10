@@ -15,10 +15,9 @@ import java.util.concurrent.ConcurrentHashMap
 class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
     private val mView = act
-    //private var init_coin = ArrayList<ConcurrentHashMap<String, String>>()
     private var init_coin_ = ArrayList<Coin_info>()
-
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+    private var istouch = false
 
     override fun get_coin() = Thread(Runnable {
         try {
@@ -87,7 +86,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         // a .. b - 1 의 형태보다 a until b 의 형태가 권장되어 바꾸어줌.
         // set의 경우 replace가 권장되어 바꾸어줌, 하지만 replace의 경우 대상이 존재하지 않으면 set을 하지 않기때문에 문제가 발생할 수 있음
         for (i in 0 until init_coin_.size) {
-//            var tmp_symbol = init_coin[i].get("Symbol").toString()
             var tmp_symbol = init_coin_.get(i).Symbol.toString()
             try {
                 val json_contact = JSONObject(it)
@@ -101,9 +99,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                         socket.send_msg_filter("subscribe", "trade", tmp_symbol)
 
                         val price = data.getDouble("close")
-//                        init_coin[i].set("price",change_value(price))
                         init_coin_.get(i).price = change_value(price)
-                        //init_coin_.replace(tmp_symbol, )
                     }
                 } else if (table_name == "trade") {
                     var data = json_contact.getJSONArray("data").getJSONObject(0)
@@ -112,24 +108,27 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                         val price = data.getDouble("price")
                         val before = init_coin_.get(i).price ?: "0"
                         if (before.toDouble() < price) {
-//                            init_coin[i].set("before_p","g")
-                            init_coin_.get(i).price = "g"
-                            //init_coin[i].replace("before_p", "g")
+                            init_coin_.get(i).before_p = "g"
                         } else if (before.toDouble() > price) {
-//                            init_coin[i].set("before_p","r")
-                            init_coin_.get(i).price = "r"
-                            //init_coin[i].replace("before_p", "r")
+                            init_coin_.get(i).before_p = "r"
                         }
-//                        init_coin[i].set("price",change_value(price))
                         init_coin_.get(i).price = change_value(price)
-                        //init_coin[i].replace("price", change_value(price))
                     }
                 }
             } catch (e: Exception) {
             }
         }
-
-
-        mView.update_recycler(init_coin_)
+        if (!istouch){
+            mView.update_recycler(init_coin_)
+        }
     }
+
+    override fun onTouch() {
+        istouch = true
+    }
+
+    override fun notonTouch() {
+        istouch = false
+    }
+
 }
