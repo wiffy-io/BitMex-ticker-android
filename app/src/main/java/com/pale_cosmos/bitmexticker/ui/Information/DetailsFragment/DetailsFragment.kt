@@ -9,8 +9,9 @@ import com.pale_cosmos.bitmexticker.R
 
 class DetailsFragment:Fragment(),DetailsConstract.View {
     lateinit var myView:View
+    lateinit var mPresenter: DetailsPresenter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        myView = inflater.inflate(R.layout.fragment_details, null)
+        myView = inflater.inflate(R.layout.fragment_details, container,false)
 
         return myView
     }

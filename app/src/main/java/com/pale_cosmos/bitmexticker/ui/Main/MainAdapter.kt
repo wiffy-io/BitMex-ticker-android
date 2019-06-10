@@ -27,8 +27,7 @@ class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
 
     override fun getItemCount(): Int = items.size
-    var itm = ConcurrentHashMap<String,Coin_info>()
-    var im = LinkedHashMap<String,Coin_info>()
+
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         items[position].let { item ->
             with(holder) {

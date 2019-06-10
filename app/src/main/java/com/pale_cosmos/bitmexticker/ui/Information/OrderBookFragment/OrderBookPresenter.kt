@@ -1,6 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment
 
-class OrderBookPresenter:OrderBookConstract.Presenter{
-
+class OrderBookPresenter(act:OrderBookConstract.View):OrderBookConstract.Presenter{
+val mView = act
 
 }
