@@ -35,10 +35,13 @@ class InformationActivity : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_title -> {
+
             }
             R.id.action_book -> {
+
             }
             R.id.action_detail -> {
+
             }
         }
         return true
