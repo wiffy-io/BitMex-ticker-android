@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     }
 
-    override fun set_recycler(init_coin: ArrayList<ConcurrentHashMap<String, String>>) {
+    override fun set_recycler(init_coin: ArrayList<Coin_info>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme,this)
             recycler.adapter = myAdapter
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    override fun update_recycler(mod_coin: ArrayList<ConcurrentHashMap<String, String>>) {
+    override fun update_recycler(mod_coin: ArrayList<Coin_info>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update(mod_coin)
         }

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var context: Context, var is_dark: Boolean, val mView:MainContract.View) :
+class MainAdapter(var items: ArrayList<Coin_info>, var context: Context, var is_dark: Boolean, val mView:MainContract.View) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
@@ -35,18 +35,17 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
                 symbol.setTextColor(ContextCompat.getColor(context, get_title()))
                 name_info.setTextColor(ContextCompat.getColor(context, get_title2()))
 
-                symbol.text = item["Symbol"]
-                name_info.text = item["name_info"]
-                price.text = item["price"]
-                when (item["before_p"]) {
+                symbol.text = item.Symbol
+                name_info.text = item.name_info
+                price.text = item.price
+                when (item.before_p) {
                     "n" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
                     "r" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
                     "g" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
                 }
                 itemView.setOnClickListener {
                     var bundle = Bundle()
-                    bundle.putSerializable("information",Coin_info(item["Symbol"],item["price"],item["is_new"],
-                        item["name_info"],item["before_p"],item["chart_symbol"],item["parse_str"]))
+                    bundle.putSerializable("information",item)
                     mView.moveToInformation(bundle)
                 }
 
@@ -59,7 +58,7 @@ class MainAdapter(var items: ArrayList<ConcurrentHashMap<String, String>>, var c
         notifyDataSetChanged()
     }
 
-    fun update(modelList: ArrayList<ConcurrentHashMap<String, String>>) {
+    fun update(modelList: ArrayList<Coin_info>) {
         items = modelList
         notifyDataSetChanged()
         //Log.d("asdasd",modelList[0].get("price"))

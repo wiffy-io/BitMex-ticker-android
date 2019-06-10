@@ -15,7 +15,8 @@ import java.util.concurrent.ConcurrentHashMap
 class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
     private val mView = act
-    private var init_coin = ArrayList<ConcurrentHashMap<String, String>>()
+    //private var init_coin = ArrayList<ConcurrentHashMap<String, String>>()
+    private var init_coin_ = ArrayList<Coin_info>()
 
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
 
@@ -24,15 +25,8 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             var get_server = "http://jungh0.com/symbol".getUrlText().split("\n")
             for (i in 0 until get_server.size) {
                 var tmp = get_server[i].split(",")
+                /*
                 var hmap = ConcurrentHashMap<String, String>()
-                // 권장되는 형태로 바꿈
-//                    hmap.put("Symbol",tmp[0])
-//                    hmap.put("price",tmp[1])
-//                    hmap.put("is_new",tmp[2])
-//                    hmap.put("name_info",tmp[3])
-//                    hmap.put("before_p",tmp[4])
-//                    hmap.put("chart_symbol",tmp[5])
-//                    hmap.put("parse_str",tmp[5])
                 hmap["Symbol"] = tmp[0]
                 hmap["price"] = tmp[1]
                 hmap["is_new"] = tmp[2]
@@ -40,12 +34,12 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                 hmap["before_p"] = tmp[4]
                 hmap["chart_symbol"] = tmp[5]
                 hmap["parse_str"] = tmp[5]
-                init_coin.add(hmap)
-
-                //var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
+                init_coin.add(hmap)*/
+                var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
+                init_coin_.add(data)
                 //Log.d("asdasd",init_coin[i].get("Symbol"))
             }
-            mView.set_recycler(init_coin)
+            mView.set_recycler(init_coin_)
         } catch (e: Exception) {
         }
     }).start()
@@ -82,8 +76,8 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
     private fun socket_subscribe() {
         // a .. b - 1 -> a until b
-        for (i in 0 until init_coin.size) {
-            var tmp = init_coin[i]["Symbol"].toString()
+        for (i in 0 until init_coin_.size) {
+            var tmp = init_coin_.get(i).Symbol.toString()
             socket.send_msg_filter("subscribe", "tradeBin1m", tmp)
         }
     }
@@ -92,9 +86,9 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         //Log.d("asdasd",it)
         // a .. b - 1 의 형태보다 a until b 의 형태가 권장되어 바꾸어줌.
         // set의 경우 replace가 권장되어 바꾸어줌, 하지만 replace의 경우 대상이 존재하지 않으면 set을 하지 않기때문에 문제가 발생할 수 있음
-        for (i in 0 until init_coin.size) {
+        for (i in 0 until init_coin_.size) {
 //            var tmp_symbol = init_coin[i].get("Symbol").toString()
-            var tmp_symbol = init_coin[i]["Symbol"].toString()
+            var tmp_symbol = init_coin_.get(i).Symbol.toString()
             try {
                 val json_contact = JSONObject(it)
                 //Log.d("asdasd",json_contact.toString())
@@ -108,24 +102,27 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
                         val price = data.getDouble("close")
 //                        init_coin[i].set("price",change_value(price))
-
-                        init_coin[i].replace("price", change_value(price))
+                        init_coin_.get(i).price = change_value(price)
+                        //init_coin_.replace(tmp_symbol, )
                     }
                 } else if (table_name == "trade") {
                     var data = json_contact.getJSONArray("data").getJSONObject(0)
                     val symbol = data.getString("symbol")
                     if (symbol == tmp_symbol) {
                         val price = data.getDouble("price")
-                        val before = init_coin[i]["price"] ?: "0"
+                        val before = init_coin_.get(i).price ?: "0"
                         if (before.toDouble() < price) {
 //                            init_coin[i].set("before_p","g")
-                            init_coin[i].replace("before_p", "g")
+                            init_coin_.get(i).price = "g"
+                            //init_coin[i].replace("before_p", "g")
                         } else if (before.toDouble() > price) {
 //                            init_coin[i].set("before_p","r")
-                            init_coin[i].replace("before_p", "r")
+                            init_coin_.get(i).price = "r"
+                            //init_coin[i].replace("before_p", "r")
                         }
 //                        init_coin[i].set("price",change_value(price))
-                        init_coin[i].replace("price", change_value(price))
+                        init_coin_.get(i).price = change_value(price)
+                        //init_coin[i].replace("price", change_value(price))
                     }
                 }
             } catch (e: Exception) {
@@ -133,6 +130,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         }
 
 
-        mView.update_recycler(init_coin)
+        mView.update_recycler(init_coin_)
     }
 }
