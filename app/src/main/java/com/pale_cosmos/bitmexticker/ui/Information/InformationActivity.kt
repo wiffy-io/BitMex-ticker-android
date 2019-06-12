@@ -3,12 +3,13 @@ package com.pale_cosmos.bitmexticker.ui.Information
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_bottom
+import com.pale_cosmos.bitmexticker.extension.get_bottom_color
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
-import com.pale_cosmos.bitmexticker.model.Coin_info
 import kotlinx.android.synthetic.main.activity_information.*
 
 
@@ -33,6 +34,7 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when (item.itemId) {
             R.id.action_title -> {
 
@@ -47,6 +49,7 @@ class InformationActivity : AppCompatActivity(),
         return true
     }
 
+
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
@@ -54,7 +57,9 @@ class InformationActivity : AppCompatActivity(),
         information_title.text = coinInformation
         parent_information.background = resources.getDrawable(get_table_out())
         information_navi.background = resources.getDrawable(get_bottom())
-//        information_navi.itemTextColor =
+        information_navi.itemRippleColor = ContextCompat.getColorStateList(this@InformationActivity, get_navi())
+        information_navi.itemIconTintList = ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
+        information_navi.itemTextColor = ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
         toMainFromInformation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
     }
 

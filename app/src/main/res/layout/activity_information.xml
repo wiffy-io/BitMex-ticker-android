@@ -2,10 +2,10 @@
 
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/parent_information"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:id="@+id/parent_information">
     <RelativeLayout
             android:id="@+id/information_toolbar"
             android:layout_width="match_parent"
@@ -43,13 +43,11 @@
             android:layout_above="@+id/information_navi"
     />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/information_navi"
             android:layout_alignParentBottom="true"
-            app:itemIconTint="@drawable/navigation_state"
-            app:itemTextColor="@drawable/navigation_state"
             android:layout_width="match_parent"
             app:menu="@menu/information_menu"
-            android:layout_height="50dp"/>
-
+            android:layout_height="50dp" />
 </RelativeLayout>

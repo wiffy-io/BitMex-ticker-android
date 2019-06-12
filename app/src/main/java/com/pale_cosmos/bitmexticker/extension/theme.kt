@@ -41,7 +41,7 @@ fun get_brightness(): Int {
 }
 
 fun get_bottom():Int{
-    if(Util.dark_theme)return R.color.dark_navi
+    if(Util.dark_theme)return R.color.dark_table_out
     else return R.color.light_table_out
 }
 
@@ -49,5 +49,11 @@ fun get_table_in_reverse():Int{
     if (Util.dark_theme)
         return R.color.dark_table_in_click
     else return R.color.light_table_in_click
+}
+
+fun get_bottom_color():Int{
+    if(Util.dark_theme)
+        return R.color.navigation_state_dark
+    else return R.color.navigation_state_light
 }
 
