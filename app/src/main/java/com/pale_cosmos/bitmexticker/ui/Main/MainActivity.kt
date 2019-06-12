@@ -8,10 +8,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_brightness
 import com.pale_cosmos.bitmexticker.extension.get_navi
+import com.pale_cosmos.bitmexticker.extension.get_table_in
 import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
@@ -60,13 +62,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
         brightness_main.setImageResource(get_brightness())
         toolbar_main.background = resources.getDrawable(get_navi())
         parent_main.background = resources.getDrawable(get_table_out())
+        bgc.setCardBackgroundColor(ContextCompat.getColor(applicationContext, get_table_in()))
     }
 
     override fun addBrightnessListener(listener: View.OnClickListener) {

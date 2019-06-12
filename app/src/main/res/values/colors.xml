@@ -27,4 +27,5 @@
 
     <color name="dark_table_in_click">#1AFFFFFF</color>
     <color name="light_table_in_click">#1A183148</color>
+    <color name="myBlue">#dd3E78BE</color>
 </resources>

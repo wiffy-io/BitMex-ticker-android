@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/dark_table_out"
@@ -8,19 +8,83 @@
         android:layout_height="match_parent">
 
     <include
-        layout="@layout/app_bar_main"
-        android:id="@+id/toolbar_main"/>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:paddingTop="3dp"
-            android:overScrollMode="never"
-            android:layout_below="@+id/toolbar_main"
-            android:id="@+id/recycler"
+            layout="@layout/app_bar_main"
+            android:id="@+id/toolbar_main"/>
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="3dp">
+            android:layout_below="@+id/toolbar_main"
+            android:overScrollMode="always"
+    >
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scroll_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/bgc"
+                    android:layout_alignParentTop="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/dark_table_in"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="5dp"
+                    >
+                <RelativeLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                    <TextView
+                            android:id="@+id/Symbol"
+                            android:textColor="@color/myBlue"
+                            android:text="Recent Trades"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <TextView
+                            android:layout_below="@+id/Symbol"
+                            android:id="@+id/name_info"
+                            android:textColor="@color/light_title2"
+                            android:text="Buy"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                    android:layout_below="@+id/bgc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BITMEX Ticker"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/myBlue"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:id="@+id/BTC"
+                    android:layout_marginStart="15dp"
+            />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:paddingTop="3dp"
+                    android:overScrollMode="never"
+                    android:layout_below="@+id/BTC"
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="3dp"/>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
