@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.get_bottom
-import com.pale_cosmos.bitmexticker.extension.get_bottom_color
-import com.pale_cosmos.bitmexticker.extension.get_navi
-import com.pale_cosmos.bitmexticker.extension.get_table_out
+import com.pale_cosmos.bitmexticker.extension.*
+import com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment.DetailsFragment
+import com.pale_cosmos.bitmexticker.ui.Information.MainFragment.MainFragment
+import com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
 
 
@@ -19,6 +22,10 @@ class InformationActivity : AppCompatActivity(),
     lateinit var mPresenter: InformationPresenter
     lateinit var gestureScanner: GestureDetector
     lateinit var coinInformation: String
+    lateinit var fragment_Details: Fragment
+    lateinit var fragment_Main: Fragment
+    lateinit var fragment_OrderBook: Fragment
+    var catches = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,17 +41,19 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.action_title -> {
-
+        if (catches != item.itemId) {
+            when (item.itemId) {
+                R.id.action_title -> {
+                    viewFragment_Main()
+                }
+                R.id.action_book -> {
+                    viewFragment_OrderBook()
+                }
+                R.id.action_detail -> {
+                    viewFragment_Details()
+                }
             }
-            R.id.action_book -> {
-
-            }
-            R.id.action_detail -> {
-
-            }
+            catches = item.itemId
         }
         return true
     }
@@ -57,10 +66,48 @@ class InformationActivity : AppCompatActivity(),
         information_title.text = coinInformation
         parent_information.background = resources.getDrawable(get_table_out())
         information_navi.background = resources.getDrawable(get_bottom())
-        information_navi.itemRippleColor = ContextCompat.getColorStateList(this@InformationActivity, get_navi())
-        information_navi.itemIconTintList = ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
+        information_navi.itemRippleColor = ContextCompat.getColorStateList(this@InformationActivity, rippleAndTintOfBottom())
+        information_navi.itemIconTintList =
+            ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
         information_navi.itemTextColor = ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
         toMainFromInformation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
+        initFragment()
+    }
+
+    override fun initFragment() {
+
+        fragment_Details = DetailsFragment()
+        fragment_Main = MainFragment()
+        fragment_OrderBook = OrderBookFragment()
+        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Main).commit()
+        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Details).commit()
+        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_OrderBook).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
+        catches = R.id.action_title
+
+    }
+
+    override fun viewFragment_Details() {
+        supportFragmentManager.beginTransaction().show(fragment_Details).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+//        fragmentTransaction.commit()
+    }
+
+    override fun viewFragment_Main() {
+        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+//        fragmentTransaction.commit()
+    }
+
+    override fun viewFragment_OrderBook() {
+        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
+        supportFragmentManager.beginTransaction().show(fragment_OrderBook).commit()
+//        fragmentTransaction.commit()
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {

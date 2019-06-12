@@ -11,12 +11,14 @@
     <color name="dark_table_in">#183148</color> <!--Dark_table_in-->
     <color name="dark_title">#ffffffff</color> <!--Dark_title-->
     <color name="dark_title2">#61ffffff</color> <!--Dark_title2-->
+    <color name="dark_fragment_Background">#031A27</color>
 
     <color name="light_navi">#45A4B3</color> <!--Light_navi-->
     <color name="light_table_out">#efeff3</color> <!--Light_table_out-->
     <color name="light_table_in">#ffffff</color> <!--Light_table_in-->
     <color name="light_title">#ff303030</color> <!--Light_title-->
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
+    <color name="light_fragment_Background">#D1CFCF</color>
 
     <color name="red">#CD5858</color> <!--Light_title2-->
     <color name="green">#58B259</color> <!--Light_title2-->

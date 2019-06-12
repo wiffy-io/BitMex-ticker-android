@@ -10,6 +10,12 @@ fun get_table_in(): Int {
     else return R.color.light_table_in
 }
 
+fun get_fragment_background():Int{
+    if(Util.dark_theme)
+        return R.color.dark_fragment_Background
+    else return R.color.light_table_out
+}
+
 fun get_table_out(): Int {
     if (Util.dark_theme)
         return R.color.dark_table_out
@@ -41,7 +47,7 @@ fun get_brightness(): Int {
 }
 
 fun get_bottom():Int{
-    if(Util.dark_theme)return R.color.dark_table_out
+    if(Util.dark_theme)return R.color.dark_navi
     else return R.color.light_table_out
 }
 
@@ -55,5 +61,12 @@ fun get_bottom_color():Int{
     if(Util.dark_theme)
         return R.color.navigation_state_dark
     else return R.color.navigation_state_light
+}
+
+fun rippleAndTintOfBottom():Int
+{
+    if(Util.dark_theme)
+        return R.color.dark_table_out
+    else return R.color.light_navi
 }
 
