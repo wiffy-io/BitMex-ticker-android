@@ -1,9 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.os.Bundle
-import android.view.View
 import com.pale_cosmos.bitmexticker.model.Coin_info
-import java.util.concurrent.ConcurrentHashMap
 
 
 interface MainContract {

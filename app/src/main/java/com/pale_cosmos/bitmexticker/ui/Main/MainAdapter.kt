@@ -2,16 +2,12 @@ package com.pale_cosmos.bitmexticker.ui.Main
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_table_in
@@ -19,11 +15,8 @@ import com.pale_cosmos.bitmexticker.extension.get_table_in_reverse
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.model.Coin_info
-import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.lang.Exception
-import java.util.concurrent.ConcurrentHashMap
-
 
 class MainAdapter(
     var items: ArrayList<Coin_info>,

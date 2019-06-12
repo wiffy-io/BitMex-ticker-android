@@ -24,19 +24,9 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             var get_server = "http://jungh0.com/symbol".getUrlText().split("\n")
             for (i in 0 until get_server.size) {
                 var tmp = get_server[i].split(",")
-                /*
-                var hmap = ConcurrentHashMap<String, String>()
-                hmap["Symbol"] = tmp[0]
-                hmap["price"] = tmp[1]
-                hmap["is_new"] = tmp[2]
-                hmap["name_info"] = tmp[3]
-                hmap["before_p"] = tmp[4]
-                hmap["chart_symbol"] = tmp[5]
-                hmap["parse_str"] = tmp[5]
-                init_coin.add(hmap)*/
+
                 var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
                 init_coin_.add(data)
-                //Log.d("asdasd",init_coin[i].get("Symbol"))
             }
             mView.set_recycler(init_coin_)
         } catch (e: Exception) {
@@ -82,9 +72,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     }
 
     private fun socket_callback(it: String) {
-        //Log.d("asdasd",it)
-        // a .. b - 1 의 형태보다 a until b 의 형태가 권장되어 바꾸어줌.
-        // set의 경우 replace가 권장되어 바꾸어줌, 하지만 replace의 경우 대상이 존재하지 않으면 set을 하지 않기때문에 문제가 발생할 수 있음
+
         for (i in 0 until init_coin_.size) {
             var tmp_symbol = init_coin_.get(i).Symbol.toString()
             try {

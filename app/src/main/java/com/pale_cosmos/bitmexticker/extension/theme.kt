@@ -70,3 +70,10 @@ fun rippleAndTintOfBottom():Int
     else return R.color.light_navi
 }
 
+fun darkAndLight():Int
+{
+    if(Util.dark_theme)
+        return R.color.WHITE
+    else return R.color.BLACK
+}
+

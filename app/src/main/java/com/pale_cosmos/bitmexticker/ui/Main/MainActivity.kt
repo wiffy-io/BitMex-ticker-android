@@ -3,25 +3,19 @@ package com.pale_cosmos.bitmexticker.ui.Main
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.get_brightness
-import com.pale_cosmos.bitmexticker.extension.get_navi
-import com.pale_cosmos.bitmexticker.extension.get_table_in
-import com.pale_cosmos.bitmexticker.extension.get_table_out
+import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import java.util.concurrent.ConcurrentHashMap
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -69,6 +63,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         toolbar_main.background = resources.getDrawable(get_navi())
         parent_main.background = resources.getDrawable(get_table_out())
         bgc.setCardBackgroundColor(ContextCompat.getColor(applicationContext, get_table_in()))
+        trd_info.setTextColor(ContextCompat.getColorStateList(applicationContext, darkAndLight()))
     }
 
     override fun addBrightnessListener(listener: View.OnClickListener) {

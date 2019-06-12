@@ -1,6 +1,5 @@
 package com.pale_cosmos.bitmexticker.model
 
-import android.util.Log
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.lang.Exception
