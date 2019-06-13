@@ -3,7 +3,9 @@ package com.pale_cosmos.bitmexticker.ui.Setting
 
 import android.app.Dialog
 import android.content.*
+import android.content.pm.ActivityInfo
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -36,6 +38,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         if (Util.dark_theme) {
             setContentView(R.layout.activity_setting_dark)
             opensource = findViewById(R.id.dark_table1)
@@ -158,5 +161,10 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun urlParseToMarket(url: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
+    }
+    override fun setRequestedOrientation(requestedOrientation: Int) {
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            super.setRequestedOrientation(requestedOrientation)
+        }
     }
 }

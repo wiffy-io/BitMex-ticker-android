@@ -1,5 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Information
 
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -22,15 +24,13 @@ class InformationActivity : AppCompatActivity(),
     lateinit var mPresenter: InformationPresenter
     lateinit var gestureScanner: GestureDetector
     lateinit var coinInformation: String
-    lateinit var fragment_Details: Fragment
-    lateinit var fragment_Main: Fragment
-    lateinit var fragment_OrderBook: Fragment
     lateinit var myBundle: Bundle
     var preFrag: Fragment? = null
     var catches = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_information)
         supportActionBar?.hide()
         coinInformation = intent.getStringExtra("information")
@@ -174,5 +174,11 @@ class InformationActivity : AppCompatActivity(),
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
         return true
+    }
+    override fun setRequestedOrientation(requestedOrientation: Int) {
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            super.setRequestedOrientation(requestedOrientation)
+        }
+
     }
 }

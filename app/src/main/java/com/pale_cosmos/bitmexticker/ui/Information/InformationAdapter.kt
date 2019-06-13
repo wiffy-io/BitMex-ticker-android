@@ -15,8 +15,9 @@ import kotlinx.android.synthetic.main.details_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
 class InformationAdapter(
-    var items: ArrayList<ConcurrentHashMap<String, String>>,
-    var context: Context
+    var items: ArrayList<details_info>,
+    var context: Context,
+    var activity: InformationActivity
 ) : RecyclerView.Adapter<InformationAdapter.InformationViewHolder>() {
 
 
@@ -26,25 +27,29 @@ class InformationAdapter(
         items[position].let { item ->
             with(holder) {
                 text_details.setTextColor(ContextCompat.getColor(context, darkAndLight()))
-                text_details.text = item["symbol"]
-                context_details.text = item["context"]
+                text_details.text = item.title
+                context_details.text =if(item.context.length + item.title.length>55)
+                {
+                    "${item.context.substring(0 until 55-item.title.length)}..."
+                }
+                else  item.context
 
 //                itemView.setBackgroundResource(details_state_color())
                 itemView.backgroundTintList = ContextCompat.getColorStateList(context, details_state_color())
                 itemView.setOnClickListener {
-                    var builder = Dialog(context)
+                    var builder = Dialog(activity)
                     builder.setContentView(R.layout.activity_dialog)
                     builder.setCancelable(false)
                     builder.setCanceledOnTouchOutside(false)
                     builder.setOnShowListener {
-                        var x =builder.findViewById<Button>(R.id.OKBUTTON)
+                        var x = builder.findViewById<Button>(R.id.OKBUTTON)
                         x.setOnClickListener {
                             builder.dismiss()
                         }
                         var y = builder.findViewById<TextView>(R.id.contextInDialog)
-                        y.text = item["context"]
+                        y.text = item.context
                         var z = builder.findViewById<TextView>(R.id.titleInDialog)
-                        z.text=item["symbol"]
+                        z.text = item.title
                     }
                     builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
                     builder.show()

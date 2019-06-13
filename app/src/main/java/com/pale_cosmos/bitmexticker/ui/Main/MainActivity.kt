@@ -1,6 +1,8 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
@@ -84,5 +87,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         startActivity(intents)
         overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
     }
-
+    override fun setRequestedOrientation(requestedOrientation: Int) {
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            super.setRequestedOrientation(requestedOrientation)
+        }
+    }
 }

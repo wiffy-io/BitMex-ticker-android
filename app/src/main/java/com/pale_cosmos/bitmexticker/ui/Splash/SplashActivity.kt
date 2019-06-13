@@ -1,6 +1,8 @@
 package com.pale_cosmos.bitmexticker.Splash
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_splash)
 
         supportActionBar?.hide()
@@ -35,5 +38,10 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         overridePendingTransition(R.anim.abc_fade_in,R.anim.not_move_activity)
         finish()
     }
+    override fun setRequestedOrientation(requestedOrientation: Int) {
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            super.setRequestedOrientation(requestedOrientation)
+        }
 
+    }
 }
