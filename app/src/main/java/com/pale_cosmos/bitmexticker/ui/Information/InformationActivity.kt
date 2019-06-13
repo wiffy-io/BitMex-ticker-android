@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.*
+import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment.DetailsFragment
 import com.pale_cosmos.bitmexticker.ui.Information.MainFragment.MainFragment
 import com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
+import java.util.concurrent.ConcurrentHashMap
 
 
 class InformationActivity : AppCompatActivity(),
@@ -23,6 +25,8 @@ class InformationActivity : AppCompatActivity(),
     lateinit var fragment_Details: Fragment
     lateinit var fragment_Main: Fragment
     lateinit var fragment_OrderBook: Fragment
+    lateinit var myBundle: Bundle
+    var preFrag: Fragment? = null
     var catches = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,13 +62,16 @@ class InformationActivity : AppCompatActivity(),
 
 
     override fun changeUI() {
+        myBundle = Bundle()
+        myBundle.putString("symbol", coinInformation)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
         information_toolbar.background = resources.getDrawable(get_navi())
         information_title.text = coinInformation
         parent_information.background = resources.getDrawable(get_table_out())
         information_navi.background = resources.getDrawable(get_bottom())
-        information_navi.itemRippleColor = ContextCompat.getColorStateList(this@InformationActivity, rippleAndTintOfBottom())
+        information_navi.itemRippleColor =
+            ContextCompat.getColorStateList(this@InformationActivity, rippleAndTintOfBottom())
         information_navi.itemIconTintList =
             ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
         information_navi.itemTextColor = ContextCompat.getColorStateList(this@InformationActivity, get_bottom_color())
@@ -74,35 +81,54 @@ class InformationActivity : AppCompatActivity(),
 
     override fun initFragment() {
 
-        fragment_Details = DetailsFragment()
-        fragment_Main = MainFragment()
-        fragment_OrderBook = OrderBookFragment()
-        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Main).commit()
-        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Details).commit()
-        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_OrderBook).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
+//        fragment_Details = DetailsFragment()
+//        fragment_Main = MainFragment()
+//        fragment_OrderBook = OrderBookFragment()
+//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Main).commit()
+//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Details).commit()
+//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_OrderBook).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+//        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
+        var tmp = MainFragment()
+        tmp.arguments = myBundle
+        preFrag = tmp
+        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
         catches = R.id.action_title
 
     }
 
     override fun viewFragment_Details() {
-        supportFragmentManager.beginTransaction().show(fragment_Details).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+//        supportFragmentManager.beginTransaction().show(fragment_Details).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+        preFrag?.onDestroy()
+        var tmp = DetailsFragment()
+        tmp.arguments = myBundle
+        preFrag = tmp
+        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
     }
 
     override fun viewFragment_Main() {
-        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+//        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
+        preFrag?.onDestroy()
+        var tmp = MainFragment()
+        tmp.arguments = myBundle
+        preFrag = tmp
+        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
     }
 
     override fun viewFragment_OrderBook() {
-        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
-        supportFragmentManager.beginTransaction().show(fragment_OrderBook).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
+//        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
+//        supportFragmentManager.beginTransaction().show(fragment_OrderBook).commit()
+        preFrag?.onDestroy()
+        var tmp = OrderBookFragment()
+        tmp.arguments = myBundle
+        preFrag = tmp
+        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {

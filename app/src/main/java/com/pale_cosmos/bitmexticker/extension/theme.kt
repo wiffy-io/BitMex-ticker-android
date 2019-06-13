@@ -77,3 +77,10 @@ fun darkAndLight():Int
     else return R.color.BLACK
 }
 
+fun details_state_color():Int
+{
+    if(Util.dark_theme)
+        return R.color.details_state_dark
+    else return R.color.details_state_light
+}
+
