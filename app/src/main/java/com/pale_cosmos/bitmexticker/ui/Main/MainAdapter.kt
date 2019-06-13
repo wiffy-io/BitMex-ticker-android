@@ -96,19 +96,6 @@ class MainAdapter(
         if (!istouch) {
             notifyDataSetChanged()
         }
-        //Log.d("asdasd",modelList[0].get("price"))
-        //notifyItemRangeChanged(0, items.size);
-    }
-
-    fun deleteItem(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemChanged(position, items.size)
-    }
-
-    fun deleteAll() {
-        items = ArrayList()
-        notifyDataSetChanged()
     }
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(

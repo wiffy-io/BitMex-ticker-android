@@ -91,7 +91,6 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
                     break
                 }
             }
-//            var rows = Jsoup.parseBodyFragment(URL(url).readText()).select("table")[1].select("tr")
             if (rows != null) {
                 for (n in 0 until rows.size) {
                     arr.add(details_info(rows[n].select("td")[0].text(), rows[n].select("td")[1].text()))

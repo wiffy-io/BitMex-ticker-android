@@ -34,7 +34,6 @@ class InformationAdapter(
                 }
                 else  item.context
 
-//                itemView.setBackgroundResource(details_state_color())
                 itemView.backgroundTintList = ContextCompat.getColorStateList(context, details_state_color())
                 itemView.setOnClickListener {
                     var builder = Dialog(activity)

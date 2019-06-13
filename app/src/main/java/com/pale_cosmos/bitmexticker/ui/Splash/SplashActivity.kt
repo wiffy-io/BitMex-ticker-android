@@ -27,7 +27,6 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     }
 
     private fun changeStatusBar() {
-        //로딩 화면은 항상 다크모드임으로 상태바색 다크로 고정
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(R.color.dark_table_out);
     }

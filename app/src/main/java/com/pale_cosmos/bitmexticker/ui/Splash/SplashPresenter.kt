@@ -19,14 +19,11 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
 
         Util.dark_theme = Util.sharedPreferences_theme.getBoolean("mode", true)
         moveToMain()
-        //True -> Dark Mode (Default)
-        //False -> Light Mode (Mode)
     }
 
     private fun moveToMain() {
         Handler().postDelayed({
             mView.moveToMain()
-            //mView.finishActivity()
         }, 650)
     }
 

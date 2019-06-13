@@ -66,7 +66,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     private fun socket_subscribe() {
         // a .. b - 1 -> a until b
         for (i in 0 until init_coin_.size) {
-            var tmp = init_coin_.get(i).Symbol.toString()
+            var tmp = init_coin_[i].Symbol.toString()
             socket.send_msg_filter("subscribe", "tradeBin1m", tmp)
         }
     }
@@ -74,10 +74,10 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     private fun socket_callback(it: String) {
 
         for (i in 0 until init_coin_.size) {
-            var tmp_symbol = init_coin_.get(i).Symbol.toString()
+            var tmp_symbol = init_coin_[i].Symbol.toString()
             try {
                 val json_contact = JSONObject(it)
-                //Log.d("asdasd",json_contact.toString())
+
                 val table_name = json_contact.getString("table")
                 if (table_name == "tradeBin1m") {
                     var data = json_contact.getJSONArray("data").getJSONObject(0)
@@ -94,13 +94,13 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                     val symbol = data.getString("symbol")
                     if (symbol == tmp_symbol) {
                         val price = data.getDouble("price")
-                        val before = init_coin_.get(i).price ?: "0"
+                        val before = init_coin_[i].price ?: "0"
                         if (before.toDouble() < price) {
-                            init_coin_.get(i).before_p = "g"
+                            init_coin_[i].before_p = "g"
                         } else if (before.toDouble() > price) {
-                            init_coin_.get(i).before_p = "r"
+                            init_coin_[i].before_p = "r"
                         }
-                        init_coin_.get(i).price = change_value(price)
+                        init_coin_[i].price = change_value(price)
                     }
                 }
             } catch (e: Exception) {
