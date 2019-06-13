@@ -1,7 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.view.View
-import com.pale_cosmos.bitmexticker.extension.cal_value
 import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.extension.getUrlText
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
@@ -10,7 +9,7 @@ import com.pale_cosmos.bitmexticker.model.Util
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URI
-import java.util.concurrent.ConcurrentHashMap
+
 
 class MainPresenter(act: MainContract.View) : MainContract.Presenter {
 
@@ -118,5 +117,4 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     override fun notonTouch() {
         istouch = false
     }
-
 }

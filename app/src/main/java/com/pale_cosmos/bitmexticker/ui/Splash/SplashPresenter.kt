@@ -3,6 +3,7 @@ package com.pale_cosmos.bitmexticker.Splash
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
@@ -22,7 +23,7 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
     }
 
     private fun moveToMain() {
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             mView.moveToMain()
         }, 650)
     }
