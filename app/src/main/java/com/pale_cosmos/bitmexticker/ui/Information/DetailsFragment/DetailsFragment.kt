@@ -23,6 +23,8 @@ import com.pale_cosmos.bitmexticker.ui.Information.InformationAdapter
 import com.pale_cosmos.bitmexticker.ui.Information.details_info
 import kotlinx.android.synthetic.main.fragment_details.*
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
@@ -35,6 +37,7 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
     lateinit var recycler: RecyclerView
     lateinit var url: String
     lateinit var arr: ArrayList<details_info>
+    var builder: Dialog? = null
     var myAdapter: InformationAdapter? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_details, container, false)
@@ -55,40 +58,57 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
 
     }
 
+    override fun onDestroy() {
+        if (builder != null) builder?.dismiss()
+        super.onDestroy()
+    }
+
 
     inner class task : AsyncTask<String, Void, Boolean>() {
-        var builder = Dialog(activity!!)
+
 
         override fun onPreExecute() {
             super.onPreExecute()
 
+            builder = Dialog(activity!!)
+            builder?.setContentView(R.layout.waitting_dialog)
+            builder?.setCancelable(false)
+            builder?.setCanceledOnTouchOutside(false)
+            builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            Handler(Looper.getMainLooper()).post {
+                builder?.show()
+            }
 
-            builder.setContentView(R.layout.waitting_dialog)
-            builder.setCancelable(false)
-            builder.setCanceledOnTouchOutside(false)
-            builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            builder.show()
 
         }
 
 
         override fun doInBackground(vararg params: String?): Boolean {
-
-            var rows = Jsoup.parseBodyFragment(URL(url).readText()).select("table")[1].select("tr")
-            for (n in 0 until rows.size) {
-                arr.add(details_info(rows[n].select("td")[0].text(), rows[n].select("td")[1].text()))
+            var rows: Elements? = null
+            for (x in Jsoup.parseBodyFragment(URL(url).readText()).select("table")) {
+                if (x.select("tr")[0].select("td")[0].text() == "Ticker Root") {
+                    rows = x.select("tr")
+                    break
+                }
             }
-            Handler(Looper.getMainLooper()).post {
-                myAdapter = InformationAdapter(arr, context!!, activity as InformationActivity)
-                recycler.adapter = myAdapter
-                recycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+//            var rows = Jsoup.parseBodyFragment(URL(url).readText()).select("table")[1].select("tr")
+            if (rows != null) {
+                for (n in 0 until rows.size) {
+                    arr.add(details_info(rows[n].select("td")[0].text(), rows[n].select("td")[1].text()))
+                }
+                Handler(Looper.getMainLooper()).post {
+                    myAdapter = InformationAdapter(arr, context!!, activity as InformationActivity)
+                    recycler.adapter = myAdapter
+                    recycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+                }
+                return true
             }
-            return true
+            return false
         }
 
         override fun onPostExecute(result: Boolean?) {
 
-           builder.dismiss()
+            builder?.dismiss()
             return
         }
     }

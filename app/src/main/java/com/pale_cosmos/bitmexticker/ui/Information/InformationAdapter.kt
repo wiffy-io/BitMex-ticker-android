@@ -28,9 +28,9 @@ class InformationAdapter(
             with(holder) {
                 text_details.setTextColor(ContextCompat.getColor(context, darkAndLight()))
                 text_details.text = item.title
-                context_details.text =if(item.context.length + item.title.length>55)
+                context_details.text =if(item.context.length + item.title.length>50)
                 {
-                    "${item.context.substring(0 until 55-item.title.length)}..."
+                    "${item.context.substring(0 until 40-item.title.length)}..."
                 }
                 else  item.context
 
