@@ -34,7 +34,6 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         startActivity(intent)
         overridePendingTransition(R.anim.abc_fade_in,R.anim.not_move_activity)
         finish()
-//        overridePendingTransition()
     }
 
 }

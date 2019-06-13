@@ -91,21 +91,18 @@ class InformationActivity : AppCompatActivity(),
         supportFragmentManager.beginTransaction().show(fragment_Details).commit()
         supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
         supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-//        fragmentTransaction.commit()
     }
 
     override fun viewFragment_Main() {
         supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
         supportFragmentManager.beginTransaction().show(fragment_Main).commit()
         supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-//        fragmentTransaction.commit()
     }
 
     override fun viewFragment_OrderBook() {
         supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
         supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
         supportFragmentManager.beginTransaction().show(fragment_OrderBook).commit()
-//        fragmentTransaction.commit()
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {

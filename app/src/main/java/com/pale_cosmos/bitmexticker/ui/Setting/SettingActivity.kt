@@ -131,18 +131,16 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         builder.setContentView(R.layout.activity_dialog)
         builder.setCancelable(false)
         builder.setCanceledOnTouchOutside(false)
-        builder.setOnShowListener(object:DialogInterface.OnShowListener{
-            override fun onShow(dialog: DialogInterface?) {
-                var x =builder.findViewById<Button>(R.id.OKBUTTON)
-                x.setOnClickListener {
-                    builder.dismiss()
-                }
-                var y = builder.findViewById<TextView>(R.id.contextInDialog)
-                y.text = context
-                var z = builder.findViewById<TextView>(R.id.titleInDialog)
-                z.text=title
+        builder.setOnShowListener {
+            var x =builder.findViewById<Button>(R.id.OKBUTTON)
+            x.setOnClickListener {
+                builder.dismiss()
             }
-        })
+            var y = builder.findViewById<TextView>(R.id.contextInDialog)
+            y.text = context
+            var z = builder.findViewById<TextView>(R.id.titleInDialog)
+            z.text=title
+        }
         builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
         builder.show()
 

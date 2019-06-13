@@ -15,4 +15,3 @@ fun cal_value(d:Double):Int{
     else if (d<0)return -1
     else return 0
 }
-
