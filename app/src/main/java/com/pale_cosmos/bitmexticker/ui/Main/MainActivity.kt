@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,6 +14,8 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
+import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -79,8 +80,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun moveToSetting() {
-        startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-        overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+        if(setting_on) {
+            setting_on = false
+            startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+            overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+        }
     }
 
     override fun moveToInformation(bundle: Bundle) {

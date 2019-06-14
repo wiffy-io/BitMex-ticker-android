@@ -15,6 +15,7 @@ import com.pale_cosmos.bitmexticker.extension.get_table_in_reverse
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.model.Coin_info
+import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import kotlinx.android.synthetic.main.main_adapter.view.*
 import java.lang.Exception
 
@@ -64,7 +65,10 @@ class MainAdapter(
                         }
                         MotionEvent.ACTION_UP -> {
                             (v as CardView).setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
-                            v.callOnClick()
+                            if (!item.price?.contains("-")!! && info_on) {
+                                info_on= false
+                                v.callOnClick()
+                            }
                             istouch = false
                             try {
                                 notifyDataSetChanged()

@@ -20,6 +20,7 @@ import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
 import kotlinx.android.synthetic.main.activity_setting_dark.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 
@@ -69,6 +70,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun moveToMain() {
+        setting_on = true
         finish()
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity)
     }

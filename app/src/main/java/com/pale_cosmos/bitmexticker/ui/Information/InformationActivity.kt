@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.*
-import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment.DetailsFragment
 import com.pale_cosmos.bitmexticker.ui.Information.MainFragment.MainFragment
 import com.pale_cosmos.bitmexticker.ui.Information.NotificationFragment.NotificationFragment
 import com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
-import java.util.concurrent.ConcurrentHashMap
+
 
 
 class InformationActivity : AppCompatActivity(),
@@ -87,7 +87,6 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun initFragment() {
-//main, orderbook, details, notification
 
         fragmentList = ArrayList()
         fragmentList.add(null)
@@ -189,6 +188,7 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun moveToMain() {
+        info_on = true
         finish()
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity)
     }
@@ -222,7 +222,6 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onShowPress(e: MotionEvent?) {
-
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
