@@ -11,7 +11,10 @@
         android:clickable="true"
         android:focusable="true"
         app:cardBackgroundColor="@color/dark_table_in"
-        android:layout_margin="5dp" >
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
 
     <RelativeLayout
             android:layout_height="match_parent"
