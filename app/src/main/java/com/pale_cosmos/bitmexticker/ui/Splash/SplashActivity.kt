@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
@@ -29,6 +30,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     private fun changeStatusBar() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(R.color.dark_table_out);
+        window.navigationBarColor = resources.getColor(R.color.BLACK)
     }
 
     override fun moveToMain() {

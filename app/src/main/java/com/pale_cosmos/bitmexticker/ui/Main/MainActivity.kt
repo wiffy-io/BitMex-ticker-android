@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
+        window.navigationBarColor = resources.getColor(darkAndLight_reverse())
         brightness_main.setImageResource(get_brightness())
         toolbar_main.background = resources.getDrawable(get_navi())
         parent_main.background = resources.getDrawable(get_table_out())

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_out
 import com.pale_cosmos.bitmexticker.model.Util
@@ -61,6 +62,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
+        window.navigationBarColor = resources.getColor(darkAndLight_reverse())
         toolbar_setting.background = resources.getDrawable(get_navi())
         parent_setting.background = resources.getDrawable(get_table_out())
         toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
