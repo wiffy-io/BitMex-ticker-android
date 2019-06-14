@@ -66,6 +66,7 @@ class InformationActivity : AppCompatActivity(),
         myBundle.putString("symbol", coinInformation)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(get_navi())
+        window.navigationBarColor = resources.getColor(darkAndLight_reverse())
         information_toolbar.background = resources.getDrawable(get_navi())
         information_title.text = coinInformation
         parent_information.background = resources.getDrawable(get_table_out())

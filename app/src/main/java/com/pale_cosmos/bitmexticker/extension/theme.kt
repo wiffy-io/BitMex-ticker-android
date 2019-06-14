@@ -77,6 +77,13 @@ fun darkAndLight():Int
     else return R.color.BLACK
 }
 
+fun darkAndLight_reverse():Int
+{
+    if(Util.dark_theme)
+        return R.color.BLACK
+    else return R.color.WHITE
+}
+
 fun details_state_color():Int
 {
     if(Util.dark_theme)
