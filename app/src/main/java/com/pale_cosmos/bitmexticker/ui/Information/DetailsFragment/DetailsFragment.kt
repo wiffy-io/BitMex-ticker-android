@@ -9,26 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_fragment_background
-import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
-import com.pale_cosmos.bitmexticker.ui.Information.InformationAdapter
 import com.pale_cosmos.bitmexticker.ui.Information.details_info
-import kotlinx.android.synthetic.main.fragment_details.*
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
-import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
-import javax.net.ssl.HttpsURLConnection
 
 class DetailsFragment : Fragment(), DetailsConstract.View {
     lateinit var myView: View
@@ -38,7 +29,7 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
     lateinit var url: String
     lateinit var arr: ArrayList<details_info>
     var builder: Dialog? = null
-    var myAdapter: InformationAdapter? = null
+    var myAdapter: DetailsAdapter? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_details, container, false)
         recycler = myView.findViewById(R.id.detailsRecycler)
@@ -96,7 +87,11 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
                     arr.add(details_info(rows[n].select("td")[0].text(), rows[n].select("td")[1].text()))
                 }
                 Handler(Looper.getMainLooper()).post {
-                    myAdapter = InformationAdapter(arr, context!!, activity as InformationActivity)
+                    myAdapter = DetailsAdapter(
+                        arr,
+                        context!!,
+                        activity as InformationActivity
+                    )
                     recycler.adapter = myAdapter
                     recycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
                 }

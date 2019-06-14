@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.extension
 
+import android.graphics.Color
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
 
@@ -20,6 +21,12 @@ fun get_table_out(): Int {
     if (Util.dark_theme)
         return R.color.dark_table_out
     else return R.color.light_table_out
+}
+
+fun get_table_out_parsed():Int{
+    if (Util.dark_theme)
+        return Color.parseColor("#082335")
+    else return Color.parseColor("#efeff3")
 }
 
 fun get_title(): Int {

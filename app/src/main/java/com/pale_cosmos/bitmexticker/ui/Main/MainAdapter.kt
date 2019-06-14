@@ -16,7 +16,7 @@ import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
-import kotlinx.android.synthetic.main.main_adapter.view.*
+import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
 class MainAdapter(
@@ -103,7 +103,7 @@ class MainAdapter(
     }
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.main_adapter, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.adapter_main, parent, false)
     ) {
         val symbol = itemView.Symbol
         val name_info = itemView.name_info
