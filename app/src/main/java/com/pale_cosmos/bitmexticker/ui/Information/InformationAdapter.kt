@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.darkAndLight
 import com.pale_cosmos.bitmexticker.extension.details_state_color
+import com.pale_cosmos.bitmexticker.extension.get_title
+import com.pale_cosmos.bitmexticker.extension.get_title2
 import kotlinx.android.synthetic.main.details_adapter.view.*
 import java.util.concurrent.ConcurrentHashMap
 
@@ -26,14 +28,11 @@ class InformationAdapter(
     override fun onBindViewHolder(holder: InformationViewHolder, position: Int) {
         items[position].let { item ->
             with(holder) {
-                text_details.setTextColor(ContextCompat.getColor(context, darkAndLight()))
+                text_details.setTextColor(ContextCompat.getColor(context, get_title()))
+                context_details.setTextColor(ContextCompat.getColor(context, get_title2()))
                 text_details.text = item.title
-                context_details.text =if(item.context.length + item.title.length>50)
-                {
-                    "${item.context.substring(0 until 40-item.title.length)}..."
-                }
-                else  item.context
 
+                context_details.text = item.context
                 itemView.backgroundTintList = ContextCompat.getColorStateList(context, details_state_color())
                 itemView.setOnClickListener {
                     var builder = Dialog(activity)
