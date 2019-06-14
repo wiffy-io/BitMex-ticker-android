@@ -9,6 +9,8 @@ class Util {
         var dark_theme : Boolean = true
         lateinit var sharedPreferences_theme:SharedPreferences
         lateinit var sharedPreferences_editor_theme:SharedPreferences.Editor
+        var info_on :Boolean = true
+        var setting_on :Boolean = true
     }
 
 }
