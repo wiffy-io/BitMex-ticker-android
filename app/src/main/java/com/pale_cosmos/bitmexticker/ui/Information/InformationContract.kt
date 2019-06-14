@@ -9,6 +9,7 @@ interface InformationContract {
         fun viewFragment_Details()
         fun viewFragment_Main()
         fun viewFragment_OrderBook()
+        fun viewFragment_Notification()
     }
     interface Presenter{
         fun init()

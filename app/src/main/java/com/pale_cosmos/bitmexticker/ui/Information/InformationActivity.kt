@@ -13,6 +13,7 @@ import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment.DetailsFragment
 import com.pale_cosmos.bitmexticker.ui.Information.MainFragment.MainFragment
+import com.pale_cosmos.bitmexticker.ui.Information.NotificationFragment.NotificationFragment
 import com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
 import java.util.concurrent.ConcurrentHashMap
@@ -25,6 +26,8 @@ class InformationActivity : AppCompatActivity(),
     lateinit var gestureScanner: GestureDetector
     lateinit var coinInformation: String
     lateinit var myBundle: Bundle
+    lateinit var fragmentList: ArrayList<Fragment?>
+
     var preFrag: Fragment? = null
     var catches = 0
 
@@ -54,6 +57,9 @@ class InformationActivity : AppCompatActivity(),
                 R.id.action_detail -> {
                     viewFragment_Details()
                 }
+                R.id.action_notification -> {
+                    viewFragment_Notification()
+                }
             }
             catches = item.itemId
         }
@@ -81,55 +87,101 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun initFragment() {
+//main, orderbook, details, notification
 
-//        fragment_Details = DetailsFragment()
-//        fragment_Main = MainFragment()
-//        fragment_OrderBook = OrderBookFragment()
-//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Main).commit()
-//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_Details).commit()
-//        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragment_OrderBook).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-//        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
-        var tmp = MainFragment()
-        tmp.arguments = myBundle
-        preFrag = tmp
-        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
+        fragmentList = ArrayList()
+        fragmentList.add(null)
+        fragmentList.add(null)
+        fragmentList.add(null)
+        fragmentList.add(null)
+
+        viewFragment_Main()
         catches = R.id.action_title
 
     }
 
-    override fun viewFragment_Details() {
-//        supportFragmentManager.beginTransaction().show(fragment_Details).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-        preFrag?.onDestroy()
-        var tmp = DetailsFragment()
-        tmp.arguments = myBundle
-        preFrag = tmp
-        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
-    }
-
     override fun viewFragment_Main() {
-//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-//        supportFragmentManager.beginTransaction().show(fragment_Main).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_OrderBook).commit()
-        preFrag?.onDestroy()
-        var tmp = MainFragment()
-        tmp.arguments = myBundle
-        preFrag = tmp
-        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
+        for (i in 0 until fragmentList.size) {
+            when (i) {
+                0 -> {
+                    if (fragmentList[i] == null) {
+                        fragmentList[i] = MainFragment()
+                        fragmentList[i]?.arguments = myBundle
+                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
+                            .commit()
+                    }
+                }
+                else -> {
+                    if (fragmentList[i] != null) {
+                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
+                    }
+                }
+            }
+        }
+        supportFragmentManager.beginTransaction().show(fragmentList[0]!!).commit()
     }
 
     override fun viewFragment_OrderBook() {
-//        supportFragmentManager.beginTransaction().hide(fragment_Details).commit()
-//        supportFragmentManager.beginTransaction().hide(fragment_Main).commit()
-//        supportFragmentManager.beginTransaction().show(fragment_OrderBook).commit()
-        preFrag?.onDestroy()
-        var tmp = OrderBookFragment()
-        tmp.arguments = myBundle
-        preFrag = tmp
-        supportFragmentManager.beginTransaction().replace(R.id.information_frame, tmp).commit()
+        for (i in 0 until fragmentList.size) {
+            when (i) {
+                1 -> {
+                    if (fragmentList[i] == null) {
+                        fragmentList[i] = OrderBookFragment()
+                        fragmentList[i]?.arguments = myBundle
+                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
+                            .commit()
+                    }
+                }
+                else -> {
+                    if (fragmentList[i] != null) {
+                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
+                    }
+                }
+            }
+        }
+        supportFragmentManager.beginTransaction().show(fragmentList[1]!!).commit()
+    }
+
+    override fun viewFragment_Details() {
+        for (i in 0 until fragmentList.size) {
+            when (i) {
+                2 -> {
+                    if (fragmentList[i] == null) {
+                        fragmentList[i] = DetailsFragment()
+                        fragmentList[i]?.arguments = myBundle
+                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
+                            .commit()
+                    }
+                }
+                else -> {
+                    if (fragmentList[i] != null) {
+                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
+                    }
+                }
+            }
+        }
+        supportFragmentManager.beginTransaction().show(fragmentList[2]!!).commit()
+    }
+
+    override fun viewFragment_Notification() {
+        for (i in 0 until fragmentList.size) {
+            when (i) {
+                3 -> {
+                    if (fragmentList[i] == null) {
+                        fragmentList[i] = NotificationFragment()
+                        fragmentList[i]?.arguments = myBundle
+                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
+                            .commit()
+                    }
+                }
+                else -> {
+                    if (fragmentList[i] != null) {
+                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
+                    }
+                }
+            }
+        }
+        supportFragmentManager.beginTransaction().show(fragmentList[3]!!).commit()
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {
@@ -176,6 +228,7 @@ class InformationActivity : AppCompatActivity(),
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
         return true
     }
+
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)

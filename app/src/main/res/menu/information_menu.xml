@@ -20,4 +20,11 @@
             android:iconTint="@color/light_title2"
             android:icon="@drawable/ic_baseline_more_24px"
             android:title="Details" />
+    <item
+            android:id="@+id/action_notification"
+            app:showAsAction="ifRoom"
+            android:enabled="true"
+            android:iconTint="@color/light_title2"
+            android:icon="@drawable/ic_baseline_notifications_none_24px"
+            android:title="Notification" />
 </menu>
