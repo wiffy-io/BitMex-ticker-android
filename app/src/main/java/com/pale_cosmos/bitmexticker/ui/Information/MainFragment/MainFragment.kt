@@ -14,9 +14,9 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_fragment_background
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_in
+import com.pale_cosmos.bitmexticker.extension.get_table_out
 
 class MainFragment: Fragment(),MainConstract.View {
-
 
     lateinit var myView:View
     lateinit var mPresenter:MainPresenter
@@ -42,14 +42,13 @@ class MainFragment: Fragment(),MainConstract.View {
         parentLayout.background = resources.getDrawable(get_fragment_background())
     }
 
-
     override fun set_chart(str:String) {
-        mainLayout?.setBackgroundColor(get_table_in())
-        mainLayout?.background = resources.getDrawable(get_table_in())
-        web_chart?.setBackgroundResource(0x00000000)
-        web_chart?.background = resources.getDrawable(get_table_in())
+        mainLayout?.background = resources.getDrawable(get_table_out())
+        web_chart?.setBackgroundColor(0x01000000);
+        web_chart?.background = resources.getDrawable(get_table_out())
         web_chart?.getSettings()?.setJavaScriptEnabled(true);
         web_chart?.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
         //Log.d("asdf",str)
     }
+
 }

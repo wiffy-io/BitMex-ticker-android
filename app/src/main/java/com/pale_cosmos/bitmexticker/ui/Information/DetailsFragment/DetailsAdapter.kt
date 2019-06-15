@@ -1,4 +1,4 @@
-package com.pale_cosmos.bitmexticker.ui.Information
+package com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment
 
 import android.app.Dialog
 import android.content.Context
@@ -9,18 +9,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.darkAndLight
 import com.pale_cosmos.bitmexticker.extension.details_state_color
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
-import kotlinx.android.synthetic.main.details_adapter.view.*
-import java.util.concurrent.ConcurrentHashMap
+import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
+import kotlinx.android.synthetic.main.adapter_datails.view.*
 
-class InformationAdapter(
-    var items: ArrayList<details_info>,
+class DetailsAdapter(
+    var items: ArrayList<Details_info>,
     var context: Context,
     var activity: InformationActivity
-) : RecyclerView.Adapter<InformationAdapter.InformationViewHolder>() {
+) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InformationViewHolder(parent)
@@ -57,7 +56,7 @@ class InformationAdapter(
     }
 
     inner class InformationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.details_adapter, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.adapter_datails, parent, false)
     ) {
         val text_details = itemView.detailsText
         val context_details = itemView.detailsContext

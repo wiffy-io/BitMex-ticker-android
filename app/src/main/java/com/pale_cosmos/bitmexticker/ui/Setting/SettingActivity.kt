@@ -29,7 +29,6 @@ const val SWIPE_MIN_DISTANCE = 120
 const val SWIPE_MAX_OFF_PATH = 250
 const val SWIPE_THRESHOLD_VELOCITY = 150
 
-
 class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
     lateinit var mPresenter: SettingPresenter
     lateinit var gestureScanner: GestureDetector
@@ -43,18 +42,14 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         if (Util.dark_theme) {
             setContentView(R.layout.activity_setting_dark)
-            opensource = findViewById(R.id.dark_table1)
-            versions = findViewById(R.id.dark_table2)
-            review = findViewById(R.id.dark_table3)
-            email = findViewById(R.id.dark_table4)
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_setting_light)
-            opensource = findViewById(R.id.light_table1)
-            versions = findViewById(R.id.light_table2)
-            review = findViewById(R.id.light_table3)
-            email = findViewById(R.id.light_table4)
         }
+        opensource = findViewById(R.id.table1)
+        versions = findViewById(R.id.table2)
+        review = findViewById(R.id.table3)
+        email = findViewById(R.id.table4)
+
         gestureScanner = GestureDetector(this)
         mPresenter = SettingPresenter(this)
         mPresenter.change_UI()
@@ -95,7 +90,6 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
-
         return true
     }
 
@@ -128,7 +122,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         email.setOnClickListener(listener4)
     }
 
-    override fun startDialog(title:String, context:String) {
+    override fun startDialog(title: String, context: String) {
 //        val intents = Intent(this@SettingActivity,DialogActivity::class.java)
 //        intents.putExtra("TITLE",title)
 //        intents.putExtra("CONTEXT",context)
@@ -139,14 +133,14 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         builder.setCancelable(false)
         builder.setCanceledOnTouchOutside(false)
         builder.setOnShowListener {
-            var x =builder.findViewById<Button>(R.id.OKBUTTON)
+            var x = builder.findViewById<Button>(R.id.OKBUTTON)
             x.setOnClickListener {
                 builder.dismiss()
             }
             var y = builder.findViewById<TextView>(R.id.contextInDialog)
             y.text = context
             var z = builder.findViewById<TextView>(R.id.titleInDialog)
-            z.text=title
+            z.text = title
         }
         builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
         builder.show()
@@ -159,13 +153,14 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun clipOnBoard(clipBoardMessage: String) {
         val clip = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clipData = ClipData.newPlainText("",clipBoardMessage)
-        clip.primaryClip=clipData
+        val clipData = ClipData.newPlainText("", clipBoardMessage)
+        clip.primaryClip = clipData
     }
 
     override fun urlParseToMarket(url: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
     }
+
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)

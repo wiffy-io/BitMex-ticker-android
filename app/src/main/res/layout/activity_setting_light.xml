@@ -37,7 +37,7 @@
                             android:layout_width="match_parent"
                             android:clickable="true"
                             android:focusable="true"
-                            android:id="@+id/light_table1"
+                            android:id="@+id/table1"
                             android:background="@drawable/setting_button_light">
                 <TextView
                         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:id="@+id/light_table2"
+                            android:id="@+id/table2"
                             android:layout_width="match_parent"
                             android:background="@drawable/setting_button_light">
                 <TextView
@@ -107,7 +107,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
-                            android:id="@+id/light_table3"
+                            android:id="@+id/table3"
                             android:focusable="true"
                             android:background="@drawable/setting_button_light">
                 <TextView
@@ -135,7 +135,7 @@
                             android:layout_width="match_parent"
                             android:clickable="true"
                             android:focusable="true"
-                            android:id="@+id/light_table4"
+                            android:id="@+id/table4"
                             android:background="@drawable/setting_button_light">
                 <TextView
                         android:layout_width="match_parent"

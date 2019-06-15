@@ -27,8 +27,7 @@
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/dark_title2"
                         android:text="INFO"
-                        android:layout_alignParentBottom="true"
-                />
+                        android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </TableRow>
 
@@ -37,8 +36,8 @@
                             android:layout_width="match_parent"
                             android:clickable="true"
                             android:focusable="true"
-                            android:id="@+id/dark_table1"
-                            android:background="@drawable/setting_button_dark" >
+                            android:id="@+id/table1"
+                            android:background="@drawable/setting_button_dark">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -64,7 +63,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
-                            android:id="@+id/dark_table2"
+                            android:id="@+id/table2"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark">
                 <TextView
@@ -108,10 +107,10 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
-                            android:id="@+id/dark_table3"
+                            android:id="@+id/table3"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark"
-                           >
+            >
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -136,7 +135,7 @@
             <RelativeLayout android:layout_height="50dp"
                             android:layout_width="match_parent"
                             android:clickable="true"
-                            android:id="@+id/dark_table4"
+                            android:id="@+id/table4"
                             android:focusable="true"
                             android:background="@drawable/setting_button_dark">
                 <TextView

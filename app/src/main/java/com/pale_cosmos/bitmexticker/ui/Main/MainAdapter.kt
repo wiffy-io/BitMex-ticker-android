@@ -16,7 +16,7 @@ import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
-import kotlinx.android.synthetic.main.main_adapter.view.*
+import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
 class MainAdapter(
@@ -42,12 +42,14 @@ class MainAdapter(
                 symbol.text = item.Symbol
                 name_info.text = item.name_info
                 price.text = item.price
+
                 when (item.before_p) {
                     "n" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
                     "r" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
                     "g" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
                 }
                 itemView.setOnClickListener {
+                    info_on = false
                     var bundle = Bundle()
                     bundle.putString("information", item.Symbol)
                     mView.moveToInformation(bundle)
@@ -55,33 +57,21 @@ class MainAdapter(
                 itemView.setOnTouchListener { v, e ->
                     when (e?.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            (v as CardView).setCardBackgroundColor(
-                                ContextCompat.getColor(
-                                    context,
-                                    get_table_in_reverse()
-                                )
-                            )
+                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in_reverse()))
                             istouch = true
                         }
                         MotionEvent.ACTION_UP -> {
-                            (v as CardView).setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
                             if (!item.price?.contains("-")!! && info_on) {
-                                info_on= false
                                 v.callOnClick()
                             }
                             istouch = false
-                            try {
-                                notifyDataSetChanged()
-                            } catch (e: Exception) {
-                            }
+                            noti_update()
                         }
                         MotionEvent.ACTION_CANCEL -> {
-                            (v as CardView).setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
                             istouch = false
-                            try {
-                                notifyDataSetChanged()
-                            } catch (e: Exception) {
-                            }
+                            noti_update()
                         }
                     }
                     true
@@ -92,18 +82,25 @@ class MainAdapter(
 
     fun update_theme(theme: Boolean) {
         is_dark = theme
-        notifyDataSetChanged()
+        noti_update()
     }
 
     fun update(modelList: ArrayList<Coin_info>) {
         items = modelList
         if (!istouch) {
+            noti_update()
+        }
+    }
+
+    fun noti_update(){
+        try {
             notifyDataSetChanged()
+        } catch (e: Exception) {
         }
     }
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.main_adapter, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.adapter_main, parent, false)
     ) {
         val symbol = itemView.Symbol
         val name_info = itemView.name_info

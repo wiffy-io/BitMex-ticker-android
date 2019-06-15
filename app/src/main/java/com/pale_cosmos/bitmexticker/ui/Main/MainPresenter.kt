@@ -16,7 +16,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     private val mView = act
     private var init_coin_ = ArrayList<Coin_info>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
-    private var istouch = false
 
     override fun get_coin() = Thread(Runnable {
         try {
@@ -105,16 +104,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             } catch (e: Exception) {
             }
         }
-        if (!istouch){
-            mView.update_recycler(init_coin_)
-        }
-    }
-
-    override fun onTouch() {
-        istouch = true
-    }
-
-    override fun notonTouch() {
-        istouch = false
+        mView.update_recycler(init_coin_)
     }
 }

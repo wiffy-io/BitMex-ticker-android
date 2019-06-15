@@ -1,7 +1,9 @@
 package com.pale_cosmos.bitmexticker.ui.Setting
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.extension.get_table_in
 
 class SettingPresenter(act: SettingContract.View) : SettingContract.Presenter {
     private val mView = act
