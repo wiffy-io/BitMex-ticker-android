@@ -11,6 +11,7 @@
             layout="@layout/app_bar_main"
             android:id="@+id/toolbar_main"/>
     <ScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_main"
@@ -79,7 +80,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="3dp"/>
+
+            <View
+                    android:layout_below="@id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
         </RelativeLayout>
+
     </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-0355430122346055/3779365351">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

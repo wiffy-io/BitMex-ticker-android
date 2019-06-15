@@ -13,7 +13,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pale_cosmos.bitmexticker.R
+import com.google.android.gms.ads.MobileAds
 import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
@@ -25,6 +25,9 @@ import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
+import com.google.android.gms.ads.AdRequest
+import com.pale_cosmos.bitmexticker.R
+
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -37,6 +40,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
+        MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         init_loading()
         start_loading()
