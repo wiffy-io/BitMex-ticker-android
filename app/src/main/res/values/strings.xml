@@ -1,14 +1,59 @@
 <resources>
     <string name="app_name">BitMEX Ticker</string>
+    <string name="app_name_uppercase">BITMEX Ticker</string>
+    <string name="Ticker">Ticker</string>
 
-    <!-- Preference Titles -->
+    <!-- Main String Sources -->
+    <string name="tem">---</string>
 
-    <!-- Messages Preferences -->
+    <string name="Recent_Trades_en">Recent Trades</string>
 
-    <!-- Sync Preferences -->
+    <string name="Recent_Trades_kor">최근 거래</string>
 
+    <!-- Setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
     <string name="addmin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">com.pale_cosmos.helu</string>
+
+
+    <string name="Setting_title_en">Setting</string>
+    <string name="Info_en">Info</string>
+    <string name="OpenSource_en">OpenSource</string>
+    <string name="Version_en">Version</string>
+    <string name="FEEDBACK_en">FEEDBACK</string>
+    <string name="Play_store_review_en">Play Store Review</string>
+    <string name="Developer_Email_en">Developer Email</string>
+
+    <string name="Setting_title_kor">설정</string>
+    <string name="Info_kor">정보</string>
+    <string name="OpenSource_kor">오픈소스</string>
+    <string name="Version_kor">버전</string>
+    <string name="FEEDBACK_kor">피드백</string>
+    <string name="Play_store_review_kor">리뷰</string>
+    <string name="Developer_Email_kor">개발자 이메일</string>
+
+    <!-- Menu Title Sources -->
+    <string name="Title_en">title</string>
+
+    <string name="OrderBook_en">OrderBook</string>
+    <string name="Details_en">Details</string>
+    <string name="Notification_en">Notification</string>
+
+    <string name="OrderBook_kor">주문</string>
+    <string name="Details_kor">세부사항</string>
+    <string name="Notification_kor">알림</string>
+
+    <!-- Fragment OrderBook Sources -->
+    <string name="Sell_example">0000 - Sell - 00</string>
+
+    <string name="Ask_en">Ask</string>
+    <string name="Price_en">Price</string>
+    <string name="Bid_en">Bid</string>
+
+    <string name="Ask_kor">매도가</string>
+    <string name="Price_kor">가격</string>
+    <string name="Bid_kor">매수가</string>
+
+
 </resources>

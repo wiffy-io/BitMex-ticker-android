@@ -24,7 +24,7 @@
 
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:text="Ticker"/>
+            android:text="@string/Ticker"/>
 
     <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="25dp"

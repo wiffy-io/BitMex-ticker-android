@@ -13,7 +13,6 @@
             android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="티커 루트"
             android:textColor="@color/WHITE"
             android:id="@+id/detailsText"
     />
@@ -26,7 +25,6 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="XBTUSD"
             android:textColor="@color/light_title2"
             android:id="@+id/detailsContext"
     />
