@@ -80,4 +80,5 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
         builder?.dismiss()
     }
 
+    
 }
