@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -18,10 +19,12 @@ import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
+import com.pale_cosmos.bitmexticker.model.Util.Companion.true_
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -41,6 +44,17 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.change_UI()
         mPresenter.get_coin()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mPresenter.socker_reconnect()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        true_ = false
+        //Log.d("asdf","des")
     }
 
     override fun set_recycler(init_coin: ArrayList<Coin_info>) {
@@ -108,8 +122,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun start_loading(){
-        Handler(Looper.getMainLooper()).post {
-            builder?.show()
+        if(!check_loading()){
+            Handler(Looper.getMainLooper()).post {
+                try { builder?.show() }catch (e:Exception){ }
+            }
         }
     }
 

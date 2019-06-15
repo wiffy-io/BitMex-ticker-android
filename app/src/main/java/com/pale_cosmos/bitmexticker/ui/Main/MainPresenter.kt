@@ -9,6 +9,7 @@ import com.pale_cosmos.bitmexticker.extension.getUrlText
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
+import com.pale_cosmos.bitmexticker.model.Util.Companion.true_
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URI
@@ -19,7 +20,6 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     private val mView = act
     private var init_coin_ = ArrayList<Coin_info>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
-    private var socket_thread = true
 
     override fun get_coin() = Thread(Runnable {
         try {
@@ -64,28 +64,28 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         }
         socket.set_closeback {
             socket.close()
-            reconnect()
+            mView.change_recent("---")
+            mView.start_loading()
         }
         socket.connect()
+        thread_true()
     }
 
-    private fun reconnect(){
-        //Log.d("asdf","startt")
-        if(socket_thread){
-            socket_thread = false
-            Thread(Runnable{
-                mView.start_loading()
-                Thread.sleep(1000)
-                while(mView.check_loading()){
-                    try {
-                        Thread.sleep(3000)
-                        //Log.d("asdf","start")
-                        socket.reconnect()
-                        //Log.d("asdf","done")
-                    }catch (e:Exception){ }
-                }
-                socket_thread = true
-            }).start()
+    private fun thread_true(){
+        Thread(Runnable{
+            while(true_){
+                try {
+                    Thread.sleep(2000)
+                    socker_reconnect()
+                }catch (e:Exception){ }
+            }
+        }).start()
+    }
+
+    override fun socker_reconnect(){
+        //Log.d("asdf",socket.isClosed.toString())
+        if(socket.isClosed){
+            socket.reconnect()
         }
     }
 
