@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">BitMEX Ticker</string>
+    <string name="app_name_uppercase">BITMEX Ticker</string>
+    <string name="ad_key">ca-app-pub-0355430122346055~1344719802</string>
+    <string name="Ticker">Ticker</string>
+
+
+    <string name="InternetCheck_en">인터넷 연결을 확인해주세요.</string>
+
+    <!-- Main String Sources -->
+    <string name="tem">---</string>
+
+
+    <string name="Recent_Trades_en">최근 거래</string>
+
+    <!-- Setting String Sources -->
+    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
+    <string name="version">1.0.0(1)</string>
+    <string name="addmin_mail">iveinvalue@gmail.com</string>
+    <string name="store_url">com.pale_cosmos.helu</string>
+
+
+
+    <string name="Setting_title_en">설정</string>
+    <string name="Info_en">정보</string>
+    <string name="OpenSource_en">오픈소스</string>
+    <string name="Version_en">버전</string>
+    <string name="FEEDBACK_en">피드백</string>
+    <string name="Play_store_review_en">리뷰</string>
+    <string name="Developer_Email_en">개발자 이메일</string>
+
+    <!-- Menu Title Sources -->
+    <string name="Title_en">title</string>
+
+    <string name="OrderBook_en">주문</string>
+    <string name="Details_en">세부사항</string>
+    <string name="Notification_en">알림</string>
+
+    <!-- Fragment OrderBook Sources -->
+    <string name="Sell_example">0000 - Sell - 00</string>
+
+    <string name="Ask_en">매도가</string>
+    <string name="Price_en">가격</string>
+    <string name="Bid_en">매수가</string>
+
+
+</resources>
