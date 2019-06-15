@@ -15,7 +15,7 @@
             android:textSize="20sp"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:text="Setting"/>
+            android:text="@string/Setting_title_en"/>
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:id="@+id/toMainFromSetting"
             android:textSize="18sp"
             android:layout_alignParentStart="true"
-            android:text="Ticker"
+            android:text="@string/Ticker"
             android:textColor="@drawable/text_setting_selector"/>
 
 </RelativeLayout>
