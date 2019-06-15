@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">BitMEX Ticker</string>
     <string name="app_name_uppercase">BITMEX Ticker</string>
+    <string name="ad_key">ca-app-pub-0355430122346055~1344719802</string>
     <string name="Ticker">Ticker</string>
+
+    <string name="InternetCheck_en">Check your internet connection.</string>
+    <string name="InternetCheck_kor">인터넷 연결을 확인해주세요.</string>
 
     <!-- Main String Sources -->
     <string name="tem">---</string>

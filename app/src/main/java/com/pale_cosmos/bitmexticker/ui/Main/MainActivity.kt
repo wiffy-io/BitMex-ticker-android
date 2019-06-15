@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,6 @@ import com.google.android.gms.ads.MobileAds
 import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
-import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
+        MobileAds.initialize(this, applicationContext.getString(R.string.ad_key))
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
 

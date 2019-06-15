@@ -1,8 +1,5 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.extension.getUrlText
@@ -41,7 +38,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         val listener_theme = View.OnClickListener {
             Util.dark_theme = Util.dark_theme xor true
             mView.changeUI()
-            Util.sharedPreferences_editor_theme.putBoolean(
+            Util.sharedPreferences_editor.putBoolean(
                 "mode",
                 Util.dark_theme
             ).apply()
