@@ -6,8 +6,6 @@
     <color name="WHITE">#FFFFFF</color>
     <color name="BLACK">#000000</color>
 
-    <color name="splash_background">#0b1722</color>
-
     <color name="dark_navi">#16263F</color> <!--Dark_navi-->
     <color name="dark_table_out">#081723</color> <!--Dark_table_out-->
     <color name="dark_table_in">#121F30</color> <!--Dark_table_in-->
@@ -20,12 +18,10 @@
     <color name="light_table_in">#ffffffff</color> <!--Light_table_in-->
     <color name="light_title">#ff303030</color> <!--Light_title-->
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
-    <color name="light_fragment_Background">#D1CFCF</color>
 
     <color name="red">#B43B3B</color> <!--Light_title2-->
     <color name="green">#469646</color> <!--Light_title2-->
     <color name="normal">#787878</color> <!--Light_title2-->
-    <color name="button_selected">#33686868</color>
 
     <color name="dark_table_in_click">#0D808080</color>
     <color name="light_table_in_click">#1A121F30</color>

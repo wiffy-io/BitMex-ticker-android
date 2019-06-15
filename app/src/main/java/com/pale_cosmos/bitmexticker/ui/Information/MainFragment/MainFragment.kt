@@ -15,20 +15,16 @@ import com.pale_cosmos.bitmexticker.extension.get_fragment_background
 import com.pale_cosmos.bitmexticker.extension.get_navi
 import com.pale_cosmos.bitmexticker.extension.get_table_in
 import com.pale_cosmos.bitmexticker.extension.get_table_out
+import com.pale_cosmos.bitmexticker.model.Util.Companion.dark_theme
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment: Fragment(),MainConstract.View {
 
     lateinit var myView:View
     lateinit var mPresenter:MainPresenter
-    lateinit var parentLayout: RelativeLayout
-    lateinit var mainLayout: RelativeLayout
-
-    var web_chart: WebView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_main, container,false)
-        web_chart = myView.findViewById(R.id.web_chart)
-        mainLayout = myView.findViewById(R.id.mains)
 
         mPresenter = MainPresenter(this,arguments?.getString("symbol"))
         mPresenter.init()
@@ -38,16 +34,20 @@ class MainFragment: Fragment(),MainConstract.View {
     }
 
     override fun changeUI() {
-        parentLayout=myView.findViewById(R.id.mains)
-        parentLayout.background = resources.getDrawable(get_fragment_background())
+        myView.mains.background = resources.getDrawable(get_table_out())
+        if(dark_theme){
+            myView.main_view.background = resources.getDrawable(R.drawable.chart_border_dark)
+        }else{
+            myView.main_view.background = resources.getDrawable(R.drawable.chart_border_light)
+        }
+
     }
 
     override fun set_chart(str:String) {
-        mainLayout?.background = resources.getDrawable(get_table_out())
-        web_chart?.setBackgroundColor(0x01000000);
-        web_chart?.background = resources.getDrawable(get_table_out())
-        web_chart?.getSettings()?.setJavaScriptEnabled(true);
-        web_chart?.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
+        myView.web_chart.setBackgroundColor(0x01000000);
+        myView.web_chart.background = resources.getDrawable(get_table_out())
+        myView.web_chart.getSettings()?.setJavaScriptEnabled(true);
+        myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
         //Log.d("asdf",str)
     }
 

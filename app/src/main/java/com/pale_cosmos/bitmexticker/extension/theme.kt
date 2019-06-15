@@ -98,3 +98,9 @@ fun details_state_color():Int
     else return R.color.details_state_light
 }
 
+fun setting_button():Int
+{
+    if(Util.dark_theme)
+        return R.drawable.setting_button_dark
+    else return R.drawable.setting_button_light
+}

@@ -15,13 +15,12 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
-import com.pale_cosmos.bitmexticker.extension.get_navi
-import com.pale_cosmos.bitmexticker.extension.get_table_out
+import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
-import kotlinx.android.synthetic.main.activity_setting_dark.*
+import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 
 
@@ -32,23 +31,15 @@ const val SWIPE_THRESHOLD_VELOCITY = 150
 class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
     lateinit var mPresenter: SettingPresenter
     lateinit var gestureScanner: GestureDetector
-    lateinit var opensource: RelativeLayout
-    lateinit var versions: RelativeLayout
-    lateinit var review: RelativeLayout
-    lateinit var email: RelativeLayout
+    //lateinit var opensource: RelativeLayout
+    //lateinit var versions: RelativeLayout
+    //lateinit var review: RelativeLayout
+    //lateinit var email: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        if (Util.dark_theme) {
-            setContentView(R.layout.activity_setting_dark)
-        } else {
-            setContentView(R.layout.activity_setting_light)
-        }
-        opensource = findViewById(R.id.table1)
-        versions = findViewById(R.id.table2)
-        review = findViewById(R.id.table3)
-        email = findViewById(R.id.table4)
+        setContentView(R.layout.activity_setting)
 
         gestureScanner = GestureDetector(this)
         mPresenter = SettingPresenter(this)
@@ -62,6 +53,16 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         toolbar_setting.background = resources.getDrawable(get_navi())
         parent_setting.background = resources.getDrawable(get_table_out())
         toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
+
+        OpenSource.background = resources.getDrawable(setting_button())
+        Version.background = resources.getDrawable(setting_button())
+        Review.background = resources.getDrawable(setting_button())
+        Email.background = resources.getDrawable(setting_button())
+
+        (OpenSource[0] as TextView).setTextColor(resources.getColor(get_title()))
+        (Version[0] as TextView).setTextColor(resources.getColor(get_title()))
+        (Review[0] as TextView).setTextColor(resources.getColor(get_title()))
+        (Email[0] as TextView).setTextColor(resources.getColor(get_title()))
     }
 
     override fun moveToMain() {
@@ -116,10 +117,10 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         listener3: View.OnClickListener,
         listener4: View.OnClickListener
     ) {
-        opensource.setOnClickListener(listener1)
-        versions.setOnClickListener(listener2)
-        review.setOnClickListener(listener3)
-        email.setOnClickListener(listener4)
+        OpenSource.setOnClickListener(listener1)
+        Version.setOnClickListener(listener2)
+        Review.setOnClickListener(listener3)
+        Email.setOnClickListener(listener4)
     }
 
     override fun startDialog(title: String, context: String) {
