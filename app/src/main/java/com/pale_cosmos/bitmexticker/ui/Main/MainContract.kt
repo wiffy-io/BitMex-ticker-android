@@ -14,7 +14,9 @@ interface MainContract {
         fun update_recycler(mod_coin:ArrayList<Coin_info>)
         fun update_recycler_theme()
         fun moveToInformation(bundle:Bundle)
-
+        fun change_recent(str:String)
+        fun start_loading()
+        fun stop_loading()
     }
     interface Presenter{
         fun change_UI()

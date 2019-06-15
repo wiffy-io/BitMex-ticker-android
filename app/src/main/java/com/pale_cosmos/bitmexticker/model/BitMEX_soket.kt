@@ -10,10 +10,12 @@ class BitMEX_soket: WebSocketClient {
     //var msg:String = ""
     var callback_:(String)->Unit?
     var sendback_:(String)->Unit?
+    var closeback:(String)->Unit?
 
     constructor(serverUri: URI) : super(serverUri) {
         callback_ = {}
         sendback_ = {}
+        closeback = {}
     }
 
     fun set_sendback(callback: ((String)->Unit)){
@@ -22,6 +24,10 @@ class BitMEX_soket: WebSocketClient {
 
     fun set_callback(callback: ((String)->Unit)){
         callback_ = callback
+    }
+
+    fun set_closeback(callback: ((String)->Unit)){
+        closeback = callback
     }
 
     fun send_msg(str:String){
@@ -33,7 +39,7 @@ class BitMEX_soket: WebSocketClient {
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
-
+        closeback.invoke("")
     }
 
     override fun onMessage(message: String?) {

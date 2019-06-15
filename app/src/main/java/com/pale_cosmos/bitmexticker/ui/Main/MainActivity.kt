@@ -1,10 +1,12 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +27,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     lateinit var mPresenter: MainPresenter
     var myAdapter: MainAdapter? = null
-
+    var builder: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+        start_loading()
         mPresenter = MainPresenter(this)
         mPresenter.change_UI()
         mPresenter.get_coin()
@@ -71,6 +74,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         trd_info.setTextColor(ContextCompat.getColorStateList(applicationContext, darkAndLight()))
     }
 
+    override fun change_recent(str:String){
+        trd_info.text = str
+    }
+
     override fun addBrightnessListener(listener: View.OnClickListener) {
         brightness_main.setOnClickListener(listener)
     }
@@ -96,6 +103,23 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
+        }
+    }
+
+    override fun start_loading(){
+        builder = Dialog(this)
+        builder?.setContentView(R.layout.waitting_dialog)
+        builder?.setCancelable(false)
+        builder?.setCanceledOnTouchOutside(false)
+        builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        Handler(Looper.getMainLooper()).post {
+            builder?.show()
+        }
+    }
+
+    override fun stop_loading(){
+        if (builder?.isShowing!!){
+            builder?.dismiss()
         }
     }
 }

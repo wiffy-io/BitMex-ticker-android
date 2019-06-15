@@ -58,6 +58,9 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         socket.set_sendback {
             socket_subscribe()
         }
+        socket.set_closeback {
+            mView.start_loading()
+        }
         socket.connect()
     }
 
@@ -99,11 +102,13 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                             init_coin_[i].before_p = "r"
                         }
                         init_coin_[i].price = change_value(price)
+                        mView.change_recent("${symbol} : ${change_value(price)}")
                     }
                 }
             } catch (e: Exception) {
             }
         }
         mView.update_recycler(init_coin_)
+        mView.stop_loading()
     }
 }
