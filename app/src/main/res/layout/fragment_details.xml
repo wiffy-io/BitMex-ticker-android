@@ -5,10 +5,10 @@
                 android:id="@+id/details"
 >
 
-            <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
 
-                    android:id="@+id/detailsRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+            android:id="@+id/detailsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </RelativeLayout>

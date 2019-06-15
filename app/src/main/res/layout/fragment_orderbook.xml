@@ -4,7 +4,78 @@
                 android:layout_height="match_parent"
                 android:id="@+id/orderbooks"
 >
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="orderbook"/>
+    <TextView
+            android:id="@+id/orderbook_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="0dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/myBlue"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="0000 - Sell - 00"
+    />
+    <RelativeLayout
+            android:id="@+id/orderbook_large"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/orderbook_view">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/ordrbook_titles"
+                android:layout_alignParentTop="true">
+            <TextView
+                    android:id="@+id/ask_title"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/myBlue"
+                    android:textStyle="bold"
+                    android:background="@color/myDarkBlue"
+                    android:text="Ask"/>
+            <TextView
+                    android:id="@+id/price_title"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/myBlue"
+                    android:textStyle="bold"
+                    android:background="@color/myDarkBlue"
+                    android:text="Price"/>
+
+            <TextView
+                    android:id="@+id/bid_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:textColor="@color/myBlue"
+                    android:textStyle="bold"
+                    android:background="@color/myDarkBlue"
+                    android:text="Bid"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/ordrbook_titles"
+                android:id="@+id/orderbookRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>
