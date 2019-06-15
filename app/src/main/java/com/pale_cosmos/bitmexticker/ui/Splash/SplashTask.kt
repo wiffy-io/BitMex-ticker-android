@@ -1,8 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Splash
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.AsyncTask
 import java.lang.Exception
 import java.net.HttpURLConnection
