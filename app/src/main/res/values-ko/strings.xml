@@ -39,9 +39,9 @@
     <!-- Fragment OrderBook Sources -->
     <string name="Sell_example">0000 - Sell - 00</string>
 
-    <string name="Ask_en">매도가</string>
+    <string name="Ask_en">매도</string>
     <string name="Price_en">가격</string>
-    <string name="Bid_en">매수가</string>
+    <string name="Bid_en">매수</string>
 
 
 </resources>
