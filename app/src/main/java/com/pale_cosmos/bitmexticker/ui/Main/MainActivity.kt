@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+        init_loading()
         start_loading()
         mPresenter = MainPresenter(this)
         mPresenter.change_UI()
@@ -107,19 +108,26 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun start_loading(){
+        Handler(Looper.getMainLooper()).post {
+            builder?.show()
+        }
+    }
+
+    fun init_loading(){
         builder = Dialog(this)
         builder?.setContentView(R.layout.waitting_dialog)
         builder?.setCancelable(false)
         builder?.setCanceledOnTouchOutside(false)
         builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        Handler(Looper.getMainLooper()).post {
-            builder?.show()
-        }
     }
 
     override fun stop_loading(){
         if (builder?.isShowing!!){
             builder?.dismiss()
         }
+    }
+
+    override fun check_loading():Boolean{
+        return builder?.isShowing!!
     }
 }

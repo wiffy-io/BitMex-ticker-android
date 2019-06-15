@@ -17,6 +17,7 @@ interface MainContract {
         fun change_recent(str:String)
         fun start_loading()
         fun stop_loading()
+        fun check_loading():Boolean
     }
     interface Presenter{
         fun change_UI()

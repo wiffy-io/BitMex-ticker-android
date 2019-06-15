@@ -19,9 +19,9 @@
     <color name="light_title">#ff303030</color> <!--Light_title-->
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
 
-    <color name="red">#B43B3B</color> <!--Light_title2-->
-    <color name="green">#469646</color> <!--Light_title2-->
-    <color name="normal">#787878</color> <!--Light_title2-->
+    <color name="red">#E6C84646</color> <!--Light_title2-->
+    <color name="green">#E646AA46</color> <!--Light_title2-->
+    <color name="normal">#E6808080</color> <!--Light_title2-->
 
     <color name="dark_table_in_click">#0D808080</color>
     <color name="light_table_in_click">#1A121F30</color>

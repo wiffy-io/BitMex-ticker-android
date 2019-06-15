@@ -49,7 +49,7 @@ class BitMEX_soket: WebSocketClient {
     }
 
     override fun onError(ex: Exception?) {
-
+        closeback.invoke("")
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {

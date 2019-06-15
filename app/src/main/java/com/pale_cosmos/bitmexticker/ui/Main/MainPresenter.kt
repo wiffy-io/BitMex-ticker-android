@@ -1,5 +1,8 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.extension.getUrlText
@@ -16,6 +19,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     private val mView = act
     private var init_coin_ = ArrayList<Coin_info>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+    private var socket_thread = true
 
     override fun get_coin() = Thread(Runnable {
         try {
@@ -59,9 +63,30 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             socket_subscribe()
         }
         socket.set_closeback {
-            mView.start_loading()
+            socket.close()
+            reconnect()
         }
         socket.connect()
+    }
+
+    private fun reconnect(){
+        //Log.d("asdf","startt")
+        if(socket_thread){
+            socket_thread = false
+            Thread(Runnable{
+                mView.start_loading()
+                Thread.sleep(1000)
+                while(mView.check_loading()){
+                    try {
+                        Thread.sleep(3000)
+                        //Log.d("asdf","start")
+                        socket.reconnect()
+                        //Log.d("asdf","done")
+                    }catch (e:Exception){ }
+                }
+                socket_thread = true
+            }).start()
+        }
     }
 
     private fun socket_subscribe() {
@@ -88,7 +113,8 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                         socket.send_msg_filter("subscribe", "trade", tmp_symbol)
 
                         val price = data.getDouble("close")
-                        init_coin_.get(i).price = change_value(price)
+                        init_coin_[i].price = change_value(price)
+                        init_coin_[i].before_p = "n"
                     }
                 } else if (table_name == "trade") {
                     var data = json_contact.getJSONArray("data").getJSONObject(0)
