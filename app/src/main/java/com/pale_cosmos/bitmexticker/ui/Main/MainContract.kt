@@ -23,5 +23,6 @@ interface MainContract {
         fun change_UI()
         fun make_socket()
         fun get_coin()
+        fun socker_reconnect()
     }
 }

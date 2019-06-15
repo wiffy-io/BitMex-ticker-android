@@ -14,6 +14,7 @@ class Util {
 
         var info_on :Boolean = true
         var setting_on :Boolean = true
+        var true_ :Boolean = true
     }
 
 }
