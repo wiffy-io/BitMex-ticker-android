@@ -1,10 +1,12 @@
 package com.pale_cosmos.bitmexticker.Splash
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
@@ -37,6 +39,11 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.abc_fade_in,R.anim.not_move_activity)
+        finish()
+    }
+
+    override fun getOut() {
+        Toast.makeText(applicationContext, applicationContext.getString(R.string.InternetCheck_en),Toast.LENGTH_SHORT).show()
         finish()
     }
     override fun setRequestedOrientation(requestedOrientation: Int) {

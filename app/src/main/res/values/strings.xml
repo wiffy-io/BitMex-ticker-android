@@ -3,6 +3,9 @@
     <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
 
+    <string name="InternetCheck_en">Check your internet connection.</string>
+    <string name="InternetCheck_kor">인터넷 연결을 확인해주세요.</string>
+
     <!-- Main String Sources -->
     <string name="tem">---</string>
 
