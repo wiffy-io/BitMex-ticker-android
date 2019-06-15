@@ -11,7 +11,7 @@ class Util {
         lateinit var sharedPreferences_editor_theme:SharedPreferences.Editor
         var info_on :Boolean = true
         var setting_on :Boolean = true
-        var true_ :Boolean = true
+        var is_close :Boolean = false
     }
 
 }

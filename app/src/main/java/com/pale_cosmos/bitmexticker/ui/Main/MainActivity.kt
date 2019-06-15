@@ -19,7 +19,6 @@ import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
-import com.pale_cosmos.bitmexticker.model.Util.Companion.true_
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import com.pale_cosmos.bitmexticker.ui.Setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onDestroy() {
         super.onDestroy()
-        true_ = false
+        //true_ = false
         //Log.d("asdf","des")
     }
 

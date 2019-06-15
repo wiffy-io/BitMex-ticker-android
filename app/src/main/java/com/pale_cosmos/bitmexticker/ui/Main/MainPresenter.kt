@@ -9,7 +9,7 @@ import com.pale_cosmos.bitmexticker.extension.getUrlText
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util
-import com.pale_cosmos.bitmexticker.model.Util.Companion.true_
+import com.pale_cosmos.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URI
@@ -60,31 +60,27 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             socket_callback(it)
         }
         socket.set_sendback {
+            is_close = false
             socket_subscribe()
         }
         socket.set_closeback {
             socket.close()
             mView.change_recent("---")
             mView.start_loading()
-        }
-        socket.connect()
-        thread_true()
-    }
-
-    private fun thread_true(){
-        Thread(Runnable{
-            while(true_){
+            is_close = true
+            Thread(Runnable{
                 try {
                     Thread.sleep(2000)
-                    socker_reconnect()
+                    socket.reconnect()
                 }catch (e:Exception){ }
-            }
-        }).start()
+            }).start()
+        }
+        socket.connect()
+        //thread_true()
     }
 
     override fun socker_reconnect(){
-        //Log.d("asdf",socket.isClosed.toString())
-        if(socket.isClosed){
+        if(is_close){
             socket.reconnect()
         }
     }

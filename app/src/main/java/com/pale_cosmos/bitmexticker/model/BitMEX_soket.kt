@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.model
 
+import android.util.Log
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.lang.Exception
@@ -13,6 +14,7 @@ class BitMEX_soket: WebSocketClient {
     var closeback:(String)->Unit?
 
     constructor(serverUri: URI) : super(serverUri) {
+        Log.d("asdf","init")
         callback_ = {}
         sendback_ = {}
         closeback = {}
@@ -39,6 +41,7 @@ class BitMEX_soket: WebSocketClient {
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
+        //Log.d("asdf","close")
         closeback.invoke("")
     }
 
@@ -49,12 +52,13 @@ class BitMEX_soket: WebSocketClient {
     }
 
     override fun onError(ex: Exception?) {
-        closeback.invoke("")
+        //Log.d("asdf","erroe")
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {
         //send(msg)
         sendback_.invoke("")
     }
+
 
 }
