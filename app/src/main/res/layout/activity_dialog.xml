@@ -17,7 +17,7 @@
                   android:layout_height="wrap_content"
                   android:layout_centerHorizontal="true"
                   android:textColor="@color/light_title"
-                  android:text="Title"
+                  android:text="@string/Title"
                   android:textAlignment="center"
                   android:textSize="18sp"
                   android:layout_marginTop="10dp"
@@ -32,7 +32,6 @@
                   android:layout_gravity="center"
                   android:textAlignment="center"
                   android:id="@+id/contextInDialog"
-                  android:text="context"
                   android:textColor="@color/light_title2"
                   android:layout_marginTop="10dp"/>
 

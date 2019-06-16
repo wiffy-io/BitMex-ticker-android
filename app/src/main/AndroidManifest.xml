@@ -34,8 +34,13 @@
         <activity
                 android:name=".ui.Setting.SettingActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".ui.Information.InformationActivity"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
+        <activity
+                android:name=".ui.Information.InformationActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar"
+        />
+        <activity
+                android:name=".ui.Setting.LanguageActivity"
+                android:theme="@style/dialog"
         />
     </application>
 

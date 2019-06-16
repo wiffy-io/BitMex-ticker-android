@@ -28,7 +28,7 @@
     <string name="FEEDBACK">反馈</string>
     <string name="Play_store_review">评论</string>
     <string name="Developer_Email">开发者电邮</string>
-    <string name="Language">Language</string>
+    <string name="Language">语言设置</string>
 
     <!-- Menu Title Sources -->
     <string name="Title">title</string>
@@ -43,6 +43,8 @@
     <string name="Ask">销售数量</string>
     <string name="Price">价格</string>
     <string name="Bid">购买数量</string>
+    <string name="OK">确认</string>
+    <string name="CANCEL">" 取消"</string>
 
 
 </resources>

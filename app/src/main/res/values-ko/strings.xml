@@ -43,6 +43,8 @@
     <string name="Ask">매도</string>
     <string name="Price">가격</string>
     <string name="Bid">매수</string>
+    <string name="OK">확인</string>
+    <string name="CANCEL">취소</string>
 
 
 </resources>

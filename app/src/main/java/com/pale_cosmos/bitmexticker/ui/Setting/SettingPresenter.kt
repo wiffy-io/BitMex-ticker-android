@@ -35,7 +35,7 @@ class SettingPresenter(act: SettingContract.View, cnt:Context) : SettingContract
                 mView.startDialog(mView.getStringTo(R.string.addmin_mail), "E-mail copied in clipboard")
             },
             listener5 = View.OnClickListener {
-
+                mView.openLanguageSetting()
             })
     }
     override fun setSystemLanguage() {

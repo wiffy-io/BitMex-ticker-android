@@ -18,6 +18,7 @@ interface SettingContract {
         fun getStringTo(id:Int):String
         fun clipOnBoard(clipBoardMessage:String)
         fun urlParseToMarket(url:String)
+        fun openLanguageSetting()
     }
 
     interface Presenter

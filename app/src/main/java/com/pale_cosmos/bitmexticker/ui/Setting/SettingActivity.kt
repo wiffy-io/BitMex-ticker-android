@@ -167,4 +167,9 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
             super.setRequestedOrientation(requestedOrientation)
         }
     }
+
+    override fun openLanguageSetting() {
+        startActivity(Intent(applicationContext,LanguageActivity::class.java))
+        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+    }
 }

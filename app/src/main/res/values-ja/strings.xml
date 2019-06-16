@@ -27,7 +27,7 @@
     <string name="FEEDBACK">フィードバック</string>
     <string name="Play_store_review">レビュー</string>
     <string name="Developer_Email">開発者の電子メール</string>
-    <string name="Language">Language</string>
+    <string name="Language">言語設定</string>
 
     <!-- Menu Title Sources -->
     <string name="Title">title</string>
@@ -42,6 +42,8 @@
     <string name="Ask">売り</string>
     <string name="Price">価格</string>
     <string name="Bid">買収</string>
+    <string name="OK">はい</string>
+    <string name="CANCEL">いいえ</string>
 
 
 </resources>

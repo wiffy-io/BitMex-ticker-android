@@ -41,6 +41,8 @@
     <string name="Ask">Ask</string>
     <string name="Price">Price</string>
     <string name="Bid">Bid</string>
+    <string name="OK">OK</string>
+    <string name="CANCEL">CANCEL</string>
 
 
 </resources>
