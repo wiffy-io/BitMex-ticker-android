@@ -23,7 +23,7 @@
     <color name="green">#E646AA46</color> <!--Light_title2-->
     <color name="normal">#E6808080</color> <!--Light_title2-->
 
-    <color name="dark_table_in_click">#0D808080</color>
+    <color name="dark_table_in_click">#33808080</color>
     <color name="light_table_in_click">#1A121F30</color>
     <color name="myBlue">#dd3E78BE</color>
     <color name="myDarkBlue">#E2274169</color>
