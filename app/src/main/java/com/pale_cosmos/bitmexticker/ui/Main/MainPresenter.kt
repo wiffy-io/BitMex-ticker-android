@@ -1,5 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
+import android.content.Context
+import android.content.res.Configuration
 import android.view.View
 import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.extension.getUrlText
@@ -10,21 +12,23 @@ import com.pale_cosmos.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URI
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class MainPresenter(act: MainContract.View) : MainContract.Presenter {
+class MainPresenter(act: MainContract.View, con: Context) : MainContract.Presenter {
 
     private val mView = act
     private var init_coin_ = ArrayList<Coin_info>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
-
+    private val mContext = con
     override fun get_coin() = Thread(Runnable {
         try {
             var get_server = "http://jungh0.com/symbol".getUrlText().split("\n")
             for (i in 0 until get_server.size) {
                 var tmp = get_server[i].split(",")
 
-                var data = Coin_info(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6])
+                var data = Coin_info(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
                 init_coin_.add(data)
             }
             mView.set_recycler(init_coin_)
@@ -35,6 +39,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
     override fun change_UI() {
         //테마 상태에 따라 ui 디자인해줌
         mView.changeUI()
+        setSystemLanguage()
         val listener_theme = View.OnClickListener {
             Util.dark_theme = Util.dark_theme xor true
             mView.changeUI()
@@ -65,19 +70,20 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
             mView.change_recent("---")
             mView.start_loading()
             is_close = true
-            Thread(Runnable{
+            Thread(Runnable {
                 try {
                     Thread.sleep(2000)
                     socket.reconnect()
-                }catch (e:Exception){ }
+                } catch (e: Exception) {
+                }
             }).start()
         }
         socket.connect()
         //thread_true()
     }
 
-    override fun socker_reconnect(){
-        if(is_close){
+    override fun socker_reconnect() {
+        if (is_close) {
             socket.reconnect()
         }
     }
@@ -129,5 +135,25 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
         }
         mView.update_recycler(init_coin_)
         mView.stop_loading()
+    }
+
+    override fun setSystemLanguage() {
+        var config = Configuration()
+        config.locale = when (Util.global) {
+            Locale.KOREAN.toLanguageTag() -> {
+                Locale.KOREAN
+            }
+            Locale.CHINESE.toLanguageTag() -> {
+                Locale.CHINESE
+            }
+            Locale.JAPANESE.toLanguageTag() -> {
+                Locale.JAPANESE
+            }
+            else -> {
+                Locale.ENGLISH
+            }
+        }
+
+        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
     }
 }

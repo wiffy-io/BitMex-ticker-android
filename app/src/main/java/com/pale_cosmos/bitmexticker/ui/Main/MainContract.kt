@@ -24,5 +24,6 @@ interface MainContract {
         fun make_socket()
         fun get_coin()
         fun socker_reconnect()
+        fun setSystemLanguage()
     }
 }

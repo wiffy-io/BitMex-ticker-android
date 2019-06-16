@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         init_loading()
         start_loading()
-        mPresenter = MainPresenter(this)
+        mPresenter = MainPresenter(this,applicationContext)
         mPresenter.change_UI()
         mPresenter.get_coin()
 

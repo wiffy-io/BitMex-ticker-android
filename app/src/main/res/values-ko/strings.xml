@@ -28,6 +28,7 @@
     <string name="FEEDBACK">피드백</string>
     <string name="Play_store_review">리뷰</string>
     <string name="Developer_Email">개발자 이메일</string>
+    <string name="Language">언어설정</string>
 
     <!-- Menu Title Sources -->
     <string name="Title">title</string>

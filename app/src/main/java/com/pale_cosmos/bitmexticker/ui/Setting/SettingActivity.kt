@@ -31,10 +31,6 @@ const val SWIPE_THRESHOLD_VELOCITY = 150
 class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
     lateinit var mPresenter: SettingPresenter
     lateinit var gestureScanner: GestureDetector
-    //lateinit var opensource: RelativeLayout
-    //lateinit var versions: RelativeLayout
-    //lateinit var review: RelativeLayout
-    //lateinit var email: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +38,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         setContentView(R.layout.activity_setting)
 
         gestureScanner = GestureDetector(this)
-        mPresenter = SettingPresenter(this)
+        mPresenter = SettingPresenter(this,applicationContext)
         mPresenter.change_UI()
     }
 
@@ -56,11 +52,13 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
         OpenSource.background = resources.getDrawable(setting_button())
         Version.background = resources.getDrawable(setting_button())
+        Language.background = resources.getDrawable(setting_button())
         Review.background = resources.getDrawable(setting_button())
         Email.background = resources.getDrawable(setting_button())
 
         (OpenSource[0] as TextView).setTextColor(resources.getColor(get_title()))
         (Version[0] as TextView).setTextColor(resources.getColor(get_title()))
+        (Language[0] as TextView).setTextColor(resources.getColor(get_title()))
         (Review[0] as TextView).setTextColor(resources.getColor(get_title()))
         (Email[0] as TextView).setTextColor(resources.getColor(get_title()))
     }
@@ -115,12 +113,14 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         listener1: View.OnClickListener,
         listener2: View.OnClickListener,
         listener3: View.OnClickListener,
-        listener4: View.OnClickListener
+        listener4: View.OnClickListener,
+        listener5: View.OnClickListener
     ) {
         OpenSource.setOnClickListener(listener1)
         Version.setOnClickListener(listener2)
         Review.setOnClickListener(listener3)
         Email.setOnClickListener(listener4)
+        Language.setOnClickListener(listener5)
     }
 
     override fun startDialog(title: String, context: String) {

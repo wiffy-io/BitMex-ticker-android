@@ -13,5 +13,6 @@ interface InformationContract {
     }
     interface Presenter{
         fun init()
+        fun setSystemLanguage()
     }
 }

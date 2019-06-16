@@ -27,6 +27,7 @@
     <string name="FEEDBACK">フィードバック</string>
     <string name="Play_store_review">レビュー</string>
     <string name="Developer_Email">開発者の電子メール</string>
+    <string name="Language">Language</string>
 
     <!-- Menu Title Sources -->
     <string name="Title">title</string>

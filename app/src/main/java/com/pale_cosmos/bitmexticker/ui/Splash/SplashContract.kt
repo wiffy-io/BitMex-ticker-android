@@ -14,5 +14,6 @@ interface SplashContract {
         fun checkInternetConnection()
         fun connectionOn()
         fun connectionOff()
+        fun setSystemLanguage()
     }
 }

@@ -39,7 +39,7 @@ class InformationActivity : AppCompatActivity(),
         coinInformation = intent.getStringExtra("information")
         information_navi.setOnNavigationItemSelectedListener(this)
         information_navi.menu.findItem(R.id.action_title).title = coinInformation
-        mPresenter = InformationPresenter(this)
+        mPresenter = InformationPresenter(this,applicationContext)
         gestureScanner = GestureDetector(this)
         mPresenter.init()
 
