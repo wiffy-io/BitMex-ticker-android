@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment
 
 import android.util.Log
+import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
 import org.json.JSONObject
 import java.lang.Exception
@@ -16,6 +17,7 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     override fun init() {
         mView.changeUI()
         mView.set_recycler()
+        mView.start_loading()
     }
 
     override fun start_ws() {
@@ -52,20 +54,21 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
             {
                 arr.add(OrderBook_info(
                     asks.getJSONArray(x)[1].toString(),
-                    asks.getJSONArray(x)[0].toString(),
+                    change_value(asks.getJSONArray(x)[0].toString().toDouble()),
                     null))
             }
             for(x in 0 until bids.length())
             {
                 arr.add(OrderBook_info(
                     null,
-                    bids.getJSONArray(x)[0].toString(),
+                    change_value(bids.getJSONArray(x)[0].toString().toDouble()),
                     bids.getJSONArray(x)[1].toString()))
             }
         }catch (e:Exception){
             e.printStackTrace()
         }
         mView.update_recycler(arr)
+        mView.stop_loading()
     }
 
 
