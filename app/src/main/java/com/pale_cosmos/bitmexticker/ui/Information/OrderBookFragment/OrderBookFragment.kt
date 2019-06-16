@@ -18,22 +18,30 @@ import kotlinx.android.synthetic.main.fragment_orderbook.view.*
 class OrderBookFragment : Fragment(), OrderBookConstract.View {
     lateinit var myView: View
     lateinit var mPresenter: OrderBookPresenter
-    lateinit var parentLayout: RelativeLayout
-    lateinit var recycler: RecyclerView
 
     var myAdapter:OrderBookAdapter?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
-        recycler=myView.findViewById(R.id.orderbookRecycler)
 
-        mPresenter = OrderBookPresenter(this)
+        val sym = arguments?.getString("symbol")!!
+        mPresenter = OrderBookPresenter(this,sym)
         mPresenter.init()
+
         return myView
     }
 
+    override fun onResume() {
+        super.onResume()
+        mPresenter.start_ws()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mPresenter.stop_ws()
+    }
+
     override fun changeUI() {
-        parentLayout = myView.findViewById(R.id.orderbooks)
-        parentLayout.background = resources.getDrawable(get_fragment_background())
+        myView.orderbooks.background = resources.getDrawable(get_fragment_background())
         if(dark_theme){
             myView.orderbook_view.background=resources.getDrawable(R.drawable.chart_border_dark)
             myView.orderbook_large.background=resources.getDrawable(R.drawable.chart_border_dark)
@@ -49,8 +57,8 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
             context!!,
             activity as InformationActivity
         )
-        recycler.adapter = myAdapter
-        recycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        myView.orderbookRecycler.adapter = myAdapter
+        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
 }

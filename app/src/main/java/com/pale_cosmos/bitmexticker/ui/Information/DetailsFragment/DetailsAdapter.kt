@@ -12,6 +12,7 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.details_state_color
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
+import com.pale_cosmos.bitmexticker.extension.setting_button
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_datails.view.*
 
@@ -32,7 +33,7 @@ class DetailsAdapter(
                 text_details.text = item.title
 
                 context_details.text = item.context
-                itemView.backgroundTintList = ContextCompat.getColorStateList(context, details_state_color())
+                itemView.background = ContextCompat.getDrawable(context, setting_button())
                 itemView.setOnClickListener {
                     var builder = Dialog(activity)
                     builder.setContentView(R.layout.activity_dialog)

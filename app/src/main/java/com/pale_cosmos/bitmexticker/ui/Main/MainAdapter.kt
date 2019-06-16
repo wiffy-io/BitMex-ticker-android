@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.get_table_in
-import com.pale_cosmos.bitmexticker.extension.get_table_in_reverse
-import com.pale_cosmos.bitmexticker.extension.get_title
-import com.pale_cosmos.bitmexticker.extension.get_title2
+import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Coin_info
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import kotlinx.android.synthetic.main.adapter_main.view.*
@@ -36,6 +35,7 @@ class MainAdapter(
         items[position].let { item ->
             with(holder) {
                 bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+                //bg.setBackgroundResource(setting_button())
                 symbol.setTextColor(ContextCompat.getColor(context, get_title()))
                 name_info.setTextColor(ContextCompat.getColor(context, get_title2()))
 
@@ -48,36 +48,50 @@ class MainAdapter(
                     "r" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
                     "g" -> card_in.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
                 }
-                itemView.setOnClickListener {
-                    info_on = false
-                    var bundle = Bundle()
-                    bundle.putString("information", item.Symbol)
-                    mView.moveToInformation(bundle)
-                }
+
                 itemView.setOnTouchListener { v, e ->
                     when (e?.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in_reverse()))
-                            istouch = true
+                            action_down(bg)
                         }
                         MotionEvent.ACTION_UP -> {
-                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
-                            if (!item.price?.contains("-")!! && info_on) {
-                                v.callOnClick()
-                            }
-                            istouch = false
-                            noti_update()
+                            action_up(bg,item.price!!,item.Symbol!!)
                         }
                         MotionEvent.ACTION_CANCEL -> {
-                            bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
-                            istouch = false
-                            noti_update()
+                            action_cancel(bg)
                         }
                     }
                     true
                 }
             }
         }
+    }
+
+    private fun action_down(bg:CardView){
+        bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in_reverse()))
+        istouch = true
+    }
+
+    private fun action_up(bg:CardView,price:String,sym:String){
+        bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+        if (!price.contains("-")!! && info_on) {
+            click(sym)
+        }
+        istouch = false
+        noti_update()
+    }
+
+    private fun action_cancel(bg:CardView){
+        bg.setCardBackgroundColor(ContextCompat.getColor(context, get_table_in()))
+        istouch = false
+        noti_update()
+    }
+
+    private fun click(str:String){
+        info_on = false
+        var bundle = Bundle()
+        bundle.putString("information", str)
+        mView.moveToInformation(bundle)
     }
 
     fun update_theme(theme: Boolean) {

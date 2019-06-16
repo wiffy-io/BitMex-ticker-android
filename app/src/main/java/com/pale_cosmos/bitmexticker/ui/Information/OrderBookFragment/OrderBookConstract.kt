@@ -7,5 +7,7 @@ interface OrderBookConstract {
     }
     interface Presenter{
         fun init()
+        fun start_ws()
+        fun stop_ws()
     }
 }
