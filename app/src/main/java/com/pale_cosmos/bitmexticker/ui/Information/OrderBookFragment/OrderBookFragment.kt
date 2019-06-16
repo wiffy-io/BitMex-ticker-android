@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +20,13 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
     lateinit var myView: View
     lateinit var mPresenter: OrderBookPresenter
 
-    var myAdapter:OrderBookAdapter?=null
+    var myAdapter: OrderBookAdapter? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
 
         val sym = arguments?.getString("symbol")!!
-        mPresenter = OrderBookPresenter(this,sym)
+        mPresenter = OrderBookPresenter(this, sym)
         mPresenter.init()
 
         return myView
@@ -42,23 +44,27 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
 
     override fun changeUI() {
         myView.orderbooks.background = resources.getDrawable(get_fragment_background())
-        if(dark_theme){
-            myView.orderbook_view.background=resources.getDrawable(R.drawable.chart_border_dark)
-            myView.orderbook_large.background=resources.getDrawable(R.drawable.chart_border_dark)
-        }else{
-            myView.orderbook_view.background=resources.getDrawable(R.drawable.chart_border_light)
-            myView.orderbook_large.background=resources.getDrawable(R.drawable.chart_border_light)
+        if (dark_theme) {
+            myView.orderbook_view.background = resources.getDrawable(R.drawable.chart_border_dark)
+            myView.orderbook_large.background = resources.getDrawable(R.drawable.chart_border_dark)
+        } else {
+            myView.orderbook_view.background = resources.getDrawable(R.drawable.chart_border_light)
+            myView.orderbook_large.background = resources.getDrawable(R.drawable.chart_border_light)
         }
     }
 
-    override fun update_recycler(arr:ArrayList<OrderBook_info>) {
-        myAdapter = OrderBookAdapter(
-            arr,
-            context!!,
-            activity as InformationActivity
-        )
-        myView.orderbookRecycler.adapter = myAdapter
-        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+    override fun set_recycler() {
+        Handler(context?.mainLooper).post {
+            myAdapter = OrderBookAdapter(ArrayList(), context!!, activity as InformationActivity)
+            myView.orderbookRecycler.adapter = myAdapter
+            myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        }
+    }
+
+    override fun update_recycler(arr: ArrayList<OrderBook_info>) {
+        Handler(context?.mainLooper).post {
+            myAdapter?.update(arr)
+        }
     }
 
 }

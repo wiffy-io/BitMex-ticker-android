@@ -25,7 +25,15 @@ class OrderBookAdapter(
             with(holder) {
                 ask.setTextColor(ContextCompat.getColor(context, get_title2()))
                 bid.setTextColor(ContextCompat.getColor(context, get_title2()))
-//                price.setTextColor()
+
+                if(item.ask == null)
+                {
+                    price.setTextColor(ContextCompat.getColor(context,R.color.green))
+                }
+                if(item.bid == null)
+                {
+                    price.setTextColor(ContextCompat.getColor(context,R.color.red))
+                }
                 itemView.backgroundTintList = ContextCompat.getColorStateList(context, get_table_out())
 
                 ask.text = item.ask
@@ -33,6 +41,10 @@ class OrderBookAdapter(
                 bid.text = item.bid
             }
         }
+    }
+    fun update(list: ArrayList<OrderBook_info>) {
+        items = list
+        notifyDataSetChanged()
     }
 
     inner class OrderBookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(

@@ -23,6 +23,7 @@
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:id="@+id/price"
+            android:textStyle="bold"
             android:text="@string/Price_en"
     />
     <TextView

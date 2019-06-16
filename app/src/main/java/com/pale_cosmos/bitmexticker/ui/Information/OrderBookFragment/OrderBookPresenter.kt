@@ -2,6 +2,8 @@ package com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment
 
 import android.util.Log
 import com.pale_cosmos.bitmexticker.model.BitMEX_soket
+import org.json.JSONObject
+import java.lang.Exception
 import java.net.URI
 
 class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookConstract.Presenter {
@@ -13,6 +15,7 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
 
     override fun init() {
         mView.changeUI()
+        mView.set_recycler()
     }
 
     override fun start_ws() {
@@ -38,9 +41,32 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     }
 
     private fun socket_callback(it: String) {
-        Log.d("asdf",it)
         arr = ArrayList()
-        arr.add(OrderBook_info("0111","0223","230"))
+        try{
+            var json_contact =JSONObject(it)
+            var data =json_contact.getJSONArray("data")
+            var bids = data.getJSONObject(0).getJSONArray("bids")
+            var asks =data.getJSONObject(0).getJSONArray("asks")
+
+            for(x in asks.length()-1 downTo  0)
+            {
+                arr.add(OrderBook_info(
+                    asks.getJSONArray(x)[1].toString(),
+                    asks.getJSONArray(x)[0].toString(),
+                    null))
+            }
+            for(x in 0 until bids.length())
+            {
+                arr.add(OrderBook_info(
+                    null,
+                    bids.getJSONArray(x)[0].toString(),
+                    bids.getJSONArray(x)[1].toString()))
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
         mView.update_recycler(arr)
     }
+
+
 }

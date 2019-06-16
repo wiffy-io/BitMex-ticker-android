@@ -4,6 +4,7 @@ interface OrderBookConstract {
     interface View{
         fun changeUI()
         fun update_recycler(arr:ArrayList<OrderBook_info>)
+        fun set_recycler()
     }
     interface Presenter{
         fun init()
