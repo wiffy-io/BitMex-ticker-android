@@ -42,6 +42,8 @@
                 android:name=".ui.Setting.LanguageActivity"
                 android:theme="@style/dialog"
         />
+        <activity android:name=".ui.Splash.AgreementActivity"
+                  android:theme="@style/dialog"/>
     </application>
 
 </manifest>

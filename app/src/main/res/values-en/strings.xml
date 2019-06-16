@@ -43,6 +43,10 @@
     <string name="Bid">Bid</string>
     <string name="OK">OK</string>
     <string name="CANCEL">CANCEL</string>
+    <string name="Argument">Information providing agreement</string>
+    <string name="argumentContext">In providing this information, I agree that this application has no legal
+        responsibility.
+    </string>
 
 
 </resources>

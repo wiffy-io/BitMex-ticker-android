@@ -44,6 +44,8 @@
     <string name="Bid">買収</string>
     <string name="OK">はい</string>
     <string name="CANCEL">いいえ</string>
+    <string name="Argument">情報提供契約</string>
+    <string name="argumentContext">この情報を提供するにあたり、私はこのアプリケーションには法的責任がないことに同意します。</string>
 
 
 </resources>

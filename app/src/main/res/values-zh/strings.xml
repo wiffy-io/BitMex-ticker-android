@@ -45,6 +45,8 @@
     <string name="Bid">购买数量</string>
     <string name="OK">确认</string>
     <string name="CANCEL">" 取消"</string>
+    <string name="Argument">信息提供协议</string>
+    <string name="argumentContext">在提供此信息时，我同意此申请不承担任何法律责任。</string>
 
 
 </resources>

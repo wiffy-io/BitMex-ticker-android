@@ -45,6 +45,8 @@
     <string name="Bid">매수</string>
     <string name="OK">확인</string>
     <string name="CANCEL">취소</string>
+    <string name="Argument">정보제공동의</string>
+    <string name="argumentContext">정보를 제공함에있어, 본인은 이 애플리케이션에 법적 책임이 없음에 동의합니다.</string>
 
 
 </resources>

@@ -24,16 +24,16 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
         Util.sharedPreferences_editor = Util.sharedPreferences.edit() // editor를 static으로 선언함으로써 변경을 용이하게함
 
 
-        Util.global = Util.sharedPreferences.getString("global", Locale.ENGLISH.toLanguageTag())
         Util.dark_theme = Util.sharedPreferences.getBoolean("mode", true)
-        setSystemLanguage()
+//        setSystemLanguage()
+        mView.argreement()
 
-        checkInternetConnection()
     }
 
     override fun setSystemLanguage() {
+        Util.global = Util.sharedPreferences.getString("global", Locale.ENGLISH.toLanguageTag())
         var config = Configuration()
-        config.locale =  when (Util.global) {
+        config.locale = when (Util.global) {
             Locale.KOREAN.toLanguageTag() -> {
                 Locale.KOREAN
             }
@@ -48,7 +48,8 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
             }
         }
 
-        mContext.resources.updateConfiguration(config,mContext.resources.displayMetrics)
+        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+        checkInternetConnection()
     }
 
     override fun checkInternetConnection() {
