@@ -5,6 +5,8 @@ interface OrderBookConstract {
         fun changeUI()
         fun update_recycler(arr:ArrayList<OrderBook_info>)
         fun set_recycler()
+        fun start_loading()
+        fun stop_loading()
     }
     interface Presenter{
         fun init()
