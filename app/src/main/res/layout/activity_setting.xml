@@ -26,7 +26,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/light_title2"
-                        android:text="@string/Info_en"
+                        android:text="@string/Info"
                         android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </TableRow>
@@ -45,7 +45,7 @@
                         android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:textColor="@color/light_title"
-                        android:text="@string/OpenSource_en"
+                        android:text="@string/OpenSource"
                         android:layout_alignParentStart="true"
                 />
                 <ImageView
@@ -72,7 +72,7 @@
                         android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:textColor="@color/light_title"
-                        android:text="@string/Version_en"
+                        android:text="@string/Version"
                 />
                 <ImageView
                         android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/light_title2"
-                        android:text="@string/FEEDBACK_en"
+                        android:text="@string/FEEDBACK"
                         android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </TableRow>
@@ -113,7 +113,7 @@
                         android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:textColor="@color/light_title"
-                        android:text="@string/Play_store_review_en"/>
+                        android:text="@string/Play_store_review"/>
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                         android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:textColor="@color/light_title"
-                        android:text="@string/Developer_Email_en"/>
+                        android:text="@string/Developer_Email"/>
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

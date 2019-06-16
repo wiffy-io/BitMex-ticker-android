@@ -5,13 +5,13 @@
     <string name="Ticker">Ticker</string>
 
 
-    <string name="InternetCheck_en">인터넷 연결을 확인해주세요.</string>
+    <string name="InternetCheck">인터넷 연결을 확인해주세요.</string>
 
     <!-- Main String Sources -->
     <string name="tem">---</string>
 
 
-    <string name="Recent_Trades_en">최근 거래</string>
+    <string name="Recent_Trades">최근 거래</string>
 
     <!-- Setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
@@ -21,27 +21,27 @@
 
 
 
-    <string name="Setting_title_en">설정</string>
-    <string name="Info_en">정보</string>
-    <string name="OpenSource_en">오픈소스</string>
-    <string name="Version_en">버전</string>
-    <string name="FEEDBACK_en">피드백</string>
-    <string name="Play_store_review_en">리뷰</string>
-    <string name="Developer_Email_en">개발자 이메일</string>
+    <string name="Setting_title">설정</string>
+    <string name="Info">정보</string>
+    <string name="OpenSource">오픈소스</string>
+    <string name="Version">버전</string>
+    <string name="FEEDBACK">피드백</string>
+    <string name="Play_store_review">리뷰</string>
+    <string name="Developer_Email">개발자 이메일</string>
 
     <!-- Menu Title Sources -->
-    <string name="Title_en">title</string>
+    <string name="Title">title</string>
 
-    <string name="OrderBook_en">주문</string>
-    <string name="Details_en">세부사항</string>
-    <string name="Notification_en">알림</string>
+    <string name="OrderBook">주문</string>
+    <string name="Details">세부사항</string>
+    <string name="Notification">알림</string>
 
     <!-- Fragment OrderBook Sources -->
     <string name="Sell_example">0000 - Sell - 00</string>
 
-    <string name="Ask_en">매도</string>
-    <string name="Price_en">가격</string>
-    <string name="Bid_en">매수</string>
+    <string name="Ask">매도</string>
+    <string name="Price">가격</string>
+    <string name="Bid">매수</string>
 
 
 </resources>

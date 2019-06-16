@@ -121,7 +121,7 @@ class MainPresenter(act: MainContract.View) : MainContract.Presenter {
                             init_coin_[i].before_p = "r"
                         }
                         init_coin_[i].price = change_value(price)
-                        mView.change_recent("${symbol} : ${change_value(price)}")
+                        mView.change_recent("$symbol : ${change_value(price)}")
                     }
                 }
             } catch (e: Exception) {

@@ -5,13 +5,13 @@
     <string name="Ticker">Ticker</string>
 
 
-    <string name="InternetCheck_en">请检查您的互联网连接。</string>
+    <string name="InternetCheck">请检查您的互联网连接。</string>
 
     <!-- Main String Sources -->
     <string name="tem">---</string>
 
 
-    <string name="Recent_Trades_en">最近的交易</string>
+    <string name="Recent_Trades">最近的交易</string>
 
     <!-- Setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
@@ -21,27 +21,27 @@
 
 
 
-    <string name="Setting_title_en">设置</string>
-    <string name="Info_en">信息</string>
-    <string name="OpenSource_en">开源</string>
-    <string name="Version_en">版本</string>
-    <string name="FEEDBACK_en">反馈</string>
-    <string name="Play_store_review_en">评论</string>
-    <string name="Developer_Email_en">开发者电邮</string>
+    <string name="Setting_title">设置</string>
+    <string name="Info">信息</string>
+    <string name="OpenSource">开源</string>
+    <string name="Version">版本</string>
+    <string name="FEEDBACK">反馈</string>
+    <string name="Play_store_review">评论</string>
+    <string name="Developer_Email">开发者电邮</string>
 
     <!-- Menu Title Sources -->
-    <string name="Title_en">title</string>
+    <string name="Title">title</string>
 
-    <string name="OrderBook_en">订购</string>
-    <string name="Details_en">详细信息</string>
-    <string name="Notification_en">通知</string>
+    <string name="OrderBook">订购</string>
+    <string name="Details">详细信息</string>
+    <string name="Notification">通知</string>
 
     <!-- Fragment OrderBook Sources -->
     <string name="Sell_example">0000 - Sell - 00</string>
 
-    <string name="Ask_en">销售数量</string>
-    <string name="Price_en">价格</string>
-    <string name="Bid_en">购买数量</string>
+    <string name="Ask">销售数量</string>
+    <string name="Price">价格</string>
+    <string name="Bid">购买数量</string>
 
 
 </resources>

@@ -4,12 +4,12 @@
     <string name="ad_key">ca-app-pub-0355430122346055~1344719802</string>
     <string name="Ticker">Ticker</string>
 
-    <string name="InternetCheck_en">Check your internet connection.</string>
+    <string name="InternetCheck">Check your internet connection.</string>
 
     <!-- Main String Sources -->
     <string name="tem">---</string>
 
-    <string name="Recent_Trades_en">Recent Trades</string>
+    <string name="Recent_Trades">Recent Trades</string>
 
     <!-- Setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
@@ -18,28 +18,28 @@
     <string name="store_url">com.pale_cosmos.helu</string>
 
 
-    <string name="Setting_title_en">Setting</string>
-    <string name="Info_en">Info</string>
-    <string name="OpenSource_en">OpenSource</string>
-    <string name="Version_en">Version</string>
-    <string name="FEEDBACK_en">FEEDBACK</string>
-    <string name="Play_store_review_en">Play Store Review</string>
-    <string name="Developer_Email_en">Developer Email</string>
+    <string name="Setting_title">Setting</string>
+    <string name="Info">Info</string>
+    <string name="OpenSource">OpenSource</string>
+    <string name="Version">Version</string>
+    <string name="FEEDBACK">FEEDBACK</string>
+    <string name="Play_store_review">Play Store Review</string>
+    <string name="Developer_Email">Developer Email</string>
 
     <!-- Menu Title Sources -->
-    <string name="Title_en">title</string>
+    <string name="Title">title</string>
 
-    <string name="OrderBook_en">OrderBook</string>
-    <string name="Details_en">Details</string>
-    <string name="Notification_en">Notification</string>
+    <string name="OrderBook">OrderBook</string>
+    <string name="Details">Details</string>
+    <string name="Notification">Notification</string>
 
 
     <!-- Fragment OrderBook Sources -->
     <string name="Sell_example">0000 - Sell - 00</string>
 
-    <string name="Ask_en">Ask</string>
-    <string name="Price_en">Price</string>
-    <string name="Bid_en">Bid</string>
+    <string name="Ask">Ask</string>
+    <string name="Price">Price</string>
+    <string name="Bid">Bid</string>
 
 
 </resources>

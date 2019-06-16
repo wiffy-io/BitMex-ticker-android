@@ -45,7 +45,7 @@
                     android:textColor="@color/myBlue"
                     android:textStyle="bold"
                     android:background="@color/myDarkBlue"
-                    android:text="@string/Ask_en"/>
+                    android:text="@string/Ask"/>
             <TextView
                     android:id="@+id/price_title"
                     android:layout_width="40dp"
@@ -55,7 +55,7 @@
                     android:textColor="@color/myBlue"
                     android:textStyle="bold"
                     android:background="@color/myDarkBlue"
-                    android:text="@string/Price_en"/>
+                    android:text="@string/Price"/>
 
             <TextView
                     android:id="@+id/bid_title"
@@ -68,7 +68,7 @@
                     android:textColor="@color/myBlue"
                     android:textStyle="bold"
                     android:background="@color/myDarkBlue"
-                    android:text="@string/Bid_en"/>
+                    android:text="@string/Bid"/>
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_below="@id/ordrbook_titles"

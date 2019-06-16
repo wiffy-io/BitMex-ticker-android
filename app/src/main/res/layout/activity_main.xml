@@ -39,7 +39,7 @@
                     <TextView
                             android:id="@+id/trd"
                             android:textColor="@color/myBlue"
-                            android:text="@string/Recent_Trades_en"
+                            android:text="@string/Recent_Trades"
                             android:layout_marginTop="7dp"
                             android:layout_marginStart="10dp"
                             android:textStyle="bold"

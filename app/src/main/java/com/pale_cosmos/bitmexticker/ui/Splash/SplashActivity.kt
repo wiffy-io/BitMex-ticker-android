@@ -1,6 +1,5 @@
 package com.pale_cosmos.bitmexticker.Splash
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -9,7 +8,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.darkAndLight_reverse
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
 
@@ -43,7 +41,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     }
 
     override fun getOut() {
-        Toast.makeText(applicationContext, applicationContext.getString(R.string.InternetCheck_en),Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, applicationContext.getString(R.string.InternetCheck),Toast.LENGTH_SHORT).show()
         finish()
     }
     override fun setRequestedOrientation(requestedOrientation: Int) {

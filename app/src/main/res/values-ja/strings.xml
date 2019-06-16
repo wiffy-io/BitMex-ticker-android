@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">BitMEX Ticker</string>
+    <string name="app_name_uppercase">BITMEX Ticker</string>
+    <string name="ad_key">ca-app-pub-0355430122346055~1344719802</string>
+    <string name="Ticker">Ticker</string>
+
+
+    <string name="InternetCheck">インターネット接続を確認してください。</string>
+
+    <!-- Main String Sources -->
+    <string name="tem">---</string>
+
+
+    <string name="Recent_Trades">最近取引</string>
+
+    <!-- Setting String Sources -->
+    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
+    <string name="version">1.0.0(1)</string>
+    <string name="addmin_mail">iveinvalue@gmail.com</string>
+    <string name="store_url">com.pale_cosmos.helu</string>
+
+
+    <string name="Setting_title">設定</string>
+    <string name="Info">情報</string>
+    <string name="OpenSource">オープンソース</string>
+    <string name="Version">バージョン</string>
+    <string name="FEEDBACK">フィードバック</string>
+    <string name="Play_store_review">レビュー</string>
+    <string name="Developer_Email">開発者の電子メール</string>
+
+    <!-- Menu Title Sources -->
+    <string name="Title">title</string>
+
+    <string name="OrderBook">注文</string>
+    <string name="Details">詳細</string>
+    <string name="Notification">アラーム</string>
+
+    <!-- Fragment OrderBook Sources -->
+    <string name="Sell_example">0000 - Sell - 00</string>
+
+    <string name="Ask">売り</string>
+    <string name="Price">価格</string>
+    <string name="Bid">買収</string>
+
+
+</resources>
