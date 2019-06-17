@@ -3,6 +3,7 @@ package com.pale_cosmos.bitmexticker.Splash
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -12,7 +13,9 @@ import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.AgreementActivity
+import com.pale_cosmos.bitmexticker.ui.Splash.LanguageInitActivity
 import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
+import java.util.*
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
@@ -59,10 +62,11 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     override fun argreement() {
         when (Util.sharedPreferences.getBoolean("agreement", false)) {
             true -> {
-                mPresenter.setSystemLanguage()
+                setSystemLanguage()
+                mPresenter.checkInternetConnection()
             }
             false -> {
-                startActivityForResult(Intent(applicationContext, AgreementActivity::class.java), 1)
+                startActivityForResult(Intent(applicationContext, LanguageInitActivity::class.java), 1)
                 overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
             }
         }
@@ -72,12 +76,40 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
             Activity.RESULT_OK -> {
-                Util.sharedPreferences_editor.putBoolean("agreement",true).apply()
-                mPresenter.setSystemLanguage()
+                Util.sharedPreferences_editor.putBoolean("agreement", true).apply()
+                setSystemLanguage()
+                mPresenter.checkInternetConnection()
+            }
+            404 -> {
+                setSystemLanguage()
+                startActivityForResult(Intent(applicationContext, AgreementActivity::class.java), 1)
+                overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
             }
             else -> {
                 finish()
             }
         }
+    }
+
+    fun setSystemLanguage() {
+        Util.global = Util.sharedPreferences.getString("global", Locale.ENGLISH.toLanguageTag())
+        var config = Configuration()
+        config.locale = when (Util.global) {
+            Locale.KOREAN.toLanguageTag() -> {
+                Locale.KOREAN
+            }
+            Locale.CHINESE.toLanguageTag() -> {
+                Locale.CHINESE
+            }
+            Locale.JAPANESE.toLanguageTag() -> {
+                Locale.JAPANESE
+            }
+            else -> {
+                Locale.ENGLISH
+            }
+        }
+
+        applicationContext.resources.updateConfiguration(config, applicationContext.resources.displayMetrics)
+
     }
 }

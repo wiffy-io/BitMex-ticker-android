@@ -30,27 +30,6 @@ class SplashPresenter(act: SplashContract.View, cnt: Context) : SplashContract.P
 
     }
 
-    override fun setSystemLanguage() {
-        Util.global = Util.sharedPreferences.getString("global", Locale.ENGLISH.toLanguageTag())
-        var config = Configuration()
-        config.locale = when (Util.global) {
-            Locale.KOREAN.toLanguageTag() -> {
-                Locale.KOREAN
-            }
-            Locale.CHINESE.toLanguageTag() -> {
-                Locale.CHINESE
-            }
-            Locale.JAPANESE.toLanguageTag() -> {
-                Locale.JAPANESE
-            }
-            else -> {
-                Locale.ENGLISH
-            }
-        }
-
-        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
-        checkInternetConnection()
-    }
 
     override fun checkInternetConnection() {
         SplashTask(mContext, this).execute()
