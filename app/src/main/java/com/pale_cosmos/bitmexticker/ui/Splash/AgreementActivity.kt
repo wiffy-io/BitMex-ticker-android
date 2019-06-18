@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Splash
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MotionEvent
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.activity_agreement.*
 
 class AgreementActivity : AppCompatActivity() {
@@ -50,5 +52,15 @@ class AgreementActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK)
         finish()
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+    }
+    override fun attachBaseContext(newBase: Context?) {
+
+        super.attachBaseContext(
+            Util.wrap(
+                newBase,
+                Util.global
+            )
+        )
+
     }
 }

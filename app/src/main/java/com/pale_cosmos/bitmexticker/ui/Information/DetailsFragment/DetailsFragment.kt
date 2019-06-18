@@ -75,6 +75,5 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
     override fun async_post(){
         builder?.dismiss()
     }
-
     
 }

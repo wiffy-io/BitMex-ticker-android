@@ -2,6 +2,8 @@ package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.pale_cosmos.bitmexticker.extension.change_value
 import com.pale_cosmos.bitmexticker.extension.getUrlText
@@ -138,22 +140,24 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     }
 
     override fun setSystemLanguage() {
-        var config = Configuration()
-        config.locale = when (Util.global) {
-            Locale.KOREAN.toLanguageTag() -> {
-                Locale.KOREAN
+        Handler(Looper.getMainLooper()).post {
+            var config = Configuration()
+            config.locale = when (Util.global) {
+                Locale.KOREAN.toLanguageTag() -> {
+                    Locale.KOREAN
+                }
+                Locale.CHINESE.toLanguageTag() -> {
+                    Locale.CHINESE
+                }
+                Locale.JAPANESE.toLanguageTag() -> {
+                    Locale.JAPANESE
+                }
+                else -> {
+                    Locale.ENGLISH
+                }
             }
-            Locale.CHINESE.toLanguageTag() -> {
-                Locale.CHINESE
-            }
-            Locale.JAPANESE.toLanguageTag() -> {
-                Locale.JAPANESE
-            }
-            else -> {
-                Locale.ENGLISH
-            }
-        }
 
-        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+            mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+        }
     }
 }

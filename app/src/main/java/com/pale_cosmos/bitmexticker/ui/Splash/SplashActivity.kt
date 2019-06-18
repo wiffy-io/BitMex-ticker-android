@@ -1,14 +1,20 @@
 package com.pale_cosmos.bitmexticker.Splash
 
 import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.os.LocaleList
+import android.preference.PreferenceManager
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
@@ -62,7 +68,6 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     override fun argreement() {
         when (Util.sharedPreferences.getBoolean("agreement", false)) {
             true -> {
-                setSystemLanguage()
                 mPresenter.checkInternetConnection()
             }
             false -> {
@@ -76,12 +81,10 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
             Activity.RESULT_OK -> {
-                Util.sharedPreferences_editor.putBoolean("agreement", true).apply()
-                setSystemLanguage()
+                Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
                 mPresenter.checkInternetConnection()
             }
             404 -> {
-                setSystemLanguage()
                 startActivityForResult(Intent(applicationContext, AgreementActivity::class.java), 1)
                 overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
             }
@@ -91,25 +94,16 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         }
     }
 
-    fun setSystemLanguage() {
-        Util.global = Util.sharedPreferences.getString("global", Locale.ENGLISH.toLanguageTag())
-        var config = Configuration()
-        config.locale = when (Util.global) {
-            Locale.KOREAN.toLanguageTag() -> {
-                Locale.KOREAN
-            }
-            Locale.CHINESE.toLanguageTag() -> {
-                Locale.CHINESE
-            }
-            Locale.JAPANESE.toLanguageTag() -> {
-                Locale.JAPANESE
-            }
-            else -> {
-                Locale.ENGLISH
-            }
-        }
+    override fun attachBaseContext(newBase: Context?) {
 
-        applicationContext.resources.updateConfiguration(config, applicationContext.resources.displayMetrics)
+            super.attachBaseContext(
+                Util.wrap(
+                    newBase,
+                    Util.global
+                )
+            )
 
     }
+
+
 }

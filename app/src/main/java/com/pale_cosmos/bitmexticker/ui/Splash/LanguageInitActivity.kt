@@ -22,19 +22,19 @@ class LanguageInitActivity : AppCompatActivity() {
         setContentView(R.layout.language_init)
 
         lang_EN2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.ENGLISH.toLanguageTag()).apply()
+            Util.sharedPreferences_editor.putString("global", Locale.ENGLISH.toLanguageTag()).commit()
             result404()
         }
         lang_KO2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.KOREAN.toLanguageTag()).apply()
+            Util.sharedPreferences_editor.putString("global", Locale.KOREAN.toLanguageTag()).commit()
             result404()
         }
         lang_ZH2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.CHINESE.toLanguageTag()).apply()
+            Util.sharedPreferences_editor.putString("global", Locale.CHINESE.toLanguageTag()).commit()
             result404()
         }
         lang_JA2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.JAPANESE.toLanguageTag()).apply()
+            Util.sharedPreferences_editor.putString("global", Locale.JAPANESE.toLanguageTag()).commit()
             result404()
         }
     }

@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Setting
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
@@ -105,7 +106,7 @@ class LanguageActivity : AppCompatActivity() {
                 Util.sharedPreferences_editor.putString(
                     "global",
                     languages
-                ).apply()
+                ).commit()
 
                 Util.restartApp(applicationContext)
             }
@@ -136,5 +137,15 @@ class LanguageActivity : AppCompatActivity() {
     private fun back() {
         finish()
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+    }
+    override fun attachBaseContext(newBase: Context?) {
+
+        super.attachBaseContext(
+            Util.wrap(
+                newBase,
+                Util.global
+            )
+        )
+
     }
 }

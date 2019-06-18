@@ -14,7 +14,6 @@ class BitMEX_soket: WebSocketClient {
     var closeback:(String)->Unit?
 
     constructor(serverUri: URI) : super(serverUri) {
-        Log.d("asdf","init")
         callback_ = {}
         sendback_ = {}
         closeback = {}

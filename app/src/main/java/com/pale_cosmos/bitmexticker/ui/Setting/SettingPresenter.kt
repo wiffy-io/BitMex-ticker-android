@@ -2,6 +2,8 @@ package com.pale_cosmos.bitmexticker.ui.Setting
 
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.pale_cosmos.bitmexticker.R
@@ -9,7 +11,7 @@ import com.pale_cosmos.bitmexticker.extension.get_table_in
 import com.pale_cosmos.bitmexticker.model.Util
 import java.util.*
 
-class SettingPresenter(act: SettingContract.View, cnt:Context) : SettingContract.Presenter {
+class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContract.Presenter {
     private val mView = act
     private val mContext = cnt
 
@@ -38,23 +40,26 @@ class SettingPresenter(act: SettingContract.View, cnt:Context) : SettingContract
                 mView.openLanguageSetting()
             })
     }
-    override fun setSystemLanguage() {
-        var config = Configuration()
-        config.locale =  when (Util.global) {
-            Locale.KOREAN.toLanguageTag() -> {
-                Locale.KOREAN
-            }
-            Locale.CHINESE.toLanguageTag() -> {
-                Locale.CHINESE
-            }
-            Locale.JAPANESE.toLanguageTag() -> {
-                Locale.JAPANESE
-            }
-            else -> {
-                Locale.ENGLISH
-            }
-        }
 
-        mContext.resources.updateConfiguration(config,mContext.resources.displayMetrics)
+    override fun setSystemLanguage() {
+        Handler(Looper.getMainLooper()).post {
+            var config = Configuration()
+            config.locale = when (Util.global) {
+                Locale.KOREAN.toLanguageTag() -> {
+                    Locale.KOREAN
+                }
+                Locale.CHINESE.toLanguageTag() -> {
+                    Locale.CHINESE
+                }
+                Locale.JAPANESE.toLanguageTag() -> {
+                    Locale.JAPANESE
+                }
+                else -> {
+                    Locale.ENGLISH
+                }
+            }
+
+            mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+        }
     }
 }

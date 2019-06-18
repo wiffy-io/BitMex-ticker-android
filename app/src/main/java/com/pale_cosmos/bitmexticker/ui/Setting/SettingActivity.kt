@@ -22,6 +22,7 @@ import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
+import java.util.*
 
 
 const val SWIPE_MIN_DISTANCE = 120
@@ -171,5 +172,15 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     override fun openLanguageSetting() {
         startActivity(Intent(applicationContext,LanguageActivity::class.java))
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+    }
+    override fun attachBaseContext(newBase: Context?) {
+
+        super.attachBaseContext(
+            Util.wrap(
+                newBase,
+                Util.global
+            )
+        )
+
     }
 }

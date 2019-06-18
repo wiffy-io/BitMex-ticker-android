@@ -1,9 +1,14 @@
 package com.pale_cosmos.bitmexticker.model
 
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.os.Build
+import android.os.LocaleList
 import androidx.core.content.IntentCompat
+import java.util.*
 
 class Util {
 
@@ -27,6 +32,22 @@ class Util {
                 )
             )
             System.exit(0)
+        }
+
+        @JvmStatic
+        fun wrap(context: Context?, language: String?):ContextWrapper? {
+            val configuration = context?.resources?.configuration
+            val newLocale = Locale(language)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                configuration?.setLocale(newLocale)
+                val localeList = LocaleList(newLocale)
+                LocaleList.setDefault(localeList)
+
+            }else{
+                configuration?.setLocale(newLocale)
+            }
+            return ContextWrapper( context?.createConfigurationContext(configuration!!))
         }
     }
 

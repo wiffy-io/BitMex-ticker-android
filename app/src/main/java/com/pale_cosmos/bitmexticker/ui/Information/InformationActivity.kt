@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Information
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
@@ -10,13 +11,15 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.*
+import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.model.Util.Companion.info_on
 import com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment.DetailsFragment
 import com.pale_cosmos.bitmexticker.ui.Information.MainFragment.MainFragment
 import com.pale_cosmos.bitmexticker.ui.Information.NotificationFragment.NotificationFragment
 import com.pale_cosmos.bitmexticker.ui.Information.OrderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
-
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class InformationActivity : AppCompatActivity(),
@@ -39,7 +42,7 @@ class InformationActivity : AppCompatActivity(),
         coinInformation = intent.getStringExtra("information")
         information_navi.setOnNavigationItemSelectedListener(this)
         information_navi.menu.findItem(R.id.action_title).title = coinInformation
-        mPresenter = InformationPresenter(this,applicationContext)
+        mPresenter = InformationPresenter(this, applicationContext)
         gestureScanner = GestureDetector(this)
         mPresenter.init()
 
@@ -232,6 +235,17 @@ class InformationActivity : AppCompatActivity(),
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
         }
+
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+
+        super.attachBaseContext(
+            Util.wrap(
+                newBase,
+                Util.global
+            )
+        )
 
     }
 }

@@ -1,6 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.pale_cosmos.bitmexticker.R
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -149,5 +152,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun check_loading():Boolean{
         return builder?.isShowing!!
+    }
+    override fun attachBaseContext(newBase: Context?) {
+
+        super.attachBaseContext(
+            Util.wrap(
+                newBase,
+                Util.global
+            )
+        )
+
     }
 }
