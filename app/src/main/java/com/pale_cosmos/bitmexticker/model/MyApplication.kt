@@ -1,10 +1,12 @@
 package com.pale_cosmos.bitmexticker.model
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import java.util.*
 
 class MyApplication : Application() {
+    @SuppressLint("CommitPrefEdits")
     override fun onCreate() {
         super.onCreate()
         Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE)

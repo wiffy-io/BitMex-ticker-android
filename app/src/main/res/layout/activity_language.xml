@@ -140,13 +140,14 @@
                     android:id="@+id/makeText"
                     android:layout_below="@id/lang_JA"
                     android:layout_width="200dp"
-                    android:layout_height="20dp">
+                    android:layout_height="10dp">
                 <TextView
                         android:textColor="@color/red"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:textSize="15sp"
+                        android:textSize="10sp"
+                        android:text="dfasdfsdf"
                         tools:ignore="SmallSp"/>
             </RelativeLayout>
             <RelativeLayout
