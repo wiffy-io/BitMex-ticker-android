@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.get_fragment_background
 import com.pale_cosmos.bitmexticker.ui.Information.InformationActivity
+import kotlinx.android.synthetic.main.fragment_details.view.*
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.net.URL
@@ -23,8 +24,6 @@ import java.net.URL
 class DetailsFragment : Fragment(), DetailsConstract.View {
     lateinit var myView: View
     lateinit var mPresenter: DetailsPresenter
-    lateinit var parentLayout: RelativeLayout
-    lateinit var recycler: RecyclerView
     lateinit var url: String
     lateinit var async_task:DetailsTask
 
@@ -33,8 +32,6 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_details, container, false)
-        recycler = myView.findViewById(R.id.detailsRecycler)
-
         url = "https://www.bitmex.com/app/contract/${arguments?.getString("symbol")}"
         async_task = DetailsTask(this,url)
 
@@ -45,8 +42,7 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
     }
 
     override fun changeUI() {
-        parentLayout = myView.findViewById(R.id.details)
-        parentLayout.background = resources.getDrawable(get_fragment_background())
+        myView.details.background = resources.getDrawable(get_fragment_background())
         async_task.execute()
     }
 
@@ -72,8 +68,8 @@ class DetailsFragment : Fragment(), DetailsConstract.View {
             context!!,
             activity as InformationActivity
         )
-        recycler.adapter = myAdapter
-        recycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        myView.detailsRecycler.adapter = myAdapter
+        myView.detailsRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
     override fun async_post(){
