@@ -31,7 +31,7 @@ class InformationActivity : AppCompatActivity(),
     lateinit var myBundle: Bundle
     lateinit var fragmentList: ArrayList<Fragment?>
 
-    var preFrag: Fragment? = null
+
     var catches = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

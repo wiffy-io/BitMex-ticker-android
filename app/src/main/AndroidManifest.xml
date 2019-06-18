@@ -22,7 +22,7 @@
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
                 android:value="ca-app-pub-0355430122346055~1344719802"/>
 
-        <activity android:name=".Splash.SplashActivity">
+        <activity android:name=".ui.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

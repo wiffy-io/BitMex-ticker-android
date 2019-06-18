@@ -84,7 +84,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
         //thread_true()
     }
 
-    override fun socker_reconnect() {
+    override fun socket_reconnect() {
         if (is_close) {
             socket.reconnect()
         }

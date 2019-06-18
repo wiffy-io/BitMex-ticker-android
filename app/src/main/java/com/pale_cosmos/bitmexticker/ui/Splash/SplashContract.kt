@@ -7,7 +7,7 @@ interface SplashContract {
     interface View {
         fun moveToMain()
         fun getOut()
-        fun argreement()
+        fun agreement()
     }
 
     interface Presenter {

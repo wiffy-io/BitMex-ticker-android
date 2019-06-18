@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.pale_cosmos.bitmexticker.R
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onResume() {
         super.onResume()
-        mPresenter.socker_reconnect()
+        mPresenter.socket_reconnect()
     }
 
     override fun onDestroy() {

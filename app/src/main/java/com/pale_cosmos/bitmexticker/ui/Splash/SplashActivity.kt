@@ -1,27 +1,18 @@
-package com.pale_cosmos.bitmexticker.Splash
+package com.pale_cosmos.bitmexticker.ui.Splash
 
 import android.app.Activity
 import android.content.Context
-import android.content.ContextWrapper
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.os.LocaleList
-import android.preference.PreferenceManager
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.Splash.SplashPresenter
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
-import com.pale_cosmos.bitmexticker.ui.Splash.AgreementActivity
-import com.pale_cosmos.bitmexticker.ui.Splash.LanguageInitActivity
-import com.pale_cosmos.bitmexticker.ui.Splash.SplashContract
-import java.util.*
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
@@ -65,7 +56,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     }
 
-    override fun argreement() {
+    override fun agreement() {
         when (Util.sharedPreferences.getBoolean("agreement", false)) {
             true -> {
                 mPresenter.checkInternetConnection()
