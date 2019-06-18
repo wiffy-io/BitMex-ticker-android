@@ -24,8 +24,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:layout_margin="10dp"
-        />
+                android:layout_margin="15dp"/>
 
         <RelativeLayout
                 android:id="@+id/makeText"
@@ -33,8 +32,7 @@
                 android:layout_below="@+id/lagreeSet"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-        >
+                android:layout_marginBottom="0dp">
             <TextView
                     android:textColor="@color/light_title2"
                     android:layout_width="wrap_content"
@@ -42,43 +40,40 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:textAlignment="center"
-                    android:layout_margin="10dp"
-                    android:text="@string/argumentContext"
-            />
+                    android:layout_margin="15dp"
+                    android:text="@string/argumentContext"/>
         </RelativeLayout>
         <RelativeLayout
                 android:layout_centerHorizontal="true"
                 android:id="@+id/button_lan"
                 android:layout_below="@id/makeText"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
-        >
+                android:layout_height="wrap_content">
             <Button
                     android:background="@drawable/dialog_button"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_margin="15dp"
                     android:id="@+id/OK_d"
                     android:textColor="@color/WHITE"
                     android:text="@string/OK"
                     android:layout_width="120dp"
-                    android:layout_height="25dp"/>
+                    android:layout_height="30dp"/>
             <View
                     android:id="@+id/centeralView"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-            />
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"/>
             <Button
                     android:background="@drawable/rejcet"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/WHITE"
-                    android:layout_marginEnd="10dp"
+                    android:layout_margin="15dp"
                     android:text="@string/CANCEL"
                     android:id="@+id/CANCEL_d"
                     android:layout_width="120dp"
-                    android:layout_height="25dp"/>
+                    android:layout_height="30dp"/>
 
         </RelativeLayout>
     </RelativeLayout>

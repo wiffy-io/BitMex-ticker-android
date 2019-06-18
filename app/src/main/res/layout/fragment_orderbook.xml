@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/orderbooks"
 >
     <TextView
@@ -30,45 +30,91 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:id="@+id/ordrbook_titles"
                 android:layout_alignParentTop="true">
-            <TextView
-                    android:id="@+id/ask_title"
-                    android:layout_alignParentStart="true"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/myBlue"
-                    android:textStyle="bold"
-                    android:background="@color/myDarkBlue"
-                    android:text="@string/Ask"/>
-            <TextView
-                    android:id="@+id/price_title"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/myBlue"
-                    android:textStyle="bold"
-                    android:background="@color/myDarkBlue"
-                    android:text="@string/Price"/>
 
-            <TextView
-                    android:id="@+id/bid_title"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="40dp"
+            <androidx.cardview.widget.CardView
+                    android:layout_marginStart="15dp"
+                    app:cardBackgroundColor="#333B7AD2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="15dp"
-                    android:textColor="@color/myBlue"
-                    android:textStyle="bold"
-                    android:background="@color/myDarkBlue"
-                    android:text="@string/Bid"/>
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+
+                <TextView
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/ask_title"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_centerVertical="true"
+                        android:textColor="#4B78CC"
+                        android:textStyle="bold"
+                        android:text="@string/Ask"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_marginStart="15dp"
+                    app:cardBackgroundColor="#333B7AD2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+
+                <TextView
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_centerInParent="true"
+                        android:textColor="#4B78CC"
+                        android:textStyle="bold"
+                        android:text="@string/Price"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_marginStart="15dp"
+                    app:cardBackgroundColor="#333B7AD2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp">
+
+                <TextView
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/bid_title"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/myBlue"
+                        android:textStyle="bold"
+                        android:text="@string/Bid"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_below="@id/ordrbook_titles"

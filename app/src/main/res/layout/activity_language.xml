@@ -24,8 +24,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:layout_margin="10dp"
-        />
+                android:layout_margin="15dp"/>
         <RelativeLayout
                 android:id="@+id/lang_Relative"
                 android:layout_below="@id/langSet"
@@ -39,17 +38,16 @@
                     android:id="@+id/lang_EN"
                     android:layout_alignParentTop="true"
                     android:layout_width="200dp"
-                    android:layout_height="40dp"
-            >
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
                 <TextView
                         android:textColor="@color/light_title2"
                         android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"
-                        android:text="English"
-                />
+                        android:layout_marginStart="15dp"
+                        android:text="English"/>
                 <androidx.appcompat.widget.AppCompatRadioButton
                         android:buttonTint="@color/green"
                         android:clickable="false"
@@ -57,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"/>
+                        android:layout_marginEnd="15dp"/>
             </RelativeLayout>
             <RelativeLayout
                     android:background="@drawable/custom_ripple"
@@ -66,17 +64,16 @@
                     android:id="@+id/lang_KO"
                     android:layout_below="@id/lang_EN"
                     android:layout_width="200dp"
-                    android:layout_height="40dp"
-            >
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
                 <TextView
                         android:textColor="@color/light_title2"
                         android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"
-                        android:text="한국어"
-                />
+                        android:layout_marginStart="15dp"
+                        android:text="한국어"/>
                 <androidx.appcompat.widget.AppCompatRadioButton
                         android:buttonTint="@color/green"
                         android:clickable="false"
@@ -84,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"/>
+                        android:layout_marginEnd="15dp"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -94,17 +91,16 @@
                     android:id="@+id/lang_ZH"
                     android:layout_below="@id/lang_KO"
                     android:layout_width="200dp"
-                    android:layout_height="40dp"
-            >
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
                 <TextView
                         android:textColor="@color/light_title2"
                         android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"
-                        android:text="中文"
-                />
+                        android:layout_marginStart="15dp"
+                        android:text="中文"/>
                 <androidx.appcompat.widget.AppCompatRadioButton
                         android:buttonTint="@color/green"
                         android:clickable="false"
@@ -112,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"/>
+                        android:layout_marginEnd="15dp"/>
             </RelativeLayout>
             <RelativeLayout
                     android:background="@drawable/custom_ripple"
@@ -121,17 +117,16 @@
                     android:id="@+id/lang_JA"
                     android:layout_below="@id/lang_ZH"
                     android:layout_width="200dp"
-                    android:layout_height="40dp"
-            >
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
                 <TextView
                         android:textColor="@color/light_title2"
                         android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"
-                        android:text="日本語"
-                />
+                        android:layout_marginStart="15dp"
+                        android:text="日本語"/>
                 <androidx.appcompat.widget.AppCompatRadioButton
                         android:buttonTint="@color/green"
                         android:clickable="false"
@@ -139,42 +134,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"/>
+                        android:layout_marginEnd="15dp"/>
             </RelativeLayout>
             <RelativeLayout
                     android:id="@+id/makeText"
                     android:layout_below="@id/lang_JA"
                     android:layout_width="200dp"
-                    android:layout_height="20dp"
-            >
+                    android:layout_height="0dp">
                 <TextView
                         android:textColor="@color/red"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:textSize="10sp"
+                        android:textSize="15sp"
                         tools:ignore="SmallSp"/>
             </RelativeLayout>
             <RelativeLayout
                     android:id="@+id/button_lan"
                     android:layout_below="@id/makeText"
                     android:layout_width="200dp"
-                    android:layout_height="40dp"
-            >
+                    android:layout_height="wrap_content">
                 <Button
                         android:background="@drawable/dialog_button"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginStart="10dp"
+                        android:layout_margin="15dp"
                         android:id="@+id/OK"
                         android:textColor="@color/WHITE"
                         android:text="@string/OK"
                         android:layout_width="80dp"
-                        android:layout_height="25dp"/>
+                        android:layout_height="30dp"/>
                 <View
                         android:id="@+id/centeralView"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:layout_centerInParent="true"
                 />
                 <Button
@@ -182,11 +175,11 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/WHITE"
-                        android:layout_marginEnd="10dp"
+                        android:layout_margin="15dp"
                         android:text="@string/CANCEL"
                         android:id="@+id/CANCEL"
                         android:layout_width="80dp"
-                        android:layout_height="25dp"/>
+                        android:layout_height="30dp"/>
 
             </RelativeLayout>
         </RelativeLayout>
