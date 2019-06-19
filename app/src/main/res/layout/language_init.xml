@@ -27,7 +27,6 @@
                 android:layout_margin="10dp"
         />
         <RelativeLayout
-                android:id="@+id/lang_Relative2"
                 android:layout_below="@id/langSet2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

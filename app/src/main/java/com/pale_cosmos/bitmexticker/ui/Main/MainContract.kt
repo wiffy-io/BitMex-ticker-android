@@ -22,7 +22,7 @@ interface MainContract {
     interface Presenter{
         fun change_UI()
         fun make_socket()
-        fun get_coin()
+        fun get_coin(str:String)
         fun socket_reconnect()
         fun setSystemLanguage()
     }

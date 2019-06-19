@@ -1,5 +1,7 @@
 package com.pale_cosmos.bitmexticker.ui.Main
 
+import android.app.ActionBar
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -26,6 +28,8 @@ import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.pale_cosmos.bitmexticker.R
 import kotlin.collections.ArrayList
+import android.view.LayoutInflater
+import androidx.appcompat.widget.Toolbar
 
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -40,27 +44,37 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        MobileAds.initialize(this, applicationContext.getString(R.string.ad_key))
+        MobileAds.initialize(this,"ca-app-pub-0355430122346055~1344719802")
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
 
+        agreement()
         init_loading()
-        start_loading()
         mPresenter = MainPresenter(this,applicationContext)
         mPresenter.change_UI()
-        mPresenter.get_coin()
+        mPresenter.get_coin(intent.getStringExtra("symbol"))
 
+    }
+
+    private fun agreement(){
+        if (!Util.sharedPreferences.getBoolean("agreement", false)){
+            val builder = AlertDialog.Builder(this,get_dialog())
+            builder.setTitle(R.string.Argument)
+            builder.setMessage(R.string.argumentContext)
+            builder.setPositiveButton("OK") { dialog, which ->
+                Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
+            }
+            builder.setNegativeButton("Cancel") { dialog, which ->
+                finish()
+            }
+            builder.setCancelable(false)
+            builder.show()
+        }
     }
 
     override fun onResume() {
         super.onResume()
         mPresenter.socket_reconnect()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //true_ = false
-        //Log.d("asdf","des")
     }
 
     override fun set_recycler(init_coin: ArrayList<Coin_info>) {
@@ -141,6 +155,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         builder?.setCancelable(false)
         builder?.setCanceledOnTouchOutside(false)
         builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        start_loading()
     }
 
     override fun stop_loading(){

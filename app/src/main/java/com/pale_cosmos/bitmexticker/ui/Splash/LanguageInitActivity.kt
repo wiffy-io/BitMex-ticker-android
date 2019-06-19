@@ -5,10 +5,12 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
+import com.pale_cosmos.bitmexticker.model.MyApplication
 import com.pale_cosmos.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.language_init.*
 import java.util.*
@@ -23,23 +25,25 @@ class LanguageInitActivity : AppCompatActivity() {
 
         lang_EN2.setOnClickListener {
             Util.sharedPreferences_editor.putString("global", Locale.ENGLISH.toLanguageTag()).commit()
+            Util.global = Locale.ENGLISH.toLanguageTag()
             result404()
         }
         lang_KO2.setOnClickListener {
             Util.sharedPreferences_editor.putString("global", Locale.KOREAN.toLanguageTag()).commit()
+            Util.global = Locale.KOREAN.toLanguageTag()
             result404()
         }
         lang_ZH2.setOnClickListener {
             Util.sharedPreferences_editor.putString("global", Locale.CHINESE.toLanguageTag()).commit()
+            Util.global = Locale.CHINESE.toLanguageTag()
             result404()
         }
         lang_JA2.setOnClickListener {
             Util.sharedPreferences_editor.putString("global", Locale.JAPANESE.toLanguageTag()).commit()
+            Util.global = Locale.JAPANESE.toLanguageTag()
             result404()
         }
     }
-
-
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
@@ -64,9 +68,7 @@ class LanguageInitActivity : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-
         if (event?.action == MotionEvent.ACTION_OUTSIDE) {
-
         }
         return true
     }

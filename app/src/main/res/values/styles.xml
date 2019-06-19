@@ -5,9 +5,32 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/light_navi</item>
         <item name="colorControlHighlight">@color/light_title</item>
+
+        <item name="android:statusBarColor">@color/light_table_out</item>
+        <item name="android:navigationBarColor">@color/WHITE</item>
     </style>
+
+    <style name="AppTheme_D" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/light_navi</item>
+        <item name="colorControlHighlight">@color/light_title</item>
+
+        <item name="android:statusBarColor">@color/dark_table_out</item>
+        <item name="android:navigationBarColor">@color/BLACK</item>
+    </style>
+
+    <style name="dark_dialog" parent="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth">
+        <item name="android:background">@color/dark_table_out</item>
+    </style>
+
+    <style name="light_dialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:background">@color/light_table_out</item>
+    </style>
+
     <style name="dialog" parent="Theme.AppCompat.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

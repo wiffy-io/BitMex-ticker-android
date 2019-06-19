@@ -32,12 +32,13 @@
         </TableRow>
 
         <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:layout_width="match_parent"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:id="@+id/OpenSource"
-                            android:background="@drawable/setting_button_light">
+            <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/OpenSource"
+                    android:background="@drawable/setting_button_light_r">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -46,8 +47,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/light_title"
                         android:text="@string/OpenSource"
-                        android:layout_alignParentStart="true"
-                />
+                        android:layout_alignParentStart="true"/>
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                             android:focusable="true"
                             android:id="@+id/Version"
                             android:layout_width="match_parent"
-                            android:background="@drawable/setting_button_light">
+                            android:background="@drawable/setting_button_light_r">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -89,7 +89,7 @@
                             android:focusable="true"
                             android:id="@+id/Language"
                             android:layout_width="match_parent"
-                            android:background="@drawable/setting_button_light">
+                            android:background="@drawable/setting_button_light_r">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -130,7 +130,7 @@
                             android:clickable="true"
                             android:id="@+id/Review"
                             android:focusable="true"
-                            android:background="@drawable/setting_button_light">
+                            android:background="@drawable/setting_button_light_r">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"
@@ -155,7 +155,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:id="@+id/Email"
-                            android:background="@drawable/setting_button_light">
+                            android:background="@drawable/setting_button_light_r">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_marginStart="15dp"

@@ -5,7 +5,7 @@ import android.content.Context
 
 interface SplashContract {
     interface View {
-        fun moveToMain()
+        fun moveToMain(str:String)
         fun getOut()
         fun agreement()
     }
@@ -13,7 +13,7 @@ interface SplashContract {
     interface Presenter {
         fun startPresent()
         fun checkInternetConnection()
-        fun connectionOn()
+        fun connectionOn(str:String)
         fun connectionOff()
     }
 }

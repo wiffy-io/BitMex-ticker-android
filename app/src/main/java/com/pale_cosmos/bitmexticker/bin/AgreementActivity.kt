@@ -1,4 +1,4 @@
-package com.pale_cosmos.bitmexticker.ui.Splash
+package com.pale_cosmos.bitmexticker.bin
 
 import android.app.Activity
 import android.content.Context
@@ -10,7 +10,7 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.model.Util
-import kotlinx.android.synthetic.main.activity_agreement.*
+
 
 class AgreementActivity : AppCompatActivity() {
 
@@ -18,10 +18,9 @@ class AgreementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.activity_agreement)
-
-        OK_d.setOnClickListener { result_OK() }
-        CANCEL_d.setOnClickListener { back() }
+//        setContentView(R.layout.activity_agreement)
+//        OK_d.setOnClickListener { result_OK() }
+//        CANCEL_d.setOnClickListener { back() }
     }
 
     override fun onBackPressed() {
@@ -35,7 +34,6 @@ class AgreementActivity : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-
         if (event?.action == MotionEvent.ACTION_OUTSIDE) {
 
         }
@@ -53,14 +51,13 @@ class AgreementActivity : AppCompatActivity() {
         finish()
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
     }
-    override fun attachBaseContext(newBase: Context?) {
 
+    override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(
             Util.wrap(
                 newBase,
                 Util.global
             )
         )
-
     }
 }

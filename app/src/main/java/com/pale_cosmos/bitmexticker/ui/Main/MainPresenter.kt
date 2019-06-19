@@ -24,9 +24,9 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     private var init_coin_ = ArrayList<Coin_info>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
-    override fun get_coin() = Thread(Runnable {
+    override fun get_coin(str:String) = Thread(Runnable {
         try {
-            var get_server = "http://jungh0.com/symbol".getUrlText().split("\n")
+            var get_server = str.split("\n")
             for (i in 0 until get_server.size) {
                 var tmp = get_server[i].split(",")
 
@@ -156,7 +156,6 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
                     Locale.ENGLISH
                 }
             }
-
             mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
         }
     }

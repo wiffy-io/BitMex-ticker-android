@@ -16,6 +16,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
+import com.afollestad.materialdialogs.MaterialDialog
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.extension.*
 import com.pale_cosmos.bitmexticker.model.Util
@@ -23,6 +24,12 @@ import com.pale_cosmos.bitmexticker.model.Util.Companion.setting_on
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 import java.util.*
+import android.content.DialogInterface
+import android.app.AlertDialog
+import android.widget.Toast
+
+
+
 
 
 const val SWIPE_MIN_DISTANCE = 120
@@ -37,6 +44,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_setting)
+        supportActionBar?.hide()
 
         gestureScanner = GestureDetector(this)
         mPresenter = SettingPresenter(this,applicationContext)
@@ -129,24 +137,13 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 //        intents.putExtra("TITLE",title)
 //        intents.putExtra("CONTEXT",context)
 //        startActivity(intents)
-
-        var builder = Dialog(this@SettingActivity)
-        builder.setContentView(R.layout.activity_dialog)
-        builder.setCancelable(false)
-        builder.setCanceledOnTouchOutside(false)
-        builder.setOnShowListener {
-            var x = builder.findViewById<Button>(R.id.OKBUTTON)
-            x.setOnClickListener {
-                builder.dismiss()
-            }
-            var y = builder.findViewById<TextView>(R.id.contextInDialog)
-            y.text = context
-            var z = builder.findViewById<TextView>(R.id.titleInDialog)
-            z.text = title
-        }
-        builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val builder = AlertDialog.Builder(this,get_dialog())
+        builder.setTitle(title)
+        builder.setMessage(context)
+        builder.setPositiveButton(
+            "OK"
+        ) { dialog, which ->  }
         builder.show()
-
     }
 
     override fun getStringTo(id: Int): String {

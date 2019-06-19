@@ -23,6 +23,12 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -42,4 +48,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.google.android.gms:play-services-ads:17.2.1'
+
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    implementation 'com.afollestad.material-dialogs:core:3.0.0-rc4'
 }

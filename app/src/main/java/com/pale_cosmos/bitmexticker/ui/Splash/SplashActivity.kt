@@ -1,18 +1,23 @@
 package com.pale_cosmos.bitmexticker.ui.Splash
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pale_cosmos.bitmexticker.R
 import com.pale_cosmos.bitmexticker.Splash.SplashPresenter
+import com.pale_cosmos.bitmexticker.model.MyApplication
 import com.pale_cosmos.bitmexticker.model.Util
 import com.pale_cosmos.bitmexticker.ui.Main.MainActivity
+import es.dmoral.toasty.Toasty
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
@@ -20,40 +25,33 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        setTheme(R.style.AppTheme_D)
         setContentView(R.layout.activity_splash)
-
         supportActionBar?.hide()
-        changeStatusBar()
 
         mPresenter = SplashPresenter(this, applicationContext)
         mPresenter.startPresent()
-
     }
 
-    private fun changeStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.dark_table_out);
-        window.navigationBarColor = resources.getColor(R.color.BLACK)
-    }
-
-    override fun moveToMain() {
+    override fun moveToMain(str:String) {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("symbol",str)
         startActivity(intent)
         overridePendingTransition(R.anim.abc_fade_in, R.anim.not_move_activity)
         finish()
     }
 
     override fun getOut() {
-        Toast.makeText(applicationContext, applicationContext.getString(R.string.InternetCheck), Toast.LENGTH_SHORT)
-            .show()
-        finish()
+        Handler(mainLooper).post{
+            Toasty.warning(applicationContext, applicationContext.getString(R.string.InternetCheck), Toast.LENGTH_SHORT, true).show();
+            finish()
+        }
     }
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
         }
-
     }
 
     override fun agreement() {
@@ -72,29 +70,27 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
             Activity.RESULT_OK -> {
-                Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
-                mPresenter.checkInternetConnection()
+                //Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
+                //mPresenter.checkInternetConnection()
             }
             404 -> {
-                startActivityForResult(Intent(applicationContext, AgreementActivity::class.java), 1)
-                overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+                mPresenter.checkInternetConnection()
+                //startActivityForResult(Intent(applicationContext, AgreementActivity::class.java), 1)
+                //overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
             }
             else -> {
-                finish()
+                //finish()
             }
         }
     }
 
     override fun attachBaseContext(newBase: Context?) {
-
             super.attachBaseContext(
                 Util.wrap(
                     newBase,
                     Util.global
                 )
             )
-
     }
-
 
 }

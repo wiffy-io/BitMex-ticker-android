@@ -1,5 +1,6 @@
 package com.pale_cosmos.bitmexticker.ui.Information.DetailsFragment
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
 import com.pale_cosmos.bitmexticker.R
-import com.pale_cosmos.bitmexticker.extension.details_state_color
+import com.pale_cosmos.bitmexticker.extension.get_dialog
 import com.pale_cosmos.bitmexticker.extension.get_title
 import com.pale_cosmos.bitmexticker.extension.get_title2
 import com.pale_cosmos.bitmexticker.extension.setting_button
@@ -35,21 +37,12 @@ class DetailsAdapter(
                 context_details.text = item.context
                 itemView.background = ContextCompat.getDrawable(context, setting_button())
                 itemView.setOnClickListener {
-                    var builder = Dialog(activity)
-                    builder.setContentView(R.layout.activity_dialog)
-                    builder.setCancelable(false)
-                    builder.setCanceledOnTouchOutside(false)
-                    builder.setOnShowListener {
-                        var x = builder.findViewById<Button>(R.id.OKBUTTON)
-                        x.setOnClickListener {
-                            builder.dismiss()
-                        }
-                        var y = builder.findViewById<TextView>(R.id.contextInDialog)
-                        y.text = item.context
-                        var z = builder.findViewById<TextView>(R.id.titleInDialog)
-                        z.text = item.title
-                    }
-                    builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    val builder = AlertDialog.Builder(context, get_dialog())
+                    builder.setTitle(item.title)
+                    builder.setMessage(item.context)
+                    builder.setPositiveButton(
+                        "OK"
+                    ) { dialog, which ->  }
                     builder.show()
                 }
             }

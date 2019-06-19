@@ -36,7 +36,7 @@ class SplashTask(var view: Context, var presenter: SplashContract.Presenter) :
 
     override fun onPostExecute(result: Boolean?) {
         when (result) {
-            true -> presenter.connectionOn()
+            true -> presenter.connectionOn("")
             false -> presenter.connectionOff()
         }
     }

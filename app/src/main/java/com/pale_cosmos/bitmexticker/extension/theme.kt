@@ -104,3 +104,10 @@ fun setting_button():Int
         return R.drawable.setting_button_dark_r
     else return R.drawable.setting_button_light_r
 }
+
+fun get_dialog():Int
+{
+    if(Util.dark_theme)
+        return R.style.dark_dialog
+    else return R.style.light_dialog
+}

@@ -30,20 +30,15 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.Main.MainActivity"
-                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+                android:name=".ui.Main.MainActivity"/>
         <activity
-                android:name=".ui.Setting.SettingActivity"
-                android:theme="@style/Theme.AppCompat.NoActionBar"/>
+                android:name=".ui.Setting.SettingActivity"/>
         <activity
-                android:name=".ui.Information.InformationActivity"
-                android:theme="@style/Theme.AppCompat.NoActionBar"
-        />
+                android:name=".ui.Information.InformationActivity"/>
         <activity
                 android:name=".ui.Setting.LanguageActivity"
-                android:theme="@style/dialog"
-        />
-        <activity android:name=".ui.Splash.AgreementActivity"
+                android:theme="@style/dialog"/>
+        <activity android:name=".bin.AgreementActivity"
                   android:theme="@style/dialog"/>
         <activity android:name=".ui.Splash.LanguageInitActivity"
                   android:theme="@style/dialog"/>
