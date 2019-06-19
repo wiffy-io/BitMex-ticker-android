@@ -22,7 +22,7 @@
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
                 android:value="ca-app-pub-0355430122346055~1344719802"/>
 
-        <activity android:name="com.wiffy.bitmexticker.ui.Splash.SplashActivity">
+        <activity android:name="com.wiffy.bitmexticker.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -30,17 +30,17 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.wiffy.bitmexticker.ui.Main.MainActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.main.MainActivity"/>
         <activity
-                android:name="com.wiffy.bitmexticker.ui.Setting.SettingActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.setting.SettingActivity"/>
         <activity
-                android:name="com.wiffy.bitmexticker.ui.Information.InformationActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.information.InformationActivity"/>
         <activity
-                android:name="com.wiffy.bitmexticker.ui.Setting.LanguageActivity"
+                android:name="com.wiffy.bitmexticker.ui.setting.LanguageActivity"
                 android:theme="@style/dialog"/>
         <activity android:name="com.wiffy.bitmexticker.bin.AgreementActivity"
                   android:theme="@style/dialog"/>
-        <activity android:name="com.wiffy.bitmexticker.ui.Splash.LanguageInitActivity"
+        <activity android:name="com.wiffy.bitmexticker.ui.splash.LanguageInitActivity"
                   android:theme="@style/dialog"/>
     </application>
 

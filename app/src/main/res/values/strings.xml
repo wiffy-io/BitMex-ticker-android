@@ -12,9 +12,9 @@
 
     <string name="Recent_Trades">Recent Trades</string>
     <string name="OK">OK</string>
-    <string name="CANCEL">CANCEL</string>
+    <string name="CANCEL">Cancel</string>
 
-    <!-- Setting String Sources -->
+    <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
     <string name="addmin_mail">iveinvalue@gmail.com</string>

@@ -1,113 +1,141 @@
 package com.wiffy.bitmexticker.extension
 
-import android.graphics.Color
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.model.Util
 
 
-fun get_table_in(): Int {
-    if (Util.dark_theme)
-        return R.color.dark_table_in
-    else return R.color.light_table_in
+fun getTableIn(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_table_in
+    } else {
+        R.color.light_table_in
+    }
 }
 
-fun get_fragment_background():Int{
-    if(Util.dark_theme)
-        return R.color.dark_fragment_Background
-    else return R.color.light_table_out
+fun getFragmentBackground(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_fragment_Background
+    } else {
+        R.color.light_table_out
+    }
 }
 
-fun get_table_out(): Int {
-    if (Util.dark_theme)
-        return R.color.dark_table_out
-    else return R.color.light_table_out
+fun getTableOut(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_table_out
+    } else {
+        R.color.light_table_out
+    }
 }
 
-fun get_table_out_parsed():Int{
-    if (Util.dark_theme)
-        return Color.parseColor("#082335")
-    else return Color.parseColor("#efeff3")
+//fun getTableOutParsed(): Int {
+//    return if (Util.dark_theme) {
+//        Color.parseColor("#082335")
+//    } else {
+//        Color.parseColor("#efeff3")
+//    }
+//}
+
+fun getTitle(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_title
+    } else {
+        R.color.light_title
+    }
 }
 
-fun get_title(): Int {
-    if (Util.dark_theme)
-        return R.color.dark_title
-    else return R.color.light_title
+fun getTitle2(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_title2
+    } else {
+        R.color.light_title2
+    }
 }
 
-fun get_title2(): Int {
-    if (Util.dark_theme)
-        return R.color.dark_title2
-    else return R.color.light_title2
+fun getNavi(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_navi
+    } else {
+        R.color.light_navi
+    }
 }
 
-fun get_navi(): Int {
-    if (Util.dark_theme)
-        return R.color.dark_navi
-    else return R.color.light_navi
+fun getBrightness(): Int {
+    return if (Util.dark_theme) {
+        R.drawable.to_lights
+    } else {
+        R.drawable.to_darks
+    }
 }
 
-fun get_brightness(): Int {
-    if (Util.dark_theme)
-        return R.drawable.to_lights
-    else return R.drawable.to_darks
+fun getBottom(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_navi
+    } else {
+        R.color.WHITE
+    }
 }
 
-fun get_bottom():Int{
-    if(Util.dark_theme)return R.color.dark_navi
-    else return R.color.WHITE
+fun getTableInReverse(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_table_in_click
+    } else {
+        R.color.light_table_in_click
+    }
 }
 
-fun get_table_in_reverse():Int{
-    if (Util.dark_theme)
-        return R.color.dark_table_in_click
-    else return R.color.light_table_in_click
+fun getBottomColor(): Int {
+    return if (Util.dark_theme) {
+        R.color.navigation_state_dark
+    } else {
+        R.color.navigation_state_light
+    }
 }
 
-fun get_bottom_color():Int{
-    if(Util.dark_theme)
-        return R.color.navigation_state_dark
-    else return R.color.navigation_state_light
+fun rippleAndTintOfBottom(): Int {
+    return if (Util.dark_theme) {
+        R.color.dark_table_out
+    } else {
+        R.color.light_navi
+    }
 }
 
-fun rippleAndTintOfBottom():Int
-{
-    if(Util.dark_theme)
-        return R.color.dark_table_out
-    else return R.color.light_navi
+fun darkAndLight(): Int {
+    return if (Util.dark_theme) {
+        R.color.WHITE
+    } else {
+        R.color.BLACK
+    }
 }
 
-fun darkAndLight():Int
-{
-    if(Util.dark_theme)
-        return R.color.WHITE
-    else return R.color.BLACK
+fun darkAndLightReverse(): Int {
+    return if (Util.dark_theme) {
+        R.color.BLACK
+    } else {
+        R.color.WHITE
+    }
 }
 
-fun darkAndLight_reverse():Int
-{
-    if(Util.dark_theme)
-        return R.color.BLACK
-    else return R.color.WHITE
+//fun detailsStateColor(): Int {
+//    return if (Util.dark_theme) {
+//        R.color.details_state_dark
+//    } else {
+//        R.color.details_state_light
+//    }
+//}
+
+fun settingButton(): Int {
+    return if (Util.dark_theme) {
+        R.drawable.setting_button_dark_r
+    } else {
+        R.drawable.setting_button_light_r
+    }
 }
 
-fun details_state_color():Int
-{
-    if(Util.dark_theme)
-        return R.color.details_state_dark
-    else return R.color.details_state_light
-}
-
-fun setting_button():Int
-{
-    if(Util.dark_theme)
-        return R.drawable.setting_button_dark_r
-    else return R.drawable.setting_button_light_r
-}
-
-fun get_dialog():Int
-{
-    if(Util.dark_theme)
-        return R.style.dark_dialog
-    else return R.style.light_dialog
+fun getDialog(): Int {
+    return if (Util.dark_theme) {
+        R.style.dark_dialog
+    } else {
+        R.style.light_dialog
+    }
 }

@@ -10,7 +10,7 @@
 
     <string name="Recent_Trades">Recent Trades</string>
 
-    <!-- Setting String Sources -->
+    <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
     <string name="addmin_mail">iveinvalue@gmail.com</string>
@@ -41,7 +41,7 @@
     <string name="Price">Price</string>
     <string name="Bid">Bid</string>
     <string name="OK">OK</string>
-    <string name="CANCEL">CANCEL</string>
+    <string name="CANCEL">Cancel</string>
     <string name="Argument">Information providing agreement</string>
     <string name="argumentContext">In providing this information, I agree that this application has no legal
         responsibility.
