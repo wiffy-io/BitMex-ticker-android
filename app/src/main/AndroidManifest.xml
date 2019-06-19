@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.pale_cosmos.bitmexticker">
+          package="com.wiffy.bitmexticker">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -13,7 +13,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:name=".model.MyApplication"
+            android:name="com.wiffy.bitmexticker.model.MyApplication"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
@@ -22,7 +22,7 @@
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
                 android:value="ca-app-pub-0355430122346055~1344719802"/>
 
-        <activity android:name=".ui.Splash.SplashActivity">
+        <activity android:name="com.wiffy.bitmexticker.ui.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -30,17 +30,17 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.Main.MainActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.Main.MainActivity"/>
         <activity
-                android:name=".ui.Setting.SettingActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.Setting.SettingActivity"/>
         <activity
-                android:name=".ui.Information.InformationActivity"/>
+                android:name="com.wiffy.bitmexticker.ui.Information.InformationActivity"/>
         <activity
-                android:name=".ui.Setting.LanguageActivity"
+                android:name="com.wiffy.bitmexticker.ui.Setting.LanguageActivity"
                 android:theme="@style/dialog"/>
-        <activity android:name=".bin.AgreementActivity"
+        <activity android:name="com.wiffy.bitmexticker.bin.AgreementActivity"
                   android:theme="@style/dialog"/>
-        <activity android:name=".ui.Splash.LanguageInitActivity"
+        <activity android:name="com.wiffy.bitmexticker.ui.Splash.LanguageInitActivity"
                   android:theme="@style/dialog"/>
     </application>
 
