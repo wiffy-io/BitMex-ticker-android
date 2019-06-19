@@ -145,6 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
                         android:textSize="8sp"
                         tools:ignore="SmallSp"/>
             </RelativeLayout>
