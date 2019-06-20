@@ -25,7 +25,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     private val mContext = con
     override fun getCoin(str:String) = Thread(Runnable {
         try {
-            val getServer = str.split("\n")
+            val getServer = str.split(":")
             for (i in 0 until getServer.size) {
                 val tmp = getServer[i].split(",")
 

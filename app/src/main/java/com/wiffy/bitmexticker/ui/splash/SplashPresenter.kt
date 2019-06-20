@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import com.wiffy.bitmexticker.extension.getUrlText
 import com.wiffy.bitmexticker.ui.splash.SplashContract
+import java.net.URL
 
 
 class SplashPresenter(act: SplashContract.View) : SplashContract.Presenter {
@@ -18,8 +19,8 @@ class SplashPresenter(act: SplashContract.View) : SplashContract.Presenter {
 
         Thread(Runnable {
             try {
-                val getServer = "http://jungh0.com/symbol".getUrlText()
-                if (getServer.contains("XBTUSD")){
+                val getServer = URL("http://wiffy.io/bitmex/").readText()
+                if (URL("http://wiffy.io/response").readText().contains("R")){
                     connectionOn(getServer)
                 }else{
                     connectionOff()

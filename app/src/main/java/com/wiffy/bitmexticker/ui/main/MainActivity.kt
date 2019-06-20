@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter = MainPresenter(this, applicationContext)
         mPresenter.changeUI()
         mPresenter.getCoin(intent.getStringExtra("symbol"))
-        
+
         //test
         val strings = ArrayList<String>()
         strings.add("안녕 난 최고")
