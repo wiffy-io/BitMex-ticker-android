@@ -36,7 +36,7 @@ class MainPresenter(act: MainContract.View, data:CoinInfo?) : MainContract.Prese
             str2 = "Light"
             str3 = "rgba(255,255,255,1)"
         }
-        var script = "<!-- TradingView Widget BEGIN -->" +
+        val script = "<!-- TradingView Widget BEGIN -->" +
                 "<script type=\"text/javascript\" src=\"https://s3.tradingview.com/tv.js\"></script>" +
                 "<script type=\"text/javascript\">new TradingView.widget({" +
                 "\"autosize\": true," +
@@ -72,7 +72,7 @@ class MainPresenter(act: MainContract.View, data:CoinInfo?) : MainContract.Prese
 
                     Log.d("asdf","$jsonBitstamp or $jsonCoinbase")
 
-                    mView.parseUI(changeValue(jsonCoinbase), changeValue(jsonBitstamp))
+                    mView.parseUI(String.format("%.2f", jsonCoinbase), String.format("%.2f", jsonBitstamp))
                     sleep(1000)
                 }
             } catch (e: Exception) {
