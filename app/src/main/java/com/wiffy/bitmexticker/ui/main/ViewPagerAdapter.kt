@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.wiffy.bitmexticker.R
 import kotlinx.android.synthetic.main.adapter_pager.view.*
@@ -23,6 +24,9 @@ class ViewPagerAdapter(
         items[position].let { item ->
             with(holder) {
                text.text = item
+                itemView.setOnClickListener{
+                    Toast.makeText(context,item,Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
