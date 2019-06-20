@@ -20,6 +20,7 @@ import com.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFr
 import com.wiffy.bitmexticker.ui.information.orderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
 import kotlin.collections.ArrayList
+import kotlin.math.abs
 
 
 class InformationActivity : AppCompatActivity(),
@@ -209,7 +210,7 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (e2!!.x - e1!!.x > com.wiffy.bitmexticker.ui.setting.SWIPE_MIN_DISTANCE && Math.abs(velocityX) > com.wiffy.bitmexticker.ui.setting.SWIPE_THRESHOLD_VELOCITY) {
+        if (e2!!.x - e1!!.x > com.wiffy.bitmexticker.ui.setting.SWIPE_MIN_DISTANCE && abs(velocityX) > com.wiffy.bitmexticker.ui.setting.SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
 

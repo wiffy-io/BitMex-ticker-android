@@ -31,8 +31,8 @@ class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContrac
                 mView.urlParseToMarket(mView.getStringTo(R.string.store_url))
             },
             listener4 = View.OnClickListener {
-                mView.clipOnBoard(mView.getStringTo(R.string.addmin_mail))
-                mView.startDialog(mView.getStringTo(R.string.addmin_mail), "E-mail copied in clipboard")
+                mView.clipOnBoard(mView.getStringTo(R.string.admin_mail))
+                mView.startDialog(mView.getStringTo(R.string.admin_mail), "E-mail copied in clipboard")
             },
             listener5 = View.OnClickListener {
                 mView.openLanguageSetting()
