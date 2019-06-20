@@ -10,7 +10,7 @@ class SplashTask(var view: Context, var presenter: SplashContract.Presenter) :
     AsyncTask<Void, Int, Boolean>() {
 
     val CONNECTION_CONFIRM_CLIENT_URL = "http://clients3.google.com/generate_204"
-    var InternetEnabled = true
+    var internetEnabled = true
 
 
     override fun doInBackground(vararg params: Void?): Boolean {
@@ -21,17 +21,17 @@ class SplashTask(var view: Context, var presenter: SplashContract.Presenter) :
             conn.setRequestProperty("User-Agent", "Android")
             conn.connectTimeout = 1000
             conn.connect()
-            InternetEnabled = when (conn.responseCode) {
+            internetEnabled = when (conn.responseCode) {
                 204 -> true
                 else -> false
             }
 
         } catch (e: Exception) {
-            InternetEnabled = false
+            internetEnabled = false
         }
         conn?.disconnect()
 
-        return InternetEnabled
+        return internetEnabled
     }
 
     override fun onPostExecute(result: Boolean?) {

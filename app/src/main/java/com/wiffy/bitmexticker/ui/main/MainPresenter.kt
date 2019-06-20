@@ -7,7 +7,7 @@ import android.os.Looper
 import android.view.View
 import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.model.BitMEX_soket
-import com.wiffy.bitmexticker.model.Coin_info
+import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 class MainPresenter(act: MainContract.View, con: Context) : MainContract.Presenter {
 
     private val mView = act
-    private var initCoin = ArrayList<Coin_info>()
+    private var initCoin = ArrayList<CoinInfo>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
     override fun getCoin(str:String) = Thread(Runnable {
@@ -29,7 +29,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
             for (i in 0 until getServer.size) {
                 val tmp = getServer[i].split(",")
 
-                val data = Coin_info(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
+                val data = CoinInfo(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
                 initCoin.add(data)
             }
             mView.setRecycler(initCoin)

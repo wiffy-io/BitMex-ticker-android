@@ -12,13 +12,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.*
-import com.wiffy.bitmexticker.model.Coin_info
+import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util.Companion.info_on
 import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
 class MainAdapter(
-    var items: ArrayList<Coin_info>,
+    var items: ArrayList<CoinInfo>,
     var context: Context,
     var is_dark: Boolean,
     val mView: MainContract.View
@@ -54,7 +54,7 @@ class MainAdapter(
                             actionDown(bg)
                         }
                         MotionEvent.ACTION_UP -> {
-                            actionUp(bg,item.price!!,item.Symbol!!)
+                            actionUp(bg, item.price!!, item.Symbol!!, item)
                         }
                         MotionEvent.ACTION_CANCEL -> {
                             actionCancel(bg)
@@ -66,30 +66,31 @@ class MainAdapter(
         }
     }
 
-    private fun actionDown(bg:CardView){
+    private fun actionDown(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableInReverse()))
         istouch = true
     }
 
-    private fun actionUp(bg:CardView, price:String, sym:String){
+    private fun actionUp(bg: CardView, price: String, sym: String, data: CoinInfo) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
         if (!price.contains("-")!! && info_on) {
-            click(sym)
+            click(sym, data)
         }
         istouch = false
         notificationUpdate()
     }
 
-    private fun actionCancel(bg:CardView){
+    private fun actionCancel(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
         istouch = false
         notificationUpdate()
     }
 
-    private fun click(str:String){
+    private fun click(str: String, item: CoinInfo) {
         info_on = false
         val bundle = Bundle()
         bundle.putString("information", str)
+        bundle.putSerializable("data", item)
         mView.moveToInformation(bundle)
     }
 
@@ -98,14 +99,14 @@ class MainAdapter(
         notificationUpdate()
     }
 
-    fun update(modelList: ArrayList<Coin_info>) {
+    fun update(modelList: ArrayList<CoinInfo>) {
         items = modelList
         if (!istouch) {
             notificationUpdate()
         }
     }
 
-    private fun notificationUpdate(){
+    private fun notificationUpdate() {
         try {
             notifyDataSetChanged()
         } catch (e: Exception) {
@@ -118,8 +119,8 @@ class MainAdapter(
         val symbol: TextView = itemView.Symbol
         val nameInfo: TextView = itemView.name_info
         val price: TextView = itemView.price
-        val cardIn:CardView = itemView.card_in
-        val bg:CardView = itemView.bg
+        val cardIn: CardView = itemView.card_in
+        val bg: CardView = itemView.bg
     }
 
 }

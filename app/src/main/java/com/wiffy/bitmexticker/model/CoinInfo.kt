@@ -3,7 +3,7 @@ package com.wiffy.bitmexticker.model
 import java.io.Serializable
 
 
-data class Coin_info(
+data class CoinInfo(
     val Symbol: String?,
     var price: String?,
     var is_new: String?,

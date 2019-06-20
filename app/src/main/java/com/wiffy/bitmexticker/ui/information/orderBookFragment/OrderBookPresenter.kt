@@ -44,10 +44,10 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     private fun socket_callback(it: String) {
         arr = ArrayList()
         try{
-            var json_contact =JSONObject(it)
-            var data =json_contact.getJSONArray("data")
-            var bids = data.getJSONObject(0).getJSONArray("bids")
-            var asks =data.getJSONObject(0).getJSONArray("asks")
+            val jsonContact =JSONObject(it)
+            val data =jsonContact.getJSONArray("data")
+            val bids = data.getJSONObject(0).getJSONArray("bids")
+            val asks =data.getJSONObject(0).getJSONArray("asks")
 
             for(x in asks.length()-1 downTo  0)
             {

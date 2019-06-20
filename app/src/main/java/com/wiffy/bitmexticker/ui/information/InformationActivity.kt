@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.*
+import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.info_on
 import com.wiffy.bitmexticker.ui.information.detailsFragment.DetailsFragment
@@ -24,14 +25,13 @@ import kotlin.collections.ArrayList
 class InformationActivity : AppCompatActivity(),
     InformationContract.View, GestureDetector.OnGestureListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
-    lateinit var mPresenter: InformationPresenter
-    lateinit var gestureScanner: GestureDetector
-    lateinit var coinInformation: String
-    lateinit var myBundle: Bundle
-    lateinit var fragmentList: ArrayList<Fragment?>
+    private lateinit var mPresenter: InformationPresenter
+    private lateinit var gestureScanner: GestureDetector
+    private lateinit var coinInformation: String
+    private lateinit var myBundle: Bundle
+    private lateinit var fragmentList: ArrayList<Fragment?>
 
-
-    var catches = 0
+    private var catches = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +72,7 @@ class InformationActivity : AppCompatActivity(),
     override fun changeUI() {
         myBundle = Bundle()
         myBundle.putString("symbol", coinInformation)
+        myBundle.putSerializable("data",intent.getSerializableExtra("data")as CoinInfo)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())

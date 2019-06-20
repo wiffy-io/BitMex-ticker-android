@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.MobileAds
 import com.wiffy.bitmexticker.extension.*
-import com.wiffy.bitmexticker.model.Coin_info
+import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.setting_on
 import com.wiffy.bitmexticker.ui.information.InformationActivity
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.socketReconnect()
     }
 
-    override fun setRecycler(init_coin: ArrayList<Coin_info>) {
+    override fun setRecycler(init_coin: ArrayList<CoinInfo>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme,this)
             recycler.adapter = myAdapter
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    override fun updateRecycler(mod_coin: ArrayList<Coin_info>) {
+    override fun updateRecycler(mod_coin: ArrayList<CoinInfo>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter?.update(mod_coin)
         }

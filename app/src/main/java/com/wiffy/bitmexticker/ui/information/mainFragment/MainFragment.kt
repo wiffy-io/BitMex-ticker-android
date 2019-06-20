@@ -2,12 +2,20 @@ package com.wiffy.bitmexticker.ui.information.mainFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.getTableOut
+import com.wiffy.bitmexticker.model.CoinInfo
+import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
@@ -19,8 +27,9 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
 
-        mPresenter = MainPresenter(this, arguments?.getString("symbol"))
+        mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
         mPresenter.init()
+        mPresenter.initParse()
         mPresenter.makeChart()
 
         return myView
@@ -44,4 +53,16 @@ class MainFragment : Fragment(), MainContract.View {
         myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
     }
 
+    override fun parseUI(coinbase: String, bitstamp: String) {
+        Handler(Looper.getMainLooper()).post {
+            (myView.bitstamp_p[0] as TextView).text = bitstamp
+            (myView.coinbase_p[0] as TextView).text = coinbase
+        }
+//        Log.d("asdf", coinbase)
+    }
+
+    override fun onDetach() {
+        mPresenter.removeFlag()
+        super.onDetach()
+    }
 }
