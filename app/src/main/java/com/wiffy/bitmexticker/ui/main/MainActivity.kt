@@ -14,6 +14,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
 import com.wiffy.bitmexticker.extension.*
 import com.wiffy.bitmexticker.model.CoinInfo
@@ -50,7 +51,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter = MainPresenter(this,applicationContext)
         mPresenter.changeUI()
         mPresenter.getCoin(intent.getStringExtra("symbol"))
-
+        //test
+        val strings = ArrayList<String>()
+        strings.add("안녕 난 최고")
+        strings.add("안녕 너도 최고")
+        strings.add("안녕 우리는 최고")
+        viewPager.adapter = ViewPagerAdapter(strings,applicationContext,this)
+        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        //test
     }
 
     private fun agreement(){
@@ -96,6 +104,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun changeUI() {
+
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
