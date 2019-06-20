@@ -5,14 +5,14 @@ import org.java_websocket.handshake.ServerHandshake
 import java.lang.Exception
 import java.net.URI
 
-class BitMEX_soket: WebSocketClient {
+class BitMEX_soket(serverUri: URI) : WebSocketClient(serverUri) {
 
     //var msg:String = ""
     var callback_:(String)->Unit?
     var sendback_:(String)->Unit?
     var closeback:(String)->Unit?
 
-    constructor(serverUri: URI) : super(serverUri) {
+    init {
         callback_ = {}
         sendback_ = {}
         closeback = {}
