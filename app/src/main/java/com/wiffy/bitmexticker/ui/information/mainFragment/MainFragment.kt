@@ -27,7 +27,7 @@ class MainFragment : Fragment(), MainContract.View {
 
     lateinit var myView: View
     lateinit var mPresenter: MainPresenter
-    var symbol:String? = null
+    var symbol: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
@@ -68,10 +68,10 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun parseUI(coinbase: String, bitstamp: String) {
         Handler(Looper.getMainLooper()).post {
-            if(bitstamp != "No Data")
-            (myView.bitstamp_p[0] as TextView).text = bitstamp
-            if(coinbase != "No Data")
-            (myView.coinbase_p[0] as TextView).text = coinbase
+            if (bitstamp != "No Data")
+                (myView.bitstamp_p[0] as TextView).text = bitstamp
+            if (coinbase != "No Data")
+                (myView.coinbase_p[0] as TextView).text = coinbase
         }
 //        Log.d("asdf", coinbase)
     }
@@ -81,18 +81,17 @@ class MainFragment : Fragment(), MainContract.View {
         super.onDetach()
     }
 
-    private var xbtPrice:String = "0"
+    private var xbtPrice: String = "0"
 
-    fun setXBT(str:String){
-        if(!symbol?.contains("USD")!! && xbtPrice != "0"){
-            var aa = str.toDouble() * xbtPrice.toDouble()
-            myView.sub_price.text = changeValue(aa)
+    fun setXBT(str: String) {
+        if (!symbol?.contains("USD")!! && xbtPrice != "0") {
+            myView.sub_price.text = "≈ ${changeValue(str.toDouble() * xbtPrice.toDouble())} $"
         }
     }
 
-    fun setPrice(str:String){
-        if(symbol?.contains("USD")!!){
-            myView.sub_price.text = str
+    fun setPrice(str: String) {
+        if (symbol?.contains("USD")!!) {
+            myView.sub_price.text = "≈ $str $"
         }
         xbtPrice = str
         myView.main_price.text = str

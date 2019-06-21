@@ -14,7 +14,7 @@
             android:layout_marginBottom="0dp"
             android:paddingTop="5dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="15dp">
+            android:paddingStart="15dp">
 
         <TextView
                 android:layout_alignParentStart="true"
@@ -82,7 +82,7 @@
                     android:textColor="#4B78CC"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:text="0.0"/>
+                    android:text="No Data"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -106,7 +106,7 @@
                     android:textColor="#4B78CC"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:text="0.0"/>
+                    android:text="No Data"/>
 
         </androidx.cardview.widget.CardView>
 
