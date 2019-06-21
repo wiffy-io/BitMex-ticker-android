@@ -10,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.getTableOut
+import com.wiffy.bitmexticker.extension.getTitle2
 import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.dark_theme
@@ -37,6 +39,9 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun changeUI() {
         myView.mains.background = resources.getDrawable(getTableOut())
+        myView.bitstamp.setTextColor(ContextCompat.getColorStateList(context!!, getTitle2()))
+        myView.coinbase.setTextColor(ContextCompat.getColorStateList(context!!, getTitle2()))
+
         if (dark_theme) {
             myView.main_view.background = resources.getDrawable(R.drawable.chart_border_dark)
         } else {
@@ -55,7 +60,9 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun parseUI(coinbase: String, bitstamp: String) {
         Handler(Looper.getMainLooper()).post {
+            if(bitstamp != "No Data")
             (myView.bitstamp_p[0] as TextView).text = bitstamp
+            if(coinbase != "No Data")
             (myView.coinbase_p[0] as TextView).text = coinbase
         }
 //        Log.d("asdf", coinbase)
