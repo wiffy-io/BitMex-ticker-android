@@ -46,6 +46,8 @@
     <string name="CANCEL">" 取消"</string>
     <string name="Agreement">信息提供协议</string>
     <string name="agreementContext">在提供此信息时，我同意此申请不承担任何法律责任。</string>
+    <string name="UserSettings">用户设置</string>
+    <string name="LightTheme">轻主题</string>
 
 
 </resources>

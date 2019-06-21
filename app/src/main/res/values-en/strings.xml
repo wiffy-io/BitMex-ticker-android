@@ -46,6 +46,8 @@
     <string name="agreementContext">In providing this information, I agree that this application has no legal
         responsibility.
     </string>
+    <string name="UserSettings">User settings</string>
+    <string name="LightTheme">Light Theme</string>
 
 
 </resources>

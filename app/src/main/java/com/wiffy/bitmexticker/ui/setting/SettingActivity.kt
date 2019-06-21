@@ -20,6 +20,8 @@ import com.wiffy.bitmexticker.model.Util.Companion.setting_on
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 import android.app.AlertDialog
+import android.widget.CompoundButton
+import androidx.appcompat.widget.SwitchCompat
 
 
 const val SWIPE_MIN_DISTANCE = 120
@@ -37,7 +39,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         supportActionBar?.hide()
 
         gestureScanner = GestureDetector(this)
-        mPresenter = SettingPresenter(this,applicationContext)
+        mPresenter = SettingPresenter(this, applicationContext)
         mPresenter.changeUI()
     }
 
@@ -54,12 +56,19 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         Language.background = resources.getDrawable(settingButton())
         Review.background = resources.getDrawable(settingButton())
         Email.background = resources.getDrawable(settingButton())
+        Theme.background = resources.getDrawable(settingButton())
+
+        (Theme[1] as SwitchCompat).isChecked = when (Util.dark_theme) {
+            true -> false
+            false -> true
+        }
 
         (OpenSource[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
         (Version[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
         (Language[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
         (Review[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
         (Email[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
+        (Theme[0] as TextView).setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
     }
 
     override fun moveToMain() {
@@ -113,13 +122,15 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         listener2: View.OnClickListener,
         listener3: View.OnClickListener,
         listener4: View.OnClickListener,
-        listener5: View.OnClickListener
+        listener5: View.OnClickListener,
+        listener6: CompoundButton.OnCheckedChangeListener
     ) {
         OpenSource.setOnClickListener(listener1)
         Version.setOnClickListener(listener2)
         Review.setOnClickListener(listener3)
         Email.setOnClickListener(listener4)
         Language.setOnClickListener(listener5)
+        (Theme[1] as SwitchCompat).setOnCheckedChangeListener(listener6)
     }
 
     override fun startDialog(title: String, context: String) {
@@ -127,12 +138,12 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 //        intents.putExtra("TITLE",title)
 //        intents.putExtra("CONTEXT",context)
 //        startActivity(intents)
-        val builder = AlertDialog.Builder(this,getDialog())
+        val builder = AlertDialog.Builder(this, getDialog())
         builder.setTitle(title)
         builder.setMessage(context)
         builder.setPositiveButton(
             "OK"
-        ) { _, _ ->  }
+        ) { _, _ -> }
         builder.show()
     }
 
@@ -157,9 +168,10 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun openLanguageSetting() {
-        startActivity(Intent(applicationContext,LanguageActivity::class.java))
+        startActivity(Intent(applicationContext, LanguageActivity::class.java))
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
     }
+
     override fun attachBaseContext(newBase: Context?) {
 
         super.attachBaseContext(

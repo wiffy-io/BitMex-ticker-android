@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.LocaleList
 import java.util.*
+import kotlin.system.exitProcess
 
 class Util {
 
@@ -29,7 +30,7 @@ class Util {
                     context.packageManager.getLaunchIntentForPackage(context.packageName)?.component
                 )
             )
-            System.exit(0)
+            exitProcess(0)
         }
 
         @JvmStatic

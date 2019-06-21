@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.CompoundButton
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.model.Util
 import java.util.*
@@ -36,6 +37,21 @@ class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContrac
             },
             listener5 = View.OnClickListener {
                 mView.openLanguageSetting()
+            },
+            listener6 = CompoundButton.OnCheckedChangeListener { switch, isChecked ->
+                when (isChecked) {
+                    false -> {
+                        Util.sharedPreferences_editor.putBoolean("mode", true).commit()
+                        Util.dark_theme = true
+                        switch.isChecked = true
+                    }
+                    true -> {
+                        Util.sharedPreferences_editor.putBoolean("mode", false).commit()
+                        Util.dark_theme = false
+                        switch.isChecked = false
+                    }
+                }
+                mView.changeUI()
             })
     }
 

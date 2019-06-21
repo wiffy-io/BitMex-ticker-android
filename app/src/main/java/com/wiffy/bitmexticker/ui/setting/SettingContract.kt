@@ -1,5 +1,8 @@
 package com.wiffy.bitmexticker.ui.setting
 
+import android.view.View
+import android.widget.CompoundButton
+
 
 interface SettingContract {
     interface View
@@ -11,7 +14,8 @@ interface SettingContract {
                                      listener2: android.view.View.OnClickListener,
                                      listener3: android.view.View.OnClickListener,
                                      listener4: android.view.View.OnClickListener,
-                                     listener5: android.view.View.OnClickListener)
+                                     listener5: android.view.View.OnClickListener,
+                                     listener6:CompoundButton.OnCheckedChangeListener)
         fun startDialog(title:String,context:String)
         fun getStringTo(id:Int):String
         fun clipOnBoard(clipBoardMessage:String)
