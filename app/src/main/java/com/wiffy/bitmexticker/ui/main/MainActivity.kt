@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
-import com.wiffy.bitmexticker.extension.*
 import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.setting_on
@@ -27,8 +26,12 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.wiffy.bitmexticker.R
+import com.wiffy.bitmexticker.extension.*
 import java.util.*
 import kotlin.collections.ArrayList
+
+
+
 
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -105,6 +108,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
+            //recycler.addItemDecoration(DividerItemDecoration(applicationContext, 1));
+            //var dividerItemDecoration = DividerItemDecoration(getApplicationContext(),LinearLayoutManager(this).getOrientation());
+            //recycler.addItemDecoration(dividerItemDecoration);
+            recycler.addItemDecoration(VerticalSpaceItemDecoration(2));
         }
         mPresenter.makeSocket()
     }
@@ -131,6 +138,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         parent_main.background = resources.getDrawable(getTableOut())
         bgc.setCardBackgroundColor(ContextCompat.getColor(applicationContext, getTableIn()))
         trd_info.setTextColor(ContextCompat.getColorStateList(applicationContext, darkAndLight()))
+        BTC_r.background = resources.getDrawable(getTableIn())
+        BTC.setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
     }
 
     override fun changeRecent(str: String) {

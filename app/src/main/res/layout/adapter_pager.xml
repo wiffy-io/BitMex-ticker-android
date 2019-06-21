@@ -11,6 +11,6 @@
             android:textAlignment="center"
             android:layout_height="match_parent"
             android:text="나는최고"
-            android:textColor="@color/BLACK"
+            android:textColor="@color/WHITE"
     />
 </RelativeLayout>

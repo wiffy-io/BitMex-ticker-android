@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.wiffy.bitmexticker.R
+import com.wiffy.bitmexticker.extension.getNavi
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.adapter_pager.view.*
 
 class ViewPagerAdapter(
@@ -24,11 +27,16 @@ class ViewPagerAdapter(
         items[position].let { item ->
             with(holder) {
                text.text = item
+                itemView.background = ContextCompat.getDrawable(context, getNavi())
                 itemView.setOnClickListener{
                     Toast.makeText(context,item,Toast.LENGTH_SHORT).show()
                 }
             }
         }
+    }
+
+    fun updateTheme() {
+        notifyDataSetChanged()
     }
 
 
