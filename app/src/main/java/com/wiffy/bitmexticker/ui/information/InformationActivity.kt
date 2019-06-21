@@ -14,6 +14,7 @@ import com.wiffy.bitmexticker.extension.*
 import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.info_on
+import com.wiffy.bitmexticker.model.Util.Companion.inforContext
 import com.wiffy.bitmexticker.ui.information.detailsFragment.DetailsFragment
 import com.wiffy.bitmexticker.ui.information.mainFragment.MainFragment
 import com.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
@@ -39,6 +40,7 @@ class InformationActivity : AppCompatActivity(),
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_information)
         supportActionBar?.hide()
+        inforContext = this
         coinInformation = intent.getStringExtra("information")
         information_navi.setOnNavigationItemSelectedListener(this)
         information_navi.menu.findItem(R.id.action_title).title = coinInformation
@@ -73,6 +75,7 @@ class InformationActivity : AppCompatActivity(),
     override fun changeUI() {
         myBundle = Bundle()
         myBundle.putString("symbol", coinInformation)
+        myBundle.putString("xbt", intent.getStringExtra("xbt"))
         myBundle.putSerializable("data",intent.getSerializableExtra("data")as CoinInfo)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
@@ -192,6 +195,7 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun moveToMain() {
+        inforContext = null
         info_on = true
         finish()
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity)
@@ -248,5 +252,13 @@ class InformationActivity : AppCompatActivity(),
             )
         )
 
+    }
+
+    fun setXBT(str:String){
+        (fragmentList[0] as MainFragment).setXBT(str)
+    }
+
+    fun setPrice(str:String){
+        (fragmentList[0] as MainFragment).setPrice(str)
     }
 }

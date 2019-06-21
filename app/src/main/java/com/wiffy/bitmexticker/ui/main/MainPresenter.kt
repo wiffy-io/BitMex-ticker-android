@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.model.BitMEX_soket
@@ -23,6 +24,8 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     private var initCoin = ArrayList<CoinInfo>()
     private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
+    private var actSymbol:String? =null
+
     override fun getCoin(str:String) = Thread(Runnable {
         try {
             val getServer = str.split(":")
@@ -84,7 +87,8 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     }
 
     private fun socketCallback(it: String) {
-
+        var fuckSymbol:String? = null
+        var priceM:String? = null
         for (i in 0 until initCoin.size) {
             var tmpSymbol = initCoin[i].Symbol.toString()
             try {
@@ -94,17 +98,20 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
                 if (tableName == "tradeBin1m") {
                     val data = jsonContact.getJSONArray("data").getJSONObject(0)
                     val symbol = data.getString("symbol")
+                    fuckSymbol = symbol
                     if (symbol == tmpSymbol) {
                         socket.send_msg_filter("unsubscribe", "tradeBin1m", tmpSymbol)
                         socket.send_msg_filter("subscribe", "trade", tmpSymbol)
 
                         val price = data.getDouble("close")
                         initCoin[i].price = changeValue(price)
+                        priceM = changeValue(price)
                         initCoin[i].before_p = "n"
                     }
                 } else if (tableName == "trade") {
                     val data = jsonContact.getJSONArray("data").getJSONObject(0)
                     val symbol = data.getString("symbol")
+                    fuckSymbol = symbol
                     if (symbol == tmpSymbol) {
                         val price = data.getDouble("price")
                         val before = initCoin[i].price ?: "0"
@@ -114,15 +121,28 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
                             initCoin[i].before_p = "r"
                         }
                         initCoin[i].price = changeValue(price)
+                        priceM = changeValue(price)
                         mView.changeRecent("$symbol : ${changeValue(price)}")
                     }
                 }
+
             } catch (e: Exception) {
+            }
+
+        }
+        if(Util.inforContext != null){
+            Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
+            if(fuckSymbol == actSymbol){
+                mView.tossSymbol(priceM!!)
+            }
+            if(fuckSymbol == "XBTUSD"){
+                mView.tossXBT(priceM!!)
             }
         }
         mView.updateRecycler(initCoin)
         mView.stopLoading()
     }
+
 
     override fun setSystemLanguage() {
         Handler(Looper.getMainLooper()).post {
@@ -143,5 +163,9 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
             }
             mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
         }
+    }
+
+    override fun setSymbol(str: String?) {
+        actSymbol = str
     }
 }
