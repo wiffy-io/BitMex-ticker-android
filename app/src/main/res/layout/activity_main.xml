@@ -76,7 +76,7 @@
             <RelativeLayout
                     android:layout_below="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/BTC_r">
 
                 <TextView
@@ -89,6 +89,33 @@
                         android:textSize="18sp"
                         android:id="@+id/BTC"
                         android:layout_marginStart="15dp"/>
+
+                <TextView
+                        android:id="@+id/Symbol_"
+                        android:layout_below="@+id/BTC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="명칭"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/myBlue"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+                <TextView
+                        android:id="@+id/price_"
+                        android:layout_below="@+id/BTC"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="가격"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/myBlue"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="5dp"/>
 
 
             </RelativeLayout>
