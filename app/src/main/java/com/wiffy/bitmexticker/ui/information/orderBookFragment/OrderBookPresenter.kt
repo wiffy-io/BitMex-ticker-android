@@ -1,5 +1,6 @@
 package com.wiffy.bitmexticker.ui.information.orderBookFragment
 
+import android.util.Log
 import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.model.BitMEX_soket
 import org.json.JSONObject
@@ -42,33 +43,35 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     }
 
     private fun socket_callback(it: String) {
-        arr = ArrayList()
-        try{
-            val jsonContact =JSONObject(it)
-            val data =jsonContact.getJSONArray("data")
-            val bids = data.getJSONObject(0).getJSONArray("bids")
-            val asks =data.getJSONObject(0).getJSONArray("asks")
 
-            for(x in asks.length()-1 downTo  0)
-            {
-                arr.add(OrderBook_info(
-                    asks.getJSONArray(x)[1].toString(),
-                    changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
-                    null))
+        if (it.contains("data")){
+            arr = ArrayList()
+            try{
+                val jsonContact =JSONObject(it)
+                val data =jsonContact.getJSONArray("data")
+                val bids = data.getJSONObject(0).getJSONArray("bids")
+                val asks =data.getJSONObject(0).getJSONArray("asks")
+
+                for(x in asks.length()-1 downTo  0)
+                {
+                    arr.add(OrderBook_info(
+                        asks.getJSONArray(x)[1].toString(),
+                        changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
+                        null))
+                }
+                for(x in 0 until bids.length())
+                {
+                    arr.add(OrderBook_info(
+                        null,
+                        changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
+                        bids.getJSONArray(x)[1].toString()))
+                }
+                mView.update_recycler(arr)
+                mView.stop_loading()
+            }catch (e:Exception){
+                e.printStackTrace()
             }
-            for(x in 0 until bids.length())
-            {
-                arr.add(OrderBook_info(
-                    null,
-                    changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
-                    bids.getJSONArray(x)[1].toString()))
-            }
-        }catch (e:Exception){
-            e.printStackTrace()
         }
-        mView.update_recycler(arr)
-        mView.stop_loading()
     }
-
 
 }
