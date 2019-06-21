@@ -81,11 +81,11 @@
 
 
                 <TextView
+                        android:layout_alignParentTop="true"
                         android:id="@+id/Symbol_"
-                        android:layout_below="@+id/BTC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="명칭"
+                        android:text="@string/Symbol"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/myBlue"
                         android:textStyle="bold"
@@ -98,7 +98,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="가격"
+                        android:text="@string/Price"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/myBlue"
                         android:textStyle="bold"

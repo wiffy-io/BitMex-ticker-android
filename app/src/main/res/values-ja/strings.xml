@@ -47,6 +47,7 @@
     <string name="agreementContext">この情報を提供するにあたり、私はこのアプリケーションには法的責任がないことに同意します。</string>
     <string name="UserSettings">ユーザー設定</string>
     <string name="LightTheme">軽いテーマ</string>
+    <string name="Symbol">名称</string>
 
 
 </resources>

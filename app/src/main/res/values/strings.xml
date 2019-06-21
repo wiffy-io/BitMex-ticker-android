@@ -13,6 +13,9 @@
     <string name="Recent_Trades">Recent Trades</string>
     <string name="OK">OK</string>
     <string name="CANCEL">Cancel</string>
+    <string name="Symbol">Symbol</string>
+
+
 
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
