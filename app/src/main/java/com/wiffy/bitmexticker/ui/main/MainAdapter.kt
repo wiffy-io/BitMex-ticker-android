@@ -90,6 +90,7 @@ class MainAdapter(
         info_on = false
         val bundle = Bundle()
         bundle.putString("information", str)
+        bundle.putString("xbt", items[0].price)
         bundle.putSerializable("data", item)
         mView.moveToInformation(bundle)
     }

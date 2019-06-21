@@ -31,6 +31,10 @@ class MainFragment : Fragment(), MainContract.View {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
 
         symbol = (arguments?.getSerializable("data") as CoinInfo).Symbol
+        setPrice((arguments?.getSerializable("data") as CoinInfo).price!!)
+        setXBT(arguments?.getString("xbt")!!)
+
+
         mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
         mPresenter.init()
         mPresenter.initParse()
@@ -75,15 +79,15 @@ class MainFragment : Fragment(), MainContract.View {
     fun setXBT(str:String){
         if(!symbol?.contains("USD")!! && xbtPrice != "0"){
             var aa = str.toDouble() * xbtPrice.toDouble()
-            sub_price.text = changeValue(aa)
+            myView.sub_price.text = changeValue(aa)
         }
     }
 
     fun setPrice(str:String){
         if(symbol?.contains("USD")!!){
-            sub_price.text = str
+            myView.sub_price.text = str
         }
         xbtPrice = str
-        main_price.text = str
+        myView.main_price.text = str
     }
 }

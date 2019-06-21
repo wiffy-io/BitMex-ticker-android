@@ -75,6 +75,7 @@ class InformationActivity : AppCompatActivity(),
     override fun changeUI() {
         myBundle = Bundle()
         myBundle.putString("symbol", coinInformation)
+        myBundle.putString("xbt", intent.getStringExtra("xbt"))
         myBundle.putSerializable("data",intent.getSerializableExtra("data")as CoinInfo)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())

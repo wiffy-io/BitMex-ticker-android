@@ -13,7 +13,7 @@ import java.lang.Thread.sleep
 import java.net.URL
 
 
-class MainPresenter(act: MainContract.View, data:CoinInfo?) : MainContract.Presenter {
+class MainPresenter(act: MainContract.View, data: CoinInfo?) : MainContract.Presenter {
 
 
     private val mView = act
@@ -59,33 +59,30 @@ class MainPresenter(act: MainContract.View, data:CoinInfo?) : MainContract.Prese
 
     override fun initParse() {
         mThread = Thread(Runnable {
-            var coinbaseText: String
-            var bitstampText: String
+            while (flag) {
 
-            try {
-                while (flag) {
-                    coinbaseText = URL(coinbaseURL).readText()
-                    bitstampText = URL(bitstampURL).readText()
-
-                    val jsonCoinbase = JSONObject(coinbaseText).getDouble("price")
-                    val jsonBitstamp = JSONObject(bitstampText).getDouble("last")
-
-                    //Log.d("asdf","$jsonBitstamp or $jsonCoinbase")
-
-                    mView.parseUI(String.format("%.2f", jsonCoinbase), String.format("%.2f", jsonBitstamp))
-                    sleep(1000)
+                val jsonCoinbase = try {
+                    changeValue(JSONObject(URL(coinbaseURL).readText()).getDouble("price"))
+                } catch (e: Exception) {
+                    "No Data"
                 }
-            } catch (e: Exception) {
-                flag = false
-                Log.d("asdf", "exception")
+                val jsonBitstamp = try {
+                    changeValue(JSONObject(URL(bitstampURL).readText()).getDouble("last"))
+                } catch (e: Exception) {
+                    "No Data"
+                }
+
+                mView.parseUI(jsonCoinbase, jsonBitstamp)
+                sleep(1000)
             }
+
         })
         mThread.start()
     }
 
 
     override fun removeFlag() {
-        Log.d("asdf","thread interrupted")
+        Log.d("asdf", "thread interrupted")
         flag = false
     }
 }
