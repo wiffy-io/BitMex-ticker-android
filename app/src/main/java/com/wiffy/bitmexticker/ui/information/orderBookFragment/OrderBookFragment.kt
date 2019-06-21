@@ -90,4 +90,8 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
         }
     }
 
+    override fun changeRecent(str:String){
+        myView.orderbook_view.text = str
+    }
+
 }

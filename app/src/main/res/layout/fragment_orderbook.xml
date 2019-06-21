@@ -16,7 +16,7 @@
             android:textColor="@color/myBlue"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="@string/Sell_example"
+            android:text="---"
     />
     <RelativeLayout
             android:id="@+id/orderbook_large"
