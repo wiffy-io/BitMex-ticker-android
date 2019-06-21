@@ -27,7 +27,7 @@
     </style>
 
     <style name="light_dialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
-        <item name="android:background">@color/light_table_out</item>
+        <item name="android:background">@color/WHITE</item>
     </style>
 
     <style name="dialog" parent="Theme.AppCompat.Dialog">

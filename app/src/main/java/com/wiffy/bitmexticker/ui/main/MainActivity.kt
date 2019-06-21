@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun changeUI() {
-
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -140,7 +139,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         bgc.setCardBackgroundColor(ContextCompat.getColor(applicationContext, getTableIn()))
         trd_info.setTextColor(ContextCompat.getColorStateList(applicationContext, darkAndLight()))
         BTC_r.background = resources.getDrawable(getTableIn())
-        BTC.setTextColor(resources.getColor(com.wiffy.bitmexticker.extension.getTitle()))
+        Symbol_.setTextColor(resources.getColor(getTitle2()))
+        price_.setTextColor(resources.getColor(getTitle2()))
     }
 
     override fun changeRecent(str: String) {

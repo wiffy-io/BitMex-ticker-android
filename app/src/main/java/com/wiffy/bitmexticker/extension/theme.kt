@@ -134,7 +134,7 @@ fun settingButton(): Int {
 
 fun getDialog(): Int {
     return if (Util.dark_theme) {
-        R.style.dark_dialog
+        R.style.light_dialog
     } else {
         R.style.light_dialog
     }
