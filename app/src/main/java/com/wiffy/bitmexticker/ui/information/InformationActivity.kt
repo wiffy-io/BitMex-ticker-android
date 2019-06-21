@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,6 +22,7 @@ import com.wiffy.bitmexticker.ui.information.mainFragment.MainFragment
 import com.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
 import com.wiffy.bitmexticker.ui.information.orderBookFragment.OrderBookFragment
 import kotlinx.android.synthetic.main.activity_information.*
+import java.lang.Exception
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 
@@ -255,10 +258,16 @@ class InformationActivity : AppCompatActivity(),
     }
 
     fun setXBT(str:String){
-        (fragmentList[0] as MainFragment).setXBT(str)
+        Handler(Looper.getMainLooper()).post{
+            if(fragmentList[0] != null)
+                (fragmentList[0] as MainFragment).setXBT(str)
+        }
     }
 
     fun setPrice(str:String){
-        (fragmentList[0] as MainFragment).setPrice(str)
+        Handler(Looper.getMainLooper()).post{
+            if(fragmentList[0] != null)
+                (fragmentList[0] as MainFragment).setPrice(str)
+        }
     }
 }

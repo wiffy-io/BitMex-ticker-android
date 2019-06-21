@@ -131,7 +131,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
 
         }
         if(Util.inforContext != null){
-            Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
+            //Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
             if(fuckSymbol == actSymbol){
                 mView.tossSymbol(priceM!!)
             }
