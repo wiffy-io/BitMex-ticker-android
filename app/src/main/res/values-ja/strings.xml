@@ -15,7 +15,7 @@
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
-    <string name="addmin_mail">iveinvalue@gmail.com</string>
+    <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">com.pale_cosmos.helu</string>
 
 
@@ -43,8 +43,10 @@
     <string name="Bid">買収</string>
     <string name="OK">はい</string>
     <string name="CANCEL">いいえ</string>
-    <string name="Argument">情報提供契約</string>
-    <string name="argumentContext">この情報を提供するにあたり、私はこのアプリケーションには法的責任がないことに同意します。</string>
+    <string name="Agreement">情報提供契約</string>
+    <string name="agreementContext">この情報を提供するにあたり、私はこのアプリケーションには法的責任がないことに同意します。</string>
+    <string name="UserSettings">ユーザー設定</string>
+    <string name="LightTheme">軽いテーマ</string>
 
 
 </resources>

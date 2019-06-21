@@ -13,7 +13,7 @@
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
-    <string name="addmin_mail">iveinvalue@gmail.com</string>
+    <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">com.pale_cosmos.helu</string>
 
 
@@ -42,10 +42,12 @@
     <string name="Bid">Bid</string>
     <string name="OK">OK</string>
     <string name="CANCEL">Cancel</string>
-    <string name="Argument">Information providing agreement</string>
-    <string name="argumentContext">In providing this information, I agree that this application has no legal
+    <string name="Agreement">Information providing agreement</string>
+    <string name="agreementContext">In providing this information, I agree that this application has no legal
         responsibility.
     </string>
+    <string name="UserSettings">User settings</string>
+    <string name="LightTheme">Light Theme</string>
 
 
 </resources>

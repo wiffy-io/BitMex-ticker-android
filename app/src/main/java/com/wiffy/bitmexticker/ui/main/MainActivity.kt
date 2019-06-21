@@ -85,8 +85,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     private fun agreement() {
         if (!Util.sharedPreferences.getBoolean("agreement", false)) {
             val builder = AlertDialog.Builder(this, getDialog())
-            builder.setTitle(R.string.Argument)
-            builder.setMessage(R.string.argumentContext)
+            builder.setTitle(R.string.Agreement)
+            builder.setMessage(R.string.agreementContext)
             builder.setPositiveButton("OK") { _, _ ->
                 Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
             }

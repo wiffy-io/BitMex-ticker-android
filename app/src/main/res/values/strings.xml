@@ -2,8 +2,8 @@
     <string name="app_name">BitMEX Ticker</string>
     <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
-    <string name="Argument">Information providing agreement</string>
-    <string name="argumentContext">In providing this information, I agree that this application has no legal responsibility.</string>
+    <string name="Agreement">Information providing agreement</string>
+    <string name="agreementContext">In providing this information, I agree that this application has no legal responsibility.</string>
 
     <string name="InternetCheck">Check your internet connection.</string>
 
@@ -17,10 +17,11 @@
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="version">1.0.0(1)</string>
-    <string name="addmin_mail">iveinvalue@gmail.com</string>
+    <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">com.pale_cosmos.helu</string>
 
-
+    <string name="LightTheme">Light Theme</string>
+    <string name="UserSettings">User settings</string>
     <string name="Setting_title">Setting</string>
     <string name="Info">Info</string>
     <string name="OpenSource">OpenSource</string>
