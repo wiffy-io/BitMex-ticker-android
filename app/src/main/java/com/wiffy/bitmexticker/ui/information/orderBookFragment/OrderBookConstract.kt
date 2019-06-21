@@ -7,6 +7,7 @@ interface OrderBookConstract {
         fun set_recycler()
         fun start_loading()
         fun stop_loading()
+        fun changeRecent(str:String)
     }
     interface Presenter{
         fun init()
