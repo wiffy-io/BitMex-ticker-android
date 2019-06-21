@@ -70,7 +70,7 @@ class MainPresenter(act: MainContract.View, data:CoinInfo?) : MainContract.Prese
                     val jsonCoinbase = JSONObject(coinbaseText).getDouble("price")
                     val jsonBitstamp = JSONObject(bitstampText).getDouble("last")
 
-                    Log.d("asdf","$jsonBitstamp or $jsonCoinbase")
+                    //Log.d("asdf","$jsonBitstamp or $jsonCoinbase")
 
                     mView.parseUI(String.format("%.2f", jsonCoinbase), String.format("%.2f", jsonBitstamp))
                     sleep(1000)

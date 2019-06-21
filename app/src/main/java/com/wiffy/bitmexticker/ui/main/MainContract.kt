@@ -17,6 +17,8 @@ interface MainContract {
         fun startLoading()
         fun stopLoading()
         fun checkLoading():Boolean
+        fun tossSymbol(symbol:String)
+        fun tossXBT(xbt:String)
     }
     interface Presenter{
         fun changeUI()
@@ -24,5 +26,6 @@ interface MainContract {
         fun getCoin(str:String)
         fun socketReconnect()
         fun setSystemLanguage()
+        fun setSymbol(str:String?)
     }
 }

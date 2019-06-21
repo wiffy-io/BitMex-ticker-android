@@ -1,7 +1,8 @@
-package com.wiffy.bitmexticker.ui.splash
+package com.wiffy.bitmexticker.bin
 
 import android.content.Context
 import android.os.AsyncTask
+import com.wiffy.bitmexticker.ui.splash.SplashContract
 import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL

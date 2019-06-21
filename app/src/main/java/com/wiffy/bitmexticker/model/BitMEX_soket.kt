@@ -2,6 +2,7 @@ package com.wiffy.bitmexticker.model
 
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
+import java.io.Serializable
 import java.lang.Exception
 import java.net.URI
 

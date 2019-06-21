@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.LocaleList
+import com.wiffy.bitmexticker.ui.information.InformationActivity
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -15,6 +16,7 @@ class Util {
         //static으로 다크테마인지 라이트테마인지 저장
         var dark_theme: Boolean = true
         var global: String? = "en"
+        var inforContext: InformationActivity? = null
 
         lateinit var sharedPreferences: SharedPreferences
         lateinit var sharedPreferences_editor: SharedPreferences.Editor
@@ -34,7 +36,7 @@ class Util {
         }
 
         @JvmStatic
-        fun wrap(context: Context?, language: String?):ContextWrapper? {
+        fun wrap(context: Context?, language: String?): ContextWrapper? {
             val configuration = context?.resources?.configuration
             val newLocale = Locale(language)
 
@@ -43,10 +45,10 @@ class Util {
                 val localeList = LocaleList(newLocale)
                 LocaleList.setDefault(localeList)
 
-            }else{
+            } else {
                 configuration?.setLocale(newLocale)
             }
-            return ContextWrapper( context?.createConfigurationContext(configuration!!))
+            return ContextWrapper(context?.createConfigurationContext(configuration!!))
         }
     }
 

@@ -13,20 +13,24 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.wiffy.bitmexticker.R
+import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.extension.getTableOut
 import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment(), MainContract.View {
 
     lateinit var myView: View
     lateinit var mPresenter: MainPresenter
+    var symbol:String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
 
+        symbol = (arguments?.getSerializable("data") as CoinInfo).Symbol
         mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
         mPresenter.init()
         mPresenter.initParse()
@@ -64,5 +68,22 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onDetach() {
         mPresenter.removeFlag()
         super.onDetach()
+    }
+
+    private var xbtPrice:String = "0"
+
+    fun setXBT(str:String){
+        if(!symbol?.contains("USD")!! && xbtPrice != "0"){
+            var aa = str.toDouble() * xbtPrice.toDouble()
+            sub_price.text = changeValue(aa)
+        }
+    }
+
+    fun setPrice(str:String){
+        if(symbol?.contains("USD")!!){
+            sub_price.text = str
+        }
+        xbtPrice = str
+        main_price.text = str
     }
 }

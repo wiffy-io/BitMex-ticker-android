@@ -27,6 +27,7 @@ import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.*
+import com.wiffy.bitmexticker.model.Util.Companion.inforContext
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -161,6 +162,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun moveToInformation(bundle: Bundle) {
+        mPresenter.setSymbol(bundle.getString("information",""))
         var intents = Intent(this@MainActivity, InformationActivity::class.java)
         intents.putExtras(bundle)
         startActivity(intents)
@@ -212,5 +214,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             )
         )
 
+    }
+
+    override fun tossSymbol(symbol: String) {
+        (inforContext as InformationActivity).setPrice(symbol)
+    }
+
+    override fun tossXBT(xbt: String) {
+        (inforContext as InformationActivity).setXBT(xbt)
     }
 }
