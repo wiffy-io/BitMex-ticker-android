@@ -27,7 +27,7 @@ import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.extension.*
-import com.wiffy.bitmexticker.model.Util.Companion.inforContext
+import com.wiffy.bitmexticker.model.Util.Companion.infoContext
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -217,10 +217,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun tossSymbol(symbol: String) {
-        (inforContext as InformationActivity).setPrice(symbol)
+        (infoContext as InformationActivity).setPrice(symbol)
     }
 
     override fun tossXBT(xbt: String) {
-        (inforContext as InformationActivity).setXBT(xbt)
+        (infoContext as InformationActivity).setXBT(xbt)
     }
 }

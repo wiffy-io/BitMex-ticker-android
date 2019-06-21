@@ -4,17 +4,14 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import com.wiffy.bitmexticker.extension.changeValue
-import com.wiffy.bitmexticker.model.BitMEX_soket
 import com.wiffy.bitmexticker.model.CoinInfo
 import com.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
 import java.lang.Exception
-import java.net.URI
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -131,7 +128,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
             }
 
         }
-        if(Util.inforContext != null){
+        if(Util.infoContext != null){
             //Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
             if(fuckSymbol == actSymbol){
                 mView.tossSymbol(priceM!!)

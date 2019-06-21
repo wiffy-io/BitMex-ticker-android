@@ -41,10 +41,10 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         Handler(mainLooper).post {
             Toasty.warning(
                 applicationContext,
-                applicationContext.getString(R.string.InternetCheck),
+                resources.getString(R.string.InternetCheck),
                 Toast.LENGTH_SHORT,
                 true
-            ).show();
+            ).show()
             finish()
         }
     }
