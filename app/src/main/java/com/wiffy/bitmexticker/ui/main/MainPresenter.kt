@@ -40,20 +40,9 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     override fun changeUI() {
         mView.changeUI()
         setSystemLanguage()
-        val listenerTheme = View.OnClickListener {
-            Util.dark_theme = Util.dark_theme xor true
-            mView.changeUI()
-            Util.sharedPreferences_editor.putBoolean(
-                "mode",
-                Util.dark_theme
-            ).apply()
-
-            mView.updateRecyclerTheme()
-        }
         val listenerSetting = View.OnClickListener {
             mView.moveToSetting()
         }
-        mView.addBrightnessListener(listenerTheme)
         mView.addSettingActivityChangeListener(listenerSetting)
     }
 

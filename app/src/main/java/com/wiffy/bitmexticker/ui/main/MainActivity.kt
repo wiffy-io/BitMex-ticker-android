@@ -31,13 +31,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
-
-
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     lateinit var mPresenter: MainPresenter
     var myAdapter: MainAdapter? = null
+    var myPagerAdapter: ViewPagerAdapter? = null
     var builder: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +59,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         strings.add("안녕 난 최고")
         strings.add("안녕 너도 최고")
         strings.add("안녕 우리는 최고")
-        viewPager.adapter = ViewPagerAdapter(strings, applicationContext, this)
+        myPagerAdapter = ViewPagerAdapter(strings, applicationContext, this)
+        viewPager.adapter = myPagerAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val newHandler = Handler()
         var currentPage = 0
@@ -74,11 +73,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
 
         val mTimer = Timer()
-        mTimer.schedule(object:TimerTask(){
+        mTimer.schedule(object : TimerTask() {
             override fun run() {
                 newHandler.post(update)
             }
-        },550,3300) //3.3초마다 550의 속도로 바뀜
+        }, 550, 3300) //3.3초마다 550의 속도로 바뀜
         //test
     }
 
@@ -100,6 +99,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onResume() {
         super.onResume()
+        changeUI()
+        updateRecyclerTheme()
+        myPagerAdapter?.updateTheme()
         mPresenter.socketReconnect()
     }
 
@@ -133,7 +135,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
-        brightness_main.setImageResource(getBrightness())
         toolbar_main.background = resources.getDrawable(getNavi())
         parent_main.background = resources.getDrawable(getTableOut())
         bgc.setCardBackgroundColor(ContextCompat.getColor(applicationContext, getTableIn()))
@@ -146,9 +147,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         trd_info.text = str
     }
 
-    override fun addBrightnessListener(listener: View.OnClickListener) {
-        brightness_main.setOnClickListener(listener)
-    }
 
     override fun addSettingActivityChangeListener(listener: View.OnClickListener) {
         setting_main.setOnClickListener(listener)

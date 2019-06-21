@@ -7,7 +7,6 @@ import com.wiffy.bitmexticker.model.CoinInfo
 interface MainContract {
     interface View{
         fun changeUI()
-        fun addBrightnessListener(listener:android.view.View.OnClickListener)
         fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
         fun moveToSetting()
         fun setRecycler(init_coin:ArrayList<CoinInfo>)
