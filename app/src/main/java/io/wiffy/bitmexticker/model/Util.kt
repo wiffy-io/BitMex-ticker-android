@@ -14,7 +14,7 @@ class Util {
 
     companion object {
         //static으로 다크테마인지 라이트테마인지 저장
-        var dark_theme: Boolean = true
+        var dark_theme: Boolean = false
         var global: String? = "en"
         var infoContext: InformationActivity? = null
 
