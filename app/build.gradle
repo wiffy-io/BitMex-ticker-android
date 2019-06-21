@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.wiffy.bitmexticker"
+        applicationId "io.wiffy.bitmexticker"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
