@@ -1,5 +1,6 @@
 package com.wiffy.bitmexticker.extension
 
+import android.graphics.Color
 import com.wiffy.bitmexticker.R
 import com.wiffy.bitmexticker.model.Util
 
@@ -28,13 +29,13 @@ fun getTableOut(): Int {
     }
 }
 
-//fun getTableOutParsed(): Int {
-//    return if (Util.dark_theme) {
-//        Color.parseColor("#082335")
-//    } else {
-//        Color.parseColor("#efeff3")
-//    }
-//}
+fun getTableOutParsed(): Int {
+    return if (Util.dark_theme) {
+        Color.parseColor("#082335")
+    } else {
+        Color.parseColor("#efeff3")
+    }
+}
 
 fun getTitle(): Int {
     return if (Util.dark_theme) {

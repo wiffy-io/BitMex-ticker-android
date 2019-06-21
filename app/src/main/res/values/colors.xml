@@ -20,7 +20,13 @@
 
     <color name="red">#E6C84646</color> <!--Light_title2-->
     <color name="green">#E646AA46</color> <!--Light_title2-->
+    <color name="red_tr">#1AC84646</color> <!--Light_title2-->
+    <color name="green_tr">#1A46AA46</color> <!--Light_title2-->
     <color name="normal">#E6808080</color> <!--Light_title2-->
+
+    <color name="cardBack">#333B7AD2</color>
+
+    <color name="cardText">#4b78cc</color>
 
     <color name="dark_table_in_click">#33808080</color>
     <color name="light_table_in_click">#1A121F30</color>

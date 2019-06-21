@@ -111,6 +111,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/bitstamp_ppap"
                 android:layout_toRightOf="@+id/bitstamp_p"
                 android:layout_marginStart="8dp"
                 app:cardBackgroundColor="#333B7AD2"
@@ -129,11 +130,12 @@
                     android:textColor="#4B78CC"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:text="+0.10%"/>
+                    android:text="--"/>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/coinbase_ppap"
                 android:layout_toRightOf="@+id/coinbase_p"
                 android:layout_marginStart="8dp"
                 app:cardBackgroundColor="#333B7AD2"
@@ -152,7 +154,7 @@
                     android:textColor="#4B78CC"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:text="+0.10%"/>
+                    android:text="--"/>
 
         </androidx.cardview.widget.CardView>
 

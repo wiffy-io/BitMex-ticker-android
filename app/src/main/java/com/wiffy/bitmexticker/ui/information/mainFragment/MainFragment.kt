@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -18,10 +16,9 @@ import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.extension.getTableOut
 import com.wiffy.bitmexticker.extension.getTitle2
 import com.wiffy.bitmexticker.model.CoinInfo
-import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.dark_theme
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import java.lang.Exception
 
 class MainFragment : Fragment(), MainContract.View {
 
@@ -70,16 +67,16 @@ class MainFragment : Fragment(), MainContract.View {
         Handler(Looper.getMainLooper()).post {
             if (bitstamp != "No Data") {
                 (myView.bitstamp_p[0] as TextView).text = bitstamp
-                myView.bitstamp_pp.text = make_pre(bitstamp) + " %"
+                myView.bitstamp_pp.text = make_pre(bitstamp, true) + " %"
             }
 
             if (coinbase != "No Data") {
                 (myView.coinbase_p[0] as TextView).text = coinbase
-                myView.coinbase_pp.text = make_pre(coinbase) + " %"
+                myView.coinbase_pp.text = make_pre(coinbase, false) + " %"
             }
 
         }
-//        Log.d("asdf", coinbase)
+
     }
 
     override fun onDetach() {
@@ -88,8 +85,95 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
 
-    private fun make_pre(str: String): String {
-        return String.format("%.2f", ((xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100))
+    private fun make_pre(str: String, flag: Boolean): String {
+        val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
+        if(context ==null)return ""
+
+        return try {
+            when {
+                value < 0 -> {
+                    if (flag) {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.bitstamp_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.red_tr
+                                )
+                            )
+                            myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.red))
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.coinbase_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.red_tr
+                                )
+                            )
+                            myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.red))
+                        }
+                    }
+                    String.format("%.2f", value)
+                }
+                value == 0.00 -> {
+                    if (flag) {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.bitstamp_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.cardBack
+                                )
+                            )
+                            myView.bitstamp_pp.setTextColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.cardText
+                                )
+                            )
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.coinbase_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.cardBack
+                                )
+                            )
+                            myView.coinbase_pp.setTextColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.cardText
+                                )
+                            )
+                        }
+                    }
+                    String.format("%.2f", value)
+                }
+                else -> {
+                    if (flag) {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.bitstamp_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(context!!, R.color.green_tr)
+                            )
+                            myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            myView.coinbase_ppap.setCardBackgroundColor(
+                                ContextCompat.getColorStateList(
+                                    context!!,
+                                    R.color.green_tr
+                                )
+                            )
+                            myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                        }
+                    }
+                    "+${String.format("%.2f", value)}"
+                }
+            }
+        } catch (e: Exception) {
+            ""
+        }
     }
 
     private var xbtPrice: String = "0"
