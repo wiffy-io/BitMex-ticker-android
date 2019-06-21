@@ -3,9 +3,16 @@ package com.wiffy.bitmexticker.model
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import java.net.URI
 import java.util.*
 
 class MyApplication : Application() {
+
+    companion object {
+        @JvmStatic
+        var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+    }
+
     @SuppressLint("CommitPrefEdits")
     override fun onCreate() {
         super.onCreate()

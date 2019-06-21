@@ -3,13 +3,14 @@ package com.wiffy.bitmexticker.ui.information.orderBookFragment
 import android.util.Log
 import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.model.BitMEX_soket
+import com.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URI
 
 class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookConstract.Presenter {
 
-    lateinit var socket:BitMEX_soket
+    //lateinit var socket:BitMEX_soket
     val mView = act
     lateinit var arr:ArrayList<OrderBook_info>
     private var symbol = sym
@@ -21,7 +22,7 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     }
 
     override fun start_ws() {
-        socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+        //socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
         make_socket()
     }
 
@@ -30,21 +31,22 @@ class OrderBookPresenter(act: OrderBookConstract.View,sym:String) : OrderBookCon
     }
 
     private fun make_socket() {
+        socket.send_msg_filter("subscribe", "orderBook10", symbol)
         socket.set_callback {
             socket_callback(it)
         }
-        socket.set_sendback {
-            socket.send_msg_filter("subscribe", "orderBook10", symbol)
-        }
-        socket.set_closeback {
-            socket.close()
-        }
-        socket.connect()
+//        socket.set_sendback {
+////
+////        }
+//        socket.set_closeback {
+//            socket.close()
+//        }
+        //socket.connect()
     }
 
     private fun socket_callback(it: String) {
 
-        if (it.contains("data")){
+        if (it.contains("data") && it.contains("orderBook10")){
             arr = ArrayList()
             try{
                 val jsonContact =JSONObject(it)

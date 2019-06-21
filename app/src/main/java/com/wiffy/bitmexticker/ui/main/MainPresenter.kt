@@ -9,6 +9,7 @@ import android.view.View
 import com.wiffy.bitmexticker.extension.changeValue
 import com.wiffy.bitmexticker.model.BitMEX_soket
 import com.wiffy.bitmexticker.model.CoinInfo
+import com.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import com.wiffy.bitmexticker.model.Util
 import com.wiffy.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
@@ -22,7 +23,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
 
     private val mView = act
     private var initCoin = ArrayList<CoinInfo>()
-    private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+    //private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
     private var actSymbol:String? =null
 
