@@ -9,10 +9,10 @@
         app:cardElevation="0dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardBackgroundColor="@color/light_table_out">
+        app:cardBackgroundColor="@color/WHITE">
 
     <RelativeLayout
-            android:backgroundTint="#ffffffff"
+            android:backgroundTint="@color/WHITE"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <TextView
