@@ -121,6 +121,7 @@
                 android:layout_alignBottom="@+id/bitstamp_p">
 
             <TextView
+                    android:id="@+id/bitstamp_pp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -143,6 +144,7 @@
                 android:layout_alignBottom="@+id/coinbase_p">
 
             <TextView
+                    android:id="@+id/coinbase_pp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

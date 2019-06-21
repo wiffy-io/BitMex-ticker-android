@@ -68,10 +68,16 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun parseUI(coinbase: String, bitstamp: String) {
         Handler(Looper.getMainLooper()).post {
-            if (bitstamp != "No Data")
+            if (bitstamp != "No Data") {
                 (myView.bitstamp_p[0] as TextView).text = bitstamp
-            if (coinbase != "No Data")
+                myView.bitstamp_pp.text = make_pre(bitstamp) + " %"
+            }
+
+            if (coinbase != "No Data") {
                 (myView.coinbase_p[0] as TextView).text = coinbase
+                myView.coinbase_pp.text = make_pre(coinbase) + " %"
+            }
+
         }
 //        Log.d("asdf", coinbase)
     }
@@ -79,6 +85,11 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onDetach() {
         mPresenter.removeFlag()
         super.onDetach()
+    }
+
+
+    private fun make_pre(str: String): String {
+        return String.format("%.2f", ((xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100))
     }
 
     private var xbtPrice: String = "0"
