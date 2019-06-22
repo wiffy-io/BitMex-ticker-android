@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="WHITE">#FFFFFF</color>
     <color name="BLACK">#000000</color>
+    <color name="gray">#33ffffff</color>
 
     <color name="dark_navi">#16263F</color> <!--Dark_navi-->
     <color name="dark_table_out">#081723</color> <!--Dark_table_out-->

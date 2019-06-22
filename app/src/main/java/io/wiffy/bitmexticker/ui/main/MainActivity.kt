@@ -13,8 +13,8 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util
@@ -60,9 +60,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         strings.add("안녕 난 최고")
         strings.add("안녕 너도 최고")
         strings.add("안녕 우리는 최고")
-        myPagerAdapter = ViewPagerAdapter(strings, applicationContext, this)
+        myPagerAdapter = ViewPagerAdapter(supportFragmentManager,3,strings)
         viewPager.adapter = myPagerAdapter
-        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val newHandler = Handler()
         var currentPage = 0
         val update = Runnable {
@@ -79,6 +78,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 newHandler.post(update)
             }
         }, 550, 3300) //3.3초마다 550의 속도로 바뀜
+        tabLayout.setupWithViewPager(viewPager,true)
         //test
     }
 
@@ -132,6 +132,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun changeUI() {
+        tabLayout.setBackgroundResource(getNavi())
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())

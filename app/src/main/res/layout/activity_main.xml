@@ -60,7 +60,7 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.viewpager2.widget.ViewPager2
+            <androidx.viewpager.widget.ViewPager
                     android:background="@color/WHITE"
                     android:layout_below="@id/bgc"
                     android:id="@+id/viewPager"
@@ -68,13 +68,19 @@
                     android:layout_height="80dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginStart="0dp"
-                    android:layout_marginEnd="0dp">
-
-            </androidx.viewpager2.widget.ViewPager2>
+                    android:layout_marginEnd="0dp"/>
+            <com.google.android.material.tabs.TabLayout
+                    android:layout_below="@id/viewPager"
+                    android:id="@+id/tabLayout"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
 
             <RelativeLayout
-                    android:layout_below="@+id/viewPager"
+                    android:layout_below="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/BTC_r">
