@@ -15,12 +15,12 @@ import kotlinx.android.synthetic.main.noti_fragment3.view.*
 import java.lang.Exception
 
 
-class ViewPagerAdapter(fm: FragmentManager, private var mNumOfTabs: Int, var arr: ArrayList<String>) :
+class ViewPagerAdapter(fm: FragmentManager, private var mNumOfTabs: Int,arr: ArrayList<String>) :
     FragmentStatePagerAdapter(fm) {
 
-    val frag1: TabFragment1 = TabFragment1(arr[0])
-    val frag2: TabFragment2 = TabFragment2(arr[1])
-    val frag3: TabFragment3 = TabFragment3(arr[2])
+    private val frag1: TabFragment1 = TabFragment1(arr[0])
+    private val frag2: TabFragment2 = TabFragment2(arr[1])
+    private val frag3: TabFragment3 = TabFragment3(arr[2])
 
     override fun getItem(position: Int): Fragment {
         return when (position) {

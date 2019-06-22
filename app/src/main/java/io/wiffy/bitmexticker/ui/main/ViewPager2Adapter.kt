@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.getNavi
 import kotlinx.android.synthetic.main.adapter_pager.view.*
-
+//
+//
+// Unused !!
+//
+//
 class ViewPager2Adapter(
     var items: ArrayList<String>,
     var context: Context,
