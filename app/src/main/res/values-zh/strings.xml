@@ -49,6 +49,7 @@
     <string name="UserSettings">用户设置</string>
     <string name="LightTheme">轻主题</string>
     <string name="Symbol">主题</string>
+    <string name="NotificationWarning">它会更新</string>
 
 
 </resources>

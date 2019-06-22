@@ -3,6 +3,7 @@ package io.wiffy.bitmexticker.ui.information.orderBookFragment
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
@@ -50,8 +51,8 @@ class OrderBookAdapter(
     inner class OrderBookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_orderbook, parent, false)
     ) {
-        val ask = itemView.ask
-        val price = itemView.price
-        val bid = itemView.bid
+        val ask:TextView = itemView.ask
+        val price:TextView = itemView.price
+        val bid:TextView = itemView.bid
     }
 }

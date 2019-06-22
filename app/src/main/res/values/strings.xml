@@ -6,6 +6,7 @@
     <string name="agreementContext">In providing this information, I agree that this application has no legal responsibility.</string>
 
     <string name="InternetCheck">Check your internet connection.</string>
+    <string name="NotificationWarning">" It will be updated."</string>
 
     <!-- Main String Sources -->
     <string name="tem">---</string>

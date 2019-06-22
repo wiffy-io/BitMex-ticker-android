@@ -18,13 +18,13 @@ import io.wiffy.bitmexticker.extension.getTitle2
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import kotlinx.android.synthetic.main.fragment_main.view.*
-import java.lang.Exception
 
 class MainFragment : Fragment(), MainContract.View {
 
     lateinit var myView: View
     lateinit var mPresenter: MainPresenter
     var symbol: String? = null
+    private var xbtPrice: String = "0"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
@@ -64,19 +64,120 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun parseUI(coinbase: String, bitstamp: String) {
-        Handler(Looper.getMainLooper()).post {
-            if (bitstamp != "No Data") {
-                (myView.bitstamp_p[0] as TextView).text = bitstamp
-                myView.bitstamp_pp.text = make_pre(bitstamp, true) + " %"
+        if (context != null)
+            Handler(Looper.getMainLooper()).post {
+                if (bitstamp != "No Data") {
+                    (myView.bitstamp_p[0] as TextView).text = bitstamp
+//                myView.bitstamp_pp.text = make_pre(bitstamp, true) + " %"
+                    myView.bitstamp_pp.text = parseBitstamp(bitstamp)
+                }
+
+                if (coinbase != "No Data") {
+                    (myView.coinbase_p[0] as TextView).text = coinbase
+//                myView.coinbase_pp.text = make_pre(coinbase, false) + " %"
+                    myView.coinbase_pp.text = parseCoinbase(coinbase)
+                }
+
             }
 
-            if (coinbase != "No Data") {
-                (myView.coinbase_p[0] as TextView).text = coinbase
-                myView.coinbase_pp.text = make_pre(coinbase, false) + " %"
+    }
+
+    override fun parseBitstamp(str: String): String {
+        val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
+        return when {
+            value > 0 -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.bitstamp_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(context!!, R.color.green_tr)
+                    )
+                    myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                }
+                "+${String.format("%.2f", value)}%"
             }
 
+            value == 0.0 -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.bitstamp_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.cardBack
+                        )
+                    )
+                    myView.bitstamp_pp.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.cardText
+                        )
+                    )
+                }
+                "${String.format("%.2f", value)}%"
+            }
+            else -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.bitstamp_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.red_tr
+                        )
+                    )
+                    myView.bitstamp_pp.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!, R.color.red
+                        )
+                    )
+                }
+                "${String.format("%.2f", value)}%"
+            }
         }
+    }
 
+    override fun parseCoinbase(str: String): String {
+        val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
+        return when {
+            value > 0 -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.coinbase_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(context!!, R.color.green_tr)
+                    )
+                    myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                }
+                "+${String.format("%.2f", value)}%"
+            }
+
+            value == 0.0 -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.coinbase_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.cardBack
+                        )
+                    )
+                    myView.coinbase_pp.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.cardText
+                        )
+                    )
+                }
+                "${String.format("%.2f", value)}%"
+            }
+            else -> {
+                Handler(Looper.getMainLooper()).post {
+                    myView.coinbase_ppap.setCardBackgroundColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.red_tr
+                        )
+                    )
+                    myView.coinbase_pp.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!, R.color.red
+                        )
+                    )
+                }
+                "${String.format("%.2f", value)}%"
+            }
+        }
     }
 
     override fun onDetach() {
@@ -85,105 +186,14 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
 
-    private fun make_pre(str: String, flag: Boolean): String {
-        val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
-        if(context ==null)return ""
-
-        return try {
-            when {
-                value < 0 -> {
-                    if (flag) {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.bitstamp_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.red_tr
-                                )
-                            )
-                            myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.red))
-                        }
-                    } else {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.coinbase_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.red_tr
-                                )
-                            )
-                            myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.red))
-                        }
-                    }
-                    String.format("%.2f", value)
-                }
-                value == 0.00 -> {
-                    if (flag) {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.bitstamp_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.cardBack
-                                )
-                            )
-                            myView.bitstamp_pp.setTextColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.cardText
-                                )
-                            )
-                        }
-                    } else {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.coinbase_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.cardBack
-                                )
-                            )
-                            myView.coinbase_pp.setTextColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.cardText
-                                )
-                            )
-                        }
-                    }
-                    String.format("%.2f", value)
-                }
-                else -> {
-                    if (flag) {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.bitstamp_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(context!!, R.color.green_tr)
-                            )
-                            myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
-                        }
-                    } else {
-                        Handler(Looper.getMainLooper()).post {
-                            myView.coinbase_ppap.setCardBackgroundColor(
-                                ContextCompat.getColorStateList(
-                                    context!!,
-                                    R.color.green_tr
-                                )
-                            )
-                            myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
-                        }
-                    }
-                    "+${String.format("%.2f", value)}"
-                }
-            }
-        } catch (e: Exception) {
-            ""
-        }
-    }
-
-    private var xbtPrice: String = "0"
-
+    @SuppressLint("SetTextI18n")
     fun setXBT(str: String) {
         if (!symbol?.contains("USD")!! && xbtPrice != "0") {
             myView.sub_price.text = "≈ ${changeValue(str.toDouble() * xbtPrice.toDouble())} $"
         }
     }
 
+    @SuppressLint("SetTextI18n")
     fun setPrice(str: String) {
         if (symbol?.contains("USD")!!) {
             myView.sub_price.text = "≈ $str $"

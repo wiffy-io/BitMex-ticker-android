@@ -48,6 +48,7 @@
     <string name="UserSettings">ユーザー設定</string>
     <string name="LightTheme">軽いテーマ</string>
     <string name="Symbol">名称</string>
+    <string name="NotificationWarning">アップデートされる予定です</string>
 
 
 </resources>

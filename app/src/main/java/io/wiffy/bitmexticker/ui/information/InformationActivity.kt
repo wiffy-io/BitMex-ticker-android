@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.CoinInfo
@@ -53,6 +55,19 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Notification Update시 삭제
+        if (item.itemId == R.id.action_notification) {
+            Handler(mainLooper).post {
+                Toasty.warning(
+                    applicationContext,
+                    resources.getString(R.string.NotificationWarning),
+                    Toast.LENGTH_SHORT,
+                    true
+                ).show()
+            }
+            return false
+        }
+//
         if (catches != item.itemId) {
             when (item.itemId) {
                 R.id.action_title -> {
@@ -78,7 +93,7 @@ class InformationActivity : AppCompatActivity(),
         myBundle = Bundle()
         myBundle.putString("symbol", coinInformation)
         myBundle.putString("xbt", intent.getStringExtra("xbt"))
-        myBundle.putSerializable("data",intent.getSerializableExtra("data")as CoinInfo)
+        myBundle.putSerializable("data", intent.getSerializableExtra("data") as CoinInfo)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -190,6 +205,7 @@ class InformationActivity : AppCompatActivity(),
             }
         }
         supportFragmentManager.beginTransaction().show(fragmentList[3]!!).commit()
+
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {
@@ -256,16 +272,16 @@ class InformationActivity : AppCompatActivity(),
 
     }
 
-    fun setXBT(str:String){
-        Handler(Looper.getMainLooper()).post{
-            if(fragmentList[0] != null)
+    fun setXBT(str: String) {
+        Handler(Looper.getMainLooper()).post {
+            if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setXBT(str)
         }
     }
 
-    fun setPrice(str:String){
-        Handler(Looper.getMainLooper()).post{
-            if(fragmentList[0] != null)
+    fun setPrice(str: String) {
+        Handler(Looper.getMainLooper()).post {
+            if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setPrice(str)
         }
     }

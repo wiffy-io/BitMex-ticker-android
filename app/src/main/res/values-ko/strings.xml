@@ -49,6 +49,7 @@
     <string name="UserSettings">사용자 설정</string>
     <string name="LightTheme">라이트 테마</string>
     <string name="Symbol">명칭</string>
+    <string name="NotificationWarning">업데이트 예정입니다.</string>
 
 
 </resources>
