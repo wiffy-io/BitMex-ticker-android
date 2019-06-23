@@ -1,18 +1,15 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
-import android.util.Log
 import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.model.BitMEX_soket
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import org.json.JSONObject
 import java.lang.Exception
-import java.net.URI
 
 class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
 
     //lateinit var socket:BitMEX_soket
     val mView = act
-    lateinit var arr: ArrayList<OrderBook_info>
+    lateinit var arr: ArrayList<OrderBookInfo>
     private var symbol = sym
 
     override fun init() {
@@ -56,7 +53,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
 
                 for (x in asks.length() - 1 downTo 0) {
                     arr.add(
-                        OrderBook_info(
+                        OrderBookInfo(
                             asks.getJSONArray(x)[1].toString(),
                             changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
                             null
@@ -65,7 +62,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                 }
                 for (x in 0 until bids.length()) {
                     arr.add(
-                        OrderBook_info(
+                        OrderBookInfo(
                             null,
                             changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
                             bids.getJSONArray(x)[1].toString()

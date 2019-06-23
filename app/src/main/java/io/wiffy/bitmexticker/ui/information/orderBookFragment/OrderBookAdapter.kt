@@ -13,7 +13,7 @@ import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_orderbook.view.*
 
 class OrderBookAdapter(
-    var items: ArrayList<OrderBook_info>,
+    var items: ArrayList<OrderBookInfo>,
     var context: Context,
     var activity: InformationActivity
 ) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>() {
@@ -43,7 +43,7 @@ class OrderBookAdapter(
             }
         }
     }
-    fun update(list: ArrayList<OrderBook_info>) {
+    fun update(list: ArrayList<OrderBookInfo>) {
         items = list
         notifyDataSetChanged()
     }

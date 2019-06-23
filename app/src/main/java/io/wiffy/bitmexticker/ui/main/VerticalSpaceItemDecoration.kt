@@ -10,7 +10,7 @@ class VerticalSpaceItemDecoration (verticalSpaceHeight : Int): RecyclerView.Item
 
     override fun getItemOffsets(outRect : Rect, view : View, parent: RecyclerView, state : RecyclerView.State ) {
         // 마지막 아이템이 아닌 경우, 공백 추가
-        if(parent.getChildAdapterPosition(view) != parent.getAdapter()!!.getItemCount() -1 ){
+        if(parent.getChildAdapterPosition(view) != parent.adapter!!.itemCount -1 ){
             outRect.bottom = verticalSpaceHeight;
         }
     }

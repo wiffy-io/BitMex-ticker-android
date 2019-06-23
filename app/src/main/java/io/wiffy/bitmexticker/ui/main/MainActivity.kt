@@ -1,14 +1,12 @@
 package io.wiffy.bitmexticker.ui.main
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -49,36 +47,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         adView.loadAd(adRequest)
 
         agreement()
-        init_loading()
+        initLoading()
         mPresenter = MainPresenter(this, applicationContext)
         mPresenter.changeUI()
         mPresenter.getCoin(intent.getStringExtra("symbol"))
 
-        //test
-        val strings = ArrayList<String>()
-        strings.add("안녕 난 최고")
-        strings.add("안녕 너도 최고")
-        strings.add("안녕 우리는 최고")
-        myPagerAdapter = ViewPagerAdapter(supportFragmentManager,3,strings)
-        viewPager.adapter = myPagerAdapter
-        val newHandler = Handler()
-        var currentPage = 0
-        val update = Runnable {
-            if (currentPage == strings.size) currentPage = 0
-            Handler(Looper.getMainLooper()).post {
-                viewPager.setCurrentItem(currentPage, true)
-                currentPage += 1
-            }
-        }
 
-        val mTimer = Timer()
-        mTimer.schedule(object : TimerTask() {
-            override fun run() {
-                newHandler.post(update)
-            }
-        }, 550, 3300) //3.3초마다 550의 속도로 바뀜
-        tabLayout.setupWithViewPager(viewPager,true)
-        //test
     }
 
     private fun agreement() {
@@ -162,7 +136,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun moveToInformation(bundle: Bundle) {
-        mPresenter.setSymbol(bundle.getString("information",""))
+        mPresenter.setSymbol(bundle.getString("information", ""))
         var intents = Intent(this@MainActivity, InformationActivity::class.java)
         intents.putExtras(bundle)
         startActivity(intents)
@@ -184,15 +158,62 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 }
             }
         }
+
+
     }
 
-    fun init_loading() {
+    private fun initLoading() {
         builder = Dialog(this)
         builder?.setContentView(R.layout.waitting_dialog)
         builder?.setCancelable(false)
         builder?.setCanceledOnTouchOutside(false)
         builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         startLoading()
+
+
+    }
+
+    override fun initViewPager() {
+        ViewPagerTask().execute()
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    inner class ViewPagerTask : AsyncTask<Void, Void, ArrayList<String>>() {
+
+        override fun doInBackground(vararg params: Void?): ArrayList<String> =
+            try {
+                mPresenter.parseViewPager()
+            } catch (e: Exception) {
+                temp()
+            }
+
+        override fun onPostExecute(result: ArrayList<String>?) {
+            myPagerAdapter = ViewPagerAdapter(supportFragmentManager, result?.size ?: 1, result ?: temp())
+            viewPager.adapter = myPagerAdapter
+            val newHandler = Handler()
+            var currentPage = 0
+            val update = Runnable {
+                if (currentPage == result?.size) currentPage = 0
+                Handler(Looper.getMainLooper()).post {
+                    viewPager.setCurrentItem(currentPage, true)
+                    currentPage += 1
+                }
+            }
+
+            val mTimer = Timer()
+            mTimer.schedule(object : TimerTask() {
+                override fun run() {
+                    newHandler.post(update)
+                }
+            }, 550, 3300) //3.3초마다 550의 속도로 바뀜
+            tabLayout.setupWithViewPager(viewPager, true)
+        }
+
+        private fun temp(): ArrayList<String> {
+            val x = ArrayList<String>()
+            x.add("Error")
+            return x
+        }
     }
 
     override fun stopLoading() {

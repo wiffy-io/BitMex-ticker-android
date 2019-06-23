@@ -19,6 +19,7 @@ interface MainContract {
         fun checkLoading():Boolean
         fun tossSymbol(symbol:String)
         fun tossXBT(xbt:String)
+        fun initViewPager()
     }
     interface Presenter{
         fun changeUI()
@@ -27,5 +28,6 @@ interface MainContract {
         fun socketReconnect()
         fun setSystemLanguage()
         fun setSymbol(str:String?)
+        fun parseViewPager():ArrayList<String>
     }
 }

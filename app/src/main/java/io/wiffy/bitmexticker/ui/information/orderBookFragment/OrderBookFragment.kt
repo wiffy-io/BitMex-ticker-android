@@ -62,7 +62,7 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
         }
     }
 
-    override fun update_recycler(arr: ArrayList<OrderBook_info>) {
+    override fun update_recycler(arr: ArrayList<OrderBookInfo>) {
         Handler(context?.mainLooper).post {
             myAdapter?.update(arr)
         }

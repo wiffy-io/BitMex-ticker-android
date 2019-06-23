@@ -12,6 +12,7 @@ import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.is_close
 import org.json.JSONObject
 import java.lang.Exception
+import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -22,11 +23,12 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     private var initCoin = ArrayList<CoinInfo>()
     //private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
-    private var actSymbol:String? =null
+    private var actSymbol: String? = null
+    private val coinMarket = "https://api.coinmarketcap.com/v1/global/"
 
-    override fun getCoin(str:String) = Thread(Runnable {
+    override fun getCoin(str: String) = Thread(Runnable {
         try {
-            val getServer = str.split(":")
+            val getServer = str.split("\n")
             for (i in 0 until getServer.size) {
                 val tmp = getServer[i].split(",")
 
@@ -38,6 +40,22 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
         }
     }).start()
 
+    override fun parseViewPager(): ArrayList<String> {
+        val list = ArrayList<String>()
+        try {
+            list.add(
+                "BTC Dominance : ${JSONObject(URL(coinMarket).readText()).getString("bitcoin_percentage_of_market_cap")}%"
+            )
+            list.add(
+                "Market Cap : ${changeValue(JSONObject(URL(coinMarket).readText()).getString("total_market_cap_usd").toDouble())}"
+            )
+        } catch (e: Exception) {
+            list.add("error")
+        }
+        return list
+    }
+
+
     override fun changeUI() {
         mView.changeUI()
         setSystemLanguage()
@@ -45,6 +63,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
             mView.moveToSetting()
         }
         mView.addSettingActivityChangeListener(listenerSetting)
+        mView.initViewPager()
     }
 
     override fun makeSocket() {
@@ -85,10 +104,10 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
     }
 
     private fun socketCallback(it: String) {
-        var fuckSymbol:String? = null
-        var priceM:String? = null
+        var fuckSymbol: String? = null
+        var priceM: String? = null
         for (i in 0 until initCoin.size) {
-            var tmpSymbol = initCoin[i].Symbol.toString()
+            val tmpSymbol = initCoin[i].Symbol.toString()
             try {
                 val jsonContact = JSONObject(it)
 
@@ -128,12 +147,12 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
             }
 
         }
-        if(Util.infoContext != null){
+        if (Util.infoContext != null) {
             //Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
-            if(fuckSymbol == actSymbol){
+            if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
             }
-            if(fuckSymbol == "XBTUSD"){
+            if (fuckSymbol == "XBTUSD") {
                 mView.tossXBT(priceM!!)
             }
         }
