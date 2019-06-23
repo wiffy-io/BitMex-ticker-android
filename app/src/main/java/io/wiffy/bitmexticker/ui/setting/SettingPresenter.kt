@@ -23,7 +23,13 @@ class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContrac
             })
         mView.addSettingButtonListener(
             listener1 = View.OnClickListener {
-                mView.startDialog("OpenSource", mView.getStringTo(R.string.open_source))
+                mView.startDialog(
+                    "OpenSource",
+                    "Java-WebSocket\nhttps://github.com/TooTallNate/Java-WebSocket\n\n" +
+                            "Toasty\nhttps://github.com/GrenderG/Toasty\n\n" +
+                            "AVLoadingIndicatorView\nhttps://github.com/81813780/AVLoadingIndicatorView\n\n" +
+                            "Jsoup\nhttps://github.com/jhy/jsoup"
+                )
             },
             listener2 = View.OnClickListener {
                 mView.startDialog("Version", mView.getStringTo(R.string.version))
