@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.main
+package io.wiffy.bitmexticker.ui.main.tool
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.getNavi
+import io.wiffy.bitmexticker.ui.main.MainContract
 import kotlinx.android.synthetic.main.adapter_pager.view.*
 //
 //

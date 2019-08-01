@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.main
+package io.wiffy.bitmexticker.ui.main.tool
 
 import android.os.Bundle
 import android.view.LayoutInflater

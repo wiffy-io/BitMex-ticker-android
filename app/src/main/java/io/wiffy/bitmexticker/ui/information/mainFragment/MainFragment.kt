@@ -68,13 +68,11 @@ class MainFragment : Fragment(), MainContract.View {
             Handler(Looper.getMainLooper()).post {
                 if (bitstamp != "No Data") {
                     (myView.bitstamp_p[0] as TextView).text = bitstamp
-//                myView.bitstamp_pp.text = make_pre(bitstamp, true) + " %"
                     myView.bitstamp_pp.text = parseBitstamp(bitstamp)
                 }
 
                 if (coinbase != "No Data") {
                     (myView.coinbase_p[0] as TextView).text = coinbase
-//                myView.coinbase_pp.text = make_pre(coinbase, false) + " %"
                     myView.coinbase_pp.text = parseCoinbase(coinbase)
                 }
 

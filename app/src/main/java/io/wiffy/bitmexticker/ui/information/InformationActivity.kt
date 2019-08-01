@@ -36,6 +36,7 @@ class InformationActivity : AppCompatActivity(),
     private lateinit var coinInformation: String
     private lateinit var myBundle: Bundle
     private lateinit var fragmentList: ArrayList<Fragment?>
+    private lateinit var coinInformationStructure: CoinInfo
 
     private var catches = 0
 
@@ -46,6 +47,7 @@ class InformationActivity : AppCompatActivity(),
         supportActionBar?.hide()
         infoContext = this
         coinInformation = intent.getStringExtra("information")
+        coinInformationStructure = intent.getSerializableExtra("data") as CoinInfo
         information_navi.setOnNavigationItemSelectedListener(this)
         information_navi.menu.findItem(R.id.action_title).title = coinInformation
         mPresenter = InformationPresenter(this, applicationContext)
@@ -55,19 +57,7 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Notification Update시 삭제
-        if (item.itemId == R.id.action_notification) {
-            Handler(mainLooper).post {
-                Toasty.warning(
-                    applicationContext,
-                    resources.getString(R.string.NotificationWarning),
-                    Toast.LENGTH_SHORT,
-                    true
-                ).show()
-            }
-            return false
-        }
-//
+
         if (catches != item.itemId) {
             when (item.itemId) {
                 R.id.action_title -> {
@@ -80,7 +70,19 @@ class InformationActivity : AppCompatActivity(),
                     viewFragmentDetails()
                 }
                 R.id.action_notification -> {
-                    viewFragmentNotification()
+                    if (coinInformationStructure.Symbol == "XBTUSD")
+                        viewFragmentNotification()
+                    else {
+                        Handler(mainLooper).post {
+                            Toasty.warning(
+                                applicationContext,
+                                resources.getString(R.string.NotificationWarning),
+                                Toast.LENGTH_SHORT,
+                                true
+                            ).show()
+                        }
+                        return false
+                    }
                 }
             }
             catches = item.itemId
@@ -93,7 +95,7 @@ class InformationActivity : AppCompatActivity(),
         myBundle = Bundle()
         myBundle.putString("symbol", coinInformation)
         myBundle.putString("xbt", intent.getStringExtra("xbt"))
-        myBundle.putSerializable("data", intent.getSerializableExtra("data") as CoinInfo)
+        myBundle.putSerializable("data", coinInformationStructure)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -276,6 +278,9 @@ class InformationActivity : AppCompatActivity(),
         Handler(Looper.getMainLooper()).post {
             if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setXBT(str)
+            if(fragmentList[3] !=null)
+                (fragmentList[3] as NotificationFragment).setXBT(str)
+
         }
     }
 
@@ -283,6 +288,8 @@ class InformationActivity : AppCompatActivity(),
         Handler(Looper.getMainLooper()).post {
             if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setPrice(str)
+            if(fragmentList[3] !=null)
+                (fragmentList[3] as NotificationFragment).setPrice(str)
         }
     }
 }

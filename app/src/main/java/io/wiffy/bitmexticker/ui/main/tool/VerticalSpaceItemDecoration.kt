@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.main
+package io.wiffy.bitmexticker.ui.main.tool
 
 import android.graphics.Rect
 import android.view.View
@@ -13,4 +13,3 @@ class VerticalSpaceItemDecoration (private var verticalSpaceHeight: Int): Recycl
         }
     }
 }
-

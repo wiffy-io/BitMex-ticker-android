@@ -25,6 +25,8 @@ import com.google.android.gms.ads.AdRequest
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.Util.Companion.infoContext
+import io.wiffy.bitmexticker.ui.main.tool.VerticalSpaceItemDecoration
+import io.wiffy.bitmexticker.ui.main.tool.ViewPagerAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -185,7 +187,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             }
 
         override fun onPostExecute(result: ArrayList<String>?) {
-            myPagerAdapter = ViewPagerAdapter(supportFragmentManager, result?.size ?: 1, result ?: temp())
+            myPagerAdapter = ViewPagerAdapter(
+                supportFragmentManager,
+                result?.size ?: 1,
+                result ?: temp()
+            )
             viewPager.adapter = myPagerAdapter
             val newHandler = Handler()
             var currentPage = 0
