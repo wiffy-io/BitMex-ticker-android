@@ -103,7 +103,7 @@ class NotificationFragment : Fragment(), NotificationContract.View {
                 }
                 if (flag) {
                     var numbers = text
-                    if (numbers.toInt().toDouble() == numbers.toDouble())
+                    if (numbers.toDouble().toInt().toDouble() == numbers.toDouble())
                         numbers = numbers.toInt().toString()
                     val mformat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
                     NotificationTask(this, NotificationInfo(symbol, numbers, mformat)).execute()
