@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import io.wiffy.bitmexticker.R
@@ -43,7 +42,7 @@ class FirebaseMessagingService:FirebaseMessagingService() {
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
                 val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                notificationManager.notify(9999, notificationBuilder.build())
+                notificationManager.notify(9998, notificationBuilder.build())
             }
             else -> {
                 val notificationBuilder = NotificationCompat.Builder(this, "")
