@@ -12,6 +12,7 @@ import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.extension.getFragmentBackground
 import io.wiffy.bitmexticker.extension.getTableOut
 import io.wiffy.bitmexticker.model.CoinInfo
+import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import kotlinx.android.synthetic.main.fragment_notification.view.*
 
 class NotificationFragment : Fragment(), NotificationContract.View {
@@ -34,8 +35,16 @@ class NotificationFragment : Fragment(), NotificationContract.View {
 
     override fun changeUI() {
         myView.notis.background = resources.getDrawable(getTableOut())
-        parentLayout = myView.findViewById(R.id.mains)
+        parentLayout = myView.findViewById(R.id.notis)
         parentLayout.background = resources.getDrawable(getFragmentBackground())
+
+        val color =
+        if (dark_theme) { resources.getDrawable(R.drawable.chart_border_dark)
+        } else {
+           resources.getDrawable(R.drawable.chart_border_light)
+        }
+        myView.noti_view.background = color
+        myView.noti_context.background = color
     }
 
     @SuppressLint("SetTextI18n")

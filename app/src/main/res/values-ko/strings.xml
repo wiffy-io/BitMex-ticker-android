@@ -50,6 +50,7 @@
     <string name="LightTheme">라이트 테마</string>
     <string name="Symbol">명칭</string>
     <string name="NotificationWarning">업데이트 예정입니다.</string>
+    <string name="alert">알림 추가</string>
 
 
 </resources>

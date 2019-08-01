@@ -49,6 +49,6 @@
     <string name="Ask">Ask</string>
     <string name="Price">Price</string>
     <string name="Bid">Bid</string>
-
+    <string name="alert">Add alert</string>
 
 </resources>

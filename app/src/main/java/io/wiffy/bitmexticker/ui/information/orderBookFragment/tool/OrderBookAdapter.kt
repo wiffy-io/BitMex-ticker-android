@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.information.orderBookFragment
+package io.wiffy.bitmexticker.ui.information.orderBookFragment.tool
 
 import android.content.Context
 import android.view.LayoutInflater

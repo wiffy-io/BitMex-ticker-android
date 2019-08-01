@@ -50,6 +50,7 @@
     <string name="LightTheme">轻主题</string>
     <string name="Symbol">主题</string>
     <string name="NotificationWarning">它会更新</string>
+    <string name="alert">加法</string>
 
 
 </resources>

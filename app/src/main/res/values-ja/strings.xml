@@ -49,6 +49,7 @@
     <string name="LightTheme">軽いテーマ</string>
     <string name="Symbol">名称</string>
     <string name="NotificationWarning">アップデートされる予定です</string>
+    <string name="alert">追加</string>
 
 
 </resources>

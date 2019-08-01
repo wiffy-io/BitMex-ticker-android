@@ -13,6 +13,8 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.getFragmentBackground
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import io.wiffy.bitmexticker.ui.information.InformationActivity
+import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookAdapter
+import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 import kotlinx.android.synthetic.main.fragment_orderbook.view.*
 import java.lang.Exception
 
@@ -56,7 +58,11 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
 
     override fun set_recycler() {
         Handler(context?.mainLooper).post {
-            myAdapter = OrderBookAdapter(ArrayList(), context!!, activity as InformationActivity)
+            myAdapter = OrderBookAdapter(
+                ArrayList(),
+                context!!,
+                activity as InformationActivity
+            )
             myView.orderbookRecycler.adapter = myAdapter
             myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
         }

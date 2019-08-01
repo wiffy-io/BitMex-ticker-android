@@ -4,7 +4,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/notis">
     <RelativeLayout
-            android:id="@+id/main_view"
+            android:id="@+id/noti_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -20,14 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text = "9999"
+                android:text="9999"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="@color/red"
                 android:id="@+id/noti_price"/>
 
         <TextView
-                android:text = "=9999.0$"
+                android:text="=9999.0$"
                 android:layout_below="@+id/noti_price"
                 android:id="@+id/noti_sub_price"
                 android:layout_alignParentStart="true"
@@ -36,6 +36,72 @@
                 android:gravity="left"
                 android:textSize="18sp"
                 android:textColor="@color/light_title2"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/noti_context"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="0dp"
+            android:layout_below="@+id/noti_view"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp">
+
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cdcd123"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+               android:backgroundTint="@color/myBlue"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:textColor="@color/WHITE"
+                    android:text="@string/alert"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
+
+            <EditText
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toStartOf="@+id/cdcd123"
+                    android:textAlignment="center"
+                    android:hint="9999.9"
+                    android:inputType="number"
+                    android:textColor="@color/BLACK"
+                    android:maxLines="1"
+                    android:id="@+id/texter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/noti_context">
+<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noticycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
     </RelativeLayout>

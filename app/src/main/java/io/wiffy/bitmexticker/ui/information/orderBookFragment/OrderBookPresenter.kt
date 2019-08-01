@@ -2,6 +2,7 @@ package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
+import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 import org.json.JSONObject
 import java.lang.Exception
 

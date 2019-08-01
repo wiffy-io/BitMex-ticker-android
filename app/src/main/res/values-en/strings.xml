@@ -50,6 +50,7 @@
     <string name="LightTheme">Light Theme</string>
     <string name="Symbol">Symbol</string>
     <string name="NotificationWarning">" It will be updated."</string>
+    <string name="alert">Add alert</string>
 
 
 </resources>

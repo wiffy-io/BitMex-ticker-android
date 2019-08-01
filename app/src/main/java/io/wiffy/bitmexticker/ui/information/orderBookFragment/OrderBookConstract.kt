@@ -1,5 +1,7 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
+import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
+
 interface OrderBookConstract {
     interface View{
         fun changeUI()
