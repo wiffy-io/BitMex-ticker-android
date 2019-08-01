@@ -20,6 +20,7 @@ class MyApplication : Application() {
         Util.sharedPreferences_editor = Util.sharedPreferences.edit() // editor를 static으로 선언함으로써 변경을 용이하게함
         Util.global = Util.sharedPreferences
             .getString("global", Locale.ENGLISH.toLanguageTag())
+        Util.noticom = Util.sharedPreferences.getStringSet("noticom",null)
         Util.dark_theme = Util.sharedPreferences.getBoolean("mode", false)
     }
 }

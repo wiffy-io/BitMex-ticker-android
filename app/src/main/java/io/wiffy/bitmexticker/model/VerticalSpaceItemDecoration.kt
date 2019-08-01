@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.main.tool
+package io.wiffy.bitmexticker.model
 
 import android.graphics.Rect
 import android.view.View

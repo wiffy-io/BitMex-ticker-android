@@ -54,6 +54,8 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/cdcd123"
+                android:focusable="true"
+                android:clickable="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
@@ -63,8 +65,6 @@
                 android:layout_height="match_parent">
 
             <TextView
-                    android:focusable="true"
-                    android:clickable="true"
                     android:gravity="center"
                     android:textColor="@color/WHITE"
                     android:text="@string/alert"
@@ -79,9 +79,10 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="20dp"
                     android:layout_toStartOf="@+id/cdcd123"
+                    android:background="@drawable/edittextdrawable"
                     android:textAlignment="center"
                     android:hint="9999.9"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/BLACK"
                     android:maxLines="1"
                     android:id="@+id/texter"
@@ -91,6 +92,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+            android:id="@+id/angimotti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"

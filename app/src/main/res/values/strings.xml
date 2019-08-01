@@ -1,4 +1,5 @@
 <resources>
+    <string name="channel" translatable="false">NOTIFICATIONCHANNEL</string>
     <string name="app_name">BitMEX Ticker</string>
     <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>

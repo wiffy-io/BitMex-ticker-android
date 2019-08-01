@@ -25,7 +25,7 @@ import com.google.android.gms.ads.AdRequest
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.Util.Companion.infoContext
-import io.wiffy.bitmexticker.ui.main.tool.VerticalSpaceItemDecoration
+import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.main.tool.ViewPagerAdapter
 import java.util.*
 import kotlin.collections.ArrayList
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
-            recycler.addItemDecoration(VerticalSpaceItemDecoration(2));
+            recycler.addItemDecoration(VerticalSpaceItemDecoration(2))
         }
         mPresenter.makeSocket()
     }
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun moveToInformation(bundle: Bundle) {
         mPresenter.setSymbol(bundle.getString("information", ""))
-        var intents = Intent(this@MainActivity, InformationActivity::class.java)
+        val intents = Intent(this@MainActivity, InformationActivity::class.java)
         intents.putExtras(bundle)
         startActivity(intents)
         overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)

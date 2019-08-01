@@ -25,6 +25,8 @@ class Util {
         var setting_on: Boolean = true
         var is_close: Boolean = false
 
+        var noticom:Set<String>?=null
+
         @JvmStatic
         fun restartApp(context: Context) {
             context.startActivity(

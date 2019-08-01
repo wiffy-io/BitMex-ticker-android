@@ -27,7 +27,7 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
 
-        init_loading()
+        initLoading()
         val sym = arguments?.getString("symbol")!!
         mPresenter = OrderBookPresenter(this, sym)
         mPresenter.init()
@@ -82,7 +82,7 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
         }
     }
 
-    fun init_loading(){
+    private fun initLoading(){
         builder = Dialog(context)
         builder?.setContentView(R.layout.waitting_dialog)
         builder?.setCancelable(false)
