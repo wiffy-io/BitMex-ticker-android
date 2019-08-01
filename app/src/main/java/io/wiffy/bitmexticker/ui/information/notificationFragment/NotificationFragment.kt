@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,29 +94,32 @@ class NotificationFragment : Fragment(), NotificationContract.View {
             var flag = true
             val text = myView.texter.text.toString()
 
-            for (v in myList) {
-                if (v.value == text) {
-                    flag = false
-                    break
+            try {
+                for (v in myList) {
+                    if (v.value?.toDouble() == text.toDouble()) {
+                        flag = false
+                        break
+                    }
                 }
+                if (flag) {
+                    var numbers = text
+                    if (numbers.toInt().toDouble() == numbers.toDouble())
+                        numbers = numbers.toInt().toString()
+                    val mformat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
+                    NotificationTask(this, NotificationInfo(symbol, numbers, mformat)).execute()
+                } else {
+                    toast("exist value")
+                }
+            } catch (e: Exception) {
+                toast("input type error")
             }
 
-            if (flag)
-                try {
-                    val numbers = text.toDouble()
-                    val mformat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
-                    NotificationTask(this, NotificationInfo(symbol, numbers.toString(), mformat)).execute()
-                } catch (e: Exception) {
-                    toast("input type error")
-                }
-            else {
-                toast("exist value")
-            }
         }
     }
 
 
     fun setList(info: NotificationInfo) {
+        Log.d("asdf", "${info.symbol}_${info.value}")
         myList.add(info)
         Collections.sort(myList, InformationComare())
         myAdapter?.update(myList)
