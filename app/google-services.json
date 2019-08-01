@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "977796478410",
+    "firebase_url": "https://bitmex-fabc0.firebaseio.com",
+    "project_id": "bitmex-fabc0",
+    "storage_bucket": "bitmex-fabc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977796478410:android:7bfc06b2ac6aeea8",
+        "android_client_info": {
+          "package_name": "io.wiffy.bitmexticker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977796478410-p3po12kbiu0gusmrmp0te5bn1li4jvdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH3BBdvZs6fA0eR3Wgi96FYJa9rrdIpZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977796478410-p3po12kbiu0gusmrmp0te5bn1li4jvdd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "977796478410-pmsplgl3i9m4277m8og5qieg27rrsbpu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jungcode.margin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
