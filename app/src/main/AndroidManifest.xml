@@ -38,8 +38,6 @@
         <activity
                 android:name="io.wiffy.bitmexticker.ui.setting.LanguageActivity"
                 android:theme="@style/dialog"/>
-        <activity android:name="io.wiffy.bitmexticker.bin.AgreementActivity"
-                  android:theme="@style/dialog"/>
         <activity android:name="io.wiffy.bitmexticker.ui.splash.LanguageInitActivity"
                   android:theme="@style/dialog"/>
     </application>

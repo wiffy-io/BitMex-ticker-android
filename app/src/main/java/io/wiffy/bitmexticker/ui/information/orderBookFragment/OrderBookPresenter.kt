@@ -7,7 +7,7 @@ import java.lang.Exception
 
 class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
 
-    //lateinit var socket:BitMEX_soket
+    //lateinit var socket:BitmexSocket
     val mView = act
     lateinit var arr: ArrayList<OrderBookInfo>
     private var symbol = sym
@@ -19,7 +19,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
     }
 
     override fun start_ws() {
-        //socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+        //socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
         make_socket()
     }
 

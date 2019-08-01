@@ -117,14 +117,6 @@ fun darkAndLightReverse(): Int {
     }
 }
 
-//fun detailsStateColor(): Int {
-//    return if (Util.dark_theme) {
-//        R.color.details_state_dark
-//    } else {
-//        R.color.details_state_light
-//    }
-//}
-
 fun settingButton(): Int {
     return if (Util.dark_theme) {
         R.drawable.setting_button_dark_r

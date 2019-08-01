@@ -134,10 +134,6 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun startDialog(title: String, context: String) {
-//        val intents = Intent(this@SettingActivity,DialogActivity::class.java)
-//        intents.putExtra("TITLE",title)
-//        intents.putExtra("CONTEXT",context)
-//        startActivity(intents)
         val builder = AlertDialog.Builder(this, getDialog())
         builder.setTitle(title)
         builder.setMessage(context)

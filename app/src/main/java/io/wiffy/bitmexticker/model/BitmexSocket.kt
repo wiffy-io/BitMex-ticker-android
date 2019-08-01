@@ -2,11 +2,10 @@ package io.wiffy.bitmexticker.model
 
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
-import java.io.Serializable
 import java.lang.Exception
 import java.net.URI
 
-class BitMEX_soket(serverUri: URI) : WebSocketClient(serverUri) {
+class BitmexSocket(serverUri: URI) : WebSocketClient(serverUri) {
 
     //var msg:String = ""
     var callback_:(String)->Unit?

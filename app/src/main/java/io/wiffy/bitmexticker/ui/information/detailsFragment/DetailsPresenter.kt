@@ -1,7 +1,6 @@
 package io.wiffy.bitmexticker.ui.information.detailsFragment
 
-class DetailsPresenter(act:DetailsContract.View):DetailsContract.Presenter {
-    val mView = act
+class DetailsPresenter(val mView:DetailsContract.View):DetailsContract.Presenter {
     override fun init() {
         mView.changeUI()
     }

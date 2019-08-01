@@ -7,10 +7,8 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.net.URL
 
-class DetailsTask(act:DetailsContract.View, url:String) : AsyncTask<String, Void, Boolean>() {
+class DetailsTask(val mView:DetailsContract.View, private val mUrl:String) : AsyncTask<String, Void, Boolean>() {
 
-    val mView = act
-    private val mUrl = url
     lateinit var arr: ArrayList<DetailsInfo>
 
     override fun onPreExecute() {

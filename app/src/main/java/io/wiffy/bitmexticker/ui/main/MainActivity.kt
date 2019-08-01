@@ -84,9 +84,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
             recycler.adapter = myAdapter
             recycler.layoutManager = LinearLayoutManager(this)
-            //recycler.addItemDecoration(DividerItemDecoration(applicationContext, 1));
-            //var dividerItemDecoration = DividerItemDecoration(getApplicationContext(),LinearLayoutManager(this).getOrientation());
-            //recycler.addItemDecoration(dividerItemDecoration);
             recycler.addItemDecoration(VerticalSpaceItemDecoration(2));
         }
         mPresenter.makeSocket()

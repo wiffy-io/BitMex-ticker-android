@@ -1,6 +1,5 @@
 package io.wiffy.bitmexticker.ui.setting
 
-import android.view.View
 import android.widget.CompoundButton
 
 

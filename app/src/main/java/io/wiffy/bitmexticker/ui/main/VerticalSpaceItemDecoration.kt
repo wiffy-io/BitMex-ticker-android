@@ -4,9 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class VerticalSpaceItemDecoration (verticalSpaceHeight : Int): RecyclerView.ItemDecoration() {
-
-    private var verticalSpaceHeight = verticalSpaceHeight
+class VerticalSpaceItemDecoration (private var verticalSpaceHeight: Int): RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect : Rect, view : View, parent: RecyclerView, state : RecyclerView.State ) {
         // 마지막 아이템이 아닌 경우, 공백 추가

@@ -73,7 +73,7 @@ class MainAdapter(
 
     private fun actionUp(bg: CardView, price: String, sym: String, data: CoinInfo) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-        if (!price.contains("-")!! && info_on) {
+        if (!price.contains("-") && info_on) {
             click(sym, data)
         }
         istouch = false

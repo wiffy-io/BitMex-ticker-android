@@ -10,7 +10,6 @@ import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.Splash.SplashPresenter
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.ui.main.MainActivity
 import es.dmoral.toasty.Toasty

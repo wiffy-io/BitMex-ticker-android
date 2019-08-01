@@ -10,9 +10,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 import java.util.*
 
-class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContract.Presenter {
-    private val mView = act
-    private val mContext = cnt
+class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) : SettingContract.Presenter {
 
     override fun changeUI() {
         mView.changeUI()
@@ -63,7 +61,7 @@ class SettingPresenter(act: SettingContract.View, cnt: Context) : SettingContrac
 
     override fun setSystemLanguage() {
         Handler(Looper.getMainLooper()).post {
-            var config = Configuration()
+            val config = Configuration()
             config.locale = when (Util.global) {
                 Locale.KOREAN.toLanguageTag() -> {
                     Locale.KOREAN

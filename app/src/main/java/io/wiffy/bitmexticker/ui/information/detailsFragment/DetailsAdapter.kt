@@ -12,7 +12,6 @@ import io.wiffy.bitmexticker.extension.getDialog
 import io.wiffy.bitmexticker.extension.getTitle
 import io.wiffy.bitmexticker.extension.getTitle2
 import io.wiffy.bitmexticker.extension.settingButton
-import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_datails.view.*
 
 class DetailsAdapter(

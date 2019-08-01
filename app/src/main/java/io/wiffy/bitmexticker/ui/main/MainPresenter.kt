@@ -17,11 +17,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainPresenter(act: MainContract.View, con: Context) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, con: Context) : MainContract.Presenter {
 
-    private val mView = act
     private var initCoin = ArrayList<CoinInfo>()
-    //private var socket = BitMEX_soket(URI("wss://www.bitmex.com/realtime"))
+    //private var socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
     private var actSymbol: String? = null
     private val coinMarket = "https://api.coinmarketcap.com/v1/global/"
@@ -163,7 +162,7 @@ class MainPresenter(act: MainContract.View, con: Context) : MainContract.Present
 
     override fun setSystemLanguage() {
         Handler(Looper.getMainLooper()).post {
-            var config = Configuration()
+            val config = Configuration()
             config.locale = when (Util.global) {
                 Locale.KOREAN.toLanguageTag() -> {
                     Locale.KOREAN

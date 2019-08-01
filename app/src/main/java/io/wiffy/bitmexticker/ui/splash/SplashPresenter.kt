@@ -1,16 +1,12 @@
-package io.wiffy.bitmexticker.Splash
+package io.wiffy.bitmexticker.ui.splash
 
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import io.wiffy.bitmexticker.extension.getUrlText
-import io.wiffy.bitmexticker.ui.splash.SplashContract
 import java.net.URL
 
 
-class SplashPresenter(act: SplashContract.View) : SplashContract.Presenter {
-
-    private val mView = act
+class SplashPresenter(private val mView: SplashContract.View) : SplashContract.Presenter {
 
     override fun startPresent() {
         mView.agreement()

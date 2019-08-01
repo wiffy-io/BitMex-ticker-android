@@ -1,24 +1,18 @@
 package io.wiffy.bitmexticker.ui.information.mainFragment
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import org.json.JSONObject
-import org.jsoup.Jsoup
 import java.lang.Exception
 import java.lang.Thread.sleep
 import java.net.URL
 
 
-class MainPresenter(act: MainContract.View, data: CoinInfo?) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) : MainContract.Presenter {
 
-
-    private val mView = act
-    private val mData = data
-    private val mSymbol = data?.Symbol
+    private val mSymbol = mData?.Symbol
     private val coinbaseURL = "https://api.pro.coinbase.com/products/${mData?.parse_str}/ticker"
     private val bitstampURL = "https://www.bitstamp.net/api/v2/ticker/${mData?.chart_symbol}/"
 

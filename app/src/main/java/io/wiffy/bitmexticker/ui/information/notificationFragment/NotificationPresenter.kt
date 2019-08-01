@@ -2,8 +2,7 @@ package io.wiffy.bitmexticker.ui.information.notificationFragment
 
 
 
-class NotificationPresenter(act:NotificationContract.View):NotificationContract.Presenter {
-    private val mView = act
+class NotificationPresenter(private val mView:NotificationContract.View):NotificationContract.Presenter {
 
     override fun init() {
         mView.changeUI()
