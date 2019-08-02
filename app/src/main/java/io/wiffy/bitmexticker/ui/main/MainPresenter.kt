@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.changeValue
@@ -18,7 +19,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainPresenter(private val mView: MainContract.View, val con: Context) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View,  con: Context) : MainContract.Presenter {
 
     private var initCoin = ArrayList<CoinInfo>()
     private val mContext = con
@@ -43,12 +44,12 @@ class MainPresenter(private val mView: MainContract.View, val con: Context) : Ma
         return ArrayList<String>().apply {
             try {
                 add(
-                    "${con.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
+                    "${mContext.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
                         "bitcoin_percentage_of_market_cap"
                     )}%"
                 )
                 add(
-                    "${con.resources.getString(R.string.market)} : ${changeValue(
+                    "${mContext.resources.getString(R.string.market)} : ${changeValue(
                         JSONObject(URL(coinMarket).readText()).getString(
                             "total_market_cap_usd"
                         ).toDouble()

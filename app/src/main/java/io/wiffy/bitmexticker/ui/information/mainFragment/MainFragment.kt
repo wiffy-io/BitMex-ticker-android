@@ -60,7 +60,7 @@ class MainFragment : Fragment(), MainContract.View {
         myView.web_chart.setBackgroundColor(0x01000000)
         myView.web_chart.background = resources.getDrawable(getTableOut())
         myView.web_chart.settings?.javaScriptEnabled = true
-        myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
+        myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "")
     }
 
     override fun parseUI(coinBase: String, bitStamp: String) {

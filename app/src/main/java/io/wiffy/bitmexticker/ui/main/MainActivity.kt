@@ -232,14 +232,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-
         super.attachBaseContext(
             Util.wrap(
                 newBase,
                 Util.global
             )
         )
-
     }
 
     override fun tossSymbol(symbol: String) {
