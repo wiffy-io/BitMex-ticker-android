@@ -28,7 +28,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
 
     private fun makeSocket() {
         socket.sendMSGFilter("subscribe", "orderBook10", symbol)
-        socket.callBack ={
+        socket.set_callback {
             socketCallback(it)
         }
     }

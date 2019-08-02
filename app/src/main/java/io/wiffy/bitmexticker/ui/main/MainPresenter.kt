@@ -40,18 +40,24 @@ class MainPresenter(private val mView: MainContract.View, val con: Context) : Ma
     }).start()
 
     override fun parseViewPager(): ArrayList<String> {
-        val list = ArrayList<String>()
-        try {
-            list.add(
-                "${con.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString("bitcoin_percentage_of_market_cap")}%"
-            )
-            list.add(
-                "${con.resources.getString(R.string.market)} : ${changeValue(JSONObject(URL(coinMarket).readText()).getString("total_market_cap_usd").toDouble())}"
-            )
-        } catch (e: Exception) {
-            list.add("error")
+        return ArrayList<String>().apply {
+            try {
+                add(
+                    "${con.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
+                        "bitcoin_percentage_of_market_cap"
+                    )}%"
+                )
+                add(
+                    "${con.resources.getString(R.string.market)} : ${changeValue(
+                        JSONObject(URL(coinMarket).readText()).getString(
+                            "total_market_cap_usd"
+                        ).toDouble()
+                    )}"
+                )
+            } catch (e: Exception) {
+                add("error")
+            }
         }
-        return list
     }
 
 
@@ -68,14 +74,14 @@ class MainPresenter(private val mView: MainContract.View, val con: Context) : Ma
     override fun makeSocket() {
         with(socket)
         {
-            callBack = {
+            set_callback {
                 socketCallback(it)
             }
-            sendBack ={
+            setSendback {
                 is_close = false
                 socketSubscribe()
             }
-            closeBack ={
+            set_closeback {
                 this.close()
                 mView.changeRecent("---")
                 mView.startLoading()
@@ -88,7 +94,7 @@ class MainPresenter(private val mView: MainContract.View, val con: Context) : Ma
                     }
                 }).start()
             }
-            connect()
+            this.connect()
         }
 
     }
@@ -151,7 +157,6 @@ class MainPresenter(private val mView: MainContract.View, val con: Context) : Ma
 
         }
         if (Util.infoContext != null) {
-            //Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
             if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
             }

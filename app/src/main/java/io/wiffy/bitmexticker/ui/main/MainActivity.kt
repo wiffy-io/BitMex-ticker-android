@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         agreement()
         initLoading()
-        mPresenter = MainPresenter(this, applicationContext).apply {
-            this.changeUI()
-            getCoin(intent.getStringExtra("symbol"))
-        }
+        mPresenter = MainPresenter(this, applicationContext)
+        mPresenter.changeUI()
+        mPresenter.getCoin(intent.getStringExtra("symbol"))
+
     }
 
     private fun agreement() {

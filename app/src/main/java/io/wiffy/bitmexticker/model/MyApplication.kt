@@ -18,10 +18,10 @@ class MyApplication : Application() {
         super.onCreate()
         Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
         with(Util.sharedPreferences) {
-            Util.sharedPreferences_editor = edit()
-            Util.global = getString("global", Locale.ENGLISH.toLanguageTag())
-            Util.noticom = getStringSet("noticom", null)
-            Util.dark_theme = getBoolean("mode", false)
+            Util.sharedPreferences_editor = this.edit()
+            Util.global = this.getString("global", Locale.ENGLISH.toLanguageTag())
+            Util.noticom = this.getStringSet("noticom", null)
+            Util.dark_theme = this.getBoolean("mode", false)
         }
     }
 }

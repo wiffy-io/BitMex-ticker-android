@@ -34,11 +34,11 @@ class MainFragment : Fragment(), MainContract.View {
         setXBT(arguments?.getString("xbt")!!)
 
 
-        mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo).apply {
-            init()
-            initParse()
-            makeChart()
-        }
+        mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
+        mPresenter.init()
+        mPresenter.initParse()
+        mPresenter.makeChart()
+
         return myView
     }
 
