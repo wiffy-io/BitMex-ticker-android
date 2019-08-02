@@ -24,25 +24,24 @@ class LanguageInitActivity : AppCompatActivity() {
         setContentView(R.layout.language_init)
 
         lang_EN2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.ENGLISH.toLanguageTag()).commit()
-            Util.global = Locale.ENGLISH.toLanguageTag()
-            resultOK()
+            onClickListener(Locale.ENGLISH.toLanguageTag())
         }
         lang_KO2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.KOREAN.toLanguageTag()).commit()
-            Util.global = Locale.KOREAN.toLanguageTag()
-            resultOK()
+            onClickListener(Locale.KOREAN.toLanguageTag())
         }
         lang_ZH2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.CHINESE.toLanguageTag()).commit()
-            Util.global = Locale.CHINESE.toLanguageTag()
-            resultOK()
+            onClickListener(Locale.CHINESE.toLanguageTag())
         }
         lang_JA2.setOnClickListener {
-            Util.sharedPreferences_editor.putString("global", Locale.JAPANESE.toLanguageTag()).commit()
-            Util.global = Locale.JAPANESE.toLanguageTag()
-            resultOK()
+            onClickListener(Locale.JAPANESE.toLanguageTag())
         }
+    }
+
+    private fun onClickListener(locale:String)
+    {
+        Util.sharedPreferences_editor.putString("global", locale).commit()
+        Util.global = locale
+        resultOK()
     }
 
     override fun setRequestedOrientation(requestedOrientation: Int) {

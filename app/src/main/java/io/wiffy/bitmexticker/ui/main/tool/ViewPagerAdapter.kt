@@ -26,7 +26,6 @@ class ViewPagerAdapter(fm: FragmentManager, private var mNumOfTabs: Int, arr: Ar
 
     override fun getItem(position: Int): Fragment = fragList[position]
 
-
     override fun getCount(): Int = mNumOfTabs
 
     fun updateTheme() {

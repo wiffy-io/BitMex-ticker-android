@@ -45,30 +45,27 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(getNavi())
-        window.navigationBarColor = resources.getColor(darkAndLightReverse())
-        toolbar_setting.background = resources.getDrawable(getNavi())
-        parent_setting.background = resources.getDrawable(getTableOut())
-        toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
-
-        OpenSource.background = resources.getDrawable(settingButton())
-        Version.background = resources.getDrawable(settingButton())
-        Language.background = resources.getDrawable(settingButton())
-        Review.background = resources.getDrawable(settingButton())
-        Email.background = resources.getDrawable(settingButton())
-        Theme.background = resources.getDrawable(settingButton())
-
-        (Theme[1] as SwitchCompat).isChecked = when (Util.dark_theme) {
-            true -> false
-            false -> true
+        with(resources)
+        {
+            window.statusBarColor = getColor(getNavi())
+            window.navigationBarColor = getColor(darkAndLightReverse())
+            toolbar_setting.background = getDrawable(getNavi())
+            parent_setting.background = getDrawable(getTableOut())
+            toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
+            OpenSource.background = getDrawable(settingButton())
+            Version.background = getDrawable(settingButton())
+            Language.background = getDrawable(settingButton())
+            Review.background = getDrawable(settingButton())
+            Email.background = getDrawable(settingButton())
+            Theme.background = getDrawable(settingButton())
+            (Theme[1] as SwitchCompat).isChecked = Util.dark_theme xor true
+            (OpenSource[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Version[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Language[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Review[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Email[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Theme[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
         }
-
-        (OpenSource[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
-        (Version[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
-        (Language[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
-        (Review[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
-        (Email[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
-        (Theme[0] as TextView).setTextColor(resources.getColor(io.wiffy.bitmexticker.extension.getTitle()))
     }
 
     override fun moveToMain() {
@@ -169,13 +166,11 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     }
 
     override fun attachBaseContext(newBase: Context?) {
-
         super.attachBaseContext(
             Util.wrap(
                 newBase,
                 Util.global
             )
         )
-
     }
 }

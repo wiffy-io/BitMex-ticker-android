@@ -39,7 +39,6 @@ class BitmexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
-        //Log.d("asdf","close")
         closeback.invoke("")
     }
 
@@ -50,11 +49,9 @@ class BitmexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     }
 
     override fun onError(ex: Exception?) {
-        //Log.d("asdf","erroe")
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {
-        //send(msg)
         sendback_.invoke("")
     }
 
