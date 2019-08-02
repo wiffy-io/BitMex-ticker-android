@@ -34,11 +34,11 @@ class MainFragment : Fragment(), MainContract.View {
         setXBT(arguments?.getString("xbt")!!)
 
 
-        mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
-        mPresenter.init()
-        mPresenter.initParse()
-        mPresenter.makeChart()
-
+        mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo).apply {
+            init()
+            initParse()
+            makeChart()
+        }
         return myView
     }
 
@@ -63,24 +63,24 @@ class MainFragment : Fragment(), MainContract.View {
         myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
     }
 
-    override fun parseUI(coinbase: String, bitstamp: String) {
+    override fun parseUI(coinBase: String, bitStamp: String) {
         if (context != null)
             Handler(Looper.getMainLooper()).post {
-                if (bitstamp != "No Data") {
-                    (myView.bitstamp_p[0] as TextView).text = bitstamp
-                    myView.bitstamp_pp.text = parseBitstamp(bitstamp)
+                if (bitStamp != "No Data") {
+                    (myView.bitstamp_p[0] as TextView).text = bitStamp
+                    myView.bitstamp_pp.text = parseBitStamp(bitStamp)
                 }
 
-                if (coinbase != "No Data") {
-                    (myView.coinbase_p[0] as TextView).text = coinbase
-                    myView.coinbase_pp.text = parseCoinbase(coinbase)
+                if (coinBase != "No Data") {
+                    (myView.coinbase_p[0] as TextView).text = coinBase
+                    myView.coinbase_pp.text = parseCoinBase(coinBase)
                 }
 
             }
 
     }
 
-    override fun parseBitstamp(str: String): String {
+    override fun parseBitStamp(str: String): String {
         val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
         return when {
             value > 0 -> {
@@ -129,7 +129,7 @@ class MainFragment : Fragment(), MainContract.View {
         }
     }
 
-    override fun parseCoinbase(str: String): String {
+    override fun parseCoinBase(str: String): String {
         val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
         return when {
             value > 0 -> {

@@ -51,6 +51,8 @@
     <string name="Symbol">Symbol</string>
     <string name="NotificationWarning">" It will be updated."</string>
     <string name="alert">Add alert</string>
+    <string name="dominance">BTC Dominance</string>
+    <string name="market">Market Cap</string>
 
 
 </resources>

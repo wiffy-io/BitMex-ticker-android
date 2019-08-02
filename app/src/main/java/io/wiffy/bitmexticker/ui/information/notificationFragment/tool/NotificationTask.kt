@@ -29,7 +29,6 @@ class NotificationTask(val mView: NotificationFragment, val info: NotificationIn
                 setRequestProperty("Host", "wiffy.io")
             }
 
-            val responseCode = request.responseCode
             val `in` = BufferedReader(InputStreamReader(request.inputStream))
             var inputLine: String? = null
             val response = StringBuffer()

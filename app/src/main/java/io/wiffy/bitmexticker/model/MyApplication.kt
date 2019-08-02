@@ -10,7 +10,7 @@ class MyApplication : Application() {
 
     companion object {
         @JvmStatic
-        var socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
+        var socket = BitMexSocket(URI("wss://www.bitmex.com/realtime"))
     }
 
     @SuppressLint("CommitPrefEdits")

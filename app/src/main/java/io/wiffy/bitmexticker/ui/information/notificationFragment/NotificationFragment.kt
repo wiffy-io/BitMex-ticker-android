@@ -22,7 +22,7 @@ import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
-import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComare
+import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationAdapter
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationInfo
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationTask
@@ -59,7 +59,7 @@ class NotificationFragment : Fragment(), NotificationContract.View {
                     val y = x.split(":")
                     add(NotificationInfo(y[0], y[1], y[2]))
                 }
-            Collections.sort(this, InformationComare())
+            Collections.sort(this, InformationComparator())
         }
         myAdapter = NotificationAdapter(
             myList,
@@ -119,7 +119,7 @@ class NotificationFragment : Fragment(), NotificationContract.View {
     fun setList(info: NotificationInfo) {
         Log.d("asdf", "${info.symbol}_${info.value}")
         myList.add(info)
-        Collections.sort(myList, InformationComare())
+        Collections.sort(myList, InformationComparator())
         myAdapter?.update(myList)
         myView.texter.text.clear()
         val set = HashSet<String>()

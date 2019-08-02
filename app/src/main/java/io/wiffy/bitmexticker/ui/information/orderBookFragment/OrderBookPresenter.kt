@@ -23,12 +23,12 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
     }
 
     override fun stopWs() {
-        socket.send_msg_filter("unsubscribe", "orderBook10", symbol)
+        socket.sendMSGFilter("unsubscribe", "orderBook10", symbol)
     }
 
     private fun makeSocket() {
-        socket.send_msg_filter("subscribe", "orderBook10", symbol)
-        socket.set_callback {
+        socket.sendMSGFilter("subscribe", "orderBook10", symbol)
+        socket.callBack ={
             socketCallback(it)
         }
     }
@@ -72,7 +72,6 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
             val tableName = jsonContact.getString("table")
             if (tableName == "trade") {
                 val data = jsonContact.getJSONArray("data").getJSONObject(0)
-                //Log.d("asdf",data.toString())
                 val symbol2 = data.getString("symbol")
                 if (symbol2 == symbol) {
                     val price = data.getDouble("price")

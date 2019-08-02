@@ -4,9 +4,9 @@ interface MainContract {
     interface View{
         fun changeUI()
         fun setChart(str:String)
-        fun parseUI(coinbase:String, bitstamp:String)
-        fun parseCoinbase(str: String):String
-        fun parseBitstamp(str: String):String
+        fun parseUI(coinBase:String, bitStamp:String)
+        fun parseCoinBase(str: String):String
+        fun parseBitStamp(str: String):String
     }
     interface Presenter{
         fun init()

@@ -2,7 +2,6 @@ package io.wiffy.bitmexticker.ui.splash
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import java.net.URL
 
 
@@ -17,7 +16,6 @@ class SplashPresenter(private val mView: SplashContract.View) : SplashContract.P
         Thread(Runnable {
             try {
                 val getServer = URL("http://wiffy.io/bitmex/").readText()
-                Log.d("asdf",getServer)
                 if (URL("http://wiffy.io/response").readText().contains("R")){
                     connectionOn(getServer)
                 }else{

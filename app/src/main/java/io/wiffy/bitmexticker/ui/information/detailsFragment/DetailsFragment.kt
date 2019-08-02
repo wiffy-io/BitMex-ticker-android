@@ -17,7 +17,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     lateinit var myView: View
     lateinit var mPresenter: DetailsPresenter
     lateinit var url: String
-    lateinit var asyncTask:DetailsTask
+    lateinit var asyncTask: DetailsTask
 
     var builder: Dialog? = null
     var myAdapter: DetailsAdapter? = null
@@ -25,7 +25,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_details, container, false)
         url = "https://www.bitmex.com/app/contract/${arguments?.getString("symbol")}"
-        asyncTask = DetailsTask(this,url)
+        asyncTask = DetailsTask(this, url)
 
         mPresenter = DetailsPresenter(this)
         mPresenter.init()
@@ -43,25 +43,26 @@ class DetailsFragment : Fragment(), DetailsContract.View {
         super.onDestroy()
     }
 
-    override fun asyncPre(){
-        builder = Dialog(activity!!)
-        builder?.setContentView(R.layout.waitting_dialog)
-        builder?.setCancelable(false)
-        builder?.setCanceledOnTouchOutside(false)
-        builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    override fun asyncPre() {
+        builder = Dialog(activity!!).apply {
+            setContentView(R.layout.waitting_dialog)
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            this.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
         Handler(Looper.getMainLooper()).post {
             builder?.show()
         }
     }
 
-    override fun updateRecycler(arr:ArrayList<DetailsInfo>){
+    override fun updateRecycler(arr: ArrayList<DetailsInfo>) {
         myAdapter = DetailsAdapter(arr, context!!)
         myView.detailsRecycler.adapter = myAdapter
         myView.detailsRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
-    override fun asyncPost(){
+    override fun asyncPost() {
         builder?.dismiss()
     }
-    
+
 }
