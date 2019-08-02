@@ -53,14 +53,14 @@ class NotificationFragment : Fragment(), NotificationContract.View {
 
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
-        myList = ArrayList()
-
-        if (Util.noticom != null)
-            for (x in Util.noticom?.iterator()!!) {
-                val y = x.split(":")
-                myList.add(NotificationInfo(y[0], y[1], y[2]))
-            }
-        Collections.sort(myList, InformationComare())
+        myList = ArrayList<NotificationInfo>().apply {
+            if (Util.noticom != null)
+                for (x in Util.noticom?.iterator()!!) {
+                    val y = x.split(":")
+                    add(NotificationInfo(y[0], y[1], y[2]))
+                }
+            Collections.sort(this, InformationComare())
+        }
         myAdapter = NotificationAdapter(
             myList,
             context!!,
@@ -68,28 +68,26 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         )
         myView.noticycle.adapter = myAdapter
         myView.noticycle.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-        myView.notis.background = resources.getDrawable(getTableOut())
-        parentLayout = myView.findViewById(R.id.notis)
-        parentLayout.background = resources.getDrawable(getFragmentBackground())
 
+        with(resources)
+        {
+            myView.notis.background = getDrawable(getTableOut())
+            parentLayout = myView.findViewById(R.id.notis)
+            parentLayout.background = getDrawable(getFragmentBackground())
 
-        val verbose = if (dark_theme) {
-            resources.getColor(R.color.WHITE)
-        } else {
-            resources.getColor(R.color.BLACK)
+            if (dark_theme) {
+                myView.angimotti.background = getDrawable(R.drawable.chart_border_dark)
+                myView.noti_view.background = getDrawable(R.drawable.chart_border_dark)
+                myView.noti_context.background = getDrawable(R.drawable.chart_border_dark)
+            } else {
+                myView.noti_view.background = getDrawable(R.drawable.chart_border_light)
+                myView.noti_context.background = getDrawable(R.drawable.chart_border_light)
+                myView.angimotti.background = getDrawable(R.drawable.chart_border_light)
+            }
+            myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration(2))
+            myView.noticycle.setBackgroundColor(getColor(getTableOut()))
         }
 
-        if (dark_theme) {
-            myView.angimotti.background = resources.getDrawable(R.drawable.chart_border_dark)
-            myView.noti_view.background = resources.getDrawable(R.drawable.chart_border_dark)
-            myView.noti_context.background = resources.getDrawable(R.drawable.chart_border_dark)
-        } else {
-            myView.noti_view.background = resources.getDrawable(R.drawable.chart_border_light)
-            myView.noti_context.background = resources.getDrawable(R.drawable.chart_border_light)
-            myView.angimotti.background = resources.getDrawable(R.drawable.chart_border_light)
-        }
-        myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration(2))
-        myView.noticycle.setBackgroundColor(resources.getColor(getTableOut()))
         myView.cdcd123.setOnClickListener {
             var flag = true
             val text = myView.texter.text.toString()

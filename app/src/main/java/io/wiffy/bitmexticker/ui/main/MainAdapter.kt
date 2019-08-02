@@ -88,10 +88,11 @@ class MainAdapter(
 
     private fun click(str: String, item: CoinInfo) {
         info_on = false
-        val bundle = Bundle()
-        bundle.putString("information", str)
-        bundle.putString("xbt", items[0].price)
-        bundle.putSerializable("data", item)
+        val bundle = Bundle().apply {
+            putString("information", str)
+            putString("xbt", items[0].price)
+            putSerializable("data", item)
+        }
         mView.moveToInformation(bundle)
     }
 

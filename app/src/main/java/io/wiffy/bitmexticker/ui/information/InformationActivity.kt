@@ -92,10 +92,11 @@ class InformationActivity : AppCompatActivity(),
 
 
     override fun changeUI() {
-        myBundle = Bundle()
-        myBundle.putString("symbol", coinInformation)
-        myBundle.putString("xbt", intent.getStringExtra("xbt"))
-        myBundle.putSerializable("data", coinInformationStructure)
+        myBundle = Bundle().apply {
+            putString("symbol", coinInformation)
+            putString("xbt", intent.getStringExtra("xbt"))
+            putSerializable("data", coinInformationStructure)
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -114,11 +115,9 @@ class InformationActivity : AppCompatActivity(),
 
     override fun initFragment() {
 
-        fragmentList = ArrayList()
-        fragmentList.add(null)
-        fragmentList.add(null)
-        fragmentList.add(null)
-        fragmentList.add(null)
+        fragmentList = ArrayList<Fragment?>().apply {
+            for (x in 0 until 4) add(null)
+        }
 
         viewFragmentMain()
         catches = R.id.action_title
@@ -278,7 +277,7 @@ class InformationActivity : AppCompatActivity(),
         Handler(Looper.getMainLooper()).post {
             if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setXBT(str)
-            if(fragmentList[3] !=null)
+            if (fragmentList[3] != null)
                 (fragmentList[3] as NotificationFragment).setXBT(str)
 
         }
@@ -288,7 +287,7 @@ class InformationActivity : AppCompatActivity(),
         Handler(Looper.getMainLooper()).post {
             if (fragmentList[0] != null)
                 (fragmentList[0] as MainFragment).setPrice(str)
-            if(fragmentList[3] !=null)
+            if (fragmentList[3] != null)
                 (fragmentList[3] as NotificationFragment).setPrice(str)
         }
     }

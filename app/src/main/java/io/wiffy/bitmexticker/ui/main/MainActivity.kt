@@ -50,26 +50,25 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         agreement()
         initLoading()
-        mPresenter = MainPresenter(this, applicationContext)
-        mPresenter.changeUI()
-        mPresenter.getCoin(intent.getStringExtra("symbol"))
-
-
+        mPresenter = MainPresenter(this, applicationContext).apply {
+            this.changeUI()
+            getCoin(intent.getStringExtra("symbol"))
+        }
     }
 
     private fun agreement() {
         if (!Util.sharedPreferences.getBoolean("agreement", false)) {
-            val builder = AlertDialog.Builder(this, getDialog())
-            builder.setTitle(R.string.Agreement)
-            builder.setMessage(R.string.agreementContext)
-            builder.setPositiveButton("OK") { _, _ ->
-                Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
-            }
-            builder.setNegativeButton("Cancel") { _, _ ->
-                finish()
-            }
-            builder.setCancelable(false)
-            builder.show()
+            AlertDialog.Builder(this, getDialog()).apply {
+                setTitle(R.string.Agreement)
+                setMessage(R.string.agreementContext)
+                setPositiveButton("OK") { _, _ ->
+                    Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
+                }
+                setNegativeButton("Cancel") { _, _ ->
+                    finish()
+                }
+                setCancelable(false)
+            }.show()
         }
     }
 
@@ -84,9 +83,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun setRecycler(init_coin: ArrayList<CoinInfo>) {
         Handler(applicationContext.mainLooper).post {
             myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
-            recycler.adapter = myAdapter
-            recycler.layoutManager = LinearLayoutManager(this)
-            recycler.addItemDecoration(VerticalSpaceItemDecoration(2))
+            with(recycler)
+            {
+                adapter = myAdapter
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                addItemDecoration(VerticalSpaceItemDecoration(2))
+            }
         }
         mPresenter.makeSocket()
     }

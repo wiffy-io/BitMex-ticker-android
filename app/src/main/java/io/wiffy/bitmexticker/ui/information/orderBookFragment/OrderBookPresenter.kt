@@ -8,41 +8,32 @@ import java.lang.Exception
 
 class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
 
-    //lateinit var socket:BitmexSocket
     val mView = act
     lateinit var arr: ArrayList<OrderBookInfo>
     private var symbol = sym
 
     override fun init() {
         mView.changeUI()
-        mView.set_recycler()
-        mView.start_loading()
+        mView.setRecycler()
+        mView.startLoading()
     }
 
-    override fun start_ws() {
-        //socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
-        make_socket()
+    override fun startWs() {
+        makeSocket()
     }
 
-    override fun stop_ws() {
+    override fun stopWs() {
         socket.send_msg_filter("unsubscribe", "orderBook10", symbol)
     }
 
-    private fun make_socket() {
+    private fun makeSocket() {
         socket.send_msg_filter("subscribe", "orderBook10", symbol)
         socket.set_callback {
-            socket_callback(it)
+            socketCallback(it)
         }
-//        socket.set_sendback {
-////
-////        }
-//        socket.set_closeback {
-//            socket.close()
-//        }
-        //socket.connect()
     }
 
-    private fun socket_callback(it: String) {
+    private fun socketCallback(it: String) {
 
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
@@ -70,8 +61,8 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                         )
                     )
                 }
-                mView.update_recycler(arr)
-                mView.stop_loading()
+                mView.updateRecycler(arr)
+                mView.stopLoading()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -41,18 +41,22 @@ class ViewPagerAdapter(fm: FragmentManager, private var mNumOfTabs: Int, arr: Ar
 class TabFragment(val str: String) : Fragment() {
     private var myView: View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        myView = inflater.inflate(R.layout.noti_fragment, container, false)
-        myView?.frag1?.setBackgroundResource(getNavi())
-        myView?.frag1_text?.text = str
-        myView?.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+        myView = inflater.inflate(R.layout.noti_fragment, container, false).apply {
+            this.frag1?.setBackgroundResource(getNavi())
+            this.frag1_text?.text = str
+            this.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+        }
         return myView
     }
 
     fun themeChange() {
         if (myView != null) {
-            myView?.frag1?.setBackgroundResource(getNavi())
-            myView?.frag1_text?.text = str
-            myView?.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+            with(myView)
+            {
+                this?.frag1?.setBackgroundResource(getNavi())
+                this?.frag1_text?.text = str
+                this?.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+            }
         }
     }
 }
