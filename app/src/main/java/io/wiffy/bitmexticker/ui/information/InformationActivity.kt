@@ -124,73 +124,19 @@ class InformationActivity : AppCompatActivity(),
 
     }
 
-    override fun viewFragmentMain() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                0 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = MainFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[0]!!).commit()
-    }
+    override fun viewFragmentMain() = fragmentSetting(0)
 
-    override fun viewFragmentOrderBook() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                1 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = OrderBookFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[1]!!).commit()
-    }
+    override fun viewFragmentOrderBook() = fragmentSetting(1)
 
-    override fun viewFragmentDetails() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                2 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = DetailsFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[2]!!).commit()
-    }
+    override fun viewFragmentDetails() = fragmentSetting(2)
 
-    override fun viewFragmentNotification() {
+    override fun viewFragmentNotification() = fragmentSetting(3)
+
+
+    private fun fragmentSetting(index: Int) {
         for (i in 0 until fragmentList.size) {
             when (i) {
-                3 -> {
+                index -> {
                     if (fragmentList[i] == null) {
                         fragmentList[i] = NotificationFragment()
                         fragmentList[i]?.arguments = myBundle
@@ -205,8 +151,7 @@ class InformationActivity : AppCompatActivity(),
                 }
             }
         }
-        supportFragmentManager.beginTransaction().show(fragmentList[3]!!).commit()
-
+        supportFragmentManager.beginTransaction().show(fragmentList[index]!!).commit()
     }
 
     override fun addTickerButtonListener(listener: View.OnClickListener) {
