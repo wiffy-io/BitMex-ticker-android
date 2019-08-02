@@ -138,7 +138,13 @@ class InformationActivity : AppCompatActivity(),
             when (i) {
                 index -> {
                     if (fragmentList[i] == null) {
-                        fragmentList[i] = NotificationFragment()
+                        fragmentList[i] = when(index)
+                        {
+                            0->MainFragment()
+                            1->OrderBookFragment()
+                            2->DetailsFragment()
+                            else->NotificationFragment()
+                        }
                         fragmentList[i]?.arguments = myBundle
                         supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
                             .commit()
