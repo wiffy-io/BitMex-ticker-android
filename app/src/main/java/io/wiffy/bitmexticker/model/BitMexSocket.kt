@@ -7,15 +7,9 @@ import java.net.URI
 
 class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
 
-    var callBack:(String)->Unit?
-    private var sendBack:(String)->Unit?
-    var closeBack:(String)->Unit?
-
-    init {
-        callBack = {}
-        sendBack = {}
-        closeBack = {}
-    }
+    var callBack:(String)->Unit? = {}
+    var sendBack:(String)->Unit? = {}
+    var closeBack:(String)->Unit? = {}
 
     fun setSendback(callback: ((String)->Unit)){
         sendBack = callback
