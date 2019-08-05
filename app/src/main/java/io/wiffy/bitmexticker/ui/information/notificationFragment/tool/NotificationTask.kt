@@ -9,9 +9,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class NotificationTask(val mView: NotificationFragment, val info: NotificationInfo) : AsyncTask<Void, Void, Int>() {
-    override fun onPreExecute() {
-
-    }
 
     override fun doInBackground(vararg params: Void?): Int {
         val url = "http://wiffy.io/bitmex/reg/?d=${info.value}"
@@ -30,7 +27,7 @@ class NotificationTask(val mView: NotificationFragment, val info: NotificationIn
             }
 
             val `in` = BufferedReader(InputStreamReader(request.inputStream))
-            var inputLine: String? = null
+            var inputLine: String?
             val response = StringBuffer()
 
             do {

@@ -151,7 +151,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             }
 
         }
-        if (Util.infoContext != null) {
+        Util.infoContext?.let {
             if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
             }

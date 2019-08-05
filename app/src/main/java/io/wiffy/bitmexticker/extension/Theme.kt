@@ -5,130 +5,115 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 
 
-fun getTableIn(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_table_in
-    } else {
-        R.color.light_table_in
-    }
+fun getTableIn() = if (Util.dark_theme) {
+    R.color.dark_table_in
+} else {
+    R.color.light_table_in
 }
 
-fun getFragmentBackground(): Int {
-    return if (Util.dark_theme) {
+fun getFragmentBackground() =
+    if (Util.dark_theme) {
         R.color.dark_fragment_Background
     } else {
         R.color.light_table_out
     }
-}
 
-fun getTableOut(): Int {
-    return if (Util.dark_theme) {
+
+fun getTableOut() =
+    if (Util.dark_theme) {
         R.color.dark_table_out
     } else {
         R.color.light_table_out
     }
+
+
+fun getTableOutParsed() = if (Util.dark_theme) {
+    Color.parseColor("#082335")
+} else {
+    Color.parseColor("#efeff3")
 }
 
-fun getTableOutParsed(): Int {
-    return if (Util.dark_theme) {
-        Color.parseColor("#082335")
-    } else {
-        Color.parseColor("#efeff3")
-    }
+
+fun getTitle() = if (Util.dark_theme) {
+    R.color.dark_title
+} else {
+    R.color.light_title
 }
 
-fun getTitle(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_title
-    } else {
-        R.color.light_title
-    }
+
+fun getTitle2() = if (Util.dark_theme) {
+    R.color.dark_title2
+} else {
+    R.color.light_title2
 }
 
-fun getTitle2(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_title2
-    } else {
-        R.color.light_title2
-    }
+
+fun getNavi() = if (Util.dark_theme) {
+    R.color.dark_navi
+} else {
+    R.color.light_navi
 }
 
-fun getNavi(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_navi
-    } else {
-        R.color.light_navi
-    }
+
+fun getBrightness() = if (Util.dark_theme) {
+    R.drawable.to_lights
+} else {
+    R.drawable.to_darks
 }
 
-fun getBrightness(): Int {
-    return if (Util.dark_theme) {
-        R.drawable.to_lights
-    } else {
-        R.drawable.to_darks
-    }
+
+fun getBottom() = if (Util.dark_theme) {
+    R.color.dark_navi
+} else {
+    R.color.WHITE
 }
 
-fun getBottom(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_navi
-    } else {
-        R.color.WHITE
-    }
+
+fun getTableInReverse() = if (Util.dark_theme) {
+    R.color.dark_table_in_click
+} else {
+    R.color.light_table_in_click
 }
 
-fun getTableInReverse(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_table_in_click
-    } else {
-        R.color.light_table_in_click
-    }
+
+fun getBottomColor() = if (Util.dark_theme) {
+    R.color.navigation_state_dark
+} else {
+    R.color.navigation_state_light
 }
 
-fun getBottomColor(): Int {
-    return if (Util.dark_theme) {
-        R.color.navigation_state_dark
-    } else {
-        R.color.navigation_state_light
-    }
+
+fun rippleAndTintOfBottom() = if (Util.dark_theme) {
+    R.color.dark_table_out
+} else {
+    R.color.light_navi
 }
 
-fun rippleAndTintOfBottom(): Int {
-    return if (Util.dark_theme) {
-        R.color.dark_table_out
-    } else {
-        R.color.light_navi
-    }
+
+fun darkAndLight() = if (Util.dark_theme) {
+    R.color.WHITE
+} else {
+    R.color.BLACK
 }
 
-fun darkAndLight(): Int {
-    return if (Util.dark_theme) {
-        R.color.WHITE
-    } else {
-        R.color.BLACK
-    }
+
+fun darkAndLightReverse() = if (Util.dark_theme) {
+    R.color.BLACK
+} else {
+    R.color.WHITE
 }
 
-fun darkAndLightReverse(): Int {
-    return if (Util.dark_theme) {
-        R.color.BLACK
-    } else {
-        R.color.WHITE
-    }
+
+fun settingButton() = if (Util.dark_theme) {
+    R.drawable.setting_button_dark_r
+} else {
+    R.drawable.setting_button_light_r
 }
 
-fun settingButton(): Int {
-    return if (Util.dark_theme) {
-        R.drawable.setting_button_dark_r
-    } else {
-        R.drawable.setting_button_light_r
-    }
+
+fun getDialog() = if (Util.dark_theme) {
+    R.style.light_dialog
+} else {
+    R.style.light_dialog
 }
 
-fun getDialog(): Int {
-    return if (Util.dark_theme) {
-        R.style.light_dialog
-    } else {
-        R.style.light_dialog
-    }
-}

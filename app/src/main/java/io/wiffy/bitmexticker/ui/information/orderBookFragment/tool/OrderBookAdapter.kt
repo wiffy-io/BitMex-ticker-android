@@ -21,28 +21,25 @@ class OrderBookAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: OrderBookViewHolder, position: Int) {
-        items[position].let { item ->
-            with(holder) {
-                ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
-                bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
+    override fun onBindViewHolder(holder: OrderBookViewHolder, position: Int) = items[position].let { item ->
+        with(holder) {
+            ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
+            bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
 
-                if(item.ask == null)
-                {
-                    price.setTextColor(ContextCompat.getColor(context,R.color.green))
-                }
-                if(item.bid == null)
-                {
-                    price.setTextColor(ContextCompat.getColor(context,R.color.red))
-                }
-                itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
-
-                ask.text = item.ask
-                price.text = item.price
-                bid.text = item.bid
+            if (item.ask == null) {
+                price.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
+            if (item.bid == null) {
+                price.setTextColor(ContextCompat.getColor(context, R.color.red))
+            }
+            itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
+
+            ask.text = item.ask
+            price.text = item.price
+            bid.text = item.bid
         }
     }
+
     fun update(list: ArrayList<OrderBookInfo>) {
         items = list
         notifyDataSetChanged()
@@ -51,8 +48,8 @@ class OrderBookAdapter(
     inner class OrderBookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_orderbook, parent, false)
     ) {
-        val ask:TextView = itemView.ask
-        val price:TextView = itemView.price
-        val bid:TextView = itemView.bid
+        val ask: TextView = itemView.ask
+        val price: TextView = itemView.price
+        val bid: TextView = itemView.bid
     }
 }

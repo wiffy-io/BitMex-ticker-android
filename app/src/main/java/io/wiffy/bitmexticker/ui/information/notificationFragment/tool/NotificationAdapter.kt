@@ -23,33 +23,32 @@ class NotificationAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotificationViewHolder(parent)
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        items[position].let { item ->
-            with(holder) {
-                myText.text = item.value
-                myDate.text = item.date
-                val color = if (dark_theme) {
-                    R.color.WHITE
-                } else {
-                    R.color.BLACK
-                }
-                myText.setTextColor(ContextCompat.getColor(context, color))
-                myDate.setTextColor(ContextCompat.getColor(context, color))
-                myButton.setOnClickListener {
-                    items.remove(item)
-                    notifyDataSetChanged()
-                    val set = HashSet<String>()
-                    for (x in items) {
-                        set.add("${x.symbol}:${x.value}:${x.date}")
-                    }
-                    Util.noticom = set
-                    Util.sharedPreferences_editor.putStringSet("noticom", set).commit()
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
-                }
-                itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) = items[position].let { item ->
+        with(holder) {
+            myText.text = item.value
+            myDate.text = item.date
+            val color = if (dark_theme) {
+                R.color.WHITE
+            } else {
+                R.color.BLACK
             }
+            myText.setTextColor(ContextCompat.getColor(context, color))
+            myDate.setTextColor(ContextCompat.getColor(context, color))
+            myButton.setOnClickListener {
+                items.remove(item)
+                notifyDataSetChanged()
+                val set = HashSet<String>()
+                for (x in items) {
+                    set.add("${x.symbol}:${x.value}:${x.date}")
+                }
+                Util.noticom = set
+                Util.sharedPreferences_editor.putStringSet("noticom", set).commit()
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
+            }
+            itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
         }
     }
+
 
     fun update(list: ArrayList<NotificationInfo>) {
         items = list

@@ -16,8 +16,7 @@ class MyApplication : Application() {
     @SuppressLint("CommitPrefEdits")
     override fun onCreate() {
         super.onCreate()
-        Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
-        with(Util.sharedPreferences) {
+        Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE).apply {
             Util.sharedPreferences_editor = this.edit()
             Util.global = this.getString("global", Locale.ENGLISH.toLanguageTag())
             Util.noticom = this.getStringSet("noticom", null)

@@ -39,7 +39,7 @@ class DetailsFragment : Fragment(), DetailsContract.View {
     }
 
     override fun onDestroy() {
-        if (builder != null) builder?.dismiss()
+        builder?.dismiss()
         super.onDestroy()
     }
 

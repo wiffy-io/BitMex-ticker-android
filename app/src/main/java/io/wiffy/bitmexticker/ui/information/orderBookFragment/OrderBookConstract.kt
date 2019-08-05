@@ -3,15 +3,16 @@ package io.wiffy.bitmexticker.ui.information.orderBookFragment
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 
 interface OrderBookConstract {
-    interface View{
+    interface View {
         fun changeUI()
-        fun updateRecycler(arr:ArrayList<OrderBookInfo>)
-        fun setRecycler()
+        fun updateRecycler(arr: ArrayList<OrderBookInfo>): Boolean
+        fun setRecycler(): Boolean
         fun startLoading()
         fun stopLoading()
-        fun changeRecent(str:String)
+        fun changeRecent(str: String)
     }
-    interface Presenter{
+
+    interface Presenter {
         fun init()
         fun startWs()
         fun stopWs()

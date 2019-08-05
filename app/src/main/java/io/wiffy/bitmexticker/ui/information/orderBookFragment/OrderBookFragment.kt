@@ -26,12 +26,10 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
-
         initLoading()
         val sym = arguments?.getString("symbol")!!
         mPresenter = OrderBookPresenter(this, sym)
         mPresenter.init()
-
         return myView
     }
 
@@ -45,45 +43,40 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
         mPresenter.stopWs()
     }
 
-    override fun changeUI() {
-        with(resources)
-        {
-            myView.orderbooks.background = getDrawable(getFragmentBackground())
-            if (dark_theme) {
-                myView.orderbook_view.background = getDrawable(R.drawable.chart_border_dark)
-                myView.orderbook_large.background = getDrawable(R.drawable.chart_border_dark)
-            } else {
-                myView.orderbook_view.background = getDrawable(R.drawable.chart_border_light)
-                myView.orderbook_large.background = getDrawable(R.drawable.chart_border_light)
-            }
+    override fun changeUI() = with(resources)
+    {
+        myView.orderbooks.background = getDrawable(getFragmentBackground())
+        if (dark_theme) {
+            myView.orderbook_view.background = getDrawable(R.drawable.chart_border_dark)
+            myView.orderbook_large.background = getDrawable(R.drawable.chart_border_dark)
+        } else {
+            myView.orderbook_view.background = getDrawable(R.drawable.chart_border_light)
+            myView.orderbook_large.background = getDrawable(R.drawable.chart_border_light)
         }
     }
 
-    override fun setRecycler() {
-        Handler(context?.mainLooper).post {
-            myAdapter = OrderBookAdapter(
-                ArrayList(),
-                context!!,
-                activity as InformationActivity
-            )
-            myView.orderbookRecycler.adapter = myAdapter
-            myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-        }
+
+    override fun setRecycler() = Handler(context?.mainLooper).post {
+        myAdapter = OrderBookAdapter(
+            ArrayList(),
+            context!!,
+            activity as InformationActivity
+        )
+        myView.orderbookRecycler.adapter = myAdapter
+        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
-    override fun updateRecycler(arr: ArrayList<OrderBookInfo>) {
-        Handler(context?.mainLooper).post {
-            myAdapter?.update(arr)
-        }
+
+    override fun updateRecycler(arr: ArrayList<OrderBookInfo>) = Handler(context?.mainLooper).post {
+        myAdapter?.update(arr)
     }
+
 
     override fun startLoading() {
-        if (!builder?.isShowing!!) {
-            Handler(Looper.getMainLooper()).post {
-                try {
-                    builder?.show()
-                } catch (e: Exception) {
-                }
+        if (builder?.isShowing == false) Handler(Looper.getMainLooper()).post {
+            try {
+                builder?.show()
+            } catch (e: Exception) {
             }
         }
     }
@@ -98,13 +91,10 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
     }
 
     override fun stopLoading() {
-        if (builder?.isShowing!!) {
-            builder?.dismiss()
-        }
+        if (builder?.isShowing == true) builder?.dismiss()
     }
 
     override fun changeRecent(str: String) {
         myView.orderbook_view.text = str
     }
-
 }

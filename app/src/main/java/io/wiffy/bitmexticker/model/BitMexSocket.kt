@@ -7,27 +7,15 @@ import java.net.URI
 
 class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
 
-    var callBack:(String)->Unit? = {}
-    var sendBack:(String)->Unit? = {}
-    var closeBack:(String)->Unit? = {}
+    var callBack: (String) -> Unit? = {}
+    var sendBack: (String) -> Unit? = {}
+    var closeBack: (String) -> Unit? = {}
 
-//    fun setSendback(callback: ((String)->Unit)){
-//        sendBack = callback
-//    }
-//
-//    fun setCallback(callback: ((String)->Unit)){
-//        callBack = callback
-//    }
-//
-//    fun set_closeback(callback: ((String)->Unit)){
-//        closeBack = callback
-//    }
-
-    fun send_msg(str:String){
+    fun send_msg(str: String) {
         send(str)
     }
 
-    fun sendMSGFilter(str1:String, str2:String, str3:String){
+    fun sendMSGFilter(str1: String, str2: String, str3: String) {
         send("{\"op\": \"$str1\", \"args\": [\"$str2:$str3\"]}")
     }
 
@@ -36,8 +24,8 @@ class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     }
 
     override fun onMessage(message: String?) {
-        if (message != null) {
-            callBack.invoke(message)
+        message?.let {
+            callBack.invoke(it)
         }
     }
 

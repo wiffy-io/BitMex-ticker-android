@@ -157,7 +157,8 @@ class InformationActivity : AppCompatActivity(),
         supportFragmentManager.beginTransaction().show(fragmentList[index]!!).commit()
     }
 
-    override fun addTickerButtonListener(listener: View.OnClickListener) = toMainFromInformation.setOnClickListener(listener)
+    override fun addTickerButtonListener(listener: View.OnClickListener) =
+        toMainFromInformation.setOnClickListener(listener)
 
 
     override fun moveToMain() {
@@ -196,33 +197,33 @@ class InformationActivity : AppCompatActivity(),
         }
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
+    )
 
-    }
 
     fun setXBT(str: String) =
         Handler(Looper.getMainLooper()).post {
-            if (fragmentList[0] != null)
-                (fragmentList[0] as MainFragment).setXBT(str)
-            if (fragmentList[3] != null)
-                (fragmentList[3] as NotificationFragment).setXBT(str)
-
+            fragmentList[0]?.let {
+                (it as MainFragment).setXBT(str)
+            }
+            fragmentList[3]?.let {
+                (it as NotificationFragment).setXBT(str)
+            }
         }
 
 
     fun setPrice(str: String) =
         Handler(Looper.getMainLooper()).post {
-            if (fragmentList[0] != null)
-                (fragmentList[0] as MainFragment).setPrice(str)
-            if (fragmentList[3] != null)
-                (fragmentList[3] as NotificationFragment).setPrice(str)
+            fragmentList[0]?.let {
+                (it as MainFragment).setPrice(str)
+            }
+            fragmentList[3]?.let {
+                (it as NotificationFragment).setPrice(str)
+            }
         }
 
 }

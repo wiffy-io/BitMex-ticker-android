@@ -33,7 +33,6 @@ class MainFragment : Fragment(), MainContract.View {
         setPrice((arguments?.getSerializable("data") as CoinInfo).price!!)
         setXBT(arguments?.getString("xbt")!!)
 
-
         mPresenter = MainPresenter(this, arguments?.getSerializable("data") as CoinInfo)
         mPresenter.init()
         mPresenter.initParse()
@@ -63,22 +62,19 @@ class MainFragment : Fragment(), MainContract.View {
         myView.web_chart.loadDataWithBaseURL("", str, "text/html", "UTF-8", "")
     }
 
-    override fun parseUI(coinBase: String, bitStamp: String) {
-        if (context != null)
-            Handler(Looper.getMainLooper()).post {
-                if (bitStamp != "No Data") {
-                    (myView.bitstamp_p[0] as TextView).text = bitStamp
-                    myView.bitstamp_pp.text = parseBitStamp(bitStamp)
+    override fun parseUI(coinBase: String, bitStamp: String) = context?.let {
+                Handler(Looper.getMainLooper()).post {
+                    if (bitStamp != "No Data") {
+                        (myView.bitstamp_p[0] as TextView).text = bitStamp
+                        myView.bitstamp_pp.text = parseBitStamp(bitStamp)
+                    }
+                    if (coinBase != "No Data") {
+                        (myView.coinbase_p[0] as TextView).text = coinBase
+                        myView.coinbase_pp.text = parseCoinBase(coinBase)
+                    }
                 }
-
-                if (coinBase != "No Data") {
-                    (myView.coinbase_p[0] as TextView).text = coinBase
-                    myView.coinbase_pp.text = parseCoinBase(coinBase)
-                }
-
             }
 
-    }
 
     override fun parseBitStamp(str: String): String {
         val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100

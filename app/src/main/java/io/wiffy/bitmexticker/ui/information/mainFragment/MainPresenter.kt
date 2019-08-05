@@ -18,9 +18,8 @@ class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) : Ma
     private lateinit var mThread: Thread
     var flag = true
 
-    override fun init() {
-        mView.changeUI()
-    }
+    override fun init() = mView.changeUI()
+
 
     override fun makeChart() {
         var str3 = "rgba(18,31,48,1)"

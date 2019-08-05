@@ -54,11 +54,12 @@ class NotificationFragment : Fragment(), NotificationContract.View {
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
         myList = ArrayList<NotificationInfo>().apply {
-            if (Util.noticom != null)
-                for (x in Util.noticom?.iterator()!!) {
+            Util.noticom?.let {
+                for (x in it.iterator()) {
                     val y = x.split(":")
-                    add(NotificationInfo(y[0], y[1], y[2]))
+                    this.add(NotificationInfo(y[0], y[1], y[2]))
                 }
+            }
             Collections.sort(this, InformationComparator())
         }
         myAdapter = NotificationAdapter(
@@ -91,7 +92,6 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         myView.cdcd123.setOnClickListener {
             var flag = true
             val text = myView.texter.text.toString()
-
             try {
                 for (v in myList) {
                     if (v.value?.toDouble() == text.toDouble()) {
@@ -111,31 +111,32 @@ class NotificationFragment : Fragment(), NotificationContract.View {
             } catch (e: Exception) {
                 toast("input type error")
             }
-
         }
     }
 
 
     fun setList(info: NotificationInfo) {
-        Log.d("asdf", "${info.symbol}_${info.value}")
-        myList.add(info)
-        Collections.sort(myList, InformationComparator())
-        myAdapter?.update(myList)
-        myView.texter.text.clear()
-        val set = HashSet<String>()
-        for (k in myList) {
-            set.add("${k.symbol}:${k.value}:${k.date}")
+        with(myList)
+        {
+            add(info)
+            Collections.sort(this, InformationComparator())
+            myAdapter?.update(this)
         }
-        Util.noticom = set
-        Util.sharedPreferences_editor.putStringSet("noticom", set).commit()
+        myView.texter.text.clear()
+
+        Util.sharedPreferences_editor.putStringSet("noticom", HashSet<String>().apply {
+            for (k in myList) {
+                add("${k.symbol}:${k.value}:${k.date}")
+            }
+            Util.noticom = this
+        }).commit()
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }
 
-    fun toast(str: String) {
-        Handler(Looper.getMainLooper()).post {
-            Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
-        }
+    fun toast(str: String) = Handler(Looper.getMainLooper()).post {
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
     }
+
 
     @SuppressLint("SetTextI18n")
     fun setXBT(str: String) {

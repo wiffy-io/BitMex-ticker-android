@@ -16,14 +16,9 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(p0: RemoteMessage?) {
-        if (p0?.notification != null) {
-            sendNotification(p0)
-        }
-    }
-
-
-    override fun onNewToken(p0: String?) {
-        super.onNewToken(p0)
+            p0?.let {
+                sendNotification(it)
+            }
     }
 
 
