@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.changeValue
@@ -19,7 +18,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainPresenter(private val mView: MainContract.View,  con: Context) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, con: Context) : MainContract.Presenter {
 
     private var initCoin = ArrayList<CoinInfo>()
     private val mContext = con
@@ -40,24 +39,22 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
         }
     }).start()
 
-    override fun parseViewPager(): ArrayList<String> {
-        return ArrayList<String>().apply {
-            try {
-                add(
-                    "${mContext.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
-                        "bitcoin_percentage_of_market_cap"
-                    )}%"
-                )
-                add(
-                    "${mContext.resources.getString(R.string.market)} : ${changeValue(
-                        JSONObject(URL(coinMarket).readText()).getString(
-                            "total_market_cap_usd"
-                        ).toDouble()
-                    )}"
-                )
-            } catch (e: Exception) {
-                add("error")
-            }
+    override fun parseViewPager() = ArrayList<String>().apply {
+        try {
+            add(
+                "${mContext.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
+                    "bitcoin_percentage_of_market_cap"
+                )}%"
+            )
+            add(
+                "${mContext.resources.getString(R.string.market)} : ${changeValue(
+                    JSONObject(URL(coinMarket).readText()).getString(
+                        "total_market_cap_usd"
+                    ).toDouble()
+                )}"
+            )
+        } catch (e: Exception) {
+            add("error")
         }
     }
 
@@ -72,17 +69,17 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
         mView.initViewPager()
     }
 
-    override fun makeSocket() {
+    override fun makeSocket() =
         with(socket)
         {
-            set_callback {
+            callBack = {
                 socketCallback(it)
             }
-            setSendback {
+            sendBack = {
                 is_close = false
                 socketSubscribe()
             }
-            set_closeback {
+            closeBack = {
                 this.close()
                 mView.changeRecent("---")
                 mView.startLoading()
@@ -98,7 +95,6 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
             this.connect()
         }
 
-    }
 
     override fun socketReconnect() {
         if (is_close) {
@@ -107,10 +103,8 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
     }
 
     private fun socketSubscribe() {
-        for (i in 0 until initCoin.size) {
-            val tmp = initCoin[i].Symbol.toString()
-            socket.sendMSGFilter("subscribe", "tradeBin1m", tmp)
-        }
+        for (i in 0 until initCoin.size) socket.sendMSGFilter("subscribe", "tradeBin1m", initCoin[i].Symbol.toString())
+
     }
 
     private fun socketCallback(it: String) {
@@ -170,7 +164,7 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
     }
 
 
-    override fun setSystemLanguage() {
+    override fun setSystemLanguage() =
         Handler(Looper.getMainLooper()).post {
             val config = Configuration()
             config.locale = when (Util.global) {
@@ -189,7 +183,6 @@ class MainPresenter(private val mView: MainContract.View,  con: Context) : MainC
             }
             mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
         }
-    }
 
     override fun setSymbol(str: String?) {
         actSymbol = str

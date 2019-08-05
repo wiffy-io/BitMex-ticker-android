@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         finish()
     }
 
-    override fun getOut() {
+    override fun getOut() =
         Handler(mainLooper).post {
             Toasty.warning(
                 applicationContext,
@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             ).show()
             finish()
         }
-    }
+
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
@@ -74,13 +74,12 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         }
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
-    }
+    )
+
 
 }

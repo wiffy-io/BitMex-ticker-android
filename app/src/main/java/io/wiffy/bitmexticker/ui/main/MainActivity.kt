@@ -93,17 +93,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.makeSocket()
     }
 
-    override fun updateRecyclerTheme() {
-        Handler(applicationContext.mainLooper).post {
-            myAdapter?.updateTheme(Util.dark_theme)
-        }
+    override fun updateRecyclerTheme() = Handler(applicationContext.mainLooper).post {
+        myAdapter?.updateTheme(Util.dark_theme)
     }
 
-    override fun updateRecycler(mod_coin: ArrayList<CoinInfo>) {
-        Handler(applicationContext.mainLooper).post {
-            myAdapter?.update(mod_coin)
-        }
+
+    override fun updateRecycler(mod_coin: ArrayList<CoinInfo>) = Handler(applicationContext.mainLooper).post {
+        myAdapter?.update(mod_coin)
     }
+
 
     override fun changeUI() {
         tabLayout.setBackgroundResource(getNavi())
@@ -124,9 +122,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
 
-    override fun addSettingActivityChangeListener(listener: View.OnClickListener) {
+    override fun addSettingActivityChangeListener(listener: View.OnClickListener) =
         setting_main.setOnClickListener(listener)
-    }
+
 
     override fun moveToSetting() {
         if (setting_on) {
@@ -159,19 +157,16 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 }
             }
         }
-
-
     }
 
     private fun initLoading() {
-        builder = Dialog(this)
-        builder?.setContentView(R.layout.waitting_dialog)
-        builder?.setCancelable(false)
-        builder?.setCanceledOnTouchOutside(false)
-        builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        builder = Dialog(this).apply {
+            setContentView(R.layout.waitting_dialog)
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
         startLoading()
-
-
     }
 
     override fun initViewPager() {
@@ -214,10 +209,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             tabLayout.setupWithViewPager(viewPager, true)
         }
 
-        private fun temp(): ArrayList<String> {
-            val x = ArrayList<String>()
-            x.add("Error")
-            return x
+        private fun temp() = ArrayList<String>().apply {
+            add("Error")
         }
     }
 
@@ -227,24 +220,19 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    override fun checkLoading(): Boolean {
-        return builder?.isShowing!!
-    }
+    override fun checkLoading() = builder?.isShowing ?: false
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
-    }
+    )
 
-    override fun tossSymbol(symbol: String) {
-        (infoContext as InformationActivity).setPrice(symbol)
-    }
 
-    override fun tossXBT(xbt: String) {
-        (infoContext as InformationActivity).setXBT(xbt)
-    }
+    override fun tossSymbol(symbol: String) = (infoContext as InformationActivity).setPrice(symbol)
+
+
+    override fun tossXBT(xbt: String) = (infoContext as InformationActivity).setXBT(xbt)
+
 }

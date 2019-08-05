@@ -1,7 +1,7 @@
 package io.wiffy.bitmexticker.ui.information
 
 interface InformationContract {
-    interface View{
+    interface View {
         fun changeUI()
         fun addTickerButtonListener(listener: android.view.View.OnClickListener)
         fun moveToMain()
@@ -11,8 +11,9 @@ interface InformationContract {
         fun viewFragmentOrderBook()
         fun viewFragmentNotification()
     }
-    interface Presenter{
+
+    interface Presenter {
         fun init()
-        fun setSystemLanguage()
+        fun setSystemLanguage(): Boolean
     }
 }

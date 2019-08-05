@@ -50,9 +50,8 @@ class LanguageInitActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        back()
-    }
+    override fun onBackPressed() = back()
+
 
     private fun back() {
         setResult(Activity.RESULT_CANCELED)

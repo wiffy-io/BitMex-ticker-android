@@ -11,17 +11,17 @@ class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     var sendBack:(String)->Unit? = {}
     var closeBack:(String)->Unit? = {}
 
-    fun setSendback(callback: ((String)->Unit)){
-        sendBack = callback
-    }
-
-    fun set_callback(callback: ((String)->Unit)){
-        callBack = callback
-    }
-
-    fun set_closeback(callback: ((String)->Unit)){
-        closeBack = callback
-    }
+//    fun setSendback(callback: ((String)->Unit)){
+//        sendBack = callback
+//    }
+//
+//    fun setCallback(callback: ((String)->Unit)){
+//        callBack = callback
+//    }
+//
+//    fun set_closeback(callback: ((String)->Unit)){
+//        closeBack = callback
+//    }
 
     fun send_msg(str:String){
         send(str)

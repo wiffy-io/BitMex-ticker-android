@@ -10,7 +10,8 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 import java.util.*
 
-class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) : SettingContract.Presenter {
+class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) :
+    SettingContract.Presenter {
 
     override fun changeUI() {
         mView.changeUI()
@@ -59,25 +60,24 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
             })
     }
 
-    override fun setSystemLanguage() {
-        Handler(Looper.getMainLooper()).post {
-            val config = Configuration()
-            config.locale = when (Util.global) {
-                Locale.KOREAN.toLanguageTag() -> {
-                    Locale.KOREAN
-                }
-                Locale.CHINESE.toLanguageTag() -> {
-                    Locale.CHINESE
-                }
-                Locale.JAPANESE.toLanguageTag() -> {
-                    Locale.JAPANESE
-                }
-                else -> {
-                    Locale.ENGLISH
-                }
+    override fun setSystemLanguage() = Handler(Looper.getMainLooper()).post {
+        val config = Configuration()
+        config.locale = when (Util.global) {
+            Locale.KOREAN.toLanguageTag() -> {
+                Locale.KOREAN
             }
-
-            mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+            Locale.CHINESE.toLanguageTag() -> {
+                Locale.CHINESE
+            }
+            Locale.JAPANESE.toLanguageTag() -> {
+                Locale.JAPANESE
+            }
+            else -> {
+                Locale.ENGLISH
+            }
         }
+
+        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
     }
+
 }

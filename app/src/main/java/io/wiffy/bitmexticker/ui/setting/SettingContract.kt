@@ -1,5 +1,6 @@
 package io.wiffy.bitmexticker.ui.setting
 
+import android.app.AlertDialog
 import android.widget.CompoundButton
 
 
@@ -15,7 +16,7 @@ interface SettingContract {
                                      listener4: android.view.View.OnClickListener,
                                      listener5: android.view.View.OnClickListener,
                                      listener6:CompoundButton.OnCheckedChangeListener)
-        fun startDialog(title:String,context:String)
+        fun startDialog(title:String,context:String):AlertDialog
         fun getStringTo(id:Int):String
         fun clipOnBoard(clipBoardMessage:String)
         fun urlParseToMarket(url:String)
@@ -25,6 +26,6 @@ interface SettingContract {
     interface Presenter
     {
         fun changeUI()
-        fun setSystemLanguage()
+        fun setSystemLanguage():Boolean
     }
 }

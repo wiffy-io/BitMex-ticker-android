@@ -12,11 +12,14 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
     lateinit var arr: ArrayList<OrderBookInfo>
     private var symbol = sym
 
-    override fun init() {
-        mView.changeUI()
-        mView.setRecycler()
-        mView.startLoading()
-    }
+    override fun init() =
+        with(mView)
+        {
+            changeUI()
+            setRecycler()
+            startLoading()
+        }
+
 
     override fun startWs() {
         makeSocket()
@@ -26,15 +29,17 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
         socket.sendMSGFilter("unsubscribe", "orderBook10", symbol)
     }
 
-    private fun makeSocket() {
-        socket.sendMSGFilter("subscribe", "orderBook10", symbol)
-        socket.set_callback {
-            socketCallback(it)
+    private fun makeSocket() =
+        with(socket)
+        {
+            sendMSGFilter("subscribe", "orderBook10", symbol)
+            callBack = {
+                socketCallback(it)
+            }
         }
-    }
+
 
     private fun socketCallback(it: String) {
-
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
             try {
@@ -66,8 +71,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
-        else if (it.contains("trade")) {
+        } else if (it.contains("trade")) {
             val jsonContact = JSONObject(it)
             val tableName = jsonContact.getString("table")
             if (tableName == "trade") {
@@ -80,7 +84,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                 }
             }
         }
-
     }
+
 
 }

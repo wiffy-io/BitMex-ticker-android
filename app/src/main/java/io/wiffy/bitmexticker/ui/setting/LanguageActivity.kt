@@ -126,9 +126,8 @@ class LanguageActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        back()
-    }
+    override fun onBackPressed() = back()
+
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
@@ -149,14 +148,12 @@ class LanguageActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
+    )
 
-    }
+
 }

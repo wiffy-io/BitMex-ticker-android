@@ -30,41 +30,39 @@ class MainAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        items[position].let { item ->
-            with(holder) {
-                bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-                //bg.setBackgroundResource(settingButton())
-                symbol.setTextColor(ContextCompat.getColor(context, getTitle()))
-                nameInfo.setTextColor(ContextCompat.getColor(context, getTitle2()))
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) = items[position].let { item ->
+        with(holder) {
+            bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+            symbol.setTextColor(ContextCompat.getColor(context, getTitle()))
+            nameInfo.setTextColor(ContextCompat.getColor(context, getTitle2()))
 
-                symbol.text = item.Symbol
-                nameInfo.text = item.name_info
-                price.text = item.price
+            symbol.text = item.Symbol
+            nameInfo.text = item.name_info
+            price.text = item.price
 
-                when (item.before_p) {
-                    "n" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
-                    "r" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
-                    "g" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
-                }
+            when (item.before_p) {
+                "n" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.normal))
+                "r" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.red))
+                "g" -> cardIn.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green))
+            }
 
-                itemView.setOnTouchListener { _, e ->
-                    when (e?.action) {
-                        MotionEvent.ACTION_DOWN -> {
-                            actionDown(bg)
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            actionUp(bg, item.price!!, item.Symbol!!, item)
-                        }
-                        MotionEvent.ACTION_CANCEL -> {
-                            actionCancel(bg)
-                        }
+            itemView.setOnTouchListener { _, e ->
+                when (e?.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        actionDown(bg)
                     }
-                    true
+                    MotionEvent.ACTION_UP -> {
+                        actionUp(bg, item.price!!, item.Symbol!!, item)
+                    }
+                    MotionEvent.ACTION_CANCEL -> {
+                        actionCancel(bg)
+                    }
                 }
+                true
             }
         }
     }
+
 
     private fun actionDown(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableInReverse()))
@@ -88,12 +86,11 @@ class MainAdapter(
 
     private fun click(str: String, item: CoinInfo) {
         info_on = false
-        val bundle = Bundle().apply {
+        mView.moveToInformation(Bundle().apply {
             putString("information", str)
             putString("xbt", items[0].price)
             putSerializable("data", item)
-        }
-        mView.moveToInformation(bundle)
+        })
     }
 
     fun updateTheme(theme: Boolean) {
@@ -108,12 +105,11 @@ class MainAdapter(
         }
     }
 
-    private fun notificationUpdate() {
-        try {
-            notifyDataSetChanged()
-        } catch (e: Exception) {
-        }
+    private fun notificationUpdate() = try {
+        notifyDataSetChanged()
+    } catch (e: Exception) {
     }
+
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_main, parent, false)
