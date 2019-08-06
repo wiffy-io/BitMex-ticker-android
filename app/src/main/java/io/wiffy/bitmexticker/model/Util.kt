@@ -21,7 +21,7 @@ class Util {
         var setting_on: Boolean = true
         var is_close: Boolean = false
 
-        var noticom: HashSet<String>? = null
+        var notificationSet: HashSet<String>? = null
 
         @JvmStatic
         fun restartApp(context: Context) {

@@ -21,6 +21,6 @@ class MyApplication : Application() {
         mySharedPreference = getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
         Util.global = getShared("global", Locale.ENGLISH.toLanguageTag())
         Util.dark_theme = getShared("mode")
-        Util.noticom = getShared("noticom")
+        Util.notificationSet = getShared("notificationSet")
     }
 }

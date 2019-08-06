@@ -25,6 +25,7 @@ class LanguageActivity : AppCompatActivity() {
     var listString = ArrayList<String>()
     var ln = -1
     var lastCheck = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

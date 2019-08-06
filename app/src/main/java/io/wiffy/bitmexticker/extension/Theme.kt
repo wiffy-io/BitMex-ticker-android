@@ -1,6 +1,5 @@
 package io.wiffy.bitmexticker.extension
 
-import android.graphics.Color
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 
@@ -26,14 +25,6 @@ fun getTableOut() =
         R.color.light_table_out
     }
 
-
-fun getTableOutParsed() = if (Util.dark_theme) {
-    Color.parseColor("#082335")
-} else {
-    Color.parseColor("#efeff3")
-}
-
-
 fun getTitle() = if (Util.dark_theme) {
     R.color.dark_title
 } else {
@@ -52,13 +43,6 @@ fun getNavi() = if (Util.dark_theme) {
     R.color.dark_navi
 } else {
     R.color.dark_navi
-}
-
-
-fun getBrightness() = if (Util.dark_theme) {
-    R.drawable.to_lights
-} else {
-    R.drawable.to_darks
 }
 
 

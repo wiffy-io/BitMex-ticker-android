@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +54,7 @@ class NotificationFragment : Fragment(), NotificationContract.View {
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
         myList = ArrayList<NotificationInfo>().apply {
-            Util.noticom?.let {
+            Util.notificationSet?.let {
                 for (x in it.iterator()) {
                     val y = x.split(":")
                     this.add(NotificationInfo(y[0], y[1], y[2]))
@@ -125,11 +124,11 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         }
         myView.texter.text.clear()
 
-        setShared("noticom", HashSet<String>().apply {
+        setShared("notificationSet", HashSet<String>().apply {
             for (k in myList) {
                 add("${k.symbol}:${k.value}:${k.date}")
             }
-            Util.noticom = this
+            Util.notificationSet = this
         })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }

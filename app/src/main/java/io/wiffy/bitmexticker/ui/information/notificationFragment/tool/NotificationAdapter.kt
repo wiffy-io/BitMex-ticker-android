@@ -42,8 +42,8 @@ class NotificationAdapter(
                 for (x in items) {
                     set.add("${x.symbol}:${x.value}:${x.date}")
                 }
-                Util.noticom = set
-                setShared("noticom", set)
+                Util.notificationSet = set
+                setShared("notificationSet", set)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
             }
             itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
