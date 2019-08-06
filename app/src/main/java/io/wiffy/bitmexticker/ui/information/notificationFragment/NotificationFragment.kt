@@ -17,6 +17,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.extension.getFragmentBackground
 import io.wiffy.bitmexticker.extension.getTableOut
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
@@ -124,19 +125,18 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         }
         myView.texter.text.clear()
 
-        Util.sharedPreferences_editor.putStringSet("noticom", HashSet<String>().apply {
+        setShared("noticom", HashSet<String>().apply {
             for (k in myList) {
                 add("${k.symbol}:${k.value}:${k.date}")
             }
             Util.noticom = this
-        }).commit()
+        })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }
 
     fun toast(str: String) = Handler(Looper.getMainLooper()).post {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
     }
-
 
     @SuppressLint("SetTextI18n")
     fun setXBT(str: String) {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.getTableIn
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
 import io.wiffy.bitmexticker.ui.information.InformationActivity
@@ -42,7 +43,7 @@ class NotificationAdapter(
                     set.add("${x.symbol}:${x.value}:${x.date}")
                 }
                 Util.noticom = set
-                Util.sharedPreferences_editor.putStringSet("noticom", set).commit()
+                setShared("noticom", set)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
             }
             itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))

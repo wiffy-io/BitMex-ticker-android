@@ -3,7 +3,6 @@ package io.wiffy.bitmexticker.model
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.LocaleList
 import io.wiffy.bitmexticker.ui.information.InformationActivity
@@ -18,14 +17,11 @@ class Util {
         var global: String? = "en"
         var infoContext: InformationActivity? = null
 
-        lateinit var sharedPreferences: SharedPreferences
-        lateinit var sharedPreferences_editor: SharedPreferences.Editor
-
         var info_on: Boolean = true
         var setting_on: Boolean = true
         var is_close: Boolean = false
 
-        var noticom: Set<String>? = null
+        var noticom: HashSet<String>? = null
 
         @JvmStatic
         fun restartApp(context: Context) {

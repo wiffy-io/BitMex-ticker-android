@@ -55,7 +55,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     }
 
     private fun agreement() {
-        when (getShared.getBoolean("agreement", false)) {
+        when (getShared("agreement", false)) {
             true -> {
                 mPresenter.checkInternetConnection()
             }

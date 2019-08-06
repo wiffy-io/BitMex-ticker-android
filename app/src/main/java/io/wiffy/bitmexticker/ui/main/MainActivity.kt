@@ -55,12 +55,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     private fun agreement() {
-        if (!Util.sharedPreferences.getBoolean("agreement", false)) {
+        if (!getShared("agreement", false)) {
             AlertDialog.Builder(this, getDialog()).apply {
                 setTitle(R.string.Agreement)
                 setMessage(R.string.agreementContext)
                 setPositiveButton("OK") { _, _ ->
-                    Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
+                    setShared("agreement", true)
                 }
                 setNegativeButton("Cancel") { _, _ ->
                     finish()
