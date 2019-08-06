@@ -13,7 +13,7 @@ import kotlin.system.exitProcess
 class Util {
 
     companion object {
-        //static으로 다크테마인지 라이트테마인지 저장
+
         var dark_theme: Boolean = false
         var global: String? = "en"
         var infoContext: InformationActivity? = null
@@ -25,7 +25,7 @@ class Util {
         var setting_on: Boolean = true
         var is_close: Boolean = false
 
-        var noticom:Set<String>?=null
+        var noticom: Set<String>? = null
 
         @JvmStatic
         fun restartApp(context: Context) {

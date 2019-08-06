@@ -8,6 +8,5 @@ interface NotificationContract {
     }
     interface Presenter{
         fun init()
-        fun doList(list:ArrayList<NotificationInfo>)
     }
 }

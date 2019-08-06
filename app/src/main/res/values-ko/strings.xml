@@ -14,7 +14,6 @@
 
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
-    <string name="version">1.0.0(1)</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
 
@@ -51,6 +50,7 @@
     <string name="Symbol">명칭</string>
     <string name="NotificationWarning">업데이트 예정입니다.</string>
     <string name="alert">알림 추가</string>
+    <string name="market">시가 총액</string>
 
 
 </resources>

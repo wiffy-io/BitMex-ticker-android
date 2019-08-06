@@ -22,24 +22,22 @@ class DetailsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InformationViewHolder(parent)
     override fun getItemCount(): Int = items.size
-    override fun onBindViewHolder(holder: InformationViewHolder, position: Int) {
-        items[position].let { item ->
-            with(holder) {
-                textDetails.setTextColor(ContextCompat.getColor(context, getTitle()))
-                contextDetails.setTextColor(ContextCompat.getColor(context, getTitle2()))
-                textDetails.text = item.title
+    override fun onBindViewHolder(holder: InformationViewHolder, position: Int) = items[position].let { item ->
+        with(holder) {
+            textDetails.setTextColor(ContextCompat.getColor(context, getTitle()))
+            contextDetails.setTextColor(ContextCompat.getColor(context, getTitle2()))
+            textDetails.text = item.title
 
-                contextDetails.text = item.context
-                itemView.background = ContextCompat.getDrawable(context, settingButton())
-                itemView.setOnClickListener {
-                    val builder = AlertDialog.Builder(context, getDialog())
-                    builder.setTitle(item.title)
-                    builder.setMessage(item.context)
-                    builder.setPositiveButton(
+            contextDetails.text = item.context
+            itemView.background = ContextCompat.getDrawable(context, settingButton())
+            itemView.setOnClickListener {
+                AlertDialog.Builder(context, getDialog()).apply {
+                    setTitle(item.title)
+                    setMessage(item.context)
+                    setPositiveButton(
                         "OK"
-                    ) { _, _ ->  }
-                    builder.show()
-                }
+                    ) { _, _ -> }
+                }.show()
             }
         }
     }
@@ -47,7 +45,7 @@ class DetailsAdapter(
     inner class InformationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_datails, parent, false)
     ) {
-        val textDetails:TextView = itemView.detailsText
-        val contextDetails:TextView = itemView.detailsContext
+        val textDetails: TextView = itemView.detailsText
+        val contextDetails: TextView = itemView.detailsContext
     }
 }

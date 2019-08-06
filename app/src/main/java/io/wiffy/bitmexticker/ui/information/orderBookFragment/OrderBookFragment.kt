@@ -26,78 +26,75 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
-
         initLoading()
         val sym = arguments?.getString("symbol")!!
         mPresenter = OrderBookPresenter(this, sym)
         mPresenter.init()
-
         return myView
     }
 
     override fun onResume() {
         super.onResume()
-        mPresenter.start_ws()
+        mPresenter.startWs()
     }
 
     override fun onPause() {
         super.onPause()
-        mPresenter.stop_ws()
+        mPresenter.stopWs()
     }
 
-    override fun changeUI() {
-        myView.orderbooks.background = resources.getDrawable(getFragmentBackground())
+    override fun changeUI() = with(resources)
+    {
+        myView.orderbooks.background = getDrawable(getFragmentBackground())
         if (dark_theme) {
-            myView.orderbook_view.background = resources.getDrawable(R.drawable.chart_border_dark)
-            myView.orderbook_large.background = resources.getDrawable(R.drawable.chart_border_dark)
+            myView.orderbook_view.background = getDrawable(R.drawable.chart_border_dark)
+            myView.orderbook_large.background = getDrawable(R.drawable.chart_border_dark)
         } else {
-            myView.orderbook_view.background = resources.getDrawable(R.drawable.chart_border_light)
-            myView.orderbook_large.background = resources.getDrawable(R.drawable.chart_border_light)
+            myView.orderbook_view.background = getDrawable(R.drawable.chart_border_light)
+            myView.orderbook_large.background = getDrawable(R.drawable.chart_border_light)
         }
     }
 
-    override fun set_recycler() {
-        Handler(context?.mainLooper).post {
-            myAdapter = OrderBookAdapter(
-                ArrayList(),
-                context!!,
-                activity as InformationActivity
-            )
-            myView.orderbookRecycler.adapter = myAdapter
-            myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-        }
+
+    override fun setRecycler() = Handler(context?.mainLooper).post {
+        myAdapter = OrderBookAdapter(
+            ArrayList(),
+            context!!,
+            activity as InformationActivity
+        )
+        myView.orderbookRecycler.adapter = myAdapter
+        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
-    override fun update_recycler(arr: ArrayList<OrderBookInfo>) {
-        Handler(context?.mainLooper).post {
-            myAdapter?.update(arr)
-        }
+
+    override fun updateRecycler(arr: ArrayList<OrderBookInfo>) = Handler(context?.mainLooper).post {
+        myAdapter?.update(arr)
     }
 
-    override fun start_loading(){
-        if(!builder?.isShowing!!){
-            Handler(Looper.getMainLooper()).post {
-                try { builder?.show() }catch (e: Exception){ }
+
+    override fun startLoading() {
+        if (builder?.isShowing == false) Handler(Looper.getMainLooper()).post {
+            try {
+                builder?.show()
+            } catch (e: Exception) {
             }
         }
     }
 
-    private fun initLoading(){
-        builder = Dialog(context)
-        builder?.setContentView(R.layout.waitting_dialog)
-        builder?.setCancelable(false)
-        builder?.setCanceledOnTouchOutside(false)
-        builder?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-    }
-
-    override fun stop_loading(){
-        if (builder?.isShowing!!){
-            builder?.dismiss()
+    private fun initLoading() {
+        builder = Dialog(context!!).apply {
+            setContentView(R.layout.waitting_dialog)
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            this.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
     }
 
-    override fun changeRecent(str:String){
-        myView.orderbook_view.text = str
+    override fun stopLoading() {
+        if (builder?.isShowing == true) builder?.dismiss()
     }
 
+    override fun changeRecent(str: String) {
+        myView.orderbook_view.text = str
+    }
 }

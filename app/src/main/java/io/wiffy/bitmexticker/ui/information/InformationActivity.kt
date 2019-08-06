@@ -92,10 +92,12 @@ class InformationActivity : AppCompatActivity(),
 
 
     override fun changeUI() {
-        myBundle = Bundle()
-        myBundle.putString("symbol", coinInformation)
-        myBundle.putString("xbt", intent.getStringExtra("xbt"))
-        myBundle.putSerializable("data", coinInformationStructure)
+
+        myBundle = Bundle().apply {
+            this.putString("symbol", coinInformation)
+            this.putString("xbt", intent.getStringExtra("xbt"))
+            this.putSerializable("data", coinInformationStructure)
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -113,24 +115,33 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun initFragment() {
-
-        fragmentList = ArrayList()
-        fragmentList.add(null)
-        fragmentList.add(null)
-        fragmentList.add(null)
-        fragmentList.add(null)
-
+        fragmentList = ArrayList<Fragment?>().apply {
+            for (x in 0 until 4) add(null)
+        }
         viewFragmentMain()
         catches = R.id.action_title
-
     }
 
-    override fun viewFragmentMain() {
+    override fun viewFragmentMain() = fragmentSetting(0)
+
+    override fun viewFragmentOrderBook() = fragmentSetting(1)
+
+    override fun viewFragmentDetails() = fragmentSetting(2)
+
+    override fun viewFragmentNotification() = fragmentSetting(3)
+
+
+    private fun fragmentSetting(index: Int) {
         for (i in 0 until fragmentList.size) {
             when (i) {
-                0 -> {
+                index -> {
                     if (fragmentList[i] == null) {
-                        fragmentList[i] = MainFragment()
+                        fragmentList[i] = when (index) {
+                            0 -> MainFragment()
+                            1 -> OrderBookFragment()
+                            2 -> DetailsFragment()
+                            else -> NotificationFragment()
+                        }
                         fragmentList[i]?.arguments = myBundle
                         supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
                             .commit()
@@ -143,76 +154,12 @@ class InformationActivity : AppCompatActivity(),
                 }
             }
         }
-        supportFragmentManager.beginTransaction().show(fragmentList[0]!!).commit()
+        supportFragmentManager.beginTransaction().show(fragmentList[index]!!).commit()
     }
 
-    override fun viewFragmentOrderBook() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                1 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = OrderBookFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[1]!!).commit()
-    }
-
-    override fun viewFragmentDetails() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                2 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = DetailsFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[2]!!).commit()
-    }
-
-    override fun viewFragmentNotification() {
-        for (i in 0 until fragmentList.size) {
-            when (i) {
-                3 -> {
-                    if (fragmentList[i] == null) {
-                        fragmentList[i] = NotificationFragment()
-                        fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
-                            .commit()
-                    }
-                }
-                else -> {
-                    if (fragmentList[i] != null) {
-                        supportFragmentManager.beginTransaction().hide(fragmentList[i]!!).commit()
-                    }
-                }
-            }
-        }
-        supportFragmentManager.beginTransaction().show(fragmentList[3]!!).commit()
-
-    }
-
-    override fun addTickerButtonListener(listener: View.OnClickListener) {
+    override fun addTickerButtonListener(listener: View.OnClickListener) =
         toMainFromInformation.setOnClickListener(listener)
-    }
+
 
     override fun moveToMain() {
         infoContext = null
@@ -221,75 +168,62 @@ class InformationActivity : AppCompatActivity(),
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity)
     }
 
-    override fun onBackPressed() {
-        moveToMain()
-    }
+    override fun onBackPressed() = moveToMain()
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return gestureScanner.onTouchEvent(event)
-    }
+    override fun onTouchEvent(event: MotionEvent?) = gestureScanner.onTouchEvent(event)
 
-    override fun onDown(e: MotionEvent?): Boolean {
-        return true
-    }
+    override fun onDown(e: MotionEvent?) = true
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
         if (e2!!.x - e1!!.x > io.wiffy.bitmexticker.ui.setting.SWIPE_MIN_DISTANCE && abs(velocityX) > io.wiffy.bitmexticker.ui.setting.SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
-
         return true
     }
 
     override fun onLongPress(e: MotionEvent?) {
-
     }
 
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-        return true
-    }
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float) = true
 
     override fun onShowPress(e: MotionEvent?) {
     }
 
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        return true
-    }
+    override fun onSingleTapUp(e: MotionEvent?) = true
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
         }
-
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
+    )
 
-    }
 
-    fun setXBT(str: String) {
+    fun setXBT(str: String) =
         Handler(Looper.getMainLooper()).post {
-            if (fragmentList[0] != null)
-                (fragmentList[0] as MainFragment).setXBT(str)
-            if(fragmentList[3] !=null)
-                (fragmentList[3] as NotificationFragment).setXBT(str)
-
+            fragmentList[0]?.let {
+                (it as MainFragment).setXBT(str)
+            }
+            fragmentList[3]?.let {
+                (it as NotificationFragment).setXBT(str)
+            }
         }
-    }
 
-    fun setPrice(str: String) {
+
+    fun setPrice(str: String) =
         Handler(Looper.getMainLooper()).post {
-            if (fragmentList[0] != null)
-                (fragmentList[0] as MainFragment).setPrice(str)
-            if(fragmentList[3] !=null)
-                (fragmentList[3] as NotificationFragment).setPrice(str)
+            fragmentList[0]?.let {
+                (it as MainFragment).setPrice(str)
+            }
+            fragmentList[3]?.let {
+                (it as NotificationFragment).setPrice(str)
+            }
         }
-    }
+
 }

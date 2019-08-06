@@ -4,7 +4,9 @@
     <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
     <string name="Agreement">Information providing agreement</string>
-    <string name="agreementContext">In providing this information, I agree that this application has no legal responsibility.</string>
+    <string name="agreementContext">In providing this information, I agree that this application has no legal
+        responsibility.
+    </string>
 
     <string name="InternetCheck">Check your internet connection.</string>
     <string name="NotificationWarning">" It will be updated."</string>
@@ -16,12 +18,13 @@
     <string name="OK">OK</string>
     <string name="CANCEL">Cancel</string>
     <string name="Symbol">Symbol</string>
-
+    <string name="dominance" translatable="false">BTC Dominance</string>
+    <string name="market">Market Cap</string>
 
 
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
-    <string name="version">1.0.0(1)</string>
+    <string name="version" translatable="false">1.0.1(2)</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
 

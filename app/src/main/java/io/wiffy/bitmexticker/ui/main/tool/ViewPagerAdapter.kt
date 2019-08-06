@@ -26,35 +26,34 @@ class ViewPagerAdapter(fm: FragmentManager, private var mNumOfTabs: Int, arr: Ar
 
     override fun getItem(position: Int): Fragment = fragList[position]
 
-
     override fun getCount(): Int = mNumOfTabs
 
     fun updateTheme() {
-        for (x in fragList) {
-            try {
-                x.themeChange()
-            } catch (e: Exception) {
-            }
+        for (x in fragList) try {
+            x.themeChange()
+        } catch (e: Exception) {
         }
     }
 }
 
 class TabFragment(val str: String) : Fragment() {
+
     private var myView: View? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        myView = inflater.inflate(R.layout.noti_fragment, container, false)
-        myView?.frag1?.setBackgroundResource(getNavi())
-        myView?.frag1_text?.text = str
-        myView?.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+        myView = inflater.inflate(R.layout.noti_fragment, container, false).apply {
+            this.frag1?.setBackgroundResource(getNavi())
+            this.frag1_text?.text = str
+            this.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
+        }
         return myView
     }
 
-    fun themeChange() {
-        if (myView != null) {
-            myView?.frag1?.setBackgroundResource(getNavi())
-            myView?.frag1_text?.text = str
-            myView?.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
-        }
+    fun themeChange() = myView?.let {
+        it.frag1?.setBackgroundResource(getNavi())
+        it.frag1_text?.text = str
+        it.frag1_text?.setTextColor(resources.getColor(R.color.WHITE))
     }
+
 }
 

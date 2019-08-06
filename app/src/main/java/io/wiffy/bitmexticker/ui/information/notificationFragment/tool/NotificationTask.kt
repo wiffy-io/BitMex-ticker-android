@@ -9,16 +9,11 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class NotificationTask(val mView: NotificationFragment, val info: NotificationInfo) : AsyncTask<Void, Void, Int>() {
-    override fun onPreExecute() {
-
-    }
 
     override fun doInBackground(vararg params: Void?): Int {
         val url = "http://wiffy.io/bitmex/reg/?d=${info.value}"
         try {
-            val request = URL(url).openConnection() as HttpURLConnection
-            with(request)
-            {
+            val request = (URL(url).openConnection() as HttpURLConnection).apply {
                 requestMethod = "GET"
                 setRequestProperty(
                     "User-Agent",
@@ -30,9 +25,9 @@ class NotificationTask(val mView: NotificationFragment, val info: NotificationIn
                 setRequestProperty("Connection", "Keep-Alive")
                 setRequestProperty("Host", "wiffy.io")
             }
-            val responseCode = request.responseCode
+
             val `in` = BufferedReader(InputStreamReader(request.inputStream))
-            var inputLine: String? = null
+            var inputLine: String?
             val response = StringBuffer()
 
             do {

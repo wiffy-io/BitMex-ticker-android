@@ -12,7 +12,6 @@
 
     <!-- setting String Sources -->
     <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
-    <string name="version">1.0.0(1)</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
 
@@ -51,6 +50,7 @@
     <string name="Symbol">Symbol</string>
     <string name="NotificationWarning">" It will be updated."</string>
     <string name="alert">Add alert</string>
+    <string name="market">Market Cap</string>
 
 
 </resources>

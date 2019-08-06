@@ -10,17 +10,17 @@ class MyApplication : Application() {
 
     companion object {
         @JvmStatic
-        var socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
+        var socket = BitMexSocket(URI("wss://www.bitmex.com/realtime"))
     }
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate() {
         super.onCreate()
-        Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE)
-        Util.sharedPreferences_editor = Util.sharedPreferences.edit() // editor를 static으로 선언함으로써 변경을 용이하게함
-        Util.global = Util.sharedPreferences
-            .getString("global", Locale.ENGLISH.toLanguageTag())
-        Util.noticom = Util.sharedPreferences.getStringSet("noticom",null)
-        Util.dark_theme = Util.sharedPreferences.getBoolean("mode", false)
+        Util.sharedPreferences = getSharedPreferences("bitMEX", Context.MODE_PRIVATE).apply {
+            Util.sharedPreferences_editor = this.edit()
+            Util.global = this.getString("global", Locale.ENGLISH.toLanguageTag())
+            Util.noticom = this.getStringSet("noticom", null)
+            Util.dark_theme = this.getBoolean("mode", false)
+        }
     }
 }

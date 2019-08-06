@@ -29,18 +29,28 @@ class LanguageActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_language)
-        list.add(lang_EN)
-        list.add(lang_KO)
-        list.add(lang_ZH)
-        list.add(lang_JA)
-        listRadio.add(lang_EN[1] as AppCompatRadioButton)
-        listRadio.add(lang_KO[1] as AppCompatRadioButton)
-        listRadio.add(lang_ZH[1] as AppCompatRadioButton)
-        listRadio.add(lang_JA[1] as AppCompatRadioButton)
-        listString.add("The system will be restarted!")
-        listString.add("시스템이 재시작됩니다!")
-        listString.add("系统将重新启动!")
-        listString.add("システムが再起動されます！")
+        with(list) {
+            add(lang_EN)
+            add(lang_KO)
+            add(lang_ZH)
+            add(lang_JA)
+        }
+        with(listRadio)
+        {
+            add(lang_EN[1] as AppCompatRadioButton)
+            add(lang_KO[1] as AppCompatRadioButton)
+            add(lang_ZH[1] as AppCompatRadioButton)
+            add(lang_JA[1] as AppCompatRadioButton)
+        }
+
+        with(listString)
+        {
+            add("The system will be restarted!")
+            add("시스템이 재시작됩니다!")
+            add("系统将重新启动!")
+            add("システムが再起動されます！")
+        }
+
         ln =
             when (Util.global) {
                 Locale.KOREAN.toLanguageTag() -> {
@@ -116,9 +126,8 @@ class LanguageActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        back()
-    }
+    override fun onBackPressed() = back()
+
 
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
@@ -139,14 +148,12 @@ class LanguageActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-
-        super.attachBaseContext(
-            Util.wrap(
-                newBase,
-                Util.global
-            )
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        Util.wrap(
+            newBase,
+            Util.global
         )
+    )
 
-    }
+
 }

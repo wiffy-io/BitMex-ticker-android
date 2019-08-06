@@ -5,31 +5,25 @@ import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import io.wiffy.bitmexticker.R
 
-class FirebaseMessagingService:FirebaseMessagingService() {
+class FirebaseMessagingService : FirebaseMessagingService() {
     companion object {
         const val TAG = "FirebaseIDService"
     }
+
     override fun onMessageReceived(p0: RemoteMessage?) {
-        if (p0?.notification != null) {
-            sendNotification(p0)
-        }
-    }
-
-
-    override fun onNewToken(p0: String?) {
-        super.onNewToken(p0)
-        Log.e("Firebase", "FirebaseMessagingService : $p0")
+            p0?.let {
+                sendNotification(it)
+            }
     }
 
 
     private fun sendNotification(p0: RemoteMessage) {
-        val title = p0.notification?.title ?:""
+        val title = p0.notification?.title ?: ""
         val message = p0.notification?.body ?: ""
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
@@ -46,7 +40,7 @@ class FirebaseMessagingService:FirebaseMessagingService() {
             }
             else -> {
                 val notificationBuilder = NotificationCompat.Builder(this, "")
-                    .setLargeIcon(BitmapFactory.decodeResource( resources, R.drawable.bitmex))
+                    .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.bitmex))
                     .setSmallIcon(R.drawable.bitmex)
                     .setContentTitle(title)
                     .setContentText(message)

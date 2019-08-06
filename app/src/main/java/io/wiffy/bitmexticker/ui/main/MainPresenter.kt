@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
@@ -20,7 +21,6 @@ import kotlin.collections.ArrayList
 class MainPresenter(private val mView: MainContract.View, con: Context) : MainContract.Presenter {
 
     private var initCoin = ArrayList<CoinInfo>()
-    //private var socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
     private val mContext = con
     private var actSymbol: String? = null
     private val coinMarket = "https://api.coinmarketcap.com/v1/global/"
@@ -39,19 +39,23 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
         }
     }).start()
 
-    override fun parseViewPager(): ArrayList<String> {
-        val list = ArrayList<String>()
+    override fun parseViewPager() = ArrayList<String>().apply {
         try {
-            list.add(
-                "BTC Dominance : ${JSONObject(URL(coinMarket).readText()).getString("bitcoin_percentage_of_market_cap")}%"
+            add(
+                "${mContext.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
+                    "bitcoin_percentage_of_market_cap"
+                )}%"
             )
-            list.add(
-                "Market Cap : ${changeValue(JSONObject(URL(coinMarket).readText()).getString("total_market_cap_usd").toDouble())}"
+            add(
+                "${mContext.resources.getString(R.string.market)} : ${changeValue(
+                    JSONObject(URL(coinMarket).readText()).getString(
+                        "total_market_cap_usd"
+                    ).toDouble()
+                )}"
             )
         } catch (e: Exception) {
-            list.add("error")
+            add("error")
         }
-        return list
     }
 
 
@@ -65,29 +69,32 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
         mView.initViewPager()
     }
 
-    override fun makeSocket() {
-        socket.set_callback {
-            socketCallback(it)
+    override fun makeSocket() =
+        with(socket)
+        {
+            callBack = {
+                socketCallback(it)
+            }
+            sendBack = {
+                is_close = false
+                socketSubscribe()
+            }
+            closeBack = {
+                this.close()
+                mView.changeRecent("---")
+                mView.startLoading()
+                is_close = true
+                Thread(Runnable {
+                    try {
+                        Thread.sleep(2000)
+                        reconnect()
+                    } catch (e: Exception) {
+                    }
+                }).start()
+            }
+            this.connect()
         }
-        socket.set_sendback {
-            is_close = false
-            socketSubscribe()
-        }
-        socket.set_closeback {
-            socket.close()
-            mView.changeRecent("---")
-            mView.startLoading()
-            is_close = true
-            Thread(Runnable {
-                try {
-                    Thread.sleep(2000)
-                    socket.reconnect()
-                } catch (e: Exception) {
-                }
-            }).start()
-        }
-        socket.connect()
-    }
+
 
     override fun socketReconnect() {
         if (is_close) {
@@ -96,10 +103,8 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     }
 
     private fun socketSubscribe() {
-        for (i in 0 until initCoin.size) {
-            var tmp = initCoin[i].Symbol.toString()
-            socket.send_msg_filter("subscribe", "tradeBin1m", tmp)
-        }
+        for (i in 0 until initCoin.size) socket.sendMSGFilter("subscribe", "tradeBin1m", initCoin[i].Symbol.toString())
+
     }
 
     private fun socketCallback(it: String) {
@@ -116,8 +121,8 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
                     val symbol = data.getString("symbol")
                     fuckSymbol = symbol
                     if (symbol == tmpSymbol) {
-                        socket.send_msg_filter("unsubscribe", "tradeBin1m", tmpSymbol)
-                        socket.send_msg_filter("subscribe", "trade", tmpSymbol)
+                        socket.sendMSGFilter("unsubscribe", "tradeBin1m", tmpSymbol)
+                        socket.sendMSGFilter("subscribe", "trade", tmpSymbol)
 
                         val price = data.getDouble("close")
                         initCoin[i].price = changeValue(price)
@@ -146,8 +151,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             }
 
         }
-        if (Util.infoContext != null) {
-            //Log.d("asdf","${fuckSymbol} -- ${actSymbol}")
+        Util.infoContext?.let {
             if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
             }
@@ -160,7 +164,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     }
 
 
-    override fun setSystemLanguage() {
+    override fun setSystemLanguage() =
         Handler(Looper.getMainLooper()).post {
             val config = Configuration()
             config.locale = when (Util.global) {
@@ -179,7 +183,6 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             }
             mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
         }
-    }
 
     override fun setSymbol(str: String?) {
         actSymbol = str

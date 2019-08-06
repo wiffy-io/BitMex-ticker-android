@@ -8,42 +8,38 @@ import java.lang.Exception
 
 class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
 
-    //lateinit var socket:BitmexSocket
     val mView = act
     lateinit var arr: ArrayList<OrderBookInfo>
     private var symbol = sym
 
-    override fun init() {
-        mView.changeUI()
-        mView.set_recycler()
-        mView.start_loading()
-    }
-
-    override fun start_ws() {
-        //socket = BitmexSocket(URI("wss://www.bitmex.com/realtime"))
-        make_socket()
-    }
-
-    override fun stop_ws() {
-        socket.send_msg_filter("unsubscribe", "orderBook10", symbol)
-    }
-
-    private fun make_socket() {
-        socket.send_msg_filter("subscribe", "orderBook10", symbol)
-        socket.set_callback {
-            socket_callback(it)
+    override fun init() =
+        with(mView)
+        {
+            changeUI()
+            setRecycler()
+            startLoading()
         }
-//        socket.set_sendback {
-////
-////        }
-//        socket.set_closeback {
-//            socket.close()
-//        }
-        //socket.connect()
+
+
+    override fun startWs() {
+        makeSocket()
     }
 
-    private fun socket_callback(it: String) {
+    override fun stopWs() {
+        socket.sendMSGFilter("unsubscribe", "orderBook10", symbol)
+    }
 
+    private fun makeSocket() =
+        with(socket)
+        {
+            sendMSGFilter("subscribe", "orderBook10", symbol)
+            callBack = {
+                socketCallback(it)
+            }
+        }
+
+
+    private fun socketCallback(it: String) {
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
             try {
@@ -70,18 +66,16 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                         )
                     )
                 }
-                mView.update_recycler(arr)
-                mView.stop_loading()
+                mView.updateRecycler(arr)
+                mView.stopLoading()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
-        else if (it.contains("trade")) {
+        } else if (it.contains("trade")) {
             val jsonContact = JSONObject(it)
             val tableName = jsonContact.getString("table")
             if (tableName == "trade") {
                 val data = jsonContact.getJSONArray("data").getJSONObject(0)
-                //Log.d("asdf",data.toString())
                 val symbol2 = data.getString("symbol")
                 if (symbol2 == symbol) {
                     val price = data.getDouble("price")
@@ -90,7 +84,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                 }
             }
         }
-
     }
+
 
 }

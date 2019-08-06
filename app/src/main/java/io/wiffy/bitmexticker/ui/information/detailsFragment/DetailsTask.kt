@@ -7,7 +7,7 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.net.URL
 
-class DetailsTask(val mView:DetailsContract.View, private val mUrl:String) : AsyncTask<String, Void, Boolean>() {
+class DetailsTask(val mView: DetailsContract.View, private val mUrl: String) : AsyncTask<String, Void, Boolean>() {
 
     lateinit var arr: ArrayList<DetailsInfo>
 
@@ -25,7 +25,7 @@ class DetailsTask(val mView:DetailsContract.View, private val mUrl:String) : Asy
                 break
             }
         }
-        if (rows != null) {
+        rows?.let {
             for (n in 0 until rows.size) {
                 arr.add(
                     DetailsInfo(
@@ -44,6 +44,5 @@ class DetailsTask(val mView:DetailsContract.View, private val mUrl:String) : Asy
 
     override fun onPostExecute(result: Boolean?) {
         mView.asyncPost()
-        return
     }
 }
