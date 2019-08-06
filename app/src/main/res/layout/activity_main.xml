@@ -67,20 +67,20 @@
                     android:layout_below="@id/bgc"
                     android:id="@+id/myPagerLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="80dp">
                 <TextView
                         android:layout_marginStart="15dp"
                         android:layout_alignParentStart="true"
                         android:textColor="@color/light_title"
                         android:textStyle="bold"
                         android:id="@+id/cap"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_above="@+id/myLine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 <TextView
                         android:layout_marginStart="8dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_toEndOf="@id/cap"
                         android:layout_above="@+id/myLine"
                         android:id="@+id/cap2"
@@ -97,13 +97,13 @@
                         android:textColor="@color/light_title"
                         android:textStyle="bold"
                         android:id="@+id/dom"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="5dp"
                         android:layout_below="@+id/myLine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 <TextView
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/dom"
                         android:layout_below="@+id/myLine"
                         android:id="@+id/dom2"
@@ -175,7 +175,6 @@
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-0355430122346055/5207727597"
-            android:layout_marginBottom="5dp">>
-    </com.google.android.gms.ads.AdView>
+            android:layout_marginBottom="5dp"/>
 
 </RelativeLayout>
