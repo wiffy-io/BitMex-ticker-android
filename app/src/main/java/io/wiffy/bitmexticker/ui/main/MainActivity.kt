@@ -26,8 +26,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.Util.Companion.infoContext
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
-import io.wiffy.bitmexticker.ui.main.tool.ViewPagerAdapter
-import java.util.*
+import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import kotlin.collections.ArrayList
 
 
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     lateinit var mPresenter: MainPresenter
     var myAdapter: MainAdapter? = null
-    var myPagerAdapter: ViewPagerAdapter? = null
     var builder: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,7 +74,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onResume()
         changeUI()
         updateRecyclerTheme()
-        myPagerAdapter?.updateTheme()
         mPresenter.socketReconnect()
     }
 
@@ -104,7 +101,31 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
 
     override fun changeUI() {
-        tabLayout.setBackgroundResource(getNavi())
+        myPagerLayout.background = resources.getDrawable(getTableIn())
+        cap.setTextColor(
+            ContextCompat.getColorStateList(
+                applicationContext,
+                io.wiffy.bitmexticker.extension.getTitle()
+            )
+        )
+        dom.setTextColor(
+            ContextCompat.getColorStateList(
+                applicationContext,
+                io.wiffy.bitmexticker.extension.getTitle()
+            )
+        )
+        cap2.setTextColor(
+            ContextCompat.getColorStateList(
+                applicationContext,
+                getTitle2()
+            )
+        )
+        dom2.setTextColor(
+            ContextCompat.getColorStateList(
+                applicationContext,
+                getTitle2()
+            )
+        )
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())
@@ -169,48 +190,20 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         startLoading()
     }
 
-    override fun initViewPager() {
-        ViewPagerTask().execute()
+    override fun initInformation() {
+        InformationTask(mPresenter, this@MainActivity).execute()
     }
 
-    @SuppressLint("StaticFieldLeak")
-    inner class ViewPagerTask : AsyncTask<Void, Void, ArrayList<String>>() {
-
-        override fun doInBackground(vararg params: Void?): ArrayList<String> =
-            try {
-                mPresenter.parseViewPager()
-            } catch (e: Exception) {
-                temp()
-            }
-
-        override fun onPostExecute(result: ArrayList<String>?) {
-            myPagerAdapter = ViewPagerAdapter(
-                supportFragmentManager,
-                result?.size ?: 1,
-                result ?: temp()
-            )
-            viewPager.adapter = myPagerAdapter
-            val newHandler = Handler()
-            var currentPage = 0
-            val update = Runnable {
-                if (currentPage == result?.size) currentPage = 0
-                Handler(Looper.getMainLooper()).post {
-                    viewPager.setCurrentItem(currentPage, true)
-                    currentPage += 1
-                }
-            }
-
-            val mTimer = Timer()
-            mTimer.schedule(object : TimerTask() {
-                override fun run() {
-                    newHandler.post(update)
-                }
-            }, 550, 3300) //3.3초마다 550의 속도로 바뀜
-            tabLayout.setupWithViewPager(viewPager, true)
-        }
-
-        private fun temp() = ArrayList<String>().apply {
-            add("Error")
+    @SuppressLint("SetTextI18n")
+    override fun setInformation(list: ArrayList<String>?) {
+        cap.text = "${resources.getString(R.string.market)} :"
+        dom.text = "${resources.getString(R.string.dominance)} :"
+        if (list?.size == 2) {
+            cap2.text = "\$${list[0]}"
+            dom2.text = list[1]
+        } else {
+            cap2.text = "No Data"
+            dom2.text = "No Data"
         }
     }
 

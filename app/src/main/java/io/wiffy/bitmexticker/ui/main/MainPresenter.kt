@@ -5,8 +5,8 @@ import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.changeValue
+import io.wiffy.bitmexticker.extension.inputComma
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import io.wiffy.bitmexticker.model.Util
@@ -39,23 +39,20 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
         }
     }).start()
 
-    override fun parseViewPager() = ArrayList<String>().apply {
-        try {
-            add(
-                "${mContext.resources.getString(R.string.dominance)} : ${JSONObject(URL(coinMarket).readText()).getString(
-                    "bitcoin_percentage_of_market_cap"
-                )}%"
+    override fun parseInformation() = ArrayList<String>().apply {
+        //        try {
+        val json = JSONObject(URL(coinMarket).readText())
+        add(
+            inputComma(
+                json.getDouble("total_market_cap_usd")
             )
-            add(
-                "${mContext.resources.getString(R.string.market)} : ${changeValue(
-                    JSONObject(URL(coinMarket).readText()).getString(
-                        "total_market_cap_usd"
-                    ).toDouble()
-                )}"
-            )
-        } catch (e: Exception) {
-            add("error")
-        }
+        )
+        add(
+            "${json.getString("bitcoin_percentage_of_market_cap")}%"
+        )
+//        } catch (e: Exception) {
+//            add("error")
+//        }
     }
 
 
@@ -66,7 +63,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             mView.moveToSetting()
         }
         mView.addSettingActivityChangeListener(listenerSetting)
-        mView.initViewPager()
+        mView.initInformation()
     }
 
     override fun makeSocket() =
