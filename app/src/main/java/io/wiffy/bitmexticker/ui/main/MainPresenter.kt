@@ -40,7 +40,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     }).start()
 
     override fun parseInformation() = ArrayList<String>().apply {
-        //        try {
+                try {
         val json = JSONObject(URL(coinMarket).readText())
         add(
             inputComma(
@@ -50,9 +50,9 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
         add(
             "${json.getString("bitcoin_percentage_of_market_cap")}%"
         )
-//        } catch (e: Exception) {
-//            add("error")
-//        }
+        } catch (e: Exception) {
+            add("error")
+        }
     }
 
 

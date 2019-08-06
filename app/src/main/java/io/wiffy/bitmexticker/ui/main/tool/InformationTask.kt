@@ -11,11 +11,11 @@ import kotlin.collections.ArrayList
 class InformationTask(private val mPresenter:MainPresenter, private val mView:MainContract.View) : AsyncTask<Void, Void, ArrayList<String>>() {
 
     override fun doInBackground(vararg params: Void?): ArrayList<String> =
-//        try {
+        try {
             mPresenter.parseInformation()
-//        } catch (e: Exception) {
-//            temp()
-//        }
+        } catch (e: Exception) {
+            temp()
+        }
 
     override fun onPostExecute(result: ArrayList<String>?) {
         mView.setInformation(result)
