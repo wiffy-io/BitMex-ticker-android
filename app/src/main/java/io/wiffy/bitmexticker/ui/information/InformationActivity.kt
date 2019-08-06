@@ -31,6 +31,7 @@ import kotlin.math.abs
 class InformationActivity : AppCompatActivity(),
     InformationContract.View, GestureDetector.OnGestureListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
+
     private lateinit var mPresenter: InformationPresenter
     private lateinit var gestureScanner: GestureDetector
     private lateinit var coinInformation: String
@@ -46,13 +47,18 @@ class InformationActivity : AppCompatActivity(),
         setContentView(R.layout.activity_information)
         supportActionBar?.hide()
         infoContext = this
+
         coinInformation = intent.getStringExtra("information")
         coinInformationStructure = intent.getSerializableExtra("data") as CoinInfo
+
         information_navi.setOnNavigationItemSelectedListener(this)
         information_navi.menu.findItem(R.id.action_title).title = coinInformation
-        mPresenter = InformationPresenter(this, applicationContext)
+
         gestureScanner = GestureDetector(this)
+        mPresenter = InformationPresenter(this, applicationContext)
         mPresenter.init()
+
+
 
     }
 

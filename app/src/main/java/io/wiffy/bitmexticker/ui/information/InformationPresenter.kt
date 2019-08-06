@@ -11,6 +11,7 @@ import java.util.*
 class InformationPresenter(act: InformationContract.View, cnt: Context) : InformationContract.Presenter {
     private val mContext = cnt
     private val mView = act
+
     override fun init() {
         mView.changeUI()
         mView.addTickerButtonListener(listener = View.OnClickListener {

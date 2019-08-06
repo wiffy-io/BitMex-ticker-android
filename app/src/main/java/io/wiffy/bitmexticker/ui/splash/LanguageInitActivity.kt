@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.language_init.*
 import java.util.*
@@ -39,7 +40,8 @@ class LanguageInitActivity : AppCompatActivity() {
 
     private fun onClickListener(locale:String)
     {
-        Util.sharedPreferences_editor.putString("global", locale).commit()
+        setShared("global",locale)
+        //Util.sharedPreferences_editor.putString("global", locale).commit()
         Util.global = locale
         resultOK()
     }
@@ -51,7 +53,6 @@ class LanguageInitActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() = back()
-
 
     private fun back() {
         setResult(Activity.RESULT_CANCELED)

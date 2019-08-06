@@ -13,6 +13,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.ui.main.MainActivity
 import es.dmoral.toasty.Toasty
+import io.wiffy.bitmexticker.extension.getShared
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
     lateinit var mPresenter: SplashPresenter
@@ -24,8 +25,8 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
 
-        mPresenter = SplashPresenter(this)
-        mPresenter.startPresent()
+        mPresenter = SplashPresenter(this,applicationContext)
+        agreement()
     }
 
     override fun moveToMain(str: String) {
@@ -47,15 +48,14 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             finish()
         }
 
-
     override fun setRequestedOrientation(requestedOrientation: Int) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
         }
     }
 
-    override fun agreement() {
-        when (Util.sharedPreferences.getBoolean("agreement", false)) {
+    private fun agreement() {
+        when (getShared.getBoolean("agreement", false)) {
             true -> {
                 mPresenter.checkInternetConnection()
             }
@@ -80,6 +80,5 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             Util.global
         )
     )
-
 
 }

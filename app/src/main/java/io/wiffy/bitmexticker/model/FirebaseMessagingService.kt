@@ -29,7 +29,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
                 val notificationBuilder = NotificationCompat.Builder(this, getString(R.string.channel))
                     .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.bitmex))
-                    .setSmallIcon(R.drawable.bitmex)
+                    .setSmallIcon(R.drawable.bitmex_noti)
                     .setContentTitle(title)
                     .setContentText(message)
                     .setChannelId(getString(R.string.channel))
@@ -41,7 +41,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             else -> {
                 val notificationBuilder = NotificationCompat.Builder(this, "")
                     .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.bitmex))
-                    .setSmallIcon(R.drawable.bitmex)
+                    .setSmallIcon(R.drawable.bitmex_noti)
                     .setContentTitle(title)
                     .setContentText(message)
                     .setAutoCancel(true)

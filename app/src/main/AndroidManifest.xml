@@ -41,7 +41,7 @@
                 android:name="io.wiffy.bitmexticker.model.FirebaseMessagingService"
                 android:exported="false"
                 android:stopWithTask="false"
-        >
+                android:resource="@drawable/bitmex">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
