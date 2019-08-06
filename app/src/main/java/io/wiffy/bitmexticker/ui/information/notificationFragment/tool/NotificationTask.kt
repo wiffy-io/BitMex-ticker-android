@@ -8,10 +8,10 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
-class NotificationTask(val mView: NotificationFragment, val info: NotificationInfo) : AsyncTask<Void, Void, Int>() {
+class NotificationTask(val mView: NotificationFragment, private val info: NotificationInfo) : AsyncTask<Void, Void, Int>() {
 
     override fun doInBackground(vararg params: Void?): Int {
-        val url = "http://wiffy.io/bitmex/reg/?d=${info.value}"
+        val url = "http://wiffy.io/bitmex/reg/?d=alert_${info.symbol}:${info.value}"
         try {
             val request = (URL(url).openConnection() as HttpURLConnection).apply {
                 requestMethod = "GET"
