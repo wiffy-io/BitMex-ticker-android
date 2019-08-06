@@ -10,6 +10,12 @@ fun getTableIn() = if (Util.dark_theme) {
     R.color.light_table_in
 }
 
+fun getEditTextColor() = if (Util.dark_theme) {
+    R.color.dark_edittext
+} else {
+    R.color.light_edittext
+}
+
 fun getFragmentBackground() =
     if (Util.dark_theme) {
         R.color.dark_fragment_Background

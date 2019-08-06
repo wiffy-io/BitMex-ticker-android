@@ -52,6 +52,7 @@
     <string name="alert">加法</string>
     <string name="market">市值</string>
     <string name="dominance">BTC 優勢</string>
+    <string name="deletion">刪除</string>
 
 
 </resources>

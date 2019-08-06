@@ -51,6 +51,7 @@
     <string name="alert">追加</string>
     <string name="market">時価総額</string>
     <string name="dominance">BTC ドミナンス</string>
+    <string name="deletion">削除</string>
 
 
 </resources>

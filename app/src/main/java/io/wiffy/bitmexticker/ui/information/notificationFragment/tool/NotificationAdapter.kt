@@ -3,7 +3,6 @@ package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -26,15 +25,15 @@ class NotificationAdapter(
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) = items[position].let { item ->
         with(holder) {
-            myText.text = item.value
-            myDate.text = item.date
+            mySymbol.text = item.symbol
+            myValue.text = item.value
             val color = if (dark_theme) {
                 R.color.WHITE
             } else {
                 R.color.BLACK
             }
-            myText.setTextColor(ContextCompat.getColor(context, color))
-            myDate.setTextColor(ContextCompat.getColor(context, color))
+            mySymbol.setTextColor(ContextCompat.getColor(context, color))
+            myValue.setTextColor(ContextCompat.getColor(context, color))
             myButton.setOnClickListener {
                 items.remove(item)
                 notifyDataSetChanged()
@@ -60,8 +59,8 @@ class NotificationAdapter(
     inner class NotificationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_notification, parent, false)
     ) {
-        val myDate: TextView = itemView.textextext
-        val myText: TextView = itemView.notitextex
-        val myButton: Button = itemView.deletion
+        val myValue: TextView = itemView.textextext
+        val mySymbol: TextView = itemView.notitextex
+        val myButton: TextView = itemView.deletion
     }
 }

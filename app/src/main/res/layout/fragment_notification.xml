@@ -61,33 +61,33 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-               android:backgroundTint="@color/myBlue"
+                android:backgroundTint="@color/green_tr"
                 android:layout_height="match_parent">
 
             <TextView
                     android:gravity="center"
-                    android:textColor="@color/WHITE"
+                    android:textColor="@color/green"
+                    android:background="@color/green_tr"
                     android:text="@string/alert"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"/>
         </androidx.cardview.widget.CardView>
 
-            <EditText
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toStartOf="@+id/cdcd123"
-                    android:background="@drawable/edittextdrawable"
-                    android:textAlignment="center"
-                    android:hint="9999.9"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/BLACK"
-                    android:maxLines="1"
-                    android:id="@+id/texter"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+        <EditText
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:layout_toStartOf="@+id/cdcd123"
+                android:background="@drawable/edittextdrawable"
+                android:textAlignment="center"
+                android:inputType="numberDecimal"
+                android:textColor="@color/BLACK"
+                android:maxLines="1"
+                android:id="@+id/texter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
     </RelativeLayout>
 
@@ -100,10 +100,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:layout_below="@+id/noti_context">
-<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/noticycle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/noticycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
 
     </RelativeLayout>
