@@ -18,7 +18,7 @@
     <string name="OK">OK</string>
     <string name="CANCEL">Cancel</string>
     <string name="Symbol">Symbol</string>
-    <string name="dominance" translatable="false">BTC Dominance</string>
+    <string name="dominance">BTC Dominance</string>
     <string name="market">Market Cap</string>
 
 

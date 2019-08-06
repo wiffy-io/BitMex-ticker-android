@@ -51,7 +51,7 @@ fun getTitle2() = if (Util.dark_theme) {
 fun getNavi() = if (Util.dark_theme) {
     R.color.dark_navi
 } else {
-    R.color.light_navi
+    R.color.dark_navi
 }
 
 
@@ -86,7 +86,7 @@ fun getBottomColor() = if (Util.dark_theme) {
 fun rippleAndTintOfBottom() = if (Util.dark_theme) {
     R.color.dark_table_out
 } else {
-    R.color.light_navi
+    R.color.dark_navi
 }
 
 

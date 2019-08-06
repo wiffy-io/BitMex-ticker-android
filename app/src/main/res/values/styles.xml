@@ -4,7 +4,7 @@
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/light_navi</item>
+        <item name="colorAccent">@color/dark_navi</item>
         <item name="colorControlHighlight">@color/light_title</item>
 
         <item name="android:statusBarColor">@color/light_table_out</item>

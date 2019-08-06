@@ -50,6 +50,7 @@
     <string name="NotificationWarning">アップデートされる予定です</string>
     <string name="alert">追加</string>
     <string name="market">時価総額</string>
+    <string name="dominance">BTC ドミナンス</string>
 
 
 </resources>
