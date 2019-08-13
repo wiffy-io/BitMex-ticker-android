@@ -63,66 +63,71 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun parseUI(coinBase: String, bitStamp: String) = context?.let {
-                Handler(Looper.getMainLooper()).post {
-                    if (bitStamp != "No Data") {
-                        (myView.bitstamp_p[0] as TextView).text = bitStamp
-                        myView.bitstamp_pp.text = parseBitStamp(bitStamp)
-                    }
-                    if (coinBase != "No Data") {
-                        (myView.coinbase_p[0] as TextView).text = coinBase
-                        myView.coinbase_pp.text = parseCoinBase(coinBase)
-                    }
-                }
+        Handler(Looper.getMainLooper()).post {
+            if (bitStamp != "No Data") {
+                (myView.bitstamp_p[0] as TextView).text = bitStamp
+                myView.bitstamp_pp.text = parseBitStamp(bitStamp)
             }
+            if (coinBase != "No Data") {
+                (myView.coinbase_p[0] as TextView).text = coinBase
+                myView.coinbase_pp.text = parseCoinBase(coinBase)
+            }
+        }
+    }
 
 
     override fun parseBitStamp(str: String): String {
-        val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
-        return when {
-            value > 0 -> {
-                Handler(Looper.getMainLooper()).post {
-                    myView.bitstamp_ppap.setCardBackgroundColor(
-                        ContextCompat.getColorStateList(context!!, R.color.green_tr)
-                    )
-                    myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+        try {
+            val value = (xbtPrice.toDouble() - str.toDouble()) / str.toDouble() * 100
+            return when {
+                value > 0 -> {
+                    Handler(Looper.getMainLooper()).post {
+                        myView.bitstamp_ppap.setCardBackgroundColor(
+                            ContextCompat.getColorStateList(context!!, R.color.green_tr)
+                        )
+                        myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                    }
+                    "+${String.format("%.2f", value)}%"
                 }
-                "+${String.format("%.2f", value)}%"
-            }
 
-            value == 0.0 -> {
-                Handler(Looper.getMainLooper()).post {
-                    myView.bitstamp_ppap.setCardBackgroundColor(
-                        ContextCompat.getColorStateList(
-                            context!!,
-                            R.color.cardBack
+                value == 0.0 -> {
+                    Handler(Looper.getMainLooper()).post {
+                        myView.bitstamp_ppap.setCardBackgroundColor(
+                            ContextCompat.getColorStateList(
+                                context!!,
+                                R.color.cardBack
+                            )
                         )
-                    )
-                    myView.bitstamp_pp.setTextColor(
-                        ContextCompat.getColorStateList(
-                            context!!,
-                            R.color.cardText
+                        myView.bitstamp_pp.setTextColor(
+                            ContextCompat.getColorStateList(
+                                context!!,
+                                R.color.cardText
+                            )
                         )
-                    )
+                    }
+                    "${String.format("%.2f", value)}%"
                 }
-                "${String.format("%.2f", value)}%"
-            }
-            else -> {
-                Handler(Looper.getMainLooper()).post {
-                    myView.bitstamp_ppap.setCardBackgroundColor(
-                        ContextCompat.getColorStateList(
-                            context!!,
-                            R.color.red_tr
+                else -> {
+                    Handler(Looper.getMainLooper()).post {
+                        myView.bitstamp_ppap.setCardBackgroundColor(
+                            ContextCompat.getColorStateList(
+                                context!!,
+                                R.color.red_tr
+                            )
                         )
-                    )
-                    myView.bitstamp_pp.setTextColor(
-                        ContextCompat.getColorStateList(
-                            context!!, R.color.red
+                        myView.bitstamp_pp.setTextColor(
+                            ContextCompat.getColorStateList(
+                                context!!, R.color.red
+                            )
                         )
-                    )
+                    }
+                    "${String.format("%.2f", value)}%"
                 }
-                "${String.format("%.2f", value)}%"
             }
+        } catch (e: Exception) {
+            return ""
         }
+
     }
 
     override fun parseCoinBase(str: String): String {

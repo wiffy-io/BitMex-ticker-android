@@ -4,6 +4,7 @@ import android.util.Log
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
+import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.count
 import org.json.JSONObject
 import java.lang.Exception
 
@@ -44,36 +45,41 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
             try {
-                var sum = 0
-                val jsonContact = JSONObject(it)
-                val data = jsonContact.getJSONArray("data")
-                val bids = data.getJSONObject(0).getJSONArray("bids")
-                val asks = data.getJSONObject(0).getJSONArray("asks")
+                if (count >= 20) {
+                    count = 0
+                    var sum = 0
+                    val jsonContact = JSONObject(it)
+                    val data = jsonContact.getJSONArray("data")
+                    val bids = data.getJSONObject(0).getJSONArray("bids")
+                    val asks = data.getJSONObject(0).getJSONArray("asks")
 
-                for (x in asks.length() - 1 downTo 0) {
-                    val myValue = asks.getJSONArray(x)[1] as Int
-                    arr.add(
-                        OrderBookInfo(
-                            myValue.toString(),
-                            changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
-                            null
+                    for (x in asks.length() - 1 downTo 0) {
+                        val myValue = asks.getJSONArray(x)[1] as Int
+                        arr.add(
+                            OrderBookInfo(
+                                myValue.toString(),
+                                changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
+                                null
+                            )
                         )
-                    )
-                    sum += myValue
-                }
-                for (x in 0 until bids.length()) {
-                    val myValue = bids.getJSONArray(x)[1] as Int
-                    arr.add(
-                        OrderBookInfo(
-                            null,
-                            changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
-                            myValue.toString()
+                        sum += myValue
+                    }
+                    for (x in 0 until bids.length()) {
+                        val myValue = bids.getJSONArray(x)[1] as Int
+                        arr.add(
+                            OrderBookInfo(
+                                null,
+                                changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
+                                myValue.toString()
+                            )
                         )
-                    )
-                    sum += myValue
+                        sum += myValue
+                    }
+                    mView.updateRecycler(arr, sum)
+                    mView.stopLoading()
+                } else {
+                    Log.d("asdf", "cccc=$count")
                 }
-                mView.updateRecycler(arr, sum)
-                mView.stopLoading()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
