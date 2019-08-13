@@ -40,3 +40,7 @@ inline fun <reified T> getShared(key: String, default: T): T = mySharedPreferenc
         else -> ""
     } as T
 }
+
+fun removeShared(key: String) = mySharedPreference.edit().apply {
+    remove(key)
+}.commit()

@@ -22,5 +22,6 @@ class MyApplication : Application() {
         Util.global = getShared("global", Locale.ENGLISH.toLanguageTag())
         Util.dark_theme = getShared("mode")
         Util.notificationSet = getShared("notificationSet")
+        Util.isConsumer = getShared("consumer", false)
     }
 }

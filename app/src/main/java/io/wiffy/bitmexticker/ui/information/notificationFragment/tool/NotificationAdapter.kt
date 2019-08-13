@@ -2,7 +2,9 @@ package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +14,15 @@ import io.wiffy.bitmexticker.extension.getTableIn
 import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.model.Util.Companion.dpToPx
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_notification.view.*
 
 class NotificationAdapter(
     var items: ArrayList<NotificationInfo>,
     var context: Context,
-    var activity: InformationActivity
+    var activity: InformationActivity,
+    private val symbolOut: String?
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotificationViewHolder(parent)
     override fun getItemCount(): Int = items.size
@@ -46,9 +50,21 @@ class NotificationAdapter(
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
             }
             itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+            if (symbolOut != item.symbol) {
+                itemView.visibility = View.GONE
+                itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
+                    height = 0
+                    width = 0
+                }
+            } else {
+                itemView.visibility = View.VISIBLE
+                itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
+                    height = dpToPx(context, 60)
+                    width = LinearLayout.LayoutParams.MATCH_PARENT
+                }
+            }
         }
     }
-
 
     fun update(list: ArrayList<NotificationInfo>) {
         items = list

@@ -1,12 +1,18 @@
 package io.wiffy.bitmexticker.model
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
 import android.os.LocaleList
+import com.google.firebase.messaging.FirebaseMessaging
+import io.wiffy.bitmexticker.extension.removeShared
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.ui.information.InformationActivity
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 import kotlin.system.exitProcess
 
 class Util {
@@ -21,6 +27,8 @@ class Util {
         var setting_on: Boolean = true
         var is_close: Boolean = false
 
+        var isConsumer = false
+
         var notificationSet: HashSet<String>? = null
 
         @JvmStatic
@@ -32,6 +40,30 @@ class Util {
             )
             exitProcess(0)
         }
+
+        @JvmStatic
+        fun cleanNotificationSubscribe() {
+            notificationSet?.apply {
+                for (slice in iterator()) {
+                    val cheese = slice.split(":")
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic("${cheese[0]}_${cheese[1]}")
+                }
+            }?.clear()
+            removeShared("notificationSet")
+        }
+
+        @JvmStatic
+        fun beConsumer(){
+            isConsumer = true
+            setShared("consumer", true)
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        @JvmStatic
+        fun getTimeFormat(format: String):String = SimpleDateFormat(format).format(Date())
+
+        @JvmStatic
+        fun dpToPx(context: Context, dp: Int) = (dp * context.resources.displayMetrics.density).roundToInt()
 
         @JvmStatic
         fun wrap(context: Context?, language: String?): ContextWrapper? {

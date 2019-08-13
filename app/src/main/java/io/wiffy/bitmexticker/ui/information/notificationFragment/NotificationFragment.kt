@@ -17,6 +17,7 @@ import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.model.Util.Companion.getTimeFormat
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
@@ -62,7 +63,8 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         myAdapter = NotificationAdapter(
             myList,
             context!!,
-            activity as InformationActivity
+            activity as InformationActivity,
+            symbol
         )
 
         myView.noticycle.adapter = myAdapter
@@ -102,9 +104,11 @@ class NotificationFragment : Fragment(), NotificationContract.View {
                 if (flag) {
                     var numbers = text
                     if (numbers.toDouble().toInt().toDouble() == numbers.toDouble())
-                        numbers = numbers.toInt().toString()
-                    val mformat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
-                    NotificationTask(this, NotificationInfo(symbol, numbers, mformat)).execute()
+                        numbers = numbers.split(".")[0]
+                    NotificationTask(
+                        this,
+                        NotificationInfo(symbol, numbers, getTimeFormat("yyyy/MM/dd HH:mm:ss"))
+                    ).execute()
                 } else {
                     toast("exist value")
                 }
