@@ -63,7 +63,6 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
             activity as InformationActivity
         )
         myView.orderbookRecycler.setHasFixedSize(true)
-        myView.orderbookRecycler.
         myView.orderbookRecycler.adapter = myAdapter
         myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
