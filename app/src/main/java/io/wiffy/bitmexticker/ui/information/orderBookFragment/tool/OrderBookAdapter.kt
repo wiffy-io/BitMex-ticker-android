@@ -65,24 +65,14 @@ class OrderBookAdapter(
                         Util.width.times(ratio).toInt()
                 }
             }
-            itemView.setOnTouchListener { _, e ->
-                isTouch = when (e?.action) {
-                    MotionEvent.ACTION_DOWN -> true
-                    MotionEvent.ACTION_UP -> false
-                    else -> false
-                }
-                true
-            }
         }
 
     }
 
     fun update(list: ArrayList<OrderBookInfo>, sum: Int) {
-        if (!isTouch) {
-            this.sum = sum
-            items = list
-            notifyDataSetChanged()
-        }
+        this.sum = sum
+        items = list
+        notifyDataSetChanged()
     }
 
     inner class OrderBookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
