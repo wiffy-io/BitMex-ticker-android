@@ -222,10 +222,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         )
     )
 
-
     override fun tossSymbol(symbol: String) = (infoContext as InformationActivity).setPrice(symbol)
 
-
     override fun tossXBT(xbt: String) = (infoContext as InformationActivity).setXBT(xbt)
-
 }
