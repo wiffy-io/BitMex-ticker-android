@@ -21,7 +21,7 @@ class OrderBookAdapter(
     var context: Context,
     var activity: InformationActivity
 ) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>() {
-
+    var count = 0
     var sum = 0
     private var isTouch = false
 
@@ -31,7 +31,9 @@ class OrderBookAdapter(
 
     override fun onBindViewHolder(holder: OrderBookViewHolder, position: Int) = items[position].let { item ->
         with(holder) {
+            //            setIsRecyclable(false)
             val flag = item.bid == null
+            count += 1
             var ratio = 0.0
             ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
             bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
@@ -40,18 +42,19 @@ class OrderBookAdapter(
                 price.setTextColor(ContextCompat.getColor(context, R.color.red))
                 ratio = item.ask?.toDouble()?.div(sum) ?: 0.0
                 right.visibility = View.GONE
+                left.visibility = View.VISIBLE
             } else {
                 price.setTextColor(ContextCompat.getColor(context, R.color.green))
                 ratio = item.bid?.toDouble()?.div(sum) ?: 0.0
                 left.visibility = View.GONE
+                right.visibility = View.VISIBLE
             }
             itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
-
 
             ask.text = item.ask
             price.text = item.price
             bid.text = item.bid
-            if (sum != 0 && Util.width != 0) {
+            if (ratio >= 0.0) {
                 if (flag) {
                     left.layoutParams.width =
                         Util.width.times(ratio).toInt()
@@ -69,21 +72,25 @@ class OrderBookAdapter(
                 true
             }
         }
-
+        if (count >= 20) count = 0
 
     }
 
     fun update(list: ArrayList<OrderBookInfo>, sum: Int) {
-        if (!isTouch) {
+        Log.d("asdf", "count=$count")
+        if (!isTouch && count == 0) {
             this.sum = sum
             items = list
             notifyDataSetChanged()
+        } else {
+
         }
     }
 
     inner class OrderBookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_orderbook, parent, false)
     ) {
+
         val ask: TextView = itemView.ask
         val price: TextView = itemView.price
         val bid: TextView = itemView.bid

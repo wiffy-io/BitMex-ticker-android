@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
+        Util.width = Util.getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
