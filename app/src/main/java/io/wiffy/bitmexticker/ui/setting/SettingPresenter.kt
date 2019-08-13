@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.CompoundButton
 import io.wiffy.bitmexticker.R
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.Util
 import java.util.*
 
@@ -46,12 +47,12 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
             listener6 = CompoundButton.OnCheckedChangeListener { switch, isChecked ->
                 when (isChecked) {
                     false -> {
-                        Util.sharedPreferences_editor.putBoolean("mode", true).commit()
+                        setShared("mode", true)
                         Util.dark_theme = true
                         switch.isChecked = true
                     }
                     true -> {
-                        Util.sharedPreferences_editor.putBoolean("mode", false).commit()
+                        setShared("mode", false)
                         Util.dark_theme = false
                         switch.isChecked = false
                     }

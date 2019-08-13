@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
+        Util.width = Util.getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
@@ -55,12 +55,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     private fun agreement() {
-        if (!Util.sharedPreferences.getBoolean("agreement", false)) {
+        if (!getShared("agreement", false)) {
             AlertDialog.Builder(this, getDialog()).apply {
                 setTitle(R.string.Agreement)
                 setMessage(R.string.agreementContext)
                 setPositiveButton("OK") { _, _ ->
-                    Util.sharedPreferences_editor.putBoolean("agreement", true).commit()
+                    setShared("agreement", true)
                 }
                 setNegativeButton("Cancel") { _, _ ->
                     finish()

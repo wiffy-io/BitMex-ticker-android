@@ -1,35 +1,46 @@
+@file:Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
+
 package io.wiffy.bitmexticker.extension
 
-import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import android.R.attr.key
 import android.content.SharedPreferences
-import java.lang.Exception
 
+lateinit var mySharedPreference: SharedPreferences
 
-lateinit var getShared: SharedPreferences
+inline fun <reified T> setShared(key: String, data: T) = mySharedPreference.edit().apply {
+    when (T::class) {
+        String::class -> putString(key, data as String)
+        Boolean::class -> putBoolean(key, data as Boolean)
+        Float::class -> putFloat(key, data as Float)
+        Int::class -> putInt(key, data as Int)
+        Long::class -> putLong(key, data as Long)
+        HashSet::class -> putStringSet(key, data as HashSet<String>)
+    }
+}.commit()
 
-fun setShared(key:String,data:Any){
-    val editor = getShared.edit()
-    if (data is String){
-        editor.putString(key, data)
-    }
-    else if (data is Boolean){
-        editor.putBoolean(key, data)
-    }
-    else if (data is Float){
-        editor.putFloat(key, data)
-    }
-    else if (data is Int){
-        editor.putInt(key, data)
-    }
-    else if (data is Long){
-        editor.putLong(key, data)
-    }
-    else{
-        try {
-            editor.putStringSet(key, data as Set<String>)
-        }catch(e:Exception){ }
-    }
-    editor.commit()
+inline fun <reified T> getShared(key: String): T = mySharedPreference.run {
+    when (T::class) {
+        String::class -> getString(key, "")
+        Boolean::class -> getBoolean(key, false)
+        Float::class -> getFloat(key, 0.0f)
+        Int::class -> getInt(key, 0)
+        Long::class -> getLong(key, 0L)
+        HashSet::class -> getStringSet(key, HashSet<String>())
+        else -> ""
+    } as T
 }
+
+inline fun <reified T> getShared(key: String, default: T): T = mySharedPreference.run {
+    when (T::class) {
+        String::class -> getString(key, default as String)
+        Boolean::class -> getBoolean(key, default as Boolean)
+        Float::class -> getFloat(key, default as Float)
+        Int::class -> getInt(key, default as Int)
+        Long::class -> getLong(key, default as Long)
+        HashSet::class -> getStringSet(key, default as HashSet<String>)
+        else -> ""
+    } as T
+}
+
+fun removeShared(key: String) = mySharedPreference.edit().apply {
+    remove(key)
+}.commit()

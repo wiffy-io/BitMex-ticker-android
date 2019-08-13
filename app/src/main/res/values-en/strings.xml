@@ -52,6 +52,7 @@
     <string name="alert">Add alert</string>
     <string name="market">Market Cap</string>
     <string name="dominance">BTC Dominance</string>
+    <string name="deletion">Delete</string>
 
 
 </resources>

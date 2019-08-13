@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.extension.getFragmentBackground
-import io.wiffy.bitmexticker.extension.getTableOut
+import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.CoinInfo
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.model.Util.Companion.getTimeFormat
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
@@ -35,6 +33,7 @@ class NotificationFragment : Fragment(), NotificationContract.View {
     lateinit var myView: View
     lateinit var mPresenter: NotificationPresenter
     lateinit var parentLayout: RelativeLayout
+    private var ini = true
     var symbol: String? = null
     private var xbtPrice: String = "0"
     var myAdapter: NotificationAdapter? = null
@@ -47,14 +46,13 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         setXBT(arguments?.getString("xbt")!!)
         mPresenter = NotificationPresenter(this)
         mPresenter.init()
-
         return myView
     }
 
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
         myList = ArrayList<NotificationInfo>().apply {
-            Util.noticom?.let {
+            Util.notificationSet?.let {
                 for (x in it.iterator()) {
                     val y = x.split(":")
                     this.add(NotificationInfo(y[0], y[1], y[2]))
@@ -65,8 +63,10 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         myAdapter = NotificationAdapter(
             myList,
             context!!,
-            activity as InformationActivity
+            activity as InformationActivity,
+            symbol
         )
+
         myView.noticycle.adapter = myAdapter
         myView.noticycle.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
 
@@ -75,6 +75,8 @@ class NotificationFragment : Fragment(), NotificationContract.View {
             myView.notis.background = getDrawable(getTableOut())
             parentLayout = myView.findViewById(R.id.notis)
             parentLayout.background = getDrawable(getFragmentBackground())
+            myView.texter.setBackgroundColor(getColor(getEditTextColor()))
+            myView.texter.setTextColor(getColor(getTitle()))
 
             if (dark_theme) {
                 myView.angimotti.background = getDrawable(R.drawable.chart_border_dark)
@@ -102,9 +104,11 @@ class NotificationFragment : Fragment(), NotificationContract.View {
                 if (flag) {
                     var numbers = text
                     if (numbers.toDouble().toInt().toDouble() == numbers.toDouble())
-                        numbers = numbers.toInt().toString()
-                    val mformat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
-                    NotificationTask(this, NotificationInfo(symbol, numbers, mformat)).execute()
+                        numbers = numbers.split(".")[0]
+                    NotificationTask(
+                        this,
+                        NotificationInfo(symbol, numbers, getTimeFormat("yyyy/MM/dd HH:mm:ss"))
+                    ).execute()
                 } else {
                     toast("exist value")
                 }
@@ -124,19 +128,18 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         }
         myView.texter.text.clear()
 
-        Util.sharedPreferences_editor.putStringSet("noticom", HashSet<String>().apply {
+        setShared("notificationSet", HashSet<String>().apply {
             for (k in myList) {
                 add("${k.symbol}:${k.value}:${k.date}")
             }
-            Util.noticom = this
-        }).commit()
+            Util.notificationSet = this
+        })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }
 
     fun toast(str: String) = Handler(Looper.getMainLooper()).post {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
     }
-
 
     @SuppressLint("SetTextI18n")
     fun setXBT(str: String) {
@@ -156,6 +159,10 @@ class NotificationFragment : Fragment(), NotificationContract.View {
             }
             xbtPrice = str
             myView.noti_price.text = str
+            if (ini) {
+                myView.texter.setText(str)
+                ini = false
+            }
         } catch (e: Exception) {
         }
     }

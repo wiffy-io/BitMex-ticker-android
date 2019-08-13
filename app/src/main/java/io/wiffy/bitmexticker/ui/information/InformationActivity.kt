@@ -59,7 +59,6 @@ class InformationActivity : AppCompatActivity(),
         mPresenter.init()
 
 
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -76,19 +75,7 @@ class InformationActivity : AppCompatActivity(),
                     viewFragmentDetails()
                 }
                 R.id.action_notification -> {
-                    if (coinInformationStructure.Symbol == "XBTUSD")
-                        viewFragmentNotification()
-                    else {
-                        Handler(mainLooper).post {
-                            Toasty.warning(
-                                applicationContext,
-                                resources.getString(R.string.NotificationWarning),
-                                Toast.LENGTH_SHORT,
-                                true
-                            ).show()
-                        }
-                        return false
-                    }
+                    viewFragmentNotification()
                 }
             }
             catches = item.itemId

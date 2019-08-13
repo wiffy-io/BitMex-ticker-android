@@ -41,7 +41,6 @@ class LanguageInitActivity : AppCompatActivity() {
     private fun onClickListener(locale:String)
     {
         setShared("global",locale)
-        //Util.sharedPreferences_editor.putString("global", locale).commit()
         Util.global = locale
         resultOK()
     }

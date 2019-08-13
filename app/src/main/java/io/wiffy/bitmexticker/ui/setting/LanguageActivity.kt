@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import io.wiffy.bitmexticker.R
+import io.wiffy.bitmexticker.extension.setShared
 import io.wiffy.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.activity_language.*
 import java.util.*
@@ -24,6 +25,7 @@ class LanguageActivity : AppCompatActivity() {
     var listString = ArrayList<String>()
     var ln = -1
     var lastCheck = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -113,10 +115,7 @@ class LanguageActivity : AppCompatActivity() {
                             Locale.ENGLISH.toLanguageTag()
                         }
                     }
-                Util.sharedPreferences_editor.putString(
-                    "global",
-                    languages
-                ).commit()
+                setShared("global", languages)
 
                 Util.restartApp(applicationContext)
             }

@@ -13,6 +13,7 @@
 
     <!-- Main String Sources -->
     <string name="tem">---</string>
+    <string name="deletion">Delete</string>
 
     <string name="Recent_Trades">Recent Trades</string>
     <string name="OK">OK</string>
