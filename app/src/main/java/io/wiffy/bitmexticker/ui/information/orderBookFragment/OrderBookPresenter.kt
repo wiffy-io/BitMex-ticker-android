@@ -1,5 +1,6 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
+import android.util.Log
 import io.wiffy.bitmexticker.extension.changeValue
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
@@ -43,30 +44,35 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
             try {
+                var sum = 0
                 val jsonContact = JSONObject(it)
                 val data = jsonContact.getJSONArray("data")
                 val bids = data.getJSONObject(0).getJSONArray("bids")
                 val asks = data.getJSONObject(0).getJSONArray("asks")
 
                 for (x in asks.length() - 1 downTo 0) {
+                    val myValue = asks.getJSONArray(x)[1] as Int
                     arr.add(
                         OrderBookInfo(
-                            asks.getJSONArray(x)[1].toString(),
+                            myValue.toString(),
                             changeValue(asks.getJSONArray(x)[0].toString().toDouble()),
                             null
                         )
                     )
+                    sum += myValue
                 }
                 for (x in 0 until bids.length()) {
+                    val myValue = bids.getJSONArray(x)[1] as Int
                     arr.add(
                         OrderBookInfo(
                             null,
                             changeValue(bids.getJSONArray(x)[0].toString().toDouble()),
-                            bids.getJSONArray(x)[1].toString()
+                            myValue.toString()
                         )
                     )
+                    sum += myValue
                 }
-                mView.updateRecycler(arr)
+                mView.updateRecycler(arr, sum)
                 mView.stopLoading()
             } catch (e: Exception) {
                 e.printStackTrace()

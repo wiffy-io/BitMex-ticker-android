@@ -62,15 +62,16 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
             context!!,
             activity as InformationActivity
         )
+        myView.orderbookRecycler.setHasFixedSize(true)
+        myView.orderbookRecycler.
         myView.orderbookRecycler.adapter = myAdapter
         myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
     }
 
 
-    override fun updateRecycler(arr: ArrayList<OrderBookInfo>) = Handler(context?.mainLooper).post {
-        myAdapter?.update(arr)
+    override fun updateRecycler(arr: ArrayList<OrderBookInfo>, sum: Int) = Handler(context?.mainLooper).post {
+        myAdapter?.update(arr, sum)
     }
-
 
     override fun startLoading() {
         if (builder?.isShowing == false) Handler(Looper.getMainLooper()).post {

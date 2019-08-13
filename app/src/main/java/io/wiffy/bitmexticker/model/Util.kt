@@ -1,9 +1,11 @@
 package io.wiffy.bitmexticker.model
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.graphics.Point
 import android.os.Build
 import android.os.LocaleList
 import com.google.firebase.messaging.FirebaseMessaging
@@ -26,6 +28,8 @@ class Util {
         var info_on: Boolean = true
         var setting_on: Boolean = true
         var is_close: Boolean = false
+
+        var width = 0
 
         var isConsumer = false
 
@@ -53,14 +57,20 @@ class Util {
         }
 
         @JvmStatic
-        fun beConsumer(){
+        fun getScreenSize(activity: Activity): Point =
+            Point().apply {
+                activity.windowManager.defaultDisplay.getSize(this)
+            }
+
+        @JvmStatic
+        fun beConsumer() {
             isConsumer = true
             setShared("consumer", true)
         }
 
         @SuppressLint("SimpleDateFormat")
         @JvmStatic
-        fun getTimeFormat(format: String):String = SimpleDateFormat(format).format(Date())
+        fun getTimeFormat(format: String): String = SimpleDateFormat(format).format(Date())
 
         @JvmStatic
         fun dpToPx(context: Context, dp: Int) = (dp * context.resources.displayMetrics.density).roundToInt()

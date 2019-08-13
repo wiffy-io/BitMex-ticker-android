@@ -5,7 +5,7 @@ import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 interface OrderBookConstract {
     interface View {
         fun changeUI()
-        fun updateRecycler(arr: ArrayList<OrderBookInfo>): Boolean
+        fun updateRecycler(arr: ArrayList<OrderBookInfo>, sum:Int): Boolean
         fun setRecycler(): Boolean
         fun startLoading()
         fun stopLoading()
