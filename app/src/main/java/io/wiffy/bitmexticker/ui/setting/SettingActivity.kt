@@ -130,6 +130,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         }.show()
 
 
+
     override fun getStringTo(id: Int): String = getString(id)
 
     override fun clipOnBoard(clipBoardMessage: String) {
