@@ -9,7 +9,6 @@ import android.content.pm.ActivityInfo
 import android.os.*
 import android.view.View
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.MobileAds
@@ -30,7 +29,7 @@ import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : MainContract.View() {
 
     lateinit var mPresenter: MainPresenter
     var myAdapter: MainAdapter? = null

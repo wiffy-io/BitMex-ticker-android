@@ -1,8 +1,9 @@
-package io.wiffy.bitmexticker.ui.information.detailsFragment
+package io.wiffy.bitmexticker.ui.information.detailsFragment.tool
 
 import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
+import io.wiffy.bitmexticker.ui.information.detailsFragment.DetailsContract
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.net.URL

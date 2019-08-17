@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
@@ -25,11 +24,10 @@ import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.Notificati
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationInfo
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationTask
 import kotlinx.android.synthetic.main.fragment_notification.view.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NotificationFragment : Fragment(), NotificationContract.View {
+class NotificationFragment : NotificationContract.View() {
     lateinit var myView: View
     lateinit var mPresenter: NotificationPresenter
     lateinit var parentLayout: RelativeLayout

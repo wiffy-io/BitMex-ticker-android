@@ -1,9 +1,7 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment.tool
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -35,7 +33,7 @@ class OrderBookAdapter(
             setIsRecyclable(false)
             val flag = item.bid == null
             count += 1
-//            Log.d("asdf", "count=$count")
+
             var ratio = 0.0
             ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
             bid.setTextColor(ContextCompat.getColor(context, getTitle2()))

@@ -1,12 +1,13 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment
 
-import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationInfo
+import androidx.fragment.app.Fragment
 
 interface NotificationContract {
-    interface View{
-        fun changeUI()
+    abstract class View : Fragment() {
+        abstract fun changeUI()
     }
-    interface Presenter{
+
+    interface Presenter {
         fun init()
     }
 }

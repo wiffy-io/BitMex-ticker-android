@@ -27,7 +27,7 @@ import androidx.appcompat.widget.SwitchCompat
 const val SWIPE_MIN_DISTANCE = 120
 const val SWIPE_THRESHOLD_VELOCITY = 150
 
-class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
+class SettingActivity : SettingContract.View() {
     lateinit var mPresenter: SettingPresenter
     lateinit var gestureScanner: GestureDetector
 

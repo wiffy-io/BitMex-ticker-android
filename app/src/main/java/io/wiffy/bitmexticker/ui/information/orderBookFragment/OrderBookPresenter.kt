@@ -8,11 +8,10 @@ import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.count
 import org.json.JSONObject
 import java.lang.Exception
 
-class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
+class OrderBookPresenter(private val mView: OrderBookContract.View, private var symbol: String) :
+    OrderBookContract.Presenter {
 
-    val mView = act
     lateinit var arr: ArrayList<OrderBookInfo>
-    private var symbol = sym
 
     override fun init() =
         with(mView)
