@@ -1,26 +1,27 @@
 package io.wiffy.bitmexticker.ui.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.model.CoinInfo
 
 
 interface MainContract {
-    interface View {
-        fun changeUI()
-        fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
-        fun moveToSetting()
-        fun setRecycler(init_coin: ArrayList<CoinInfo>)
-        fun updateRecycler(mod_coin: ArrayList<CoinInfo>): Boolean
-        fun updateRecyclerTheme(): Boolean
-        fun moveToInformation(bundle: Bundle)
-        fun changeRecent(str: String)
-        fun startLoading()
-        fun stopLoading()
-        fun checkLoading(): Boolean
-        fun tossSymbol(symbol: String): Boolean
-        fun tossXBT(xbt: String): Boolean
-        fun initInformation()
-        fun setInformation(list: ArrayList<String>?)
+    abstract class View : AppCompatActivity() {
+        abstract fun changeUI()
+        abstract fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
+        abstract fun moveToSetting()
+        abstract fun setRecycler(init_coin: ArrayList<CoinInfo>)
+        abstract fun updateRecycler(mod_coin: ArrayList<CoinInfo>): Boolean
+        abstract fun updateRecyclerTheme(): Boolean
+        abstract fun moveToInformation(bundle: Bundle)
+        abstract fun changeRecent(str: String)
+        abstract fun startLoading()
+        abstract fun stopLoading()
+        abstract fun checkLoading(): Boolean
+        abstract fun tossSymbol(symbol: String): Boolean
+        abstract fun tossXBT(xbt: String): Boolean
+        abstract fun initInformation()
+        abstract fun setInformation(list: ArrayList<String>?)
     }
 
     interface Presenter {

@@ -7,7 +7,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.getFragmentBackground
@@ -18,7 +17,7 @@ import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 import kotlinx.android.synthetic.main.fragment_orderbook.view.*
 import java.lang.Exception
 
-class OrderBookFragment : Fragment(), OrderBookConstract.View {
+class OrderBookFragment : OrderBookContract.View() {
     lateinit var myView: View
     lateinit var mPresenter: OrderBookPresenter
     var builder: Dialog? = null

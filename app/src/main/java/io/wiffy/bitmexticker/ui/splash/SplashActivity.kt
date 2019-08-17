@@ -8,14 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util
 import io.wiffy.bitmexticker.ui.main.MainActivity
 import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.extension.getShared
 
-class SplashActivity : AppCompatActivity(), SplashContract.View {
+class SplashActivity : SplashContract.View() {
     lateinit var mPresenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,12 +7,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.extension.*
 import io.wiffy.bitmexticker.model.CoinInfo
@@ -28,9 +26,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
-class InformationActivity : AppCompatActivity(),
-    InformationContract.View, GestureDetector.OnGestureListener,
-    BottomNavigationView.OnNavigationItemSelectedListener {
+class InformationActivity : InformationContract.View() {
 
     private lateinit var mPresenter: InformationPresenter
     private lateinit var gestureScanner: GestureDetector
@@ -57,7 +53,6 @@ class InformationActivity : AppCompatActivity(),
         gestureScanner = GestureDetector(this)
         mPresenter = InformationPresenter(this, applicationContext)
         mPresenter.init()
-
 
     }
 

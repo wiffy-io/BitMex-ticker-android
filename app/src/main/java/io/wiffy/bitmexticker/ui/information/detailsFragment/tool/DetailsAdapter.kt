@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.information.detailsFragment
+package io.wiffy.bitmexticker.ui.information.detailsFragment.tool
 
 import android.app.AlertDialog
 import android.content.Context

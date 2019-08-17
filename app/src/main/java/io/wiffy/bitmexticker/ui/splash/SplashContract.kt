@@ -1,10 +1,12 @@
 package io.wiffy.bitmexticker.ui.splash
 
+import androidx.appcompat.app.AppCompatActivity
+
 
 interface SplashContract {
-    interface View {
-        fun moveToMain(str: String)
-        fun getOut(): Boolean
+    abstract class View : AppCompatActivity() {
+        abstract fun moveToMain(str: String)
+        abstract fun getOut(): Boolean
     }
 
     interface Presenter {
