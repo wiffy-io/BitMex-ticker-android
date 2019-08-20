@@ -9,14 +9,14 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
-import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.language_init.*
 import java.util.*
 
-class LanguageInitActivity : AppCompatActivity() {
+class LanguageInitActivity : SuperContract.SuperActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

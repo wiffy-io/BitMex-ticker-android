@@ -1,6 +1,6 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 
-import android.os.AsyncTask
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -8,7 +8,7 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
-class NotificationTask(val mView: NotificationFragment, private val info: NotificationInfo) : AsyncTask<Void, Void, Int>() {
+class NotificationTask(val mView: NotificationFragment, private val info: NotificationInfo) : SuperContract.SuperAsyncTask<Void, Void, Int>() {
 
     override fun doInBackground(vararg params: Void?): Int {
         val url = "http://wiffy.io/bitmex/reg/?d=alert_${info.symbol}:${info.value}"

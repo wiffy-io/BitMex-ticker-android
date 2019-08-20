@@ -14,6 +14,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Component.info_on
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
@@ -23,7 +24,7 @@ class MainAdapter(
     private var is_dark: Boolean,
     val mView: MainContract.View
 ) :
-    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+    RecyclerView.Adapter<MainAdapter.MainViewHolder>(), SuperContract.WiffyObject {
     private var istouch = false
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)

@@ -1,15 +1,15 @@
 package io.wiffy.bitmexticker.ui.splash
 
-import androidx.appcompat.app.AppCompatActivity
+import io.wiffy.bitmexticker.model.SuperContract
 
 
 interface SplashContract {
-    abstract class View : AppCompatActivity() {
+    abstract class View : SuperContract.SuperActivity() {
         abstract fun moveToMain(str: String)
         abstract fun getOut(): Boolean
     }
 
-    interface Presenter {
+    interface Presenter : SuperContract.WiffyObject {
         fun checkInternetConnection()
         fun connectionOn(str: String): Boolean
         fun connectionOff(): Boolean

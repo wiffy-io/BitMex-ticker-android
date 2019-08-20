@@ -11,6 +11,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.getTableOut
 import io.wiffy.bitmexticker.function.getTitle2
 import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_orderbook.view.*
 
@@ -20,7 +21,7 @@ class OrderBookAdapter(
     var items: ArrayList<OrderBookInfo>,
     var context: Context,
     var activity: InformationActivity
-) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>() {
+) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>(), SuperContract.WiffyObject {
     var sum = 0
     private var isTouch = false
 

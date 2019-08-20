@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.view.Window
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -17,11 +16,12 @@ import io.wiffy.bitmexticker.function.restartApp
 import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.function.wrap
 import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.activity_language.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LanguageActivity : AppCompatActivity() {
+class LanguageActivity : SuperContract.SuperActivity() {
     var list = ArrayList<RelativeLayout>()
     var listRadio = ArrayList<AppCompatRadioButton>()
     var listString = ArrayList<String>()

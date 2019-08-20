@@ -1,10 +1,10 @@
 package io.wiffy.bitmexticker.ui.main.tool
 
 import android.annotation.SuppressLint
-import android.os.AsyncTask
 import io.wiffy.bitmexticker.function.cleanNotificationSubscribe
 import io.wiffy.bitmexticker.function.getTimeFormat
 import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.main.MainContract
 import io.wiffy.bitmexticker.ui.main.MainPresenter
 import java.io.BufferedReader
@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
 
 @SuppressLint("StaticFieldLeak")
 class InformationTask(private val mPresenter: MainPresenter, private val mView: MainContract.View) :
-    AsyncTask<Void, Void, ArrayList<String>>() {
+    SuperContract.SuperAsyncTask<Void, Void, ArrayList<String>>() {
 
     override fun doInBackground(vararg params: Void?): ArrayList<String> {
         val url = "http://wiffy.io/bitmex/hello?${getTimeFormat("yyyyMMddHHmmss")}"

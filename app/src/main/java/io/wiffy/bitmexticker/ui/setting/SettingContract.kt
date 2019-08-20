@@ -3,11 +3,11 @@ package io.wiffy.bitmexticker.ui.setting
 import android.app.AlertDialog
 import android.view.GestureDetector
 import android.widget.CompoundButton
-import androidx.appcompat.app.AppCompatActivity
+import io.wiffy.bitmexticker.model.SuperContract
 
 
 interface SettingContract {
-    abstract class View : AppCompatActivity(), GestureDetector.OnGestureListener {
+    abstract class View : SuperContract.SuperActivity(), GestureDetector.OnGestureListener {
         abstract fun changeUI()
         abstract fun moveToMain()
         abstract fun addTickerButtonListener(listener: android.view.View.OnClickListener)
@@ -19,6 +19,7 @@ interface SettingContract {
             listener5: android.view.View.OnClickListener,
             listener6: CompoundButton.OnCheckedChangeListener
         )
+
         abstract fun startDialog(title: String, context: String): AlertDialog
         abstract fun getStringTo(id: Int): String
         abstract fun clipOnBoard(clipBoardMessage: String)
@@ -26,7 +27,7 @@ interface SettingContract {
         abstract fun openLanguageSetting()
     }
 
-    interface Presenter {
+    interface Presenter : SuperContract.WiffyObject {
         fun changeUI()
         fun setSystemLanguage(): Boolean
     }

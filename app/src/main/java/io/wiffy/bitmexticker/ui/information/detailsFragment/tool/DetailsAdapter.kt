@@ -12,12 +12,13 @@ import io.wiffy.bitmexticker.function.getDialog
 import io.wiffy.bitmexticker.function.getTitle
 import io.wiffy.bitmexticker.function.getTitle2
 import io.wiffy.bitmexticker.function.settingButton
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.adapter_datails.view.*
 
 class DetailsAdapter(
     var items: ArrayList<DetailsInfo>,
     var context: Context
-) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>() {
+) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>(), SuperContract.WiffyObject {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InformationViewHolder(parent)

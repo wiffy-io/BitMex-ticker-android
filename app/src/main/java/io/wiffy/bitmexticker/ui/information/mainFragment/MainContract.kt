@@ -1,9 +1,9 @@
 package io.wiffy.bitmexticker.ui.information.mainFragment
 
-import androidx.fragment.app.Fragment
+import io.wiffy.bitmexticker.model.SuperContract
 
 interface MainContract {
-    abstract class View : Fragment() {
+    abstract class View : SuperContract.SuperFragment() {
         abstract fun changeUI()
         abstract fun setChart(str: String)
         abstract fun parseUI(coinBase: String, bitStamp: String): Boolean?
@@ -11,7 +11,7 @@ interface MainContract {
         abstract fun parseBitStamp(str: String): String
     }
 
-    interface Presenter {
+    interface Presenter : SuperContract.WiffyObject {
         fun init()
         fun makeChart()
         fun initParse()
