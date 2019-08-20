@@ -83,7 +83,7 @@ class MainActivity : MainContract.View() {
             {
                 adapter = myAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                addItemDecoration(VerticalSpaceItemDecoration(2))
+                addItemDecoration(VerticalSpaceItemDecoration)
             }
         }
         mPresenter.makeSocket()

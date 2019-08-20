@@ -84,7 +84,7 @@ class NotificationFragment : NotificationContract.View() {
                 myView.noti_context.background = getDrawable(R.drawable.chart_border_light)
                 myView.angimotti.background = getDrawable(R.drawable.chart_border_light)
             }
-            myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration(2))
+            myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration)
             myView.noticycle.setBackgroundColor(getColor(getTableOut()))
         }
 
