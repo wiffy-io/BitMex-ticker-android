@@ -12,11 +12,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
-import io.wiffy.bitmexticker.model.Util.Companion.getTimeFormat
+import io.wiffy.bitmexticker.model.Util.dark_theme
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
@@ -28,14 +27,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class NotificationFragment : NotificationContract.View() {
-    lateinit var myView: View
-    lateinit var mPresenter: NotificationPresenter
-    lateinit var parentLayout: RelativeLayout
+    private lateinit var myView: View
+    private lateinit var mPresenter: NotificationPresenter
+    private lateinit var parentLayout: RelativeLayout
     private var ini = true
     var symbol: String? = null
     private var xbtPrice: String = "0"
-    var myAdapter: NotificationAdapter? = null
-    lateinit var myList: ArrayList<NotificationInfo>
+    private var myAdapter: NotificationAdapter? = null
+    private lateinit var myList: ArrayList<NotificationInfo>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_notification, container, false)

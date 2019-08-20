@@ -11,9 +11,9 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util.Companion.info_on
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Util.info_on
 import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 

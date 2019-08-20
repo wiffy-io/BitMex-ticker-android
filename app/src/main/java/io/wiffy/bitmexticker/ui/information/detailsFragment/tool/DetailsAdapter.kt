@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getDialog
-import io.wiffy.bitmexticker.extension.getTitle
-import io.wiffy.bitmexticker.extension.getTitle2
-import io.wiffy.bitmexticker.extension.settingButton
+import io.wiffy.bitmexticker.function.getDialog
+import io.wiffy.bitmexticker.function.getTitle
+import io.wiffy.bitmexticker.function.getTitle2
+import io.wiffy.bitmexticker.function.settingButton
 import kotlinx.android.synthetic.main.adapter_datails.view.*
 
 class DetailsAdapter(

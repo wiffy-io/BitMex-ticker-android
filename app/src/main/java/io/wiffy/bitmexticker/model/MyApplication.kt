@@ -3,8 +3,8 @@ package io.wiffy.bitmexticker.model
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import io.wiffy.bitmexticker.extension.getShared
-import io.wiffy.bitmexticker.extension.mySharedPreference
+import io.wiffy.bitmexticker.function.getShared
+import io.wiffy.bitmexticker.function.mySharedPreference
 import java.net.URI
 import java.util.*
 

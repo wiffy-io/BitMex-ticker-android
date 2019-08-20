@@ -12,9 +12,9 @@ import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.MobileAds
-import io.wiffy.bitmexticker.model.CoinInfo
+import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.setting_on
+import io.wiffy.bitmexticker.model.Util.setting_on
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,8 +22,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.Util.Companion.infoContext
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.Util.infoContext
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import kotlin.collections.ArrayList
@@ -31,16 +31,16 @@ import kotlin.collections.ArrayList
 
 class MainActivity : MainContract.View() {
 
-    lateinit var mPresenter: MainPresenter
-    var myAdapter: MainAdapter? = null
-    var builder: Dialog? = null
+    private lateinit var mPresenter: MainPresenter
+    private var myAdapter: MainAdapter? = null
+    private var builder: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        Util.width = Util.getScreenSize(this@MainActivity).x
+        Util.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
@@ -104,13 +104,13 @@ class MainActivity : MainContract.View() {
         cap.setTextColor(
             ContextCompat.getColorStateList(
                 applicationContext,
-                io.wiffy.bitmexticker.extension.getTitle()
+                io.wiffy.bitmexticker.function.getTitle()
             )
         )
         dom.setTextColor(
             ContextCompat.getColorStateList(
                 applicationContext,
-                io.wiffy.bitmexticker.extension.getTitle()
+                io.wiffy.bitmexticker.function.getTitle()
             )
         )
         cap2.setTextColor(
@@ -215,7 +215,7 @@ class MainActivity : MainContract.View() {
     override fun checkLoading() = builder?.isShowing ?: false
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
             Util.global
         )

@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.extension
+package io.wiffy.bitmexticker.function
 
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.model.Util

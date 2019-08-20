@@ -36,5 +36,4 @@ class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
         sendBack.invoke("")
     }
 
-
 }

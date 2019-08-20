@@ -11,7 +11,7 @@ import android.view.MotionEvent
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.setShared
+import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.language_init.*
 import java.util.*

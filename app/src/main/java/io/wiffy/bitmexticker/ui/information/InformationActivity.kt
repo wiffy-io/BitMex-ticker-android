@@ -7,16 +7,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.info_on
-import io.wiffy.bitmexticker.model.Util.Companion.infoContext
+import io.wiffy.bitmexticker.model.Util.infoContext
+import io.wiffy.bitmexticker.model.Util.info_on
 import io.wiffy.bitmexticker.ui.information.detailsFragment.DetailsFragment
 import io.wiffy.bitmexticker.ui.information.mainFragment.MainFragment
 import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
@@ -186,7 +184,7 @@ class InformationActivity : InformationContract.View() {
     }
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
             Util.global
         )

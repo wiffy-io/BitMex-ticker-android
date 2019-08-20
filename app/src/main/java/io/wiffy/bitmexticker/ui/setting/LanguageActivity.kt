@@ -13,7 +13,9 @@ import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.setShared
+import io.wiffy.bitmexticker.function.restartApp
+import io.wiffy.bitmexticker.function.setShared
+import io.wiffy.bitmexticker.function.wrap
 import io.wiffy.bitmexticker.model.Util
 import kotlinx.android.synthetic.main.activity_language.*
 import java.util.*
@@ -117,7 +119,7 @@ class LanguageActivity : AppCompatActivity() {
                     }
                 setShared("global", languages)
 
-                Util.restartApp(applicationContext)
+                restartApp(applicationContext)
             }
         }
         CANCEL.setOnClickListener {
@@ -148,11 +150,10 @@ class LanguageActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
             Util.global
         )
     )
-
 
 }

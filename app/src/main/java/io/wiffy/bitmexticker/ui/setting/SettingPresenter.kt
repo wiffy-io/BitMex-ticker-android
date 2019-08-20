@@ -7,7 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.CompoundButton
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.setShared
+import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Util
 import java.util.*
 

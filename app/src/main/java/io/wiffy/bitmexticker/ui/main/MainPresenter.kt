@@ -5,12 +5,12 @@ import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.extension.inputComma
-import io.wiffy.bitmexticker.model.CoinInfo
+import io.wiffy.bitmexticker.function.changeValue
+import io.wiffy.bitmexticker.function.inputComma
+import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
 import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.is_close
+import io.wiffy.bitmexticker.model.Util.is_close
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URL
@@ -31,7 +31,8 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             for (i in 0 until getServer.size) {
                 val tmp = getServer[i].split(",")
 
-                val data = CoinInfo(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
+                val data =
+                    CoinInfo(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])
                 initCoin.add(data)
             }
             mView.setRecycler(initCoin)
