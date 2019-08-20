@@ -2,9 +2,8 @@
 
 package io.wiffy.bitmexticker.function
 
-import android.content.SharedPreferences
+import io.wiffy.bitmexticker.model.Component.mySharedPreference
 
-lateinit var mySharedPreference: SharedPreferences
 
 inline fun <reified T> setShared(key: String, data: T) = mySharedPreference.edit().apply {
     when (T::class) {

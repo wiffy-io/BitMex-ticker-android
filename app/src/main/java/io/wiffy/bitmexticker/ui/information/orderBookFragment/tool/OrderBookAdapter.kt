@@ -11,17 +11,21 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.getTableOut
 import io.wiffy.bitmexticker.function.getTitle2
 import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.orderCount
 import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_orderbook.view.*
-
-var count = 20
 
 class OrderBookAdapter(
     var items: ArrayList<OrderBookInfo>,
     var context: Context,
     var activity: InformationActivity
 ) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>(), SuperContract.WiffyObject {
+
+    init {
+        orderCount = 20
+    }
+
     var sum = 0
     private var isTouch = false
 
@@ -33,7 +37,7 @@ class OrderBookAdapter(
         with(holder) {
             setIsRecyclable(false)
             val flag = item.bid == null
-            count += 1
+            orderCount += 1
 
             var ratio = 0.0
             ask.setTextColor(ContextCompat.getColor(context, getTitle2()))

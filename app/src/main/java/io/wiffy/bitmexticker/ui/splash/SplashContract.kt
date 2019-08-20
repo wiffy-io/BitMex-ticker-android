@@ -7,6 +7,8 @@ interface SplashContract {
     abstract class View : SuperContract.SuperActivity() {
         abstract fun moveToMain(str: String)
         abstract fun getOut(): Boolean
+        abstract fun resultOK()
+        abstract fun resultCancel()
     }
 
     interface Presenter : SuperContract.WiffyObject {

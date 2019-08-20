@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import io.wiffy.bitmexticker.function.getShared
-import io.wiffy.bitmexticker.function.mySharedPreference
+import io.wiffy.bitmexticker.model.Component.mySharedPreference
 import java.util.*
 
 class MyApplication : Application() {

@@ -181,7 +181,7 @@ class MainActivity : MainContract.View() {
 
     private fun initLoading() {
         builder = Dialog(this).apply {
-            setContentView(R.layout.waitting_dialog)
+            setContentView(R.layout.dialog_indicator)
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             window?.setBackgroundDrawableResource(android.R.color.transparent)

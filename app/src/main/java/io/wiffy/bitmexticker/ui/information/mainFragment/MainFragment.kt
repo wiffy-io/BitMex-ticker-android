@@ -20,8 +20,8 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : MainContract.View() {
 
-    lateinit var myView: View
-    lateinit var mPresenter: MainPresenter
+    private lateinit var myView: View
+    private lateinit var mPresenter: MainPresenter
     var symbol: String? = null
     private var xbtPrice: String = "0"
 

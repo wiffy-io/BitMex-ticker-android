@@ -38,5 +38,5 @@ interface SuperContract {
         fun toastLong(id: Int) = Toast.makeText(context, id, Toast.LENGTH_LONG).show()
     }
 
-    abstract class SuperAsyncTask<T, A, B> : AsyncTask<T, A, B>(), WiffyObject
+    abstract class SuperAsyncTask<A, B, C> : AsyncTask<A, B, C>(), WiffyObject
 }
