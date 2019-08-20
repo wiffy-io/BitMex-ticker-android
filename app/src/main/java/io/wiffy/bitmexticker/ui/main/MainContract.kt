@@ -1,12 +1,12 @@
 package io.wiffy.bitmexticker.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.model.data.CoinInfo
 
 
 interface MainContract {
-    abstract class View : AppCompatActivity() {
+    abstract class View : SuperContract.SuperActivity() {
         abstract fun changeUI()
         abstract fun addSettingActivityChangeListener(listener: android.view.View.OnClickListener)
         abstract fun moveToSetting()
@@ -24,7 +24,7 @@ interface MainContract {
         abstract fun setInformation(list: ArrayList<String>?)
     }
 
-    interface Presenter {
+    interface Presenter : SuperContract.WiffyObject {
         fun changeUI()
         fun makeSocket()
         fun getCoin(str: String)

@@ -1,14 +1,15 @@
 package io.wiffy.bitmexticker.ui.information.detailsFragment.tool
 
-import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.information.detailsFragment.DetailsContract
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.net.URL
 
-class DetailsTask(val mView: DetailsContract.View, private val mUrl: String) : AsyncTask<String, Void, Boolean>() {
+class DetailsTask(val mView: DetailsContract.View, private val mUrl: String) :
+    SuperContract.SuperAsyncTask<String, Void, Boolean>() {
 
     lateinit var arr: ArrayList<DetailsInfo>
 

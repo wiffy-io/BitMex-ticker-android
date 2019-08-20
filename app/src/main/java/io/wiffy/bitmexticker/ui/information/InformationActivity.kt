@@ -15,6 +15,8 @@ import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.infoContext
 import io.wiffy.bitmexticker.model.Component.info_on
+import io.wiffy.bitmexticker.function.SWIPE_MIN_DISTANCE
+import io.wiffy.bitmexticker.function.SWIPE_THRESHOLD_VELOCITY
 import io.wiffy.bitmexticker.ui.information.detailsFragment.DetailsFragment
 import io.wiffy.bitmexticker.ui.information.mainFragment.MainFragment
 import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
@@ -161,7 +163,7 @@ class InformationActivity : InformationContract.View() {
     override fun onDown(e: MotionEvent?) = true
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (e2!!.x - e1!!.x > io.wiffy.bitmexticker.ui.setting.SWIPE_MIN_DISTANCE && abs(velocityX) > io.wiffy.bitmexticker.ui.setting.SWIPE_THRESHOLD_VELOCITY) {
+        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
         return true
@@ -200,7 +202,6 @@ class InformationActivity : InformationContract.View() {
                 (it as NotificationFragment).setXBT(str)
             }
         }
-
 
     fun setPrice(str: String) =
         Handler(Looper.getMainLooper()).post {

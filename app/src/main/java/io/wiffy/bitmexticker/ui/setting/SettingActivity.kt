@@ -21,10 +21,10 @@ import android.app.AlertDialog
 import android.widget.CompoundButton
 import androidx.appcompat.widget.SwitchCompat
 import io.wiffy.bitmexticker.model.Component.setting_on
+import io.wiffy.bitmexticker.function.SWIPE_MIN_DISTANCE
+import io.wiffy.bitmexticker.function.SWIPE_THRESHOLD_VELOCITY
+import kotlin.math.abs
 
-
-const val SWIPE_MIN_DISTANCE = 120
-const val SWIPE_THRESHOLD_VELOCITY = 150
 
 class SettingActivity : SettingContract.View() {
     lateinit var mPresenter: SettingPresenter
@@ -85,7 +85,7 @@ class SettingActivity : SettingContract.View() {
     override fun onDown(e: MotionEvent?) = true
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
         return true
@@ -132,11 +132,10 @@ class SettingActivity : SettingContract.View() {
 
     override fun getStringTo(id: Int): String = getString(id)
 
-    override fun clipOnBoard(clipBoardMessage: String) {
-        val clip = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clipData = ClipData.newPlainText("", clipBoardMessage)
-        clip.primaryClip = clipData
-    }
+    override fun clipOnBoard(clipBoardMessage: String) =
+        (applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).apply {
+            primaryClip = ClipData.newPlainText("", clipBoardMessage)
+        }
 
     override fun urlParseToMarket(url: String) =
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
@@ -148,10 +147,10 @@ class SettingActivity : SettingContract.View() {
         }
     }
 
-    override fun openLanguageSetting() {
-        startActivity(Intent(applicationContext, LanguageActivity::class.java))
-        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
-    }
+    override fun openLanguageSetting() = LanguageDialog(this@SettingActivity).apply {
+        setCancelable(false)
+    }.show()
+
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
         wrap(

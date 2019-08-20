@@ -8,7 +8,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.model.Component
 import kotlin.system.exitProcess
 
-
 fun restartApp(context: Context) {
     context.startActivity(
         Intent.makeRestartActivityTask(

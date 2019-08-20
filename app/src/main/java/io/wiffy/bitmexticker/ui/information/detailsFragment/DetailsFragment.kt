@@ -47,7 +47,7 @@ class DetailsFragment : DetailsContract.View() {
 
     override fun asyncPre() {
         builder = Dialog(activity!!).apply {
-            setContentView(R.layout.waitting_dialog)
+            setContentView(R.layout.dialog_indicator)
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             this.window?.setBackgroundDrawableResource(android.R.color.transparent)

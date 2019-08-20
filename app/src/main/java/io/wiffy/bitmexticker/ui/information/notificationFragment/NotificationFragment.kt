@@ -2,13 +2,10 @@ package io.wiffy.bitmexticker.ui.information.notificationFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
@@ -60,7 +57,6 @@ class NotificationFragment : NotificationContract.View() {
         myAdapter = NotificationAdapter(
             myList,
             context!!,
-            activity as InformationActivity,
             symbol
         )
 
@@ -90,6 +86,7 @@ class NotificationFragment : NotificationContract.View() {
 
         myView.cdcd123.setOnClickListener {
             var flag = true
+
             val text = myView.texter.text.toString()
             try {
                 for (v in myList) {
@@ -132,10 +129,6 @@ class NotificationFragment : NotificationContract.View() {
             Component.notificationSet = this
         })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
-    }
-
-    fun toast(str: String) = Handler(Looper.getMainLooper()).post {
-        Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
