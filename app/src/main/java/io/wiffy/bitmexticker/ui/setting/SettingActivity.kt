@@ -14,13 +14,13 @@ import android.widget.TextView
 import androidx.core.view.get
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 import android.app.AlertDialog
 import android.widget.CompoundButton
 import androidx.appcompat.widget.SwitchCompat
-import io.wiffy.bitmexticker.model.Util.setting_on
+import io.wiffy.bitmexticker.model.Component.setting_on
 
 
 const val SWIPE_MIN_DISTANCE = 120
@@ -56,7 +56,7 @@ class SettingActivity : SettingContract.View() {
             Review.background = getDrawable(settingButton())
             Email.background = getDrawable(settingButton())
             Theme.background = getDrawable(settingButton())
-            (Theme[1] as SwitchCompat).isChecked = Util.dark_theme xor true
+            (Theme[1] as SwitchCompat).isChecked = Component.dark_theme xor true
             (OpenSource[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Version[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Language[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
@@ -155,7 +155,7 @@ class SettingActivity : SettingContract.View() {
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
         wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 

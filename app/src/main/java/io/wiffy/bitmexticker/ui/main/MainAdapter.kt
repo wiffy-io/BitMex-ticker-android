@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Util.info_on
+import io.wiffy.bitmexticker.model.Component.info_on
 import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
 class MainAdapter(
-    var items: ArrayList<CoinInfo>,
+    private var items: ArrayList<CoinInfo>,
     var context: Context,
-    var is_dark: Boolean,
+    private var is_dark: Boolean,
     val mView: MainContract.View
 ) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {

@@ -15,7 +15,7 @@ import io.wiffy.bitmexticker.function.changeValue
 import io.wiffy.bitmexticker.function.getTableOut
 import io.wiffy.bitmexticker.function.getTitle2
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Util.dark_theme
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : MainContract.View() {

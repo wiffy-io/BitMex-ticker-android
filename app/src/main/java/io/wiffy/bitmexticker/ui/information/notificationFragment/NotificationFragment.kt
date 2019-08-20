@@ -14,8 +14,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.dark_theme
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
@@ -49,13 +49,13 @@ class NotificationFragment : NotificationContract.View() {
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
         myList = ArrayList<NotificationInfo>().apply {
-            Util.notificationSet?.let {
+            Component.notificationSet?.let {
                 for (x in it.iterator()) {
                     val y = x.split(":")
                     this.add(NotificationInfo(y[0], y[1], y[2]))
                 }
             }
-            Collections.sort(this, InformationComparator())
+            Collections.sort(this, InformationComparator)
         }
         myAdapter = NotificationAdapter(
             myList,
@@ -120,7 +120,7 @@ class NotificationFragment : NotificationContract.View() {
         with(myList)
         {
             add(info)
-            Collections.sort(this, InformationComparator())
+            Collections.sort(this, InformationComparator)
             myAdapter?.update(this)
         }
         myView.texter.text.clear()
@@ -129,7 +129,7 @@ class NotificationFragment : NotificationContract.View() {
             for (k in myList) {
                 add("${k.symbol}:${k.value}:${k.date}")
             }
-            Util.notificationSet = this
+            Component.notificationSet = this
         })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }

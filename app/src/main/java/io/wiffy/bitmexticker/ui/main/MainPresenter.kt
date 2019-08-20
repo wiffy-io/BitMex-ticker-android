@@ -8,9 +8,9 @@ import android.view.View
 import io.wiffy.bitmexticker.function.changeValue
 import io.wiffy.bitmexticker.function.inputComma
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.is_close
+import io.wiffy.bitmexticker.model.SocketObject as socket
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.is_close
 import org.json.JSONObject
 import java.lang.Exception
 import java.net.URL
@@ -149,7 +149,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
             }
 
         }
-        Util.infoContext?.let {
+        Component.infoContext?.let {
             if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
             }
@@ -165,7 +165,7 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     override fun setSystemLanguage() =
         Handler(Looper.getMainLooper()).post {
             val config = Configuration()
-            config.locale = when (Util.global) {
+            config.locale = when (Component.global) {
                 Locale.KOREAN.toLanguageTag() -> {
                     Locale.KOREAN
                 }

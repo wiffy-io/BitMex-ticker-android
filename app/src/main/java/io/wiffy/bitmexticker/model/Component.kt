@@ -4,7 +4,7 @@ package io.wiffy.bitmexticker.model
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import java.util.*
 
-object Util {
+object Component {
 
     var dark_theme: Boolean = false
     var global: String? = "en"

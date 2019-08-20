@@ -1,23 +1,23 @@
 package io.wiffy.bitmexticker.function
 
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 
 
-fun getTableIn() = if (Util.dark_theme) {
+fun getTableIn() = if (Component.dark_theme) {
     R.color.dark_table_in
 } else {
     R.color.light_table_in
 }
 
-fun getEditTextColor() = if (Util.dark_theme) {
+fun getEditTextColor() = if (Component.dark_theme) {
     R.color.dark_edittext
 } else {
     R.color.light_edittext
 }
 
 fun getFragmentBackground() =
-    if (Util.dark_theme) {
+    if (Component.dark_theme) {
         R.color.dark_fragment_Background
     } else {
         R.color.light_table_out
@@ -25,83 +25,83 @@ fun getFragmentBackground() =
 
 
 fun getTableOut() =
-    if (Util.dark_theme) {
+    if (Component.dark_theme) {
         R.color.dark_table_out
     } else {
         R.color.light_table_out
     }
 
-fun getTitle() = if (Util.dark_theme) {
+fun getTitle() = if (Component.dark_theme) {
     R.color.dark_title
 } else {
     R.color.light_title
 }
 
 
-fun getTitle2() = if (Util.dark_theme) {
+fun getTitle2() = if (Component.dark_theme) {
     R.color.dark_title2
 } else {
     R.color.light_title2
 }
 
 
-fun getNavi() = if (Util.dark_theme) {
+fun getNavi() = if (Component.dark_theme) {
     R.color.dark_navi
 } else {
     R.color.dark_navi
 }
 
 
-fun getBottom() = if (Util.dark_theme) {
+fun getBottom() = if (Component.dark_theme) {
     R.color.dark_navi
 } else {
     R.color.WHITE
 }
 
 
-fun getTableInReverse() = if (Util.dark_theme) {
+fun getTableInReverse() = if (Component.dark_theme) {
     R.color.dark_table_in_click
 } else {
     R.color.light_table_in_click
 }
 
 
-fun getBottomColor() = if (Util.dark_theme) {
+fun getBottomColor() = if (Component.dark_theme) {
     R.color.navigation_state_dark
 } else {
     R.color.navigation_state_light
 }
 
 
-fun rippleAndTintOfBottom() = if (Util.dark_theme) {
+fun rippleAndTintOfBottom() = if (Component.dark_theme) {
     R.color.dark_table_out
 } else {
     R.color.dark_navi
 }
 
 
-fun darkAndLight() = if (Util.dark_theme) {
+fun darkAndLight() = if (Component.dark_theme) {
     R.color.WHITE
 } else {
     R.color.BLACK
 }
 
 
-fun darkAndLightReverse() = if (Util.dark_theme) {
+fun darkAndLightReverse() = if (Component.dark_theme) {
     R.color.BLACK
 } else {
     R.color.WHITE
 }
 
 
-fun settingButton() = if (Util.dark_theme) {
+fun settingButton() = if (Component.dark_theme) {
     R.drawable.setting_button_dark_r
 } else {
     R.drawable.setting_button_light_r
 }
 
 
-fun getDialog() = if (Util.dark_theme) {
+fun getDialog() = if (Component.dark_theme) {
     R.style.light_dialog
 } else {
     R.style.light_dialog

@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.CompoundButton
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.setShared
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import java.util.*
 
 class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) :
@@ -48,12 +48,12 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
                 when (isChecked) {
                     false -> {
                         setShared("mode", true)
-                        Util.dark_theme = true
+                        Component.dark_theme = true
                         switch.isChecked = true
                     }
                     true -> {
                         setShared("mode", false)
-                        Util.dark_theme = false
+                        Component.dark_theme = false
                         switch.isChecked = false
                     }
                 }
@@ -63,7 +63,7 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
 
     override fun setSystemLanguage() = Handler(Looper.getMainLooper()).post {
         val config = Configuration()
-        config.locale = when (Util.global) {
+        config.locale = when (Component.global) {
             Locale.KOREAN.toLanguageTag() -> {
                 Locale.KOREAN
             }

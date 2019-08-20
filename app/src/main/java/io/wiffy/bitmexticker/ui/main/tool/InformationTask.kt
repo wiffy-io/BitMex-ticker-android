@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import io.wiffy.bitmexticker.function.cleanNotificationSubscribe
 import io.wiffy.bitmexticker.function.getTimeFormat
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.ui.main.MainContract
 import io.wiffy.bitmexticker.ui.main.MainPresenter
 import java.io.BufferedReader
@@ -44,7 +44,7 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                 else response.append(inputLine)
             } while (true)
             `in`.close()
-            if (!(response.toString().trim().contains("642537883523")) && !Util.isConsumer)
+            if (!(response.toString().trim().contains("642537883523")) && !Component.isConsumer)
                 cleanNotificationSubscribe()
         } catch (e: Exception) {
         }

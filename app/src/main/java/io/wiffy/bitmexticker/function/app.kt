@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Point
 import com.google.firebase.messaging.FirebaseMessaging
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import kotlin.system.exitProcess
 
 
@@ -19,7 +19,7 @@ fun restartApp(context: Context) {
 }
 
 fun cleanNotificationSubscribe() {
-    Util.notificationSet?.apply {
+    Component.notificationSet?.apply {
         for (slice in iterator()) {
             val cheese = slice.split(":")
             FirebaseMessaging.getInstance().unsubscribeFromTopic("${cheese[0]}_${cheese[1]}")
@@ -35,6 +35,6 @@ fun getScreenSize(activity: Activity): Point =
 
 
 fun beConsumer() {
-    Util.isConsumer = true
+    Component.isConsumer = true
     setShared("consumer", true)
 }

@@ -2,7 +2,7 @@ package io.wiffy.bitmexticker.ui.information.mainFragment
 
 import io.wiffy.bitmexticker.function.changeValue
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Util.dark_theme
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import org.json.JSONObject
 import java.lang.Exception
 import java.lang.Thread.sleep

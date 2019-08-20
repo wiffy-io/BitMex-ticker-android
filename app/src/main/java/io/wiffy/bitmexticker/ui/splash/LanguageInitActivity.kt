@@ -12,7 +12,7 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.setShared
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import kotlinx.android.synthetic.main.language_init.*
 import java.util.*
 
@@ -41,7 +41,7 @@ class LanguageInitActivity : AppCompatActivity() {
     private fun onClickListener(locale:String)
     {
         setShared("global",locale)
-        Util.global = locale
+        Component.global = locale
         resultOK()
     }
 

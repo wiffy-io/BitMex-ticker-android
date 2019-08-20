@@ -13,8 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.MobileAds
 import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.setting_on
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.setting_on
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +23,7 @@ import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
-import io.wiffy.bitmexticker.model.Util.infoContext
+import io.wiffy.bitmexticker.model.Component.infoContext
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import kotlin.collections.ArrayList
@@ -40,7 +40,7 @@ class MainActivity : MainContract.View() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        Util.width = getScreenSize(this@MainActivity).x
+        Component.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
@@ -78,7 +78,7 @@ class MainActivity : MainContract.View() {
 
     override fun setRecycler(init_coin: ArrayList<CoinInfo>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
+            myAdapter = MainAdapter(init_coin, this, Component.dark_theme, this)
             with(recycler)
             {
                 adapter = myAdapter
@@ -90,7 +90,7 @@ class MainActivity : MainContract.View() {
     }
 
     override fun updateRecyclerTheme() = Handler(applicationContext.mainLooper).post {
-        myAdapter?.updateTheme(Util.dark_theme)
+        myAdapter?.updateTheme(Component.dark_theme)
     }
 
 
@@ -217,7 +217,7 @@ class MainActivity : MainContract.View() {
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
         wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 

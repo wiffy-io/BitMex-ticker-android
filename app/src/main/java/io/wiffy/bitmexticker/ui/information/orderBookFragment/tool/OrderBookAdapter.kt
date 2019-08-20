@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.getTableOut
 import io.wiffy.bitmexticker.function.getTitle2
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_orderbook.view.*
 
@@ -57,10 +57,10 @@ class OrderBookAdapter(
             if (ratio >= 0.0) {
                 if (flag) {
                     left.layoutParams.width =
-                        Util.width.times(ratio).toInt()
+                        Component.width.times(ratio).toInt()
                 } else {
                     right.layoutParams.width =
-                        Util.width.times(ratio).toInt()
+                        Component.width.times(ratio).toInt()
                 }
             }
         }

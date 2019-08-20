@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.ui.main.MainActivity
 import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.function.getScreenSize
@@ -25,7 +25,7 @@ class SplashActivity : SplashContract.View() {
         setTheme(R.style.AppTheme_D)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
-        Util.width = getScreenSize(this@SplashActivity).x
+        Component.width = getScreenSize(this@SplashActivity).x
         mPresenter = SplashPresenter(this, applicationContext)
         agreement()
     }
@@ -78,7 +78,7 @@ class SplashActivity : SplashContract.View() {
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
         wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 
