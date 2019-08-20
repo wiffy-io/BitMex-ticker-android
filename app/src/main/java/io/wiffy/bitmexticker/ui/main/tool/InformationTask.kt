@@ -21,7 +21,8 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
     override fun doInBackground(vararg params: Void?): ArrayList<String> {
         val url = "http://wiffy.io/bitmex/hello?${getTimeFormat("yyyyMMddHHmmss")}"
         try {
-            val request = (URL(url).openConnection() as HttpURLConnection).apply {
+
+            BufferedReader(InputStreamReader((URL(url).openConnection() as HttpURLConnection).apply {
                 requestMethod = "GET"
                 setRequestProperty(
                     "User-Agent",
@@ -32,20 +33,19 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                 setRequestProperty("Accept-Language", "ko-KR")
                 setRequestProperty("Connection", "Keep-Alive")
                 setRequestProperty("Host", "wiffy.io")
+            }.inputStream)).run {
+                var inputLine: String?
+                val response = StringBuffer()
+
+                do {
+                    inputLine = readLine()
+                    if (inputLine == null) break
+                    else response.append(inputLine)
+                } while (true)
+                close()
+                if (!(response.toString().trim().contains("642537883523")) && !Component.isConsumer)
+                    cleanNotificationSubscribe()
             }
-
-            val `in` = BufferedReader(InputStreamReader(request.inputStream))
-            var inputLine: String?
-            val response = StringBuffer()
-
-            do {
-                inputLine = `in`.readLine()
-                if (inputLine == null) break
-                else response.append(inputLine)
-            } while (true)
-            `in`.close()
-            if (!(response.toString().trim().contains("642537883523")) && !Component.isConsumer)
-                cleanNotificationSubscribe()
         } catch (e: Exception) {
         }
 

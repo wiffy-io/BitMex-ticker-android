@@ -42,8 +42,7 @@ class MainActivity : MainContract.View() {
         supportActionBar?.hide()
         Component.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        adView.loadAd(AdRequest.Builder().build())
 
         agreement()
         initLoading()
@@ -169,14 +168,13 @@ class MainActivity : MainContract.View() {
     }
 
     override fun startLoading() {
-        if (!checkLoading()) {
-            Handler(Looper.getMainLooper()).post {
-                try {
-                    builder?.show()
-                } catch (e: Exception) {
-                }
+        if (!checkLoading()) Handler(Looper.getMainLooper()).post {
+            try {
+                builder?.show()
+            } catch (e: Exception) {
             }
         }
+
     }
 
     private fun initLoading() {

@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.adapter_orderbook.view.*
 
 class OrderBookAdapter(
     var items: ArrayList<OrderBookInfo>,
-    var context: Context,
-    var activity: InformationActivity
+    var context: Context
 ) : RecyclerView.Adapter<OrderBookAdapter.OrderBookViewHolder>(), SuperContract.WiffyObject {
 
     init {
@@ -27,7 +26,6 @@ class OrderBookAdapter(
     }
 
     var sum = 0
-    private var isTouch = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = OrderBookViewHolder(parent)
 
@@ -39,37 +37,33 @@ class OrderBookAdapter(
             val flag = item.bid == null
             orderCount += 1
 
-            var ratio = 0.0
+            val ratio: Double
+
             ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
             bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
+
+            itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
+
+            ask.text = item.ask
+            price.text = item.price
+            bid.text = item.bid
 
             if (flag) {
                 price.setTextColor(ContextCompat.getColor(context, R.color.red))
                 ratio = item.ask?.toDouble()?.div(sum) ?: 0.0
                 right.visibility = View.GONE
                 left.visibility = View.VISIBLE
+                if (ratio >= 0.0) left.layoutParams.width =
+                    Component.width.times(ratio).toInt()
             } else {
                 price.setTextColor(ContextCompat.getColor(context, R.color.green))
                 ratio = item.bid?.toDouble()?.div(sum) ?: 0.0
                 left.visibility = View.GONE
                 right.visibility = View.VISIBLE
-            }
-            itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
-
-            ask.text = item.ask
-            price.text = item.price
-            bid.text = item.bid
-            if (ratio >= 0.0) {
-                if (flag) {
-                    left.layoutParams.width =
-                        Component.width.times(ratio).toInt()
-                } else {
-                    right.layoutParams.width =
-                        Component.width.times(ratio).toInt()
-                }
+                if (ratio >= 0.0) right.layoutParams.width =
+                    Component.width.times(ratio).toInt()
             }
         }
-
     }
 
     fun update(list: ArrayList<OrderBookInfo>, sum: Int) {

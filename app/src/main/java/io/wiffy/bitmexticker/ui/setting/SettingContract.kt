@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.ui.setting
 
 import android.app.AlertDialog
+import android.content.ClipboardManager
 import android.view.GestureDetector
 import android.widget.CompoundButton
 import io.wiffy.bitmexticker.model.SuperContract
@@ -22,7 +23,7 @@ interface SettingContract {
 
         abstract fun startDialog(title: String, context: String): AlertDialog
         abstract fun getStringTo(id: Int): String
-        abstract fun clipOnBoard(clipBoardMessage: String)
+        abstract fun clipOnBoard(clipBoardMessage: String):ClipboardManager
         abstract fun urlParseToMarket(url: String)
         abstract fun openLanguageSetting()
     }

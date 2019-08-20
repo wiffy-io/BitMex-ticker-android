@@ -58,14 +58,15 @@ class OrderBookFragment : OrderBookContract.View() {
     override fun setRecycler() = Handler(context?.mainLooper).post {
         myAdapter = OrderBookAdapter(
             ArrayList(),
-            context!!,
-            activity as InformationActivity
+            context!!
         )
-
-        myView.orderbookRecycler.setHasFixedSize(true)
-        myView.orderbookRecycler.adapter = myAdapter
-        myView.orderbookRecycler.setItemViewCacheSize(20)
-        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        with(myView.orderbookRecycler)
+        {
+            setHasFixedSize(true)
+            adapter = myAdapter
+            setItemViewCacheSize(20)
+            layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        }
     }
 
 

@@ -17,7 +17,7 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             android:hardwareAccelerated="true"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="GoogleAppIndexingWarning" >
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
                 android:resource="@drawable/bitmex"/>

@@ -42,15 +42,16 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
 
     override fun parseInformation() = ArrayList<String>().apply {
         try {
-            val json = JSONObject(URL(coinMarket).readText())
-            add(
-                inputComma(
-                    json.getDouble("total_market_cap_usd")
+            JSONObject(URL(coinMarket).readText()).let {
+                add(
+                    inputComma(
+                        it.getDouble("total_market_cap_usd")
+                    )
                 )
-            )
-            add(
-                "${json.getString("bitcoin_percentage_of_market_cap")}%"
-            )
+                add(
+                    "${it.getString("bitcoin_percentage_of_market_cap")}%"
+                )
+            }
         } catch (e: Exception) {
             add("error")
         }
@@ -107,7 +108,9 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
         var fuckSymbol: String? = null
         var priceM: String? = null
         for (i in 0 until initCoin.size) {
+
             val tmpSymbol = initCoin[i].Symbol.toString()
+
             try {
                 val jsonContact = JSONObject(it)
 

@@ -46,8 +46,9 @@ class OrderBookPresenter(private val mView: OrderBookContract.View, private var 
                 if (orderCount >= 20) {
                     orderCount = 0
                     var sum = 0
-                    val jsonContact = JSONObject(it)
-                    val data = jsonContact.getJSONArray("data")
+
+                    val data = JSONObject(it).getJSONArray("data")
+
                     val bids = data.getJSONObject(0).getJSONArray("bids")
                     val asks = data.getJSONObject(0).getJSONArray("asks")
 
@@ -76,7 +77,7 @@ class OrderBookPresenter(private val mView: OrderBookContract.View, private var 
                     mView.updateRecycler(arr, sum)
                     mView.stopLoading()
                 } else {
-                   console("cccc=$orderCount")
+                    console("cccc=$orderCount")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

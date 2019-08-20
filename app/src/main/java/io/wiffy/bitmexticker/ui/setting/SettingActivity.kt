@@ -131,11 +131,10 @@ class SettingActivity : SettingContract.View() {
 
     override fun getStringTo(id: Int): String = getString(id)
 
-    override fun clipOnBoard(clipBoardMessage: String) {
-        val clip = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clipData = ClipData.newPlainText("", clipBoardMessage)
-        clip.primaryClip = clipData
-    }
+    override fun clipOnBoard(clipBoardMessage: String) =
+        (applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).apply {
+            primaryClip = ClipData.newPlainText("", clipBoardMessage)
+        }
 
     override fun urlParseToMarket(url: String) =
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
@@ -147,11 +146,10 @@ class SettingActivity : SettingContract.View() {
         }
     }
 
-    override fun openLanguageSetting() {
-        LanguageDialog(this@SettingActivity).apply {
-            setCancelable(false)
-        }.show()
-    }
+    override fun openLanguageSetting() = LanguageDialog(this@SettingActivity).apply {
+        setCancelable(false)
+    }.show()
+
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
         wrap(

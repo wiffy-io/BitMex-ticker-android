@@ -1,6 +1,5 @@
 package io.wiffy.bitmexticker.ui.splash
 
-
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -33,9 +32,9 @@ class SplashActivity : SplashContract.View() {
     }
 
     override fun moveToMain(str: String) {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("symbol", str)
-        startActivity(intent)
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            putExtra("symbol", str)
+        })
         overridePendingTransition(R.anim.abc_fade_in, R.anim.not_move_activity)
         finish()
     }
@@ -72,19 +71,18 @@ class SplashActivity : SplashContract.View() {
 
     private fun setChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = getString(R.string.channel)
-            val channelName = getString(R.string.app_name)
-            val notiChannel =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            val channelMessage =
-                NotificationChannel(channel, channelName, NotificationManager.IMPORTANCE_DEFAULT).apply {
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
+                NotificationChannel(
+                    getString(R.string.channel),
+                    getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                ).apply {
                     description = ""
                     enableLights(true)
                     enableVibration(true)
                     setShowBadge(false)
                     vibrationPattern = addList()
-                }
-            notiChannel.createNotificationChannel(channelMessage)
+                })
         }
     }
 
@@ -108,5 +106,4 @@ class SplashActivity : SplashContract.View() {
             Component.global
         )
     )
-
 }

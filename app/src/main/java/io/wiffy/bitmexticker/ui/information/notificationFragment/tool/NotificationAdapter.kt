@@ -16,13 +16,11 @@ import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.SuperContract
-import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_notification.view.*
 
 class NotificationAdapter(
     var items: ArrayList<NotificationInfo>,
     var context: Context,
-    var activity: InformationActivity,
     private val symbolOut: String?
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(), SuperContract.WiffyObject {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotificationViewHolder(parent)

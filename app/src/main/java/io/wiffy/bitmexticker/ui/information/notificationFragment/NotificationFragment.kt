@@ -57,7 +57,6 @@ class NotificationFragment : NotificationContract.View() {
         myAdapter = NotificationAdapter(
             myList,
             context!!,
-            activity as InformationActivity,
             symbol
         )
 
@@ -87,6 +86,7 @@ class NotificationFragment : NotificationContract.View() {
 
         myView.cdcd123.setOnClickListener {
             var flag = true
+
             val text = myView.texter.text.toString()
             try {
                 for (v in myList) {
