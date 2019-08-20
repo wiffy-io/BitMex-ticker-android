@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getFragmentBackground
+import io.wiffy.bitmexticker.function.getFragmentBackground
 import io.wiffy.bitmexticker.ui.information.detailsFragment.tool.DetailsAdapter
 import io.wiffy.bitmexticker.ui.information.detailsFragment.tool.DetailsInfo
 import io.wiffy.bitmexticker.ui.information.detailsFragment.tool.DetailsTask

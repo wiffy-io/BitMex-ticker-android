@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getFragmentBackground
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.function.getFragmentBackground
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookAdapter
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo

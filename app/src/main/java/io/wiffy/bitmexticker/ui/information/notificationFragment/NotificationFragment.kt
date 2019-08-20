@@ -12,11 +12,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
-import io.wiffy.bitmexticker.model.Util.Companion.getTimeFormat
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
@@ -28,14 +27,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class NotificationFragment : NotificationContract.View() {
-    lateinit var myView: View
-    lateinit var mPresenter: NotificationPresenter
-    lateinit var parentLayout: RelativeLayout
+    private lateinit var myView: View
+    private lateinit var mPresenter: NotificationPresenter
+    private lateinit var parentLayout: RelativeLayout
     private var ini = true
     var symbol: String? = null
     private var xbtPrice: String = "0"
-    var myAdapter: NotificationAdapter? = null
-    lateinit var myList: ArrayList<NotificationInfo>
+    private var myAdapter: NotificationAdapter? = null
+    private lateinit var myList: ArrayList<NotificationInfo>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myView = inflater.inflate(R.layout.fragment_notification, container, false)
@@ -50,13 +49,13 @@ class NotificationFragment : NotificationContract.View() {
     @SuppressLint("SimpleDateFormat")
     override fun changeUI() {
         myList = ArrayList<NotificationInfo>().apply {
-            Util.notificationSet?.let {
+            Component.notificationSet?.let {
                 for (x in it.iterator()) {
                     val y = x.split(":")
                     this.add(NotificationInfo(y[0], y[1], y[2]))
                 }
             }
-            Collections.sort(this, InformationComparator())
+            Collections.sort(this, InformationComparator)
         }
         myAdapter = NotificationAdapter(
             myList,
@@ -85,7 +84,7 @@ class NotificationFragment : NotificationContract.View() {
                 myView.noti_context.background = getDrawable(R.drawable.chart_border_light)
                 myView.angimotti.background = getDrawable(R.drawable.chart_border_light)
             }
-            myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration(2))
+            myView.noticycle.addItemDecoration(VerticalSpaceItemDecoration)
             myView.noticycle.setBackgroundColor(getColor(getTableOut()))
         }
 
@@ -121,7 +120,7 @@ class NotificationFragment : NotificationContract.View() {
         with(myList)
         {
             add(info)
-            Collections.sort(this, InformationComparator())
+            Collections.sort(this, InformationComparator)
             myAdapter?.update(this)
         }
         myView.texter.text.clear()
@@ -130,7 +129,7 @@ class NotificationFragment : NotificationContract.View() {
             for (k in myList) {
                 add("${k.symbol}:${k.value}:${k.date}")
             }
-            Util.notificationSet = this
+            Component.notificationSet = this
         })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
     }

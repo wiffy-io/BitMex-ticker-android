@@ -1,12 +1,12 @@
 package io.wiffy.bitmexticker.model
 
+import android.util.Log
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.lang.Exception
 import java.net.URI
 
-class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
-
+object SocketObject : WebSocketClient(URI("wss://www.bitmex.com/realtime")) {
     var callBack: (String) -> Unit? = {}
     var sendBack: (String) -> Unit? = {}
     var closeBack: (String) -> Unit? = {}
@@ -20,21 +20,23 @@ class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
+        Log.d("asdfvv", "socket disconnected")
         closeBack.invoke("")
     }
 
     override fun onMessage(message: String?) {
+        Log.d("asdfvv", "socket messaged")
         message?.let {
             callBack.invoke(it)
         }
     }
 
     override fun onError(ex: Exception?) {
+        Log.d("asdfvv", "socket error")
     }
 
     override fun onOpen(handshakedata: ServerHandshake?) {
+        Log.d("asdfvv", "socket connected")
         sendBack.invoke("")
     }
-
-
 }

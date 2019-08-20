@@ -3,7 +3,7 @@ package io.wiffy.bitmexticker.ui.splash
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import io.wiffy.bitmexticker.extension.getConnectivityStatus
+import io.wiffy.bitmexticker.function.getConnectivityStatus
 import java.net.URL
 
 

@@ -10,11 +10,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getTableIn
-import io.wiffy.bitmexticker.extension.setShared
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
-import io.wiffy.bitmexticker.model.Util.Companion.dpToPx
+import io.wiffy.bitmexticker.function.dpToPx
+import io.wiffy.bitmexticker.function.getTableIn
+import io.wiffy.bitmexticker.function.setShared
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import kotlinx.android.synthetic.main.adapter_notification.view.*
 
@@ -45,7 +45,7 @@ class NotificationAdapter(
                 for (x in items) {
                     set.add("${x.symbol}:${x.value}:${x.date}")
                 }
-                Util.notificationSet = set
+                Component.notificationSet = set
                 setShared("notificationSet", set)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
             }

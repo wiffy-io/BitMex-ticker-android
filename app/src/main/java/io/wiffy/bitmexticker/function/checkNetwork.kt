@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.extension
+package io.wiffy.bitmexticker.function
 
 import android.content.Context;
 import android.content.Context.CONNECTIVITY_SERVICE

@@ -1,6 +1,6 @@
 @file:Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
 
-package io.wiffy.bitmexticker.extension
+package io.wiffy.bitmexticker.function
 
 import android.content.SharedPreferences
 

@@ -1,8 +1,8 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
 import android.util.Log
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
+import io.wiffy.bitmexticker.function.changeValue
+import io.wiffy.bitmexticker.model.SocketObject as socket
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.count
 import org.json.JSONObject
