@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.dialog_language.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LanguageDialog(context: Context, val mView: SettingContract.View) : SuperContract.SuperDialog(context) {
+class LanguageDialog(context: Context) : SuperContract.SuperDialog(context) {
     var list = ArrayList<RelativeLayout>()
     var listRadio = ArrayList<AppCompatRadioButton>()
     var listString = ArrayList<String>()
@@ -111,7 +111,7 @@ class LanguageDialog(context: Context, val mView: SettingContract.View) : SuperC
                         }
                     }
                 setShared("global", languages)
-
+                dismiss()
                 restartApp(context)
             }
         }

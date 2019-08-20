@@ -148,7 +148,7 @@ class SettingActivity : SettingContract.View() {
     }
 
     override fun openLanguageSetting() {
-        LanguageDialog(this@SettingActivity, this).apply {
+        LanguageDialog(this@SettingActivity).apply {
             setCancelable(false)
         }.show()
     }

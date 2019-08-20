@@ -1,5 +1,6 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 
+import io.wiffy.bitmexticker.function.ifNotNullOrElse
 import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
 import java.io.BufferedReader

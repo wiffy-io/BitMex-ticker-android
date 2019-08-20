@@ -7,18 +7,19 @@ import io.wiffy.bitmexticker.function.getConnectivityStatus
 import java.net.URL
 
 
-class SplashPresenter(private val mView: SplashContract.View, private val mContext: Context) : SplashContract.Presenter {
+class SplashPresenter(private val mView: SplashContract.View, private val mContext: Context) :
+    SplashContract.Presenter {
 
     override fun checkInternetConnection() = Thread(Runnable {
         try {
-            if (getConnectivityStatus(mContext)){
+            if (getConnectivityStatus(mContext)) {
                 val getServer = URL("http://wiffy.io/bitmex/").readText()
                 if (getServer.contains("XBTUSD")) {
                     connectionOn(getServer)
                 } else {
                     connectionOff()
                 }
-            }else{
+            } else {
                 connectionOff()
             }
         } catch (e: Exception) {

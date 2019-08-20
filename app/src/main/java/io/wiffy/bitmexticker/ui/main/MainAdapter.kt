@@ -25,7 +25,7 @@ class MainAdapter(
     val mView: MainContract.View
 ) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>(), SuperContract.WiffyObject {
-    private var istouch = false
+    private var isTouch = false
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
 
@@ -67,7 +67,7 @@ class MainAdapter(
 
     private fun actionDown(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableInReverse()))
-        istouch = true
+        isTouch = true
     }
 
     private fun actionUp(bg: CardView, price: String, sym: String, data: CoinInfo) {
@@ -75,13 +75,13 @@ class MainAdapter(
         if (!price.contains("-") && info_on) {
             click(sym, data)
         }
-        istouch = false
+        isTouch = false
         notificationUpdate()
     }
 
     private fun actionCancel(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-        istouch = false
+        isTouch = false
         notificationUpdate()
     }
 
@@ -101,7 +101,7 @@ class MainAdapter(
 
     fun update(modelList: ArrayList<CoinInfo>) {
         items = modelList
-        if (!istouch) {
+        if (!isTouch) {
             notificationUpdate()
         }
     }

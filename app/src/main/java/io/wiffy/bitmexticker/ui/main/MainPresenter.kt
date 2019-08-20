@@ -41,29 +41,27 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     }).start()
 
     override fun parseInformation() = ArrayList<String>().apply {
-                try {
-        val json = JSONObject(URL(coinMarket).readText())
-        add(
-            inputComma(
-                json.getDouble("total_market_cap_usd")
+        try {
+            val json = JSONObject(URL(coinMarket).readText())
+            add(
+                inputComma(
+                    json.getDouble("total_market_cap_usd")
+                )
             )
-        )
-        add(
-            "${json.getString("bitcoin_percentage_of_market_cap")}%"
-        )
+            add(
+                "${json.getString("bitcoin_percentage_of_market_cap")}%"
+            )
         } catch (e: Exception) {
             add("error")
         }
     }
 
-
     override fun changeUI() {
         mView.changeUI()
         setSystemLanguage()
-        val listenerSetting = View.OnClickListener {
+        mView.addSettingActivityChangeListener(View.OnClickListener {
             mView.moveToSetting()
-        }
-        mView.addSettingActivityChangeListener(listenerSetting)
+        })
         mView.initInformation()
     }
 
@@ -114,41 +112,46 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
                 val jsonContact = JSONObject(it)
 
                 val tableName = jsonContact.getString("table")
-                if (tableName == "tradeBin1m") {
-                    val data = jsonContact.getJSONArray("data").getJSONObject(0)
-                    val symbol = data.getString("symbol")
-                    fuckSymbol = symbol
-                    if (symbol == tmpSymbol) {
-                        socket.sendMSGFilter("unsubscribe", "tradeBin1m", tmpSymbol)
-                        socket.sendMSGFilter("subscribe", "trade", tmpSymbol)
 
-                        val price = data.getDouble("close")
-                        initCoin[i].price = changeValue(price)
-                        priceM = changeValue(price)
-                        initCoin[i].before_p = "n"
-                    }
-                } else if (tableName == "trade") {
+
+                if (tableName == "tradeBin1m" || tableName == "trade") {
                     val data = jsonContact.getJSONArray("data").getJSONObject(0)
+
                     val symbol = data.getString("symbol")
+
                     fuckSymbol = symbol
+
                     if (symbol == tmpSymbol) {
-                        val price = data.getDouble("price")
-                        val before = initCoin[i].price ?: "0"
-                        if (before.toDouble() < price) {
-                            initCoin[i].before_p = "g"
-                        } else if (before.toDouble() > price) {
-                            initCoin[i].before_p = "r"
+                        when (tableName) {
+                            "tradeBin1m" -> {
+                                socket.sendMSGFilter("unsubscribe", "tradeBin1m", tmpSymbol)
+                                socket.sendMSGFilter("subscribe", "trade", tmpSymbol)
+
+                                val price = data.getDouble("close")
+                                initCoin[i].price = changeValue(price)
+                                priceM = changeValue(price)
+                                initCoin[i].before_p = "n"
+                            }
+                            "trade" -> {
+                                val price = data.getDouble("price")
+                                val before = initCoin[i].price ?: "0"
+                                if (before.toDouble() < price) {
+                                    initCoin[i].before_p = "g"
+                                } else if (before.toDouble() > price) {
+                                    initCoin[i].before_p = "r"
+                                }
+                                initCoin[i].price = changeValue(price)
+                                priceM = changeValue(price)
+                                mView.changeRecent("$symbol : ${changeValue(price)}")
+                            }
                         }
-                        initCoin[i].price = changeValue(price)
-                        priceM = changeValue(price)
-                        mView.changeRecent("$symbol : ${changeValue(price)}")
                     }
                 }
-
             } catch (e: Exception) {
             }
 
         }
+
         Component.infoContext?.let {
             if (fuckSymbol == actSymbol) {
                 mView.tossSymbol(priceM!!)
