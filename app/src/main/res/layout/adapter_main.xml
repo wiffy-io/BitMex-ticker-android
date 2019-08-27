@@ -11,7 +11,7 @@
         android:clickable="true"
         android:focusable="true"
         app:cardBackgroundColor="@color/dark_table_in"
-        android:layout_margin="0dp">
+        android:layout_marginBottom="0dp">
 
     <RelativeLayout
             android:layout_height="match_parent"
@@ -42,9 +42,9 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/card_in"
-                app:cardCornerRadius="1dp"
-                app:cardElevation="1dp"
-                android:layout_width="100dp"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp"
+                android:layout_width="110dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
                 android:layout_alignParentEnd="true"

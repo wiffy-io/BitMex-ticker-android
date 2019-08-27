@@ -68,7 +68,8 @@ class NotificationFragment : NotificationContract.View() {
             myView.notis.background = getDrawable(getTableOut())
             parentLayout = myView.findViewById(R.id.notis)
             parentLayout.background = getDrawable(getFragmentBackground())
-            myView.texter.setBackgroundColor(getColor(getEditTextColor()))
+            //myView.texter.setBackgroundColor(getColor(getEditTextColor()))
+            myView.editcard.setCardBackgroundColor(getColor(getEditTextColor()))
             myView.texter.setTextColor(getColor(getTitle()))
 
             if (dark_theme) {
@@ -120,7 +121,7 @@ class NotificationFragment : NotificationContract.View() {
             Collections.sort(this, InformationComparator)
             myAdapter?.update(this)
         }
-        myView.texter.text.clear()
+        //myView.texter.text.clear()
 
         setShared("notificationSet", HashSet<String>().apply {
             for (k in myList) {

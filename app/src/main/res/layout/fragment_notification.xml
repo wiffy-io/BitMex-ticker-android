@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/notis">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/notis">
     <RelativeLayout
             android:id="@+id/noti_view"
             android:layout_width="match_parent"
@@ -53,41 +54,69 @@
 
 
         <androidx.cardview.widget.CardView
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp"
                 android:id="@+id/cdcd123"
                 android:focusable="true"
                 android:clickable="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/green_tr"
-                android:layout_height="match_parent">
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="0dp"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/green_tr"
+                android:padding="0dp">
 
-            <TextView
-                    android:gravity="center"
-                    android:textColor="@color/green"
-                    android:background="@color/green_tr"
-                    android:text="@string/alert"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"/>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:background="#00FFFFFF"
+                        android:gravity="center"
+                        android:textColor="@color/green"
+                        android:text="@string/alert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+
         </androidx.cardview.widget.CardView>
 
-        <EditText
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/editcard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/cdcd123"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp"
-                android:layout_toStartOf="@+id/cdcd123"
-                android:background="@drawable/edittextdrawable"
-                android:textAlignment="center"
-                android:inputType="numberDecimal"
-                android:textColor="@color/BLACK"
-                android:maxLines="1"
-                android:id="@+id/texter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_marginEnd="20dp">
+
+            <EditText
+                    android:layout_toStartOf="@+id/cdcd123"
+                    android:backgroundTint="#00000000"
+                    android:textAlignment="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/BLACK"
+                    android:maxLines="1"
+                    android:id="@+id/texter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+
 
     </RelativeLayout>
 
