@@ -1,40 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_height="60dp">
-    <TextView
-            android:layout_marginStart="15dp"
-            android:layout_centerVertical="true"
-            android:textSize="21sp"
-            android:id="@+id/notitextex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cardback"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="0dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="60dp">
 
-    <TextView
-            android:id="@+id/textextext"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="38dp"
-            android:textSize="20sp"
-            android:layout_toEndOf="@id/notitextex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:background="@color/red_tr"
-            android:textColor="@color/red"
-            android:layout_marginEnd="15dp"
-            android:text="@string/deletion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/deletion"/>
+        <TextView
+                android:layout_marginStart="15dp"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/notitextex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+        <TextView
+                android:id="@+id/textextext"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/gray"
+                android:layout_toEndOf="@id/notitextex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                app:cardBackgroundColor="@color/red_tr"
+                android:layout_margin="10dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/red"
+                        android:text="@string/deletion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deletion"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

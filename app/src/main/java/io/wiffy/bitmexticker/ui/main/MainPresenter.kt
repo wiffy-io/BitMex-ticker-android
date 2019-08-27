@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import io.wiffy.bitmexticker.function.changeValue
 import io.wiffy.bitmexticker.function.inputComma
@@ -100,11 +101,12 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     }
 
     private fun socketSubscribe() {
-        for (i in 0 until initCoin.size) socket.sendMSGFilter("subscribe", "tradeBin1m", initCoin[i].Symbol.toString())
+        for (i in 0 until initCoin.size) socket.sendMSGFilter("subscribe", "trade", initCoin[i].Symbol.toString())
 
     }
 
     private fun socketCallback(it: String) {
+
         var fuckSymbol: String? = null
         var priceM: String? = null
         for (i in 0 until initCoin.size) {
@@ -137,15 +139,18 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
                             }
                             "trade" -> {
                                 val price = data.getDouble("price")
-                                val before = initCoin[i].price ?: "0"
-                                if (before.toDouble() < price) {
+                                val side = data.getString("side")
+                                if(side == "Buy"){
                                     initCoin[i].before_p = "g"
-                                } else if (before.toDouble() > price) {
+                                }else if(side == "Sell"){
                                     initCoin[i].before_p = "r"
+                                }else{
+                                    initCoin[i].before_p = "n"
                                 }
                                 initCoin[i].price = changeValue(price)
                                 priceM = changeValue(price)
                                 mView.changeRecent("$symbol : ${changeValue(price)}")
+
                             }
                         }
                     }

@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.function.dpToPx
-import io.wiffy.bitmexticker.function.getTableIn
-import io.wiffy.bitmexticker.function.setShared
+import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.SuperContract
@@ -30,13 +29,8 @@ class NotificationAdapter(
         with(holder) {
             mySymbol.text = item.symbol
             myValue.text = item.value
-            val color = if (dark_theme) {
-                R.color.WHITE
-            } else {
-                R.color.BLACK
-            }
-            mySymbol.setTextColor(ContextCompat.getColor(context, color))
-            myValue.setTextColor(ContextCompat.getColor(context, color))
+            mySymbol.setTextColor(ContextCompat.getColor(context, getTitle()))
+            myValue.setTextColor(ContextCompat.getColor(context, getTitle2()))
             myButton.setOnClickListener {
                 items.remove(item)
                 notifyDataSetChanged()
@@ -48,7 +42,8 @@ class NotificationAdapter(
                 setShared("notificationSet", set)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
             }
-            itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+            cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+            //itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
             if (symbolOut != item.symbol) {
                 itemView.visibility = View.GONE
                 itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
@@ -74,6 +69,7 @@ class NotificationAdapter(
     inner class NotificationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_notification, parent, false)
     ) {
+        val cardIn: CardView = itemView.cardback
         val myValue: TextView = itemView.textextext
         val mySymbol: TextView = itemView.notitextex
         val myButton: TextView = itemView.deletion
