@@ -9,13 +9,12 @@ import android.content.pm.ActivityInfo
 import android.os.*
 import android.view.View
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.MobileAds
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.setting_on
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.setting_on
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,28 +22,27 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.Util.Companion.infoContext
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.Component.infoContext
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : MainContract.View() {
 
-    lateinit var mPresenter: MainPresenter
-    var myAdapter: MainAdapter? = null
-    var builder: Dialog? = null
+    private lateinit var mPresenter: MainPresenter
+    private var myAdapter: MainAdapter? = null
+    private var builder: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        Util.width = Util.getScreenSize(this@MainActivity).x
+        Component.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        adView.loadAd(AdRequest.Builder().build())
 
         agreement()
         initLoading()
@@ -79,19 +77,19 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun setRecycler(init_coin: ArrayList<CoinInfo>) {
         Handler(applicationContext.mainLooper).post {
-            myAdapter = MainAdapter(init_coin, this, Util.dark_theme, this)
+            myAdapter = MainAdapter(init_coin, this, Component.dark_theme, this)
             with(recycler)
             {
                 adapter = myAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                addItemDecoration(VerticalSpaceItemDecoration(2))
+                addItemDecoration(VerticalSpaceItemDecoration)
             }
         }
         mPresenter.makeSocket()
     }
 
     override fun updateRecyclerTheme() = Handler(applicationContext.mainLooper).post {
-        myAdapter?.updateTheme(Util.dark_theme)
+        myAdapter?.updateTheme(Component.dark_theme)
     }
 
 
@@ -105,13 +103,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         cap.setTextColor(
             ContextCompat.getColorStateList(
                 applicationContext,
-                io.wiffy.bitmexticker.extension.getTitle()
+                io.wiffy.bitmexticker.function.getTitle()
             )
         )
         dom.setTextColor(
             ContextCompat.getColorStateList(
                 applicationContext,
-                io.wiffy.bitmexticker.extension.getTitle()
+                io.wiffy.bitmexticker.function.getTitle()
             )
         )
         cap2.setTextColor(
@@ -170,19 +168,18 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun startLoading() {
-        if (!checkLoading()) {
-            Handler(Looper.getMainLooper()).post {
-                try {
-                    builder?.show()
-                } catch (e: Exception) {
-                }
+        if (!checkLoading()) Handler(Looper.getMainLooper()).post {
+            try {
+                builder?.show()
+            } catch (e: Exception) {
             }
         }
+
     }
 
     private fun initLoading() {
         builder = Dialog(this).apply {
-            setContentView(R.layout.waitting_dialog)
+            setContentView(R.layout.dialog_indicator)
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -216,9 +213,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun checkLoading() = builder?.isShowing ?: false
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 

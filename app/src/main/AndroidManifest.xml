@@ -17,7 +17,7 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             android:hardwareAccelerated="true"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="GoogleAppIndexingWarning" >
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
                 android:resource="@drawable/bitmex"/>
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <service
-                android:name="io.wiffy.bitmexticker.model.FirebaseMessagingService"
+                android:name="io.wiffy.bitmexticker.model.firebase.FirebaseMessagingService"
                 android:exported="false"
                 android:stopWithTask="false"
                 android:resource="@drawable/bitmex">
@@ -53,11 +53,6 @@
                 android:name="io.wiffy.bitmexticker.ui.setting.SettingActivity"/>
         <activity
                 android:name="io.wiffy.bitmexticker.ui.information.InformationActivity"/>
-        <activity
-                android:name="io.wiffy.bitmexticker.ui.setting.LanguageActivity"
-                android:theme="@style/dialog"/>
-        <activity android:name="io.wiffy.bitmexticker.ui.splash.LanguageInitActivity"
-                  android:theme="@style/dialog"/>
     </application>
 
 </manifest>

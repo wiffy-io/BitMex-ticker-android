@@ -1,10 +1,9 @@
 @file:Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
 
-package io.wiffy.bitmexticker.extension
+package io.wiffy.bitmexticker.function
 
-import android.content.SharedPreferences
+import io.wiffy.bitmexticker.model.Component.mySharedPreference
 
-lateinit var mySharedPreference: SharedPreferences
 
 inline fun <reified T> setShared(key: String, data: T) = mySharedPreference.edit().apply {
     when (T::class) {

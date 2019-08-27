@@ -10,19 +10,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
-import androidx.fragment.app.Fragment
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.extension.getTableOut
-import io.wiffy.bitmexticker.extension.getTitle2
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.function.changeValue
+import io.wiffy.bitmexticker.function.getTableOut
+import io.wiffy.bitmexticker.function.getTitle2
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-class MainFragment : Fragment(), MainContract.View {
+class MainFragment : MainContract.View() {
 
-    lateinit var myView: View
-    lateinit var mPresenter: MainPresenter
+    private lateinit var myView: View
+    private lateinit var mPresenter: MainPresenter
     var symbol: String? = null
     private var xbtPrice: String = "0"
 

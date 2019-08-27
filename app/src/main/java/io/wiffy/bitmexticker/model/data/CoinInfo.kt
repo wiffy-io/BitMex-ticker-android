@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.model
+package io.wiffy.bitmexticker.model.data
 
 import java.io.Serializable
 

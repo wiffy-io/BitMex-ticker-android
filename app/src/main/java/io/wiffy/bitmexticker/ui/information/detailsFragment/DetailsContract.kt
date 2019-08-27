@@ -1,13 +1,17 @@
 package io.wiffy.bitmexticker.ui.information.detailsFragment
 
+import io.wiffy.bitmexticker.model.SuperContract
+import io.wiffy.bitmexticker.ui.information.detailsFragment.tool.DetailsInfo
+
 interface DetailsContract {
-    interface View{
-        fun changeUI()
-        fun asyncPre()
-        fun updateRecycler(arr:ArrayList<DetailsInfo>)
-        fun asyncPost()
+    abstract class View : SuperContract.SuperFragment() {
+        abstract fun changeUI()
+        abstract fun asyncPre()
+        abstract fun updateRecycler(arr: ArrayList<DetailsInfo>)
+        abstract fun asyncPost()
     }
-    interface Presenter{
+
+    interface Presenter : SuperContract.WiffyObject {
         fun init()
     }
 }

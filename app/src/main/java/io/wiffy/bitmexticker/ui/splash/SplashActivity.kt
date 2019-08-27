@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.ui.splash
 
-import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -8,14 +9,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.ui.main.MainActivity
 import es.dmoral.toasty.Toasty
-import io.wiffy.bitmexticker.extension.getShared
+import io.wiffy.bitmexticker.function.getScreenSize
+import io.wiffy.bitmexticker.function.getShared
+import io.wiffy.bitmexticker.function.wrap
 
-class SplashActivity : AppCompatActivity(), SplashContract.View {
+class SplashActivity : SplashContract.View() {
     lateinit var mPresenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,15 +26,15 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
         setTheme(R.style.AppTheme_D)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
-        Util.width = Util.getScreenSize(this@SplashActivity).x
+        Component.width = getScreenSize(this@SplashActivity).x
         mPresenter = SplashPresenter(this, applicationContext)
         agreement()
     }
 
     override fun moveToMain(str: String) {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("symbol", str)
-        startActivity(intent)
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            putExtra("symbol", str)
+        })
         overridePendingTransition(R.anim.abc_fade_in, R.anim.not_move_activity)
         finish()
     }
@@ -60,25 +62,48 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
                 mPresenter.checkInternetConnection()
             }
             false -> {
-                startActivityForResult(Intent(applicationContext, LanguageInitActivity::class.java), 1)
-                overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+                LanguageInitDialog(this@SplashActivity, this).apply {
+                    setCancelable(false)
+                }.show()
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (resultCode) {
-            Activity.RESULT_OK -> mPresenter.checkInternetConnection()
-            else -> finish()
+    private fun setChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
+                NotificationChannel(
+                    getString(R.string.channel),
+                    getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                ).apply {
+                    description = ""
+                    enableLights(true)
+                    enableVibration(true)
+                    setShowBadge(false)
+                    vibrationPattern = addList()
+                })
         }
     }
 
+    private fun addList() = LongArray(4).apply {
+        this[0] = 100
+        this[1] = 200
+        this[2] = 100
+        this[3] = 200
+    }
+
+    override fun resultOK() {
+        setChannel()
+        mPresenter.checkInternetConnection()
+    }
+
+    override fun resultCancel() = finish()
+
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
-
 }

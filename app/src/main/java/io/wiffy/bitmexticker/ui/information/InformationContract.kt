@@ -1,18 +1,23 @@
 package io.wiffy.bitmexticker.ui.information
 
+import android.view.GestureDetector
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.wiffy.bitmexticker.model.SuperContract
+
 interface InformationContract {
-    interface View {
-        fun changeUI()
-        fun addTickerButtonListener(listener: android.view.View.OnClickListener)
-        fun moveToMain()
-        fun initFragment()
-        fun viewFragmentDetails()
-        fun viewFragmentMain()
-        fun viewFragmentOrderBook()
-        fun viewFragmentNotification()
+    abstract class View : SuperContract.SuperActivity(), GestureDetector.OnGestureListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
+        abstract fun changeUI()
+        abstract fun addTickerButtonListener(listener: android.view.View.OnClickListener)
+        abstract fun moveToMain()
+        abstract fun initFragment()
+        abstract fun viewFragmentDetails()
+        abstract fun viewFragmentMain()
+        abstract fun viewFragmentOrderBook()
+        abstract fun viewFragmentNotification()
     }
 
-    interface Presenter {
+    interface Presenter : SuperContract.WiffyObject {
         fun init()
         fun setSystemLanguage(): Boolean
     }

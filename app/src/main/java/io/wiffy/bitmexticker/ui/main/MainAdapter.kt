@@ -11,20 +11,21 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util.Companion.info_on
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component.info_on
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.adapter_main.view.*
 import java.lang.Exception
 
 class MainAdapter(
-    var items: ArrayList<CoinInfo>,
+    private var items: ArrayList<CoinInfo>,
     var context: Context,
-    var is_dark: Boolean,
+    private var is_dark: Boolean,
     val mView: MainContract.View
 ) :
-    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
-    private var istouch = false
+    RecyclerView.Adapter<MainAdapter.MainViewHolder>(), SuperContract.WiffyObject {
+    private var isTouch = false
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
 
@@ -66,7 +67,7 @@ class MainAdapter(
 
     private fun actionDown(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableInReverse()))
-        istouch = true
+        isTouch = true
     }
 
     private fun actionUp(bg: CardView, price: String, sym: String, data: CoinInfo) {
@@ -74,13 +75,13 @@ class MainAdapter(
         if (!price.contains("-") && info_on) {
             click(sym, data)
         }
-        istouch = false
+        isTouch = false
         notificationUpdate()
     }
 
     private fun actionCancel(bg: CardView) {
         bg.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-        istouch = false
+        isTouch = false
         notificationUpdate()
     }
 
@@ -100,7 +101,7 @@ class MainAdapter(
 
     fun update(modelList: ArrayList<CoinInfo>) {
         items = modelList
-        if (!istouch) {
+        if (!isTouch) {
             notificationUpdate()
         }
     }

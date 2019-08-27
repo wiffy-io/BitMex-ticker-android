@@ -7,18 +7,17 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getFragmentBackground
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.function.getFragmentBackground
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookAdapter
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
 import kotlinx.android.synthetic.main.fragment_orderbook.view.*
 import java.lang.Exception
 
-class OrderBookFragment : Fragment(), OrderBookConstract.View {
+class OrderBookFragment : OrderBookContract.View() {
     lateinit var myView: View
     lateinit var mPresenter: OrderBookPresenter
     var builder: Dialog? = null
@@ -59,14 +58,15 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
     override fun setRecycler() = Handler(context?.mainLooper).post {
         myAdapter = OrderBookAdapter(
             ArrayList(),
-            context!!,
-            activity as InformationActivity
+            context!!
         )
-
-        myView.orderbookRecycler.setHasFixedSize(true)
-        myView.orderbookRecycler.adapter = myAdapter
-        myView.orderbookRecycler.setItemViewCacheSize(20)
-        myView.orderbookRecycler.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        with(myView.orderbookRecycler)
+        {
+            setHasFixedSize(true)
+            adapter = myAdapter
+            setItemViewCacheSize(20)
+            layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+        }
     }
 
 
@@ -85,7 +85,7 @@ class OrderBookFragment : Fragment(), OrderBookConstract.View {
 
     private fun initLoading() {
         builder = Dialog(context!!).apply {
-            setContentView(R.layout.waitting_dialog)
+            setContentView(R.layout.dialog_indicator)
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             this.window?.setBackgroundDrawableResource(android.R.color.transparent)

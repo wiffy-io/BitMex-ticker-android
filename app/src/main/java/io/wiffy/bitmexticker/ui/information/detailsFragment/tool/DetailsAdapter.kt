@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.ui.information.detailsFragment
+package io.wiffy.bitmexticker.ui.information.detailsFragment.tool
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,16 +8,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.getDialog
-import io.wiffy.bitmexticker.extension.getTitle
-import io.wiffy.bitmexticker.extension.getTitle2
-import io.wiffy.bitmexticker.extension.settingButton
+import io.wiffy.bitmexticker.function.getDialog
+import io.wiffy.bitmexticker.function.getTitle
+import io.wiffy.bitmexticker.function.getTitle2
+import io.wiffy.bitmexticker.function.settingButton
+import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.adapter_datails.view.*
 
 class DetailsAdapter(
     var items: ArrayList<DetailsInfo>,
     var context: Context
-) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>() {
+) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>(), SuperContract.WiffyObject {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InformationViewHolder(parent)

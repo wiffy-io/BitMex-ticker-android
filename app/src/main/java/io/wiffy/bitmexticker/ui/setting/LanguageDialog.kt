@@ -1,25 +1,23 @@
 package io.wiffy.bitmexticker.ui.setting
 
 import android.content.Context
-import android.content.pm.ActivityInfo
-import android.os.Build
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.Window
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.setShared
-import io.wiffy.bitmexticker.model.Util
-import kotlinx.android.synthetic.main.activity_language.*
+import io.wiffy.bitmexticker.function.restartApp
+import io.wiffy.bitmexticker.function.setShared
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
+import kotlinx.android.synthetic.main.dialog_language.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LanguageActivity : AppCompatActivity() {
+class LanguageDialog(context: Context) : SuperContract.SuperDialog(context) {
     var list = ArrayList<RelativeLayout>()
     var listRadio = ArrayList<AppCompatRadioButton>()
     var listString = ArrayList<String>()
@@ -28,9 +26,8 @@ class LanguageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.activity_language)
+        setContentView(R.layout.dialog_language)
         with(list) {
             add(lang_EN)
             add(lang_KO)
@@ -54,7 +51,7 @@ class LanguageActivity : AppCompatActivity() {
         }
 
         ln =
-            when (Util.global) {
+            when (Component.global) {
                 Locale.KOREAN.toLanguageTag() -> {
                     1
                 }
@@ -93,9 +90,7 @@ class LanguageActivity : AppCompatActivity() {
             }
         }
 
-        langSet.setTextColor(ContextCompat.getColorStateList(applicationContext, R.color.light_title))
-
-
+        langSet.setTextColor(ContextCompat.getColorStateList(context, R.color.light_title))
 
         OK.setOnClickListener {
             if (lastCheck == ln) back()
@@ -116,8 +111,8 @@ class LanguageActivity : AppCompatActivity() {
                         }
                     }
                 setShared("global", languages)
-
-                Util.restartApp(applicationContext)
+                dismiss()
+                restartApp(context)
             }
         }
         CANCEL.setOnClickListener {
@@ -127,32 +122,8 @@ class LanguageActivity : AppCompatActivity() {
 
     override fun onBackPressed() = back()
 
-
-    override fun setRequestedOrientation(requestedOrientation: Int) {
-        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
-            super.setRequestedOrientation(requestedOrientation)
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-
-        if (event?.action == MotionEvent.ACTION_OUTSIDE) {
-            back()
-        }
-        return true
-    }
-
     private fun back() {
-        finish()
-        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
+        dismiss()
     }
-
-    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
-            newBase,
-            Util.global
-        )
-    )
-
 
 }

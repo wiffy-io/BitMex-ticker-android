@@ -1,9 +1,10 @@
 package io.wiffy.bitmexticker.ui.main.tool
 
 import android.annotation.SuppressLint
-import android.os.AsyncTask
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.getTimeFormat
+import io.wiffy.bitmexticker.function.cleanNotificationSubscribe
+import io.wiffy.bitmexticker.function.getTimeFormat
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.main.MainContract
 import io.wiffy.bitmexticker.ui.main.MainPresenter
 import java.io.BufferedReader
@@ -15,12 +16,13 @@ import kotlin.collections.ArrayList
 
 @SuppressLint("StaticFieldLeak")
 class InformationTask(private val mPresenter: MainPresenter, private val mView: MainContract.View) :
-    AsyncTask<Void, Void, ArrayList<String>>() {
+    SuperContract.SuperAsyncTask<Void, Void, ArrayList<String>>() {
 
     override fun doInBackground(vararg params: Void?): ArrayList<String> {
         val url = "http://wiffy.io/bitmex/hello?${getTimeFormat("yyyyMMddHHmmss")}"
         try {
-            val request = (URL(url).openConnection() as HttpURLConnection).apply {
+
+            BufferedReader(InputStreamReader((URL(url).openConnection() as HttpURLConnection).apply {
                 requestMethod = "GET"
                 setRequestProperty(
                     "User-Agent",
@@ -31,20 +33,19 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                 setRequestProperty("Accept-Language", "ko-KR")
                 setRequestProperty("Connection", "Keep-Alive")
                 setRequestProperty("Host", "wiffy.io")
+            }.inputStream)).run {
+                var inputLine: String?
+                val response = StringBuffer()
+
+                do {
+                    inputLine = readLine()
+                    if (inputLine == null) break
+                    else response.append(inputLine)
+                } while (true)
+                close()
+                if (!(response.toString().trim().contains("642537883523")) && !Component.isConsumer)
+                    cleanNotificationSubscribe()
             }
-
-            val `in` = BufferedReader(InputStreamReader(request.inputStream))
-            var inputLine: String?
-            val response = StringBuffer()
-
-            do {
-                inputLine = `in`.readLine()
-                if (inputLine == null) break
-                else response.append(inputLine)
-            } while (true)
-            `in`.close()
-            if (!(response.toString().trim().contains("642537883523")) && !Util.isConsumer)
-                Util.cleanNotificationSubscribe()
         } catch (e: Exception) {
         }
 

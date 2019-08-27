@@ -1,12 +1,13 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment
 
-import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationInfo
+import io.wiffy.bitmexticker.model.SuperContract
 
 interface NotificationContract {
-    interface View{
-        fun changeUI()
+    abstract class View : SuperContract.SuperFragment() {
+        abstract fun changeUI()
     }
-    interface Presenter{
+
+    interface Presenter:SuperContract.WiffyObject {
         fun init()
     }
 }

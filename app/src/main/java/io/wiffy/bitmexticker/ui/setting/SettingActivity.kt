@@ -11,23 +11,22 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.setting_on
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.Component
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.app_bar_setting.*
 import android.app.AlertDialog
 import android.widget.CompoundButton
 import androidx.appcompat.widget.SwitchCompat
+import io.wiffy.bitmexticker.model.Component.setting_on
+import io.wiffy.bitmexticker.function.SWIPE_MIN_DISTANCE
+import io.wiffy.bitmexticker.function.SWIPE_THRESHOLD_VELOCITY
+import kotlin.math.abs
 
 
-const val SWIPE_MIN_DISTANCE = 120
-const val SWIPE_THRESHOLD_VELOCITY = 150
-
-class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetector.OnGestureListener {
+class SettingActivity : SettingContract.View() {
     lateinit var mPresenter: SettingPresenter
     lateinit var gestureScanner: GestureDetector
 
@@ -57,13 +56,13 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
             Review.background = getDrawable(settingButton())
             Email.background = getDrawable(settingButton())
             Theme.background = getDrawable(settingButton())
-            (Theme[1] as SwitchCompat).isChecked = Util.dark_theme xor true
-            (OpenSource[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
-            (Version[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
-            (Language[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
-            (Review[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
-            (Email[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
-            (Theme[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.extension.getTitle()))
+            (Theme[1] as SwitchCompat).isChecked = Component.dark_theme xor true
+            (OpenSource[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            (Version[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            (Language[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            (Review[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            (Email[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            (Theme[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
         }
     }
 
@@ -86,7 +85,7 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
     override fun onDown(e: MotionEvent?) = true
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
         return true
@@ -132,11 +131,10 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
 
     override fun getStringTo(id: Int): String = getString(id)
 
-    override fun clipOnBoard(clipBoardMessage: String) {
-        val clip = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clipData = ClipData.newPlainText("", clipBoardMessage)
-        clip.primaryClip = clipData
-    }
+    override fun clipOnBoard(clipBoardMessage: String) =
+        (applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).apply {
+            primaryClip = ClipData.newPlainText("", clipBoardMessage)
+        }
 
     override fun urlParseToMarket(url: String) =
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$url")))
@@ -148,15 +146,15 @@ class SettingActivity : AppCompatActivity(), SettingContract.View, GestureDetect
         }
     }
 
-    override fun openLanguageSetting() {
-        startActivity(Intent(applicationContext, LanguageActivity::class.java))
-        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out)
-    }
+    override fun openLanguageSetting() = LanguageDialog(this@SettingActivity).apply {
+        setCancelable(false)
+    }.show()
+
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 

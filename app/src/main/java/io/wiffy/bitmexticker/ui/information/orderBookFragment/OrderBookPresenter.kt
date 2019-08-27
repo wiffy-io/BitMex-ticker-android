@@ -1,18 +1,16 @@
 package io.wiffy.bitmexticker.ui.information.orderBookFragment
 
-import android.util.Log
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.model.MyApplication.Companion.socket
+import io.wiffy.bitmexticker.function.changeValue
+import io.wiffy.bitmexticker.model.Component.orderCount
+import io.wiffy.bitmexticker.model.SocketObject as socket
 import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.OrderBookInfo
-import io.wiffy.bitmexticker.ui.information.orderBookFragment.tool.count
 import org.json.JSONObject
 import java.lang.Exception
 
-class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookConstract.Presenter {
+class OrderBookPresenter(private val mView: OrderBookContract.View, private var symbol: String) :
+    OrderBookContract.Presenter {
 
-    val mView = act
     lateinit var arr: ArrayList<OrderBookInfo>
-    private var symbol = sym
 
     override fun init() =
         with(mView)
@@ -45,11 +43,12 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
         if (it.contains("data") && it.contains("orderBook10")) {
             arr = ArrayList()
             try {
-                if (count >= 20) {
-                    count = 0
+                if (orderCount >= 20) {
+                    orderCount = 0
                     var sum = 0
-                    val jsonContact = JSONObject(it)
-                    val data = jsonContact.getJSONArray("data")
+
+                    val data = JSONObject(it).getJSONArray("data")
+
                     val bids = data.getJSONObject(0).getJSONArray("bids")
                     val asks = data.getJSONObject(0).getJSONArray("asks")
 
@@ -78,7 +77,7 @@ class OrderBookPresenter(act: OrderBookConstract.View, sym: String) : OrderBookC
                     mView.updateRecycler(arr, sum)
                     mView.stopLoading()
                 } else {
-                    Log.d("asdf", "cccc=$count")
+                    console("cccc=$orderCount")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

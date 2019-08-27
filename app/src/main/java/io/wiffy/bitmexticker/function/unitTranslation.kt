@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.extension
+package io.wiffy.bitmexticker.function
 
 import java.text.DecimalFormat
 

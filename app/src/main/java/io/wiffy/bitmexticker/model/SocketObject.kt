@@ -5,8 +5,7 @@ import org.java_websocket.handshake.ServerHandshake
 import java.lang.Exception
 import java.net.URI
 
-class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
-
+object SocketObject : WebSocketClient(URI("wss://www.bitmex.com/realtime")) {
     var callBack: (String) -> Unit? = {}
     var sendBack: (String) -> Unit? = {}
     var closeBack: (String) -> Unit? = {}
@@ -35,6 +34,4 @@ class BitMexSocket(serverUri: URI) : WebSocketClient(serverUri) {
     override fun onOpen(handshakedata: ServerHandshake?) {
         sendBack.invoke("")
     }
-
-
 }

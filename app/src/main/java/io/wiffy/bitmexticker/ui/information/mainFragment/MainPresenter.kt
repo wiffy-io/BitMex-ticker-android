@@ -1,8 +1,8 @@
 package io.wiffy.bitmexticker.ui.information.mainFragment
 
-import io.wiffy.bitmexticker.extension.changeValue
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util.Companion.dark_theme
+import io.wiffy.bitmexticker.function.changeValue
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component.dark_theme
 import org.json.JSONObject
 import java.lang.Exception
 import java.lang.Thread.sleep
@@ -14,8 +14,6 @@ class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) : Ma
     private val mSymbol = mData?.Symbol
     private val coinBaseURL = "https://api.pro.coinbase.com/products/${mData?.parse_str}/ticker"
     private val bitStampURL = "https://www.bitstamp.net/api/v2/ticker/${mData?.chart_symbol}/"
-
-    private lateinit var mThread: Thread
     var flag = true
 
     override fun init() = mView.changeUI()
@@ -49,28 +47,23 @@ class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) : Ma
         mView.setChart(script)
     }
 
-    override fun initParse() {
-        mThread = Thread(Runnable {
-            while (flag) {
+    override fun initParse() = Thread(Runnable {
+        while (flag) {
 
-                val jsonCoinBase = try {
+            mView.parseUI(
+                try {
                     changeValue(JSONObject(URL(coinBaseURL).readText()).getDouble("price"))
                 } catch (e: Exception) {
                     "No Data"
-                }
-                val jsonBitStamp = try {
+                }, try {
                     changeValue(JSONObject(URL(bitStampURL).readText()).getDouble("last"))
                 } catch (e: Exception) {
                     "No Data"
                 }
-
-                mView.parseUI(jsonCoinBase, jsonBitStamp)
-                sleep(1000)
-            }
-
-        })
-        mThread.start()
-    }
+            )
+            sleep(1000)
+        }
+    }).start()
 
 
     override fun removeFlag() {

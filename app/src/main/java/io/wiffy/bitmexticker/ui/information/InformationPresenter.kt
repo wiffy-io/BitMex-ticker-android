@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import io.wiffy.bitmexticker.model.Util
+import io.wiffy.bitmexticker.model.Component
 import java.util.*
 
 class InformationPresenter(act: InformationContract.View, cnt: Context) : InformationContract.Presenter {
@@ -20,23 +20,22 @@ class InformationPresenter(act: InformationContract.View, cnt: Context) : Inform
     }
 
     override fun setSystemLanguage() = Handler(Looper.getMainLooper()).post {
-        val config = Configuration()
-        config.locale = when (Util.global) {
-            Locale.KOREAN.toLanguageTag() -> {
-                Locale.KOREAN
+        mContext.resources.updateConfiguration(Configuration().apply {
+            locale = when (Component.global) {
+                Locale.KOREAN.toLanguageTag() -> {
+                    Locale.KOREAN
+                }
+                Locale.CHINESE.toLanguageTag() -> {
+                    Locale.CHINESE
+                }
+                Locale.JAPANESE.toLanguageTag() -> {
+                    Locale.JAPANESE
+                }
+                else -> {
+                    Locale.ENGLISH
+                }
             }
-            Locale.CHINESE.toLanguageTag() -> {
-                Locale.CHINESE
-            }
-            Locale.JAPANESE.toLanguageTag() -> {
-                Locale.JAPANESE
-            }
-            else -> {
-                Locale.ENGLISH
-            }
-        }
-
-        mContext.resources.updateConfiguration(config, mContext.resources.displayMetrics)
+        }, mContext.resources.displayMetrics)
     }
 
 }

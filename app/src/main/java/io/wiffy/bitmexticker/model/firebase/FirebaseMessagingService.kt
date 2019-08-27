@@ -1,4 +1,4 @@
-package io.wiffy.bitmexticker.model
+package io.wiffy.bitmexticker.model.firebase
 
 import android.app.Notification
 import android.app.NotificationManager

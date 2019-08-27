@@ -7,18 +7,16 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.R
-import io.wiffy.bitmexticker.extension.*
-import io.wiffy.bitmexticker.model.CoinInfo
-import io.wiffy.bitmexticker.model.Util
-import io.wiffy.bitmexticker.model.Util.Companion.info_on
-import io.wiffy.bitmexticker.model.Util.Companion.infoContext
+import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.model.Component
+import io.wiffy.bitmexticker.model.Component.infoContext
+import io.wiffy.bitmexticker.model.Component.info_on
+import io.wiffy.bitmexticker.function.SWIPE_MIN_DISTANCE
+import io.wiffy.bitmexticker.function.SWIPE_THRESHOLD_VELOCITY
 import io.wiffy.bitmexticker.ui.information.detailsFragment.DetailsFragment
 import io.wiffy.bitmexticker.ui.information.mainFragment.MainFragment
 import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationFragment
@@ -28,9 +26,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
-class InformationActivity : AppCompatActivity(),
-    InformationContract.View, GestureDetector.OnGestureListener,
-    BottomNavigationView.OnNavigationItemSelectedListener {
+class InformationActivity : InformationContract.View() {
 
     private lateinit var mPresenter: InformationPresenter
     private lateinit var gestureScanner: GestureDetector
@@ -57,7 +53,6 @@ class InformationActivity : AppCompatActivity(),
         gestureScanner = GestureDetector(this)
         mPresenter = InformationPresenter(this, applicationContext)
         mPresenter.init()
-
 
     }
 
@@ -168,7 +163,7 @@ class InformationActivity : AppCompatActivity(),
     override fun onDown(e: MotionEvent?) = true
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (e2!!.x - e1!!.x > io.wiffy.bitmexticker.ui.setting.SWIPE_MIN_DISTANCE && abs(velocityX) > io.wiffy.bitmexticker.ui.setting.SWIPE_THRESHOLD_VELOCITY) {
+        if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
         return true
@@ -191,9 +186,9 @@ class InformationActivity : AppCompatActivity(),
     }
 
     override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
-        Util.wrap(
+        wrap(
             newBase,
-            Util.global
+            Component.global
         )
     )
 
@@ -207,7 +202,6 @@ class InformationActivity : AppCompatActivity(),
                 (it as NotificationFragment).setXBT(str)
             }
         }
-
 
     fun setPrice(str: String) =
         Handler(Looper.getMainLooper()).post {
