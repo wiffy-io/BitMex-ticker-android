@@ -56,4 +56,6 @@
     <string name="Bid">Bid</string>
     <string name="alert">Add alert</string>
 
+    <string name="beta1">Beta version Closed</string>
+    <string name="beta2">Please Buy Pro version</string>
 </resources>

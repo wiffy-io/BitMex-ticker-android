@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -22,43 +23,48 @@ class NotificationAdapter(
     var context: Context,
     private val symbolOut: String?
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(), SuperContract.WiffyObject {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotificationViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        NotificationViewHolder(parent)
+
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) = items[position].let { item ->
-        with(holder) {
-            mySymbol.text = item.symbol
-            myValue.text = item.value
-            mySymbol.setTextColor(ContextCompat.getColor(context, getTitle()))
-            myValue.setTextColor(ContextCompat.getColor(context, getTitle2()))
-            myButton.setOnClickListener {
-                items.remove(item)
-                notifyDataSetChanged()
-                val set = HashSet<String>()
-                for (x in items) {
-                    set.add("${x.symbol}:${x.value}:${x.date}")
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) =
+        items[position].let { item ->
+            with(holder) {
+                mySymbol.text = item.symbol
+                myValue.text = item.value
+                mySymbol.setTextColor(ContextCompat.getColor(context, getTitle()))
+                myValue.setTextColor(ContextCompat.getColor(context, getTitle2()))
+                myRealButton.setOnClickListener {
+                    items.remove(item)
+                    notifyDataSetChanged()
+                    val set = HashSet<String>()
+                    for (x in items) {
+                        set.add("${x.symbol}:${x.value}:${x.date}")
+                    }
+                    Component.notificationSet = set
+                    setShared("notificationSet", set)
+                    FirebaseMessaging.getInstance()
+                        .unsubscribeFromTopic("${item.symbol}_${item.value}")
                 }
-                Component.notificationSet = set
-                setShared("notificationSet", set)
-                FirebaseMessaging.getInstance().unsubscribeFromTopic("${item.symbol}_${item.value}")
-            }
-            cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-            //itemView.setBackgroundColor(ContextCompat.getColor(context, getTableIn()))
-            if (symbolOut != item.symbol) {
-                itemView.visibility = View.GONE
-                itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
-                    height = 0
-                    width = 0
-                }
-            } else {
-                itemView.visibility = View.VISIBLE
-                itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
-                    height = dpToPx(context, 60)
-                    width = LinearLayout.LayoutParams.MATCH_PARENT
+                cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
+                if (symbolOut != item.symbol) {
+                    itemView.visibility = View.GONE
+                    itemView.layoutParams =
+                        (itemView.layoutParams as RecyclerView.LayoutParams).apply {
+                            height = 0
+                            width = 0
+                        }
+                } else {
+                    itemView.visibility = View.VISIBLE
+                    itemView.layoutParams =
+                        (itemView.layoutParams as RecyclerView.LayoutParams).apply {
+                            height = dpToPx(context, 60)
+                            width = LinearLayout.LayoutParams.MATCH_PARENT
+                        }
                 }
             }
         }
-    }
 
     fun update(list: ArrayList<NotificationInfo>) {
         items = list
@@ -72,6 +78,6 @@ class NotificationAdapter(
         val cardIn: CardView = itemView.cardback
         val myValue: TextView = itemView.textextext
         val mySymbol: TextView = itemView.notitextex
-        val myButton: TextView = itemView.deletion
+        val myRealButton: RelativeLayout = itemView.deletion22
     }
 }

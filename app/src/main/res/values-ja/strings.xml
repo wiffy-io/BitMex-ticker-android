@@ -52,6 +52,8 @@
     <string name="market">時価総額</string>
     <string name="dominance">BTC ドミナンス</string>
     <string name="deletion">削除</string>
+    <string name="beta1">ベータ版終了</string>
+    <string name="beta2">Proバージョンを購入してください</string>
 
 
 </resources>

@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.Component.infoContext
@@ -93,9 +94,10 @@ class MainActivity : MainContract.View() {
     }
 
 
-    override fun updateRecycler(mod_coin: ArrayList<CoinInfo>) = Handler(applicationContext.mainLooper).post {
-        myAdapter?.update(mod_coin)
-    }
+    override fun updateRecycler(mod_coin: ArrayList<CoinInfo>) =
+        Handler(applicationContext.mainLooper).post {
+            myAdapter?.update(mod_coin)
+        }
 
 
     override fun changeUI() {
@@ -189,6 +191,16 @@ class MainActivity : MainContract.View() {
 
     override fun initInformation() {
         InformationTask(mPresenter, this@MainActivity).execute()
+    }
+
+    override fun popUp() {
+        runOnUiThread {
+            MaterialAlertDialogBuilder(this).apply {
+                setTitle(resources.getString(R.string.beta1))
+                setMessage(resources.getString(R.string.beta2))
+                setPositiveButton("OK") { _, _ -> }
+            }.show()
+        }
     }
 
     @SuppressLint("SetTextI18n")

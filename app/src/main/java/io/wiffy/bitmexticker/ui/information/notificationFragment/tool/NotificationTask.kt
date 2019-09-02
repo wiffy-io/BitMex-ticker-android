@@ -13,6 +13,10 @@ class NotificationTask(val mView: NotificationFragment, private val info: Notifi
 
     val url = "http://wiffy.io/bitmex/reg/?d=alert_${info.symbol}:${info.value}"
 
+    override fun onPreExecute() {
+        mView.builderUp()
+    }
+
     override fun doInBackground(vararg params: Void?) = try {
         BufferedReader(InputStreamReader((URL(url).openConnection() as HttpURLConnection).apply {
             requestMethod = "GET"
@@ -46,6 +50,7 @@ class NotificationTask(val mView: NotificationFragment, private val info: Notifi
     override fun onPostExecute(result: Int?) {
         if (result == -1) {
             mView.toast("Error")
+            mView.builderDismiss()
         } else {
             mView.setList(info)
         }

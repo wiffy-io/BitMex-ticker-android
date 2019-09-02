@@ -22,6 +22,7 @@ interface MainContract {
         abstract fun tossXBT(xbt: String): Boolean
         abstract fun initInformation()
         abstract fun setInformation(list: ArrayList<String>?)
+        abstract fun popUp()
     }
 
     interface Presenter : SuperContract.WiffyObject {

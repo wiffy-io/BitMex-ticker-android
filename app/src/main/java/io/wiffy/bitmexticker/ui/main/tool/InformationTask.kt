@@ -1,8 +1,9 @@
 package io.wiffy.bitmexticker.ui.main.tool
 
 import android.annotation.SuppressLint
-import io.wiffy.bitmexticker.function.cleanNotificationSubscribe
+import io.wiffy.bitmexticker.function.getShared
 import io.wiffy.bitmexticker.function.getTimeFormat
+import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.SuperContract
 import io.wiffy.bitmexticker.ui.main.MainContract
@@ -19,7 +20,7 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
     SuperContract.SuperAsyncTask<Void, Void, ArrayList<String>>() {
 
     override fun doInBackground(vararg params: Void?): ArrayList<String> {
-        val url = "http://http://wiffy.io/bitmex/hello/and.html?${getTimeFormat("yyyyMMddHHmmss")}"
+        val url = "http://wiffy.io/bitmex/hello/and.html?${getTimeFormat("yyyyMMddHHmmss")}"
         try {
 
             BufferedReader(InputStreamReader((URL(url).openConnection() as HttpURLConnection).apply {
@@ -43,8 +44,21 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                     else response.append(inputLine)
                 } while (true)
                 close()
-                if ((response.toString().trim().contains("3842934752")) || Component.isConsumer)
+                if (response.toString().trim().contains("3842934752")) {
+                    setShared("goPro", true)
                     Component.canSubscribe = true
+                } else {
+                    if (Component.isConsumer) {
+                        setShared("goPro", true)
+                        Component.canSubscribe = true
+                    } else {
+                        Component.canSubscribe = false
+                        if (getShared("goPro", true)) {
+                            setShared("goPro", false)
+                            mView.popUp()
+                        }
+                    }
+                }
             }
         } catch (e: Exception) {
         }

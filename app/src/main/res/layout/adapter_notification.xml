@@ -46,6 +46,9 @@
                 android:layout_margin="10dp">
 
             <RelativeLayout
+                    android:id="@+id/deletion22"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

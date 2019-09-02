@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class NotificationFragment : NotificationContract.View() {
     private var xbtPrice: String = "0"
     private var myAdapter: NotificationAdapter? = null
     private lateinit var myList: ArrayList<NotificationInfo>
+    private var builder: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -115,11 +117,26 @@ class NotificationFragment : NotificationContract.View() {
                     toast("input type error")
                 }
             } else {
-                toast("No Permission")
+                toast("Pro Function")
             }
         }
     }
 
+    override fun builderUp() {
+        if (builder == null) {
+            builder = Dialog(context!!).apply {
+                setContentView(R.layout.dialog_indicator)
+                setCancelable(false)
+                setCanceledOnTouchOutside(false)
+                window?.setBackgroundDrawableResource(android.R.color.transparent)
+            }
+        }
+        if (builder?.isShowing == false) builder?.show()
+    }
+
+    override fun builderDismiss() {
+        if (builder?.isShowing == true) builder?.dismiss()
+    }
 
     fun setList(info: NotificationInfo) {
         with(myList)
@@ -137,6 +154,10 @@ class NotificationFragment : NotificationContract.View() {
             Component.notificationSet = this
         })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
+            .addOnCompleteListener {
+                builderDismiss()
+                if (!it.isSuccessful) toast("Error.")
+            }
     }
 
     @SuppressLint("SetTextI18n")
