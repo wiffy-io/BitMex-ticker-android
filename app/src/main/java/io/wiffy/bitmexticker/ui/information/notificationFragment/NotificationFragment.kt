@@ -139,22 +139,22 @@ class NotificationFragment : NotificationContract.View() {
     }
 
     fun setList(info: NotificationInfo) {
-        with(myList)
-        {
-            add(info)
-            Collections.sort(this, InformationComparator)
-            myAdapter?.update(this)
-        }
-        //myView.texter.text.clear()
-
-        setShared("notificationSet", HashSet<String>().apply {
-            for (k in myList) {
-                add("${k.symbol}:${k.value}:${k.date}")
-            }
-            Component.notificationSet = this
-        })
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")
             .addOnCompleteListener {
+                with(myList)
+                {
+                    add(info)
+                    Collections.sort(this, InformationComparator)
+                    myAdapter?.update(this)
+                }
+
+                setShared("notificationSet", HashSet<String>().apply {
+                    for (k in myList) {
+                        add("${k.symbol}:${k.value}:${k.date}")
+                    }
+                    Component.notificationSet = this
+                })
+
                 builderDismiss()
                 if (!it.isSuccessful) toast("Error.")
             }

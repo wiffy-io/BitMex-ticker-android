@@ -36,16 +36,23 @@ class NotificationAdapter(
                 mySymbol.setTextColor(ContextCompat.getColor(context, getTitle()))
                 myValue.setTextColor(ContextCompat.getColor(context, getTitle2()))
                 myRealButton.setOnClickListener {
-                    items.remove(item)
-                    notifyDataSetChanged()
-                    val set = HashSet<String>()
-                    for (x in items) {
-                        set.add("${x.symbol}:${x.value}:${x.date}")
-                    }
-                    Component.notificationSet = set
-                    setShared("notificationSet", set)
                     FirebaseMessaging.getInstance()
                         .unsubscribeFromTopic("${item.symbol}_${item.value}")
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                items.remove(item)
+                                notifyDataSetChanged()
+                                val set = HashSet<String>()
+                                for (x in items) {
+                                    set.add("${x.symbol}:${x.value}:${x.date}")
+                                }
+                                Component.notificationSet = set
+                                setShared("notificationSet", set)
+                            } else {
+                                toast(context, "Error")
+                            }
+
+                        }
                 }
                 cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
                 if (symbolOut != item.symbol) {
