@@ -17,5 +17,6 @@ class MyApplication : Application() {
         Component.dark_theme = getShared("mode")
         Component.notificationSet = getShared("notificationSet")
         Component.isConsumer = getShared("consumer", false)
+        Component.canSubscribe = false
     }
 }

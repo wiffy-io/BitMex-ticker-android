@@ -19,7 +19,7 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
     SuperContract.SuperAsyncTask<Void, Void, ArrayList<String>>() {
 
     override fun doInBackground(vararg params: Void?): ArrayList<String> {
-        val url = "http://wiffy.io/bitmex/hello?${getTimeFormat("yyyyMMddHHmmss")}"
+        val url = "http://http://wiffy.io/bitmex/hello/and.html?${getTimeFormat("yyyyMMddHHmmss")}"
         try {
 
             BufferedReader(InputStreamReader((URL(url).openConnection() as HttpURLConnection).apply {
@@ -43,13 +43,11 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                     else response.append(inputLine)
                 } while (true)
                 close()
-                if (!(response.toString().trim().contains("642537883523")) && !Component.isConsumer)
-                    cleanNotificationSubscribe()
+                if ((response.toString().trim().contains("3842934752")) || Component.isConsumer)
+                    Component.canSubscribe = true
             }
         } catch (e: Exception) {
         }
-
-
         return try {
             mPresenter.parseInformation()
         } catch (e: Exception) {

@@ -29,8 +29,8 @@ class MainPresenter(private val mView: MainContract.View, con: Context) : MainCo
     override fun getCoin(str: String) = Thread(Runnable {
         try {
             val getServer = str.split("\n")
-            for (i in 0 until getServer.size) {
-                val tmp = getServer[i].split(",")
+            for (element in getServer) {
+                val tmp = element.split(",")
 
                 val data =
                     CoinInfo(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6])

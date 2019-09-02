@@ -14,7 +14,6 @@ import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
-import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.InformationComparator
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationAdapter
 import io.wiffy.bitmexticker.ui.information.notificationFragment.tool.NotificationInfo
@@ -33,7 +32,11 @@ class NotificationFragment : NotificationContract.View() {
     private var myAdapter: NotificationAdapter? = null
     private lateinit var myList: ArrayList<NotificationInfo>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         myView = inflater.inflate(R.layout.fragment_notification, container, false)
         symbol = (arguments?.getSerializable("data") as CoinInfo).Symbol
         setPrice((arguments?.getSerializable("data") as CoinInfo).price!!)
@@ -86,29 +89,33 @@ class NotificationFragment : NotificationContract.View() {
         }
 
         myView.cdcd123.setOnClickListener {
-            var flag = true
+            if (Component.canSubscribe) {
+                var flag = true
 
-            val text = myView.texter.text.toString()
-            try {
-                for (v in myList) {
-                    if (v.value?.toDouble() == text.toDouble()) {
-                        flag = false
-                        break
+                val text = myView.texter.text.toString()
+                try {
+                    for (v in myList) {
+                        if (v.value?.toDouble() == text.toDouble()) {
+                            flag = false
+                            break
+                        }
                     }
+                    if (flag) {
+                        var numbers = text
+                        if (numbers.toDouble().toInt().toDouble() == numbers.toDouble())
+                            numbers = numbers.split(".")[0]
+                        NotificationTask(
+                            this,
+                            NotificationInfo(symbol, numbers, getTimeFormat("yyyy/MM/dd HH:mm:ss"))
+                        ).execute()
+                    } else {
+                        toast("exist value")
+                    }
+                } catch (e: Exception) {
+                    toast("input type error")
                 }
-                if (flag) {
-                    var numbers = text
-                    if (numbers.toDouble().toInt().toDouble() == numbers.toDouble())
-                        numbers = numbers.split(".")[0]
-                    NotificationTask(
-                        this,
-                        NotificationInfo(symbol, numbers, getTimeFormat("yyyy/MM/dd HH:mm:ss"))
-                    ).execute()
-                } else {
-                    toast("exist value")
-                }
-            } catch (e: Exception) {
-                toast("input type error")
+            } else {
+                toast("No Permission")
             }
         }
     }
@@ -136,7 +143,8 @@ class NotificationFragment : NotificationContract.View() {
     fun setXBT(str: String) {
         try {
             if (!symbol?.contains("USD")!! && xbtPrice != "0") {
-                myView.noti_sub_price.text = "≈ ${changeValue(str.toDouble() * xbtPrice.toDouble())} $"
+                myView.noti_sub_price.text =
+                    "≈ ${changeValue(str.toDouble() * xbtPrice.toDouble())} $"
             }
         } catch (e: Exception) {
         }
