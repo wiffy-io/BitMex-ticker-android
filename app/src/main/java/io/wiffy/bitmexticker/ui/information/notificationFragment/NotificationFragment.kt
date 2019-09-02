@@ -2,7 +2,10 @@ package io.wiffy.bitmexticker.ui.information.notificationFragment
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +64,7 @@ class NotificationFragment : NotificationContract.View() {
         }
         myAdapter = NotificationAdapter(
             myList,
-            context!!,
+            this@NotificationFragment,
             symbol
         )
 
@@ -131,12 +134,14 @@ class NotificationFragment : NotificationContract.View() {
                 window?.setBackgroundDrawableResource(android.R.color.transparent)
             }
         }
-        if (builder?.isShowing == false) builder?.show()
+        if (builder?.isShowing == false) Handler(Looper.getMainLooper()).post { builder?.show() }
     }
 
     override fun builderDismiss() {
-        if (builder?.isShowing == true) builder?.dismiss()
+        if (builder?.isShowing == true) Handler(Looper.getMainLooper()).post { builder?.dismiss() }
     }
+
+    override fun sendContext(): Context? = context
 
     fun setList(info: NotificationInfo) {
         FirebaseMessaging.getInstance().subscribeToTopic("${info.symbol}_${info.value}")

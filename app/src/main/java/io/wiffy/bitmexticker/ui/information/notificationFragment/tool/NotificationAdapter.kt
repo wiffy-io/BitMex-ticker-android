@@ -1,6 +1,5 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,18 @@ import com.google.firebase.messaging.FirebaseMessaging
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.Component
-import io.wiffy.bitmexticker.model.Component.dark_theme
 import io.wiffy.bitmexticker.model.SuperContract
+import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationContract
 import kotlinx.android.synthetic.main.adapter_notification.view.*
 
 class NotificationAdapter(
     var items: ArrayList<NotificationInfo>,
-    var context: Context,
+    val mView: NotificationContract.View,
     private val symbolOut: String?
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(), SuperContract.WiffyObject {
+
+    val context = mView.sendContext()!!
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NotificationViewHolder(parent)
 
@@ -36,6 +38,7 @@ class NotificationAdapter(
                 mySymbol.setTextColor(ContextCompat.getColor(context, getTitle()))
                 myValue.setTextColor(ContextCompat.getColor(context, getTitle2()))
                 myRealButton.setOnClickListener {
+                    mView.builderUp()
                     FirebaseMessaging.getInstance()
                         .unsubscribeFromTopic("${item.symbol}_${item.value}")
                         .addOnCompleteListener {
@@ -51,7 +54,7 @@ class NotificationAdapter(
                             } else {
                                 toast(context, "Error")
                             }
-
+                            mView.builderDismiss()
                         }
                 }
                 cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
