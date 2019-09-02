@@ -20,7 +20,7 @@
             tools:ignore="GoogleAppIndexingWarning" >
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/bitmex"/>
+                android:resource="@drawable/bitmex_noti"/>
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_channel_id"
                 android:value="@string/channel"/>
