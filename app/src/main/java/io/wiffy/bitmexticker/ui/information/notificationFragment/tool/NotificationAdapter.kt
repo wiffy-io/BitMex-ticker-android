@@ -1,5 +1,6 @@
 package io.wiffy.bitmexticker.ui.information.notificationFragment.tool
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +55,9 @@ class NotificationAdapter(
                             } else {
                                 toast(context, "Error")
                             }
-                            mView.builderDismiss()
+                            Handler().postDelayed(
+                                { mView.builderDismiss() }, 500
+                            )
                         }
                 }
                 cardIn.setCardBackgroundColor(ContextCompat.getColor(context, getTableIn()))
