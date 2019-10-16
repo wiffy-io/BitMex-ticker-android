@@ -19,7 +19,7 @@ import io.wiffy.bitmexticker.ui.information.notificationFragment.NotificationCon
 import kotlinx.android.synthetic.main.adapter_notification.view.*
 
 class NotificationAdapter(
-    var items: ArrayList<NotificationInfo>,
+    private var items: ArrayList<NotificationInfo>,
     val mView: NotificationContract.View,
     private val symbolOut: String?
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(), SuperContract.WiffyObject {

@@ -134,7 +134,7 @@ class SettingActivity : SettingContract.View() {
 
     override fun clipOnBoard(clipBoardMessage: String) =
         (applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).apply {
-            primaryClip = ClipData.newPlainText("", clipBoardMessage)
+            setPrimaryClip(ClipData.newPlainText("", clipBoardMessage))
         }
 
     override fun urlParseToMarket(url: String) =

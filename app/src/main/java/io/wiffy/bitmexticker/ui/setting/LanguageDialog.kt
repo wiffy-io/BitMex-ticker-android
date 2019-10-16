@@ -18,11 +18,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class LanguageDialog(context: Context) : SuperContract.SuperDialog(context) {
-    var list = ArrayList<RelativeLayout>()
-    var listRadio = ArrayList<AppCompatRadioButton>()
-    var listString = ArrayList<String>()
-    var ln = -1
-    var lastCheck = -1
+    private var list = ArrayList<RelativeLayout>()
+    private var listRadio = ArrayList<AppCompatRadioButton>()
+    private var listString = ArrayList<String>()
+    private var ln = -1
+    private var lastCheck = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
