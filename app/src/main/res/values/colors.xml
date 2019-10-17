@@ -37,4 +37,6 @@
     <color name="dark_table_in_click">#33808080</color>
     <color name="light_table_in_click">#1A121F30</color>
     <color name="myBlue">#dd3E78BE</color>
+
+    <color name="rebut">#72C62B</color>
 </resources>
