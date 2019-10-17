@@ -50,6 +50,8 @@
         <activity
                 android:name="io.wiffy.bitmexticker.ui.main.MainActivity"/>
         <activity
+                android:name=".ui.subscription.SubscriptionActivity"/>
+        <activity
                 android:name="io.wiffy.bitmexticker.ui.setting.SettingActivity"/>
         <activity
                 android:name="io.wiffy.bitmexticker.ui.information.InformationActivity"/>
