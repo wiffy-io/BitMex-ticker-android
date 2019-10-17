@@ -44,21 +44,6 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
                     else response.append(inputLine)
                 } while (true)
                 close()
-                if (response.toString().trim().contains("3842934752")) {
-                    setShared("goPro", true)
-                    Component.canSubscribe = true
-                } else {
-                    if (Component.isConsumer) {
-                        setShared("goPro", true)
-                        Component.canSubscribe = true
-                    } else {
-                        Component.canSubscribe = false
-                        if (getShared("goPro", true)) {
-                            setShared("goPro", false)
-                            mView.popUp()
-                        }
-                    }
-                }
             }
         } catch (e: Exception) {
         }

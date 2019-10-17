@@ -9,8 +9,6 @@ object Component {
 
     lateinit var mySharedPreference: SharedPreferences
 
-    var canSubscribe = false
-
     var dark_theme: Boolean = false
     var global: String? = "en"
     var infoContext: InformationActivity? = null

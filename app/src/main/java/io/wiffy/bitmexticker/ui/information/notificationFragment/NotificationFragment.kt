@@ -94,7 +94,7 @@ class NotificationFragment : NotificationContract.View() {
         }
 
         myView.cdcd123.setOnClickListener {
-            if (Component.canSubscribe) {
+            if (Component.isConsumer) {
                 var flag = true
 
                 val text = myView.texter.text.toString()
