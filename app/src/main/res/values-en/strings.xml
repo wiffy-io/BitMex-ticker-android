@@ -55,6 +55,15 @@
     <string name="deletion">Delete</string>
     <string name="beta1">Beta version Closed</string>
     <string name="beta2">Please Buy Pro version</string>
+    <string name="PRO_UPGRADE">PRO UPGRADE</string>
+    <string name="subscribe_now">Subscribe Now!</string>
+    <string name="price_notification">Price Notification</string>
+    <string name="support_in_widgets">Support in Widgets</string>
+    <string name="remove_ad">Remove Advertisement</string>
+    <string name="continuously">Continuously Upgrading</string>
+    <string name="month">$4.99 / Month</string>
+    <string name="terms_of">Terms Of Service and Privacy Policy</string>
+    <string name="purchase_restore">Purchase Restore</string>
 
 
 </resources>

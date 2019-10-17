@@ -54,6 +54,15 @@
     <string name="deletion">削除</string>
     <string name="beta1">ベータ版終了</string>
     <string name="beta2">Proバージョンを購入してください</string>
+    <string name="PRO_UPGRADE">プロ ゲット-</string>
+    <string name="subscribe_now">今すぐ購読！</string>
+    <string name="price_notification">価格通知</string>
+    <string name="support_in_widgets">ウィジェットでのサポート</string>
+    <string name="remove_ad">広告を削除</string>
+    <string name="continuously">継続的なアップグレード</string>
+    <string name="month">$4.99 / 月</string>
+    <string name="terms_of">利用規約とプライバシーポリシー</string>
+    <string name="purchase_restore">購入復元</string>
 
 
 </resources>

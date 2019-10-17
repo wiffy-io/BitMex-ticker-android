@@ -55,6 +55,15 @@
     <string name="deletion">삭제</string>
     <string name="beta1">베타 버전 종료</string>
     <string name="beta2">프로버전을 구입해주세요.</string>
+    <string name="PRO_UPGRADE">프로 업그레이드</string>
+    <string name="subscribe_now">지금 구독하세요!</string>
+    <string name="price_notification">가격 알림</string>
+    <string name="support_in_widgets">위젯 지원</string>
+    <string name="remove_ad">광고 제거</string>
+    <string name="continuously">꾸준한 업그레이드 지원</string>
+    <string name="month">$4.99 / 월</string>
+    <string name="terms_of">서비스 약관 및 개인 정보 보호 정책</string>
+    <string name="purchase_restore">구매 복원</string>
 
 
 </resources>

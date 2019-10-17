@@ -55,6 +55,15 @@
     <string name="deletion">刪除</string>
     <string name="beta1">測試版已關閉</string>
     <string name="beta2">" 請購買專業版"</string>
+    <string name="PRO_UPGRADE">升級到專業版</string>
+    <string name="subscribe_now">訂閱</string>
+    <string name="price_notification">價格通知</string>
+    <string name="support_in_widgets">小部件中的支持</string>
+    <string name="remove_ad">刪除廣告</string>
+    <string name="continuously">不斷升級</string>
+    <string name="month">$4.99 / 月</string>
+    <string name="terms_of">服務條款和隱私政策</string>
+    <string name="purchase_restore">購買還原</string>
 
 
 </resources>

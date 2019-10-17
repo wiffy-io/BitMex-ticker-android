@@ -49,7 +49,11 @@ class MainActivity : MainContract.View() {
         Component.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         adView.loadAd(AdRequest.Builder().build())
-        if(isConsumer) proupgrade.visibility=View.GONE
+
+        if(isConsumer) {
+            proupgrade.visibility=View.GONE
+            adView.visibility = View.GONE
+        }
         agreement()
         initLoading()
         mPresenter = MainPresenter(this, applicationContext)

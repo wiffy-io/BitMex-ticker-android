@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.ui.subscription
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
@@ -8,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import com.anjlab.android.iab.v3.BillingProcessor
 import io.wiffy.bitmexticker.R
+import io.wiffy.bitmexticker.function.restartApp
+import io.wiffy.bitmexticker.function.wrap
 import io.wiffy.bitmexticker.model.BillingModule
 import io.wiffy.bitmexticker.model.Component
 import kotlinx.android.synthetic.main.activitty_subscription.*
@@ -78,9 +81,16 @@ class SubscriptionActivity : SubscriptionContract.View() {
         super.onActivityResult(requestCode, resultCode, data)
         if (mBillingProcessor?.handleActivityResult(requestCode, resultCode, data) == true) {
             if (resultCode == Activity.RESULT_OK) {
-                Component.isConsumer = true
+                restartApp(this)
             }
         }
     }
+
+    override fun attachBaseContext(newBase: Context?) = super.attachBaseContext(
+        wrap(
+            newBase,
+            Component.global
+        )
+    )
 
 }

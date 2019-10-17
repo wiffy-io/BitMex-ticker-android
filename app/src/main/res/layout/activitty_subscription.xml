@@ -11,7 +11,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="Subscribe Now!"
+            android:text="@string/subscribe_now"
             android:textColor="@color/WHITE"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Price Notifications"
+                        android:text="@string/price_notification"
                         android:textColor="@color/WHITE"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Support in Widgets"
+                        android:text="@string/coming_soon"
                         android:textColor="@color/WHITE"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -88,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Remove Advertisement"
+                        android:text="@string/remove_ad"
                         android:textColor="@color/WHITE"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -110,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Continuously Upgrading"
+                        android:text="@string/continuously"
                         android:textColor="@color/WHITE"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/buybutton"
-                android:text="$4.99 / Month"
+                android:text="@string/month"
                 android:textColor="@color/WHITE" />
 
         <TextView
@@ -145,7 +145,7 @@
                 android:layout_marginBottom="40dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Terms of Service and Privacy Policy"
+                android:text="@string/terms_of"
                 android:textColor="@drawable/text_setting_selector" />
 
         <TextView
@@ -155,7 +155,7 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Purchase Restore"
+                android:text="@string/purchase_restore"
                 android:textColor="@drawable/text_setting_selector" />
     </LinearLayout>
 </RelativeLayout>
