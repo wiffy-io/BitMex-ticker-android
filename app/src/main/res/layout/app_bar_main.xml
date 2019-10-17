@@ -24,7 +24,7 @@
             android:id="@+id/setting_main"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/setting_selector"/>
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/settingicon"/>
 
 </RelativeLayout>
