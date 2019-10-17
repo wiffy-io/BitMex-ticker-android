@@ -22,11 +22,13 @@ import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.infoContext
 import io.wiffy.bitmexticker.model.Component.setting_on
+import io.wiffy.bitmexticker.model.Component.subscription_on
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
 import io.wiffy.bitmexticker.model.data.CoinInfo
 import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.main.tool.InformationTask
 import io.wiffy.bitmexticker.ui.setting.SettingActivity
+import io.wiffy.bitmexticker.ui.subscription.SubscriptionActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlin.system.exitProcess
@@ -133,6 +135,13 @@ class MainActivity : MainContract.View() {
                 getTitle2()
             )
         )
+        proupgrade.setOnClickListener {
+            if(subscription_on) {
+                subscription_on = false
+                startActivity(Intent(this@MainActivity, SubscriptionActivity::class.java))
+                overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+            }
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(getNavi())
         window.navigationBarColor = resources.getColor(darkAndLightReverse())

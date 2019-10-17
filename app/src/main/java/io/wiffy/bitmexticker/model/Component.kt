@@ -19,6 +19,7 @@ object Component {
 
     var info_on: Boolean = true
     var setting_on: Boolean = true
+    var subscription_on: Boolean = true
     var is_close: Boolean = false
 
     var width = 0

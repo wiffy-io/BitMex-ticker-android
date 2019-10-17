@@ -29,6 +29,7 @@
             android:src="@drawable/settingicon"/>
 
     <TextView
+            android:id="@+id/proupgrade"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="#ffffff"
