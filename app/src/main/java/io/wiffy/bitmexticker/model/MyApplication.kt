@@ -16,6 +16,6 @@ class MyApplication : Application() {
         Component.global = getShared("global", Locale.ENGLISH.toLanguageTag())
         Component.dark_theme = getShared("mode")
         Component.notificationSet = getShared("notificationSet")
-        Component.isConsumer = getShared("consumer", false)
+        Component.isConsumer = false //getShared("consumer", false)
     }
 }
