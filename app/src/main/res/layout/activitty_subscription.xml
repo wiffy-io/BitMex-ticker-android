@@ -4,77 +4,101 @@
         android:layout_height="match_parent"
         android:background="@color/dark_table_out">
 
-    <LinearLayout
-            android:orientation="vertical"
+    <TextView
+            android:id="@+id/subsub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:gravity="center"
+            android:text="Subscribe Now!"
+            android:textColor="@color/WHITE"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subsub"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <ImageView
-                    android:src="@drawable/alert1"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:src="@drawable/alert1" />
+
             <TextView
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
                     android:text="Price Notifications"
                     android:textColor="@color/WHITE"
                     android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ImageView
-                    android:src="@drawable/alert2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"/>
-            <TextView
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center"
-                    android:text="Support in Widgets"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ImageView
-                    android:src="@drawable/alert3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"/>
-            <TextView
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center"
-                    android:text="Remove Ad"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
             <ImageView
-                    android:src="@drawable/alert4"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:src="@drawable/alert2" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:text="Support in Widgets"
+                    android:textColor="@color/WHITE"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/alert3" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:text="Remove Advertisement"
+                    android:textColor="@color/WHITE"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/alert4" />
 
             <TextView
                     android:layout_width="wrap_content"
@@ -87,5 +111,44 @@
                     android:textStyle="bold" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/subscribeButton"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/rebut"
+                android:text="$4.99 / Month"
+                android:textColor="@color/WHITE" />
+
+        <TextView
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/policyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:text="Terms of Service and Privacy Policy"
+                android:textColor="@color/WHITE" />
+
+        <TextView
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/purchaseRestoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Purchase Restore"
+                android:textColor="@color/WHITE" />
     </LinearLayout>
 </RelativeLayout>
