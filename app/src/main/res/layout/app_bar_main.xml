@@ -16,6 +16,7 @@
             android:textSize="20sp"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
+            android:textStyle="bold"
             android:text="@string/Ticker"/>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -26,5 +27,17 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
             android:src="@drawable/settingicon"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="PRO UPGRADE">
+
+    </TextView>
 
 </RelativeLayout>

@@ -10,6 +10,12 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.setShared
 import io.wiffy.bitmexticker.model.Component
 import java.util.*
+import android.content.pm.PackageManager
+import android.R.attr.versionName
+import android.content.pm.PackageInfo
+import androidx.browser.customtabs.CustomTabsClient.getPackageName
+import io.wiffy.bitmexticker.BuildConfig
+
 
 class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) :
     SettingContract.Presenter {
@@ -32,7 +38,14 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
                 )
             },
             listener2 = View.OnClickListener {
-                mView.startDialog("Version", mView.getStringTo(R.string.version))
+                try {
+                    val tmp = mContext.packageManager.getPackageInfo(mContext.packageName,0)
+                    val versionC = tmp.versionName
+                    val versionN = tmp.versionCode
+                    mView.startDialog("Version", "${versionC}(${versionN})")
+                } catch(e :Exception){
+                    mView.startDialog("Version", "")
+                }
             },
             listener3 = View.OnClickListener {
                 mView.urlParseToMarket(mView.getStringTo(R.string.store_url))

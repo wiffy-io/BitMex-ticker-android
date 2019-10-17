@@ -13,6 +13,7 @@
             android:layout_height="match_parent"
             android:textColor="#ffffff"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
             android:text="@string/Setting_title"/>
