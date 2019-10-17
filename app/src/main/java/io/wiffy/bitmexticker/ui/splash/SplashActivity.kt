@@ -16,9 +16,11 @@ import es.dmoral.toasty.Toasty
 import io.wiffy.bitmexticker.function.getScreenSize
 import io.wiffy.bitmexticker.function.getShared
 import io.wiffy.bitmexticker.function.wrap
+import io.wiffy.bitmexticker.model.BillingModule
 
 class SplashActivity : SplashContract.View() {
     lateinit var mPresenter: SplashPresenter
+    lateinit var billingModule:BillingModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +28,26 @@ class SplashActivity : SplashContract.View() {
         setTheme(R.style.AppTheme_D)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
+
         Component.width = getScreenSize(this@SplashActivity).x
         mPresenter = SplashPresenter(this, applicationContext)
         agreement()
     }
 
     override fun moveToMain(str: String) {
+        billingModule = BillingModule(this)
+        billingModule.initBillingProcessor()
+
         startActivity(Intent(this, MainActivity::class.java).apply {
             putExtra("symbol", str)
         })
         overridePendingTransition(R.anim.abc_fade_in, R.anim.not_move_activity)
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        billingModule.releaseBillingProcessor()
     }
 
     override fun getOut() =

@@ -1,17 +1,22 @@
 package io.wiffy.bitmexticker.ui.subscription
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import com.anjlab.android.iab.v3.BillingProcessor
 import io.wiffy.bitmexticker.R
+import io.wiffy.bitmexticker.model.BillingModule
 import io.wiffy.bitmexticker.model.Component
 import kotlinx.android.synthetic.main.activitty_subscription.*
 
 class SubscriptionActivity : SubscriptionContract.View() {
 
     private lateinit var mPresenter: SubscriptionPresenter
+    private var mBillingProcessor: BillingProcessor? = null
+    private var billingModule: BillingModule? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,10 @@ class SubscriptionActivity : SubscriptionContract.View() {
         setContentView(R.layout.activitty_subscription)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         supportActionBar?.hide()
+
+        billingModule = BillingModule(this)
+        billingModule?.initBillingProcessor()
+        mBillingProcessor = billingModule?.getBillingProcessor()
 
         mPresenter = SubscriptionPresenter(this, applicationContext)
         mPresenter.initPresent()
@@ -48,15 +57,29 @@ class SubscriptionActivity : SubscriptionContract.View() {
 
     override fun initializeUI() {
         subscribeButton.setOnClickListener {
-            toast("구독")
+            billingModule?.purchaseProduct()
         }
 
         policyButton.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.wiffy.io/bitmex/PRIVACY-POLICY.txt")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://www.wiffy.io/bitmex/PRIVACY-POLICY.txt")
+                )
+            )
         }
 
         purchaseRestoreButton.setOnClickListener {
-            toast("구매복원")
+            billingModule?.initBillingProcessor()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (mBillingProcessor?.handleActivityResult(requestCode, resultCode, data) == true) {
+            if (resultCode == Activity.RESULT_OK) {
+                Component.isConsumer = true
+            }
         }
     }
 
