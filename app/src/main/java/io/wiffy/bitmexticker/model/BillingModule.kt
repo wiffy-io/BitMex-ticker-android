@@ -26,8 +26,8 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
 
     fun purchaseProduct()
     {
-        if(mBillingProcessor?.isPurchased(productName)==false)
-            mBillingProcessor?.purchase(activity, productName)
+        if(mBillingProcessor?.isSubscribed(productName)==false)
+            mBillingProcessor?.subscribe(activity, productName)
     }
 
     fun releaseBillingProcessor()
@@ -42,7 +42,7 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
     }
 
     fun aaaaaa(){
-        if(mBillingProcessor?.isPurchased(productName)==true){
+        if(mBillingProcessor?.isSubscribed(productName)==true){
             Component.isConsumer = true
             helu("Success","Purchase, Succeed!")
         }else{
@@ -53,22 +53,18 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
     override fun onBillingInitialized() {
         Log.d("asdf",mBillingProcessor.toString())
         Log.d("asdf",productName)
-        if(mBillingProcessor?.isPurchased(productName)==true){
-            Component.isConsumer = true
-            helu("Success","Purchase, Succeed!")
-        }
 
-//       mBillingProcessor?.getPurchaseListingDetails(productName)?.let {
-//           Log.d("asdf","asaa3")
-//           itemId = it.productId
-//           Log.d("asdf",itemId)
-//           mBillingProcessor?.loadOwnedPurchasesFromGoogle()
-//           if(mBillingProcessor?.isPurchased(itemId)==true)
-//           {
-//               Component.isConsumer = true
-//               helu("Success","Purchase, Succeed!")
-//           }
-//       }
+        mBillingProcessor?.getSubscriptionListingDetails(productName)?.let {
+           Log.d("asdf","asaa3")
+           itemId = it.productId
+           Log.d("asdf",itemId)
+           mBillingProcessor?.loadOwnedPurchasesFromGoogle()
+           if(mBillingProcessor?.isSubscribed(itemId)==true)
+           {
+               Component.isConsumer = true
+               helu("Success","Purchase, Succeed!")
+           }
+       }
 
     }
 

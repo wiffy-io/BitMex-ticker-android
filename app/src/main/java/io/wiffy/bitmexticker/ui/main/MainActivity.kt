@@ -21,6 +21,7 @@ import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
 import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.infoContext
+import io.wiffy.bitmexticker.model.Component.isConsumer
 import io.wiffy.bitmexticker.model.Component.setting_on
 import io.wiffy.bitmexticker.model.Component.subscription_on
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
@@ -48,7 +49,7 @@ class MainActivity : MainContract.View() {
         Component.width = getScreenSize(this@MainActivity).x
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         adView.loadAd(AdRequest.Builder().build())
-
+        if(isConsumer) proupgrade.visibility=View.GONE
         agreement()
         initLoading()
         mPresenter = MainPresenter(this, applicationContext)

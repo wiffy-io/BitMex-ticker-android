@@ -20,7 +20,7 @@ import io.wiffy.bitmexticker.model.BillingModule
 
 class SplashActivity : SplashContract.View() {
     lateinit var mPresenter: SplashPresenter
-    lateinit var billingModule:BillingModule
+    private lateinit var billingModule:BillingModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +37,13 @@ class SplashActivity : SplashContract.View() {
     override fun moveToMain(str: String) {
         billingModule = BillingModule(this)
         billingModule.initBillingProcessor()
-        //billingModule.onBillingInitialized()
+        billingModule.releaseBillingProcessor()
 
         startActivity(Intent(this, MainActivity::class.java).apply {
             putExtra("symbol", str)
         })
         overridePendingTransition(R.anim.abc_fade_in, R.anim.not_move_activity)
         finish()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        billingModule.releaseBillingProcessor()
     }
 
     override fun getOut() =
