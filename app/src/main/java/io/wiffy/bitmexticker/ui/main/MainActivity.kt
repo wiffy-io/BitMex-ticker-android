@@ -6,28 +6,30 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.MobileAds
-import io.wiffy.bitmexticker.model.data.CoinInfo
-import io.wiffy.bitmexticker.model.Component
-import io.wiffy.bitmexticker.model.Component.setting_on
-import io.wiffy.bitmexticker.ui.information.InformationActivity
-import io.wiffy.bitmexticker.ui.setting.SettingActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import java.lang.Exception
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.wiffy.bitmexticker.R
 import io.wiffy.bitmexticker.function.*
+import io.wiffy.bitmexticker.model.Component
 import io.wiffy.bitmexticker.model.Component.infoContext
+import io.wiffy.bitmexticker.model.Component.setting_on
 import io.wiffy.bitmexticker.model.VerticalSpaceItemDecoration
+import io.wiffy.bitmexticker.model.data.CoinInfo
+import io.wiffy.bitmexticker.ui.information.InformationActivity
 import io.wiffy.bitmexticker.ui.main.tool.InformationTask
-import kotlin.collections.ArrayList
+import io.wiffy.bitmexticker.ui.setting.SettingActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlin.system.exitProcess
 
 
 class MainActivity : MainContract.View() {
@@ -87,6 +89,11 @@ class MainActivity : MainContract.View() {
             }
         }
         mPresenter.makeSocket()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        exitProcess(1)
     }
 
     override fun updateRecyclerTheme() = Handler(applicationContext.mainLooper).post {
