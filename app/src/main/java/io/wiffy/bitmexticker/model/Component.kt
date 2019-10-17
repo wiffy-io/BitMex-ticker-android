@@ -24,6 +24,7 @@ object Component {
 
     var width = 0
 
+    /** 이게 구매자인지 아닌지 판가름 */
     var isConsumer = false
 
     var notificationSet: HashSet<String>? = null

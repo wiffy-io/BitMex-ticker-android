@@ -9,110 +9,118 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="Subscribe Now!"
             android:textColor="@color/WHITE"
             android:textSize="32sp"
             android:textStyle="bold" />
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical">
+            android:layout_above="@id/gimor"
+            android:layout_below="@id/subsub"
+            android:layout_centerHorizontal="true">
 
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/alert1" />
-
-            <TextView
+            <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:text="Price Notifications"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-        </LinearLayout>
+                    android:orientation="horizontal">
 
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/alert1" />
 
-            <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/alert2" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:text="Price Notifications"
+                        android:textColor="@color/WHITE"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:text="Support in Widgets"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-        </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/alert2" />
 
-            <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/alert3" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:text="Support in Widgets"
+                        android:textColor="@color/WHITE"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:text="Remove Advertisement"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-        </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/alert3" />
 
-            <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/alert4" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:text="Remove Advertisement"
+                        android:textColor="@color/WHITE"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:text="Continuously Upgrading"
-                    android:textColor="@color/WHITE"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-        </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-    </LinearLayout>
+                <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/alert4" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:text="Continuously Upgrading"
+                        android:textColor="@color/WHITE"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
+            android:id="@+id/gimor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -125,7 +133,7 @@
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:background="@color/rebut"
+                android:background="@drawable/buybutton"
                 android:text="$4.99 / Month"
                 android:textColor="@color/WHITE" />
 
@@ -138,7 +146,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="Terms of Service and Privacy Policy"
-                android:textColor="@color/WHITE" />
+                android:textColor="@drawable/text_setting_selector" />
 
         <TextView
                 android:id="@+id/purchaseRestoreButton"
@@ -148,6 +156,6 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="Purchase Restore"
-                android:textColor="@color/WHITE" />
+                android:textColor="@drawable/text_setting_selector" />
     </LinearLayout>
 </RelativeLayout>
