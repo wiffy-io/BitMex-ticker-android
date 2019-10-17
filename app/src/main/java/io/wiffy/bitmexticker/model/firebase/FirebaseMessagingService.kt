@@ -15,10 +15,12 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         const val TAG = "FirebaseIDService"
     }
 
-    override fun onMessageReceived(p0: RemoteMessage?) {
-            p0?.let {
-                sendNotification(it)
-            }
+
+    override fun onMessageReceived(p0: RemoteMessage) {
+        super.onMessageReceived(p0)
+        p0?.let {
+            sendNotification(it)
+        }
     }
 
 

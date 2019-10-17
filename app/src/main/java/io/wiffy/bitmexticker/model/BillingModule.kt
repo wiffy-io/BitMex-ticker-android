@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.model
 
 import android.app.AlertDialog
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.anjlab.android.iab.v3.BillingProcessor
 import com.anjlab.android.iab.v3.TransactionDetails
@@ -19,12 +20,13 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
 
     fun initBillingProcessor()
     {
+        Log.d("asdf","asaa")
         mBillingProcessor = BillingProcessor(activity, mKey, this)
     }
 
     fun purchaseProduct()
     {
-        if(mBillingProcessor?.isPurchased(productName)==true)
+        if(mBillingProcessor?.isPurchased(productName)==false)
             mBillingProcessor?.purchase(activity, productName)
     }
 
@@ -39,16 +41,35 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
         return mBillingProcessor
     }
 
+    fun aaaaaa(){
+        if(mBillingProcessor?.isPurchased(productName)==true){
+            Component.isConsumer = true
+            helu("Success","Purchase, Succeed!")
+        }else{
+            helu("Error", "Try again!")
+        }
+    }
+
     override fun onBillingInitialized() {
-       mBillingProcessor?.getPurchaseListingDetails(productName)?.let {
-           itemId = it.productId
-           mBillingProcessor?.loadOwnedPurchasesFromGoogle()
-           if(mBillingProcessor?.isPurchased(itemId)==true)
-           {
-               Component.isConsumer = true
-               helu("Success","Purchase, Succeed!")
-           }
-       }
+        Log.d("asdf",mBillingProcessor.toString())
+        Log.d("asdf",productName)
+        if(mBillingProcessor?.isPurchased(productName)==true){
+            Component.isConsumer = true
+            helu("Success","Purchase, Succeed!")
+        }
+
+//       mBillingProcessor?.getPurchaseListingDetails(productName)?.let {
+//           Log.d("asdf","asaa3")
+//           itemId = it.productId
+//           Log.d("asdf",itemId)
+//           mBillingProcessor?.loadOwnedPurchasesFromGoogle()
+//           if(mBillingProcessor?.isPurchased(itemId)==true)
+//           {
+//               Component.isConsumer = true
+//               helu("Success","Purchase, Succeed!")
+//           }
+//       }
+
     }
 
     override fun onPurchaseHistoryRestored() {

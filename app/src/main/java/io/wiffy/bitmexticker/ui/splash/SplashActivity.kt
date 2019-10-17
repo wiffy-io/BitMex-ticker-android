@@ -37,6 +37,7 @@ class SplashActivity : SplashContract.View() {
     override fun moveToMain(str: String) {
         billingModule = BillingModule(this)
         billingModule.initBillingProcessor()
+        //billingModule.onBillingInitialized()
 
         startActivity(Intent(this, MainActivity::class.java).apply {
             putExtra("symbol", str)

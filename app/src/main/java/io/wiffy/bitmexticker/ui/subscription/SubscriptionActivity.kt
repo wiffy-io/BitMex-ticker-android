@@ -70,7 +70,7 @@ class SubscriptionActivity : SubscriptionContract.View() {
         }
 
         purchaseRestoreButton.setOnClickListener {
-            billingModule?.initBillingProcessor()
+            billingModule?.aaaaaa()
         }
     }
 
