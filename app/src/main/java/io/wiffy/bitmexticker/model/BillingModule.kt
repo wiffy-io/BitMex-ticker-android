@@ -8,6 +8,7 @@ import com.anjlab.android.iab.v3.TransactionDetails
 import io.wiffy.bitmexticker.function.getDialog
 import io.wiffy.bitmexticker.function.mKey
 import io.wiffy.bitmexticker.function.productName
+import io.wiffy.bitmexticker.function.restartApp
 
 class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBillingHandler {
 
@@ -90,6 +91,7 @@ class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBi
             setPositiveButton(
                 "OK"
             ) { _, _ -> }
+            if(title=="Success") setPositiveButton("OK"){_,_->restartApp(activity)}
         }.show()
     }
 }
