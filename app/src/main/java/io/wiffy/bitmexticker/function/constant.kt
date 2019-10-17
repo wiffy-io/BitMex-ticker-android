@@ -2,3 +2,6 @@ package io.wiffy.bitmexticker.function
 
 const val SWIPE_MIN_DISTANCE = 120
 const val SWIPE_THRESHOLD_VELOCITY = 150
+
+const val mKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqycIz6ZPCVqmLtFRTUQiBbhZQoox7qHwmHEdihemGjEO4bgXFFGdgK1OKZnM8nA91QxErdGw0bMHcdSgn0aj8YT0euWyptWgb+bZUuF92kLLoQdJByVPSHU4ysDaXmAUZxawIDR3zz+jehtv0mzx26u4jygR6FmKWfV2dVNY3648uK+ruagCQ+b+pbnzDjmgEwDeGH2aYHbQPC93/pDLHk1/H1MZ2vEiubSwXPOfJPn/f6uAahaq7BmXM0mfROy5U+IZUlVnFjzRoTJi83axuPKmDQH2pAYa1e5ugwQ7dWDEIMoPwfLsfeoYFNTouXktkVyAx3NqH/Hg6uyEkfQYfwIDAQAB"
+const val productName = "gopro"
