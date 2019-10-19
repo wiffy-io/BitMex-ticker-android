@@ -57,7 +57,9 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
             itemId = it.productId
             Log.d("asdf", itemId)
             mBillingProcessor?.loadOwnedPurchasesFromGoogle()
+            Log.d("asdf",mBillingProcessor?.isSubscribed(itemId).toString())
             if (mBillingProcessor?.isSubscribed(itemId) == true) {
+                Log.d("asdf", "asaa4")
                 Component.isConsumer = true
                 if (callback == {}) {
                     helu("Success", "Purchase, Succeed!")
@@ -71,11 +73,15 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
     }
 
     override fun onPurchaseHistoryRestored() {
-        Component.isConsumer = true
-        helu("Success", "Purchase, Succeed!")
+        Log.d("asdf","onPurchaseHistoryRestored")
+//        if (mBillingProcessor?.isSubscribed(itemId) == true) {
+//            Component.isConsumer = true
+//            helu("Success", "Purchase, Succeed!")
+//        }
     }
 
     override fun onProductPurchased(productId: String, details: TransactionDetails?) {
+        Log.d("asdf","onProductPurchased")
         Component.isConsumer = true
         helu("Success", "Purchase, Succeed!")
     }

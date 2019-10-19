@@ -30,7 +30,7 @@ class SubscriptionActivity : SubscriptionContract.View() {
 
         billingModule = BillingModule(this)
         billingModule?.initBillingProcessor()
-        //mBillingProcessor = billingModule?.getBillingProcessor()
+        mBillingProcessor = billingModule?.getBillingProcessor()
 
         mPresenter = SubscriptionPresenter(this, applicationContext)
         mPresenter.initPresent()
