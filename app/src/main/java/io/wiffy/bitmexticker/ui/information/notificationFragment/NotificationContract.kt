@@ -11,7 +11,7 @@ interface NotificationContract {
         abstract fun sendContext(): Context?
     }
 
-    interface Presenter:SuperContract.WiffyObject {
+    interface Presenter : SuperContract.WiffyObject {
         fun init()
     }
 }

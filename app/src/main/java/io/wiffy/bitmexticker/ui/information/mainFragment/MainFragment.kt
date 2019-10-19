@@ -25,7 +25,11 @@ class MainFragment : MainContract.View() {
     var symbol: String? = null
     private var xbtPrice: String = "0"
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         myView = inflater.inflate(R.layout.fragment_main, container, false)
 
         symbol = (arguments?.getSerializable("data") as CoinInfo).Symbol
@@ -84,7 +88,12 @@ class MainFragment : MainContract.View() {
                         myView.bitstamp_ppap.setCardBackgroundColor(
                             ContextCompat.getColorStateList(context!!, R.color.green_tr)
                         )
-                        myView.bitstamp_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                        myView.bitstamp_pp.setTextColor(
+                            ContextCompat.getColorStateList(
+                                context!!,
+                                R.color.green
+                            )
+                        )
                     }
                     "+${String.format("%.2f", value)}%"
                 }
@@ -137,7 +146,12 @@ class MainFragment : MainContract.View() {
                     myView.coinbase_ppap.setCardBackgroundColor(
                         ContextCompat.getColorStateList(context!!, R.color.green_tr)
                     )
-                    myView.coinbase_pp.setTextColor(ContextCompat.getColorStateList(context!!, R.color.green))
+                    myView.coinbase_pp.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.green
+                        )
+                    )
                 }
                 "+${String.format("%.2f", value)}%"
             }

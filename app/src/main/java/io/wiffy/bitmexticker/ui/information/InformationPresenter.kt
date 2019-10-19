@@ -8,7 +8,8 @@ import android.view.View
 import io.wiffy.bitmexticker.model.Component
 import java.util.*
 
-class InformationPresenter(act: InformationContract.View, cnt: Context) : InformationContract.Presenter {
+class InformationPresenter(act: InformationContract.View, cnt: Context) :
+    InformationContract.Presenter {
     private val mContext = cnt
     private val mView = act
 

@@ -22,16 +22,8 @@
         <item name="android:navigationBarColor">@color/BLACK</item>
     </style>
 
-    <style name="dark_dialog" parent="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth">
-        <item name="android:background">@color/dark_table_out</item>
-    </style>
-
     <style name="light_dialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:background">@color/WHITE</item>
     </style>
 
-    <style name="dialog" parent="Theme.AppCompat.Dialog">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 </resources>

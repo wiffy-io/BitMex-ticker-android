@@ -1,88 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/notis">
+        android:id="@+id/notis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
             android:id="@+id/noti_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginBottom="0dp"
+            android:paddingStart="15dp"
             android:paddingTop="5dp"
-            android:paddingBottom="10dp"
-            android:paddingStart="15dp">
+            android:paddingBottom="10dp">
 
         <TextView
-                android:layout_alignParentStart="true"
+                android:id="@+id/noti_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:gravity="left"
                 android:text="9999"
-                android:textStyle="bold"
-                android:textSize="30sp"
                 android:textColor="@color/red"
-                android:id="@+id/noti_price"/>
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         <TextView
-                android:text="=9999.0$"
-                android:layout_below="@+id/noti_price"
                 android:id="@+id/noti_sub_price"
-                android:layout_alignParentStart="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/noti_price"
+                android:layout_alignParentStart="true"
                 android:gravity="left"
-                android:textSize="18sp"
-                android:textColor="@color/light_title2"/>
+                android:text="=9999.0$"
+                android:textColor="@color/light_title2"
+                android:textSize="18sp" />
     </RelativeLayout>
+
     <RelativeLayout
             android:id="@+id/noti_context"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_below="@+id/noti_view"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginBottom="0dp"
-            android:layout_below="@+id/noti_view"
+            android:paddingStart="15dp"
             android:paddingTop="5dp"
-            android:paddingBottom="10dp"
             android:paddingEnd="15dp"
-            android:paddingStart="15dp">
+            android:paddingBottom="10dp">
 
 
         <androidx.cardview.widget.CardView
-                app:cardCornerRadius="3dp"
-                app:cardElevation="0dp"
                 android:id="@+id/cdcd123"
-                android:focusable="true"
-                android:clickable="true"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_width="100dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="0dp"
-                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="0dp"
                 app:cardBackgroundColor="@color/green_tr"
-                android:padding="0dp">
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp">
 
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                 <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:background="#00FFFFFF"
                         android:gravity="center"
-                        android:textColor="@color/green"
                         android:text="@string/alert"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/green" />
 
             </RelativeLayout>
 
@@ -94,28 +96,27 @@
                 android:id="@+id/editcard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toStartOf="@+id/cdcd123"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/cdcd123"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="0dp">
 
             <EditText
-                    android:layout_toStartOf="@+id/cdcd123"
-                    android:backgroundTint="#00000000"
-                    android:textAlignment="center"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/BLACK"
-                    android:maxLines="1"
                     android:id="@+id/texter"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/cdcd123"
+                    android:backgroundTint="#00000000"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/BLACK" />
 
         </androidx.cardview.widget.CardView>
-
 
 
     </RelativeLayout>
@@ -124,15 +125,16 @@
             android:id="@+id/angimotti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/noti_context"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@+id/noti_context">
+            android:layout_marginBottom="8dp">
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/noticycle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
 
     </RelativeLayout>

@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/dark_navi"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/dark_navi">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="@string/Setting_title"
             android:textColor="#ffffff"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"
-            android:gravity="center_vertical"
-            android:text="@string/Setting_title"/>
+            android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toMainFromSetting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:id="@+id/toMainFromSetting"
-            android:textSize="15sp"
-            android:layout_alignParentStart="true"
             android:text="@string/Ticker"
-            android:textColor="@drawable/text_setting_selector"/>
+            android:textColor="@drawable/text_setting_selector"
+            android:textSize="15sp" />
 
 </RelativeLayout>

@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
             android:id="@+id/action_title"
-            app:showAsAction="ifRoom"
             android:enabled="true"
             android:icon="@drawable/ic_baseline_bar_chart_24px"
-            android:title="@string/Title" />
+            android:title="@string/Title"
+            app:showAsAction="ifRoom" />
     <item
             android:id="@+id/action_book"
-            app:showAsAction="ifRoom"
-            android:iconTint="@color/light_title2"
             android:icon="@drawable/ic_baseline_book_24px"
-            android:title="@string/OrderBook" />
+            android:iconTint="@color/light_title2"
+            android:title="@string/OrderBook"
+            app:showAsAction="ifRoom" />
     <item
             android:id="@+id/action_notification"
-            app:showAsAction="ifRoom"
             android:enabled="true"
-            android:iconTint="@color/light_title2"
             android:icon="@drawable/ic_baseline_notifications_none_24px"
-            android:title="@string/Notification" />
+            android:iconTint="@color/light_title2"
+            android:title="@string/Notification"
+            app:showAsAction="ifRoom" />
     <item
             android:id="@+id/action_detail"
-            app:showAsAction="ifRoom"
             android:enabled="true"
-            android:iconTint="@color/light_title2"
             android:icon="@drawable/ic_baseline_more_24px"
-            android:title="@string/Details" />
+            android:iconTint="@color/light_title2"
+            android:title="@string/Details"
+            app:showAsAction="ifRoom" />
 </menu>

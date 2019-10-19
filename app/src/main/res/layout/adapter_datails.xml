@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/dark_table_in"
         android:clickable="true"
-        android:focusable="true"
->
+        android:focusable="true">
+
     <TextView
-            android:layout_alignParentStart="true"
-            android:gravity="center_vertical"
-            android:layout_marginStart="15dp"
+            android:id="@+id/detailsText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/WHITE"
-            android:id="@+id/detailsText"
-    />
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/WHITE" />
+
     <TextView
-            android:layout_alignParentEnd="true"
-            android:gravity="center_vertical|end"
-            android:layout_marginEnd="15dp"
-            android:layout_toEndOf="@+id/detailsText"
-            android:paddingStart="10dp"
-            android:maxLines="1"
+            android:id="@+id/detailsContext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/light_title2"
-            android:id="@+id/detailsContext"
-    />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:layout_toEndOf="@+id/detailsText"
+            android:gravity="center_vertical|end"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:textColor="@color/light_title2" />
 
 </RelativeLayout>

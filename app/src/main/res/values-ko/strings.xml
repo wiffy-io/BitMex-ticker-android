@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">BitMEX Ticker</string>
-    <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
 
 
@@ -13,10 +12,8 @@
     <string name="Recent_Trades">최근 거래</string>
 
     <!-- setting String Sources -->
-    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
-
 
 
     <string name="Setting_title">설정</string>
@@ -36,7 +33,6 @@
     <string name="Notification">알림</string>
 
     <!-- Fragment OrderBook Sources -->
-    <string name="Sell_example">0000 - Sell - 00</string>
 
     <string name="Ask">매도</string>
     <string name="Price">가격</string>
@@ -48,7 +44,6 @@
     <string name="UserSettings">사용자 설정</string>
     <string name="LightTheme">라이트 테마</string>
     <string name="Symbol">명칭</string>
-    <string name="NotificationWarning">업데이트 예정입니다.</string>
     <string name="alert">알림 추가</string>
     <string name="market">시가 총액</string>
     <string name="dominance">BTC 도미넌스</string>
@@ -58,7 +53,6 @@
     <string name="PRO_UPGRADE">프로 업그레이드</string>
     <string name="subscribe_now">지금 구독하세요!</string>
     <string name="price_notification">가격 알림</string>
-    <string name="support_in_widgets">위젯 지원</string>
     <string name="remove_ad">광고 제거</string>
     <string name="continuously">꾸준한 업그레이드 지원</string>
     <string name="month">$4.99 / 월</string>

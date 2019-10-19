@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/dark_navi"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/dark_navi">
 
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:text="@string/Ticker"/>
+            android:text="@string/Ticker"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
             android:id="@+id/setting_main"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/settingicon"/>
+            android:layout_marginEnd="0dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="15dp"
+            android:src="@drawable/settingicon" />
 
     <TextView
             android:id="@+id/proupgrade"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
-            android:textColor="@drawable/text_setting_selector"
-            android:text="@string/PRO_UPGRADE">
+            android:gravity="center_vertical"
+            android:text="@string/PRO_UPGRADE"
+            android:textColor="@drawable/text_setting_selector">
 
     </TextView>
 

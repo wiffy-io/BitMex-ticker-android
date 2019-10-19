@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">BitMEX Ticker</string>
-    <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
 
 
@@ -13,10 +12,8 @@
     <string name="Recent_Trades">最近的交易</string>
 
     <!-- setting String Sources -->
-    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
-
 
 
     <string name="Setting_title">设置</string>
@@ -36,7 +33,6 @@
     <string name="Notification">通知</string>
 
     <!-- Fragment OrderBook Sources -->
-    <string name="Sell_example">0000 - Sell - 00</string>
 
     <string name="Ask">销售数量</string>
     <string name="Price">价格</string>
@@ -48,7 +44,6 @@
     <string name="UserSettings">用户设置</string>
     <string name="LightTheme">轻主题</string>
     <string name="Symbol">主题</string>
-    <string name="NotificationWarning">它会更新</string>
     <string name="alert">加法</string>
     <string name="market">市值</string>
     <string name="dominance">BTC 優勢</string>
@@ -58,7 +53,6 @@
     <string name="PRO_UPGRADE">升級到專業版</string>
     <string name="subscribe_now">訂閱</string>
     <string name="price_notification">價格通知</string>
-    <string name="support_in_widgets">小部件中的支持</string>
     <string name="remove_ad">刪除廣告</string>
     <string name="continuously">不斷升級</string>
     <string name="month">$4.99 / 月</string>

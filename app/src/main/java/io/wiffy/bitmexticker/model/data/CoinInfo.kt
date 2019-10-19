@@ -11,4 +11,4 @@ data class CoinInfo(
     var before_p: String?,
     var chart_symbol: String?,
     var parse_str: String?
-):Serializable
+) : Serializable

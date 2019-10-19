@@ -97,8 +97,14 @@ class InformationActivity : InformationContract.View() {
             ContextCompat.getColorStateList(this@InformationActivity, rippleAndTintOfBottom())
         information_navi.itemIconTintList =
             ContextCompat.getColorStateList(this@InformationActivity, getBottomColor())
-        information_navi.itemTextColor = ContextCompat.getColorStateList(this@InformationActivity, getBottomColor())
-        toMainFromInformation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
+        information_navi.itemTextColor =
+            ContextCompat.getColorStateList(this@InformationActivity, getBottomColor())
+        toMainFromInformation.setCompoundDrawablesWithIntrinsicBounds(
+            R.drawable.baseline_chevron_left_24,
+            0,
+            0,
+            0
+        )
         initFragment()
     }
 
@@ -131,7 +137,8 @@ class InformationActivity : InformationContract.View() {
                             else -> NotificationFragment()
                         }
                         fragmentList[i]?.arguments = myBundle
-                        supportFragmentManager.beginTransaction().add(R.id.information_frame, fragmentList[i]!!)
+                        supportFragmentManager.beginTransaction()
+                            .add(R.id.information_frame, fragmentList[i]!!)
                             .commit()
                     }
                 }
@@ -162,7 +169,12 @@ class InformationActivity : InformationContract.View() {
 
     override fun onDown(e: MotionEvent?) = true
 
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
         if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
@@ -172,7 +184,8 @@ class InformationActivity : InformationContract.View() {
     override fun onLongPress(e: MotionEvent?) {
     }
 
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float) = true
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float) =
+        true
 
     override fun onShowPress(e: MotionEvent?) {
     }

@@ -21,27 +21,30 @@ class DetailsAdapter(
 ) : RecyclerView.Adapter<DetailsAdapter.InformationViewHolder>(), SuperContract.WiffyObject {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InformationViewHolder(parent)
-    override fun getItemCount(): Int = items.size
-    override fun onBindViewHolder(holder: InformationViewHolder, position: Int) = items[position].let { item ->
-        with(holder) {
-            textDetails.setTextColor(ContextCompat.getColor(context, getTitle()))
-            contextDetails.setTextColor(ContextCompat.getColor(context, getTitle2()))
-            textDetails.text = item.title
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        InformationViewHolder(parent)
 
-            contextDetails.text = item.context
-            itemView.background = ContextCompat.getDrawable(context, settingButton())
-            itemView.setOnClickListener {
-                AlertDialog.Builder(context, getDialog()).apply {
-                    setTitle(item.title)
-                    setMessage(item.context)
-                    setPositiveButton(
-                        "OK"
-                    ) { _, _ -> }
-                }.show()
+    override fun getItemCount(): Int = items.size
+    override fun onBindViewHolder(holder: InformationViewHolder, position: Int) =
+        items[position].let { item ->
+            with(holder) {
+                textDetails.setTextColor(ContextCompat.getColor(context, getTitle()))
+                contextDetails.setTextColor(ContextCompat.getColor(context, getTitle2()))
+                textDetails.text = item.title
+
+                contextDetails.text = item.context
+                itemView.background = ContextCompat.getDrawable(context, settingButton())
+                itemView.setOnClickListener {
+                    AlertDialog.Builder(context, getDialog()).apply {
+                        setTitle(item.title)
+                        setMessage(item.context)
+                        setPositiveButton(
+                            "OK"
+                        ) { _, _ -> }
+                    }.show()
+                }
             }
         }
-    }
 
     inner class InformationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.adapter_datails, parent, false)

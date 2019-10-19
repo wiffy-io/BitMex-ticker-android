@@ -10,88 +10,92 @@ import io.wiffy.bitmexticker.function.mKey
 import io.wiffy.bitmexticker.function.productName
 import io.wiffy.bitmexticker.function.restartApp
 
-class BillingModule(private val activity:AppCompatActivity):BillingProcessor.IBillingHandler {
+class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.IBillingHandler {
 
     private var mBillingProcessor: BillingProcessor? = null
+    var callback: (String) -> Unit? = {}
 
-    companion object{
+    companion object {
         @JvmStatic
         var itemId = ""
     }
 
-    fun initBillingProcessor()
-    {
-        Log.d("asdf","asaa")
+    fun initBillingProcessor() {
+        Log.d("asdf", "asaa1")
         mBillingProcessor = BillingProcessor(activity, mKey, this)
     }
 
-    fun purchaseProduct()
-    {
-        if(mBillingProcessor?.isSubscribed(productName)==false)
+    fun purchaseProduct() {
+        if (mBillingProcessor?.isSubscribed(productName) == false)
             mBillingProcessor?.subscribe(activity, productName)
+        else
+            helu("Success", "Already Purchased!")
     }
 
-    fun releaseBillingProcessor()
-    {
-        if(mBillingProcessor!=null)
+    fun releaseBillingProcessor() {
+        if (mBillingProcessor != null)
             mBillingProcessor?.release()
     }
 
-    fun getBillingProcessor():BillingProcessor?
-    {
+    fun getBillingProcessor(): BillingProcessor? {
         return mBillingProcessor
     }
 
-    fun aaaaaa(){
-        if(mBillingProcessor?.isSubscribed(productName)==true){
+    fun aaaaaa() {
+        if (mBillingProcessor?.isSubscribed(productName) == true) {
             Component.isConsumer = true
-            helu("Success","Purchase, Succeed!")
-        }else{
+            helu("Success", "Purchase, Succeed!")
+        } else {
             helu("Error", "Try again!")
         }
     }
 
     override fun onBillingInitialized() {
-        Log.d("asdf",mBillingProcessor.toString())
-        Log.d("asdf",productName)
-
+        Log.d("asdf", "asaa2")
         mBillingProcessor?.getSubscriptionListingDetails(productName)?.let {
-           Log.d("asdf","asaa3")
-           itemId = it.productId
-           Log.d("asdf",itemId)
-           mBillingProcessor?.loadOwnedPurchasesFromGoogle()
-           if(mBillingProcessor?.isSubscribed(itemId)==true)
-           {
-               Component.isConsumer = true
-               helu("Success","Purchase, Succeed!")
-           }
-       }
+            Log.d("asdf", "asaa3")
+            itemId = it.productId
+            Log.d("asdf", itemId)
+            mBillingProcessor?.loadOwnedPurchasesFromGoogle()
+            if (mBillingProcessor?.isSubscribed(itemId) == true) {
+                Component.isConsumer = true
+                if (callback == {}) {
+                    helu("Success", "Purchase, Succeed!")
+                }
+            }
+            if (callback != {}) {
+                callback.invoke("");
+            }
+        }
 
     }
 
     override fun onPurchaseHistoryRestored() {
         Component.isConsumer = true
-        helu("Success","Purchase, Succeed!")
+        helu("Success", "Purchase, Succeed!")
     }
 
     override fun onProductPurchased(productId: String, details: TransactionDetails?) {
         Component.isConsumer = true
-        helu("Success","Purchase, Succeed!")
+        helu("Success", "Purchase, Succeed!")
     }
 
     override fun onBillingError(errorCode: Int, error: Throwable?) {
         helu("Error", "Try again!")
     }
 
-    private fun helu(title:String, context:String)
-    {
+    private fun helu(title: String, context: String) {
         AlertDialog.Builder(activity, getDialog()).apply {
             setTitle(title)
             setMessage(context)
             setPositiveButton(
                 "OK"
             ) { _, _ -> }
-            if(title=="Success") setPositiveButton("OK"){_,_->restartApp(activity)}
+            if (title == "Success") setPositiveButton("OK") { _, _ ->
+                if (!Component.isConsumer) {
+                    restartApp(activity)
+                }
+            }
         }.show()
     }
 }

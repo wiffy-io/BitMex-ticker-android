@@ -24,7 +24,11 @@ class DetailsFragment : DetailsContract.View() {
     var builder: Dialog? = null
     var myAdapter: DetailsAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         myView = inflater.inflate(R.layout.fragment_details, container, false)
         url = "https://www.bitmex.com/app/contract/${arguments?.getString("symbol")}"
         asyncTask = DetailsTask(this, url)

@@ -1,6 +1,7 @@
 package io.wiffy.bitmexticker.ui.setting
 
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.ActivityInfo
 import android.net.Uri
@@ -23,6 +24,7 @@ import androidx.appcompat.widget.SwitchCompat
 import io.wiffy.bitmexticker.model.Component.setting_on
 import io.wiffy.bitmexticker.function.SWIPE_MIN_DISTANCE
 import io.wiffy.bitmexticker.function.SWIPE_THRESHOLD_VELOCITY
+import io.wiffy.bitmexticker.ui.subscription.SubscriptionActivity
 import kotlin.math.abs
 
 
@@ -41,21 +43,27 @@ class SettingActivity : SettingContract.View() {
         mPresenter.changeUI()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun changeUI() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        with(resources)
-        {
+        with(resources, {
             window.statusBarColor = getColor(getNavi())
             window.navigationBarColor = getColor(darkAndLightReverse())
             toolbar_setting.background = getDrawable(getNavi())
             parent_setting.background = getDrawable(getTableOut())
-            toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_chevron_left_24, 0, 0, 0)
+            toMainFromSetting.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.baseline_chevron_left_24,
+                0,
+                0,
+                0
+            )
             OpenSource.background = getDrawable(settingButton())
             Version.background = getDrawable(settingButton())
             Language.background = getDrawable(settingButton())
             Review.background = getDrawable(settingButton())
             Email.background = getDrawable(settingButton())
             Theme.background = getDrawable(settingButton())
+            gopro.background = getDrawable(settingButton())
             (Theme[1] as SwitchCompat).isChecked = Component.dark_theme xor true
             (OpenSource[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Version[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
@@ -63,7 +71,11 @@ class SettingActivity : SettingContract.View() {
             (Review[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Email[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Theme[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
-        }
+            (gopro[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
+            if(Component.isConsumer){
+                (gopro[0] as TextView).text = "MANGE PRO"
+            }
+        })
     }
 
     override fun moveToMain() {
@@ -84,7 +96,12 @@ class SettingActivity : SettingContract.View() {
 
     override fun onDown(e: MotionEvent?) = true
 
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
         if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE && abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
             moveToMain()
         }
@@ -94,7 +111,8 @@ class SettingActivity : SettingContract.View() {
     override fun onLongPress(e: MotionEvent?) {
     }
 
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float) = true
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float) =
+        true
 
 
     override fun onShowPress(e: MotionEvent?) {
@@ -109,7 +127,8 @@ class SettingActivity : SettingContract.View() {
         listener3: View.OnClickListener,
         listener4: View.OnClickListener,
         listener5: View.OnClickListener,
-        listener6: CompoundButton.OnCheckedChangeListener
+        listener6: CompoundButton.OnCheckedChangeListener,
+        listener7: View.OnClickListener
     ) {
         OpenSource.setOnClickListener(listener1)
         Version.setOnClickListener(listener2)
@@ -117,6 +136,13 @@ class SettingActivity : SettingContract.View() {
         Email.setOnClickListener(listener4)
         Language.setOnClickListener(listener5)
         (Theme[1] as SwitchCompat).setOnCheckedChangeListener(listener6)
+        gopro.setOnClickListener {
+            if (Component.subscription_on) {
+                Component.subscription_on = false
+                startActivity(Intent(this@SettingActivity, SubscriptionActivity::class.java))
+                overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
+            }
+        }
     }
 
     override fun startDialog(title: String, context: String): AlertDialog =
@@ -127,8 +153,6 @@ class SettingActivity : SettingContract.View() {
                 "OK"
             ) { _, _ -> }
         }.show()
-
-
 
     override fun getStringTo(id: Int): String = getString(id)
 

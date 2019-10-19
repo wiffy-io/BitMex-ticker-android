@@ -11,16 +11,25 @@ import androidx.fragment.app.Fragment
 interface SuperContract {
     interface WiffyObject {
         fun console(str: String) = Log.d("asdf", str)
-        fun toast(context: Context, str: String) = Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
-        fun toast(context: Context, id: Int) = Toast.makeText(context, id, Toast.LENGTH_SHORT).show()
-        fun toastLong(context: Context, str: String) = Toast.makeText(context, str, Toast.LENGTH_LONG).show()
-        fun toastLong(context: Context, id: Int) = Toast.makeText(context, id, Toast.LENGTH_LONG).show()
+        fun toast(context: Context, str: String) =
+            Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
+
+        fun toast(context: Context, id: Int) =
+            Toast.makeText(context, id, Toast.LENGTH_SHORT).show()
+
+        fun toastLong(context: Context, str: String) =
+            Toast.makeText(context, str, Toast.LENGTH_LONG).show()
+
+        fun toastLong(context: Context, id: Int) =
+            Toast.makeText(context, id, Toast.LENGTH_LONG).show()
     }
 
     abstract class SuperActivity : AppCompatActivity(), WiffyObject {
         fun toast(str: String) = Toast.makeText(applicationContext, str, Toast.LENGTH_SHORT).show()
         fun toast(id: Int) = Toast.makeText(applicationContext, id, Toast.LENGTH_SHORT).show()
-        fun toastLong(str: String) = Toast.makeText(applicationContext, str, Toast.LENGTH_LONG).show()
+        fun toastLong(str: String) =
+            Toast.makeText(applicationContext, str, Toast.LENGTH_LONG).show()
+
         fun toastLong(id: Int) = Toast.makeText(applicationContext, id, Toast.LENGTH_LONG).show()
     }
 

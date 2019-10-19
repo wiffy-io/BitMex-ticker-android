@@ -12,9 +12,11 @@ import io.wiffy.bitmexticker.model.Component
 import java.util.*
 import android.content.pm.PackageManager
 import android.R.attr.versionName
+import android.content.Intent
 import android.content.pm.PackageInfo
 import androidx.browser.customtabs.CustomTabsClient.getPackageName
 import io.wiffy.bitmexticker.BuildConfig
+import io.wiffy.bitmexticker.ui.subscription.SubscriptionActivity
 
 
 class SettingPresenter(private val mView: SettingContract.View, private val mContext: Context) :
@@ -39,11 +41,11 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
             },
             listener2 = View.OnClickListener {
                 try {
-                    val tmp = mContext.packageManager.getPackageInfo(mContext.packageName,0)
+                    val tmp = mContext.packageManager.getPackageInfo(mContext.packageName, 0)
                     val versionC = tmp.versionName
                     val versionN = tmp.versionCode
-                    mView.startDialog("Version", "${versionC}(${versionN})")
-                } catch(e :Exception){
+                    mView.startDialog("Version", "${versionC} (${versionN})")
+                } catch (e: Exception) {
                     mView.startDialog("Version", "")
                 }
             },
@@ -52,7 +54,10 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
             },
             listener4 = View.OnClickListener {
                 mView.clipOnBoard(mView.getStringTo(R.string.admin_mail))
-                mView.startDialog(mView.getStringTo(R.string.admin_mail), "E-mail copied in clipboard")
+                mView.startDialog(
+                    mView.getStringTo(R.string.admin_mail),
+                    "E-mail copied in clipboard"
+                )
             },
             listener5 = View.OnClickListener {
                 mView.openLanguageSetting()
@@ -71,6 +76,8 @@ class SettingPresenter(private val mView: SettingContract.View, private val mCon
                     }
                 }
                 mView.changeUI()
+            },
+            listener7 = View.OnClickListener {
             })
     }
 

@@ -29,15 +29,17 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         val message = p0.notification?.body ?: ""
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                val notificationBuilder = NotificationCompat.Builder(this, getString(R.string.channel))
-                    .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.bitmex))
-                    .setSmallIcon(R.drawable.bitmex_noti)
-                    .setContentTitle(title)
-                    .setContentText(message)
-                    .setChannelId(getString(R.string.channel))
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
-                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                val notificationBuilder =
+                    NotificationCompat.Builder(this, getString(R.string.channel))
+                        .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.bitmex))
+                        .setSmallIcon(R.drawable.bitmex_noti)
+                        .setContentTitle(title)
+                        .setContentText(message)
+                        .setChannelId(getString(R.string.channel))
+                        .setAutoCancel(true)
+                        .setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
+                val notificationManager =
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.notify(9998, notificationBuilder.build())
             }
             else -> {
@@ -48,7 +50,8 @@ class FirebaseMessagingService : FirebaseMessagingService() {
                     .setContentText(message)
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
-                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                val notificationManager =
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.notify(9998, notificationBuilder.build())
             }
         }

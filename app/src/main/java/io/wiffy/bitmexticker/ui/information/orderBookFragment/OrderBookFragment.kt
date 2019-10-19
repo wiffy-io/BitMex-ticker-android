@@ -23,7 +23,11 @@ class OrderBookFragment : OrderBookContract.View() {
     var builder: Dialog? = null
     var myAdapter: OrderBookAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         myView = inflater.inflate(R.layout.fragment_orderbook, container, false)
         initLoading()
         val sym = arguments?.getString("symbol")!!
@@ -70,9 +74,10 @@ class OrderBookFragment : OrderBookContract.View() {
     }
 
 
-    override fun updateRecycler(arr: ArrayList<OrderBookInfo>, sum: Int) = Handler(context?.mainLooper).post {
-        myAdapter?.update(arr, sum)
-    }
+    override fun updateRecycler(arr: ArrayList<OrderBookInfo>, sum: Int) =
+        Handler(context?.mainLooper).post {
+            myAdapter?.update(arr, sum)
+        }
 
     override fun startLoading() {
         if (builder?.isShowing == false) Handler(Looper.getMainLooper()).post {

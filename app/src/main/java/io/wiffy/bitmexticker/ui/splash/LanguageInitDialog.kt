@@ -10,7 +10,8 @@ import io.wiffy.bitmexticker.model.SuperContract
 import kotlinx.android.synthetic.main.dialog_language_init.*
 import java.util.*
 
-class LanguageInitDialog(context: Context, val mView: SplashContract.View) : SuperContract.SuperDialog(context) {
+class LanguageInitDialog(context: Context, val mView: SplashContract.View) :
+    SuperContract.SuperDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

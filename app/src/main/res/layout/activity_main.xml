@@ -1,180 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:background="@color/dark_table_out"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/parent_main"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_table_out"
+        android:orientation="vertical">
 
     <include
-            layout="@layout/app_bar_main"
-            android:id="@+id/toolbar_main"/>
+            android:id="@+id/toolbar_main"
+            layout="@layout/app_bar_main" />
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_main"
             android:overScrollMode="always">
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                     android:id="@+id/bgc"
-                    android:layout_alignParentTop="true"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    app:cardCornerRadius="3dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/dark_table_in"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="5dp"
-                    android:visibility="gone">
+                    android:layout_marginBottom="5dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/dark_table_in"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp">
+
                 <RelativeLayout
-                        android:layout_height="match_parent"
-                        android:layout_width="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                     <TextView
                             android:id="@+id/trd"
-                            android:textColor="@color/myBlue"
-                            android:text="@string/Recent_Trades"
-                            android:layout_marginTop="7dp"
-                            android:layout_marginStart="10dp"
-                            android:textStyle="bold"
-                            android:textSize="15sp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="7dp"
+                            android:text="@string/Recent_Trades"
+                            android:textColor="@color/myBlue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
                     <TextView
-                            android:layout_below="@+id/trd"
                             android:id="@+id/trd_info"
-                            android:text="@string/tem"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:textSize="15sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/trd"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/tem"
+                            android:textSize="15sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@color/light_table_in"
-                    android:layout_below="@id/bgc"
                     android:id="@+id/myPagerLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="80dp"
+                    android:layout_below="@id/bgc"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/light_table_in">
+
                 <TextView
-                        android:layout_marginStart="15dp"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/light_title"
-                        android:textStyle="bold"
                         android:id="@+id/cap"
-                        android:layout_marginBottom="5dp"
-                        android:layout_above="@+id/myLine"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_toEndOf="@id/cap"
+                        android:layout_height="wrap_content"
                         android:layout_above="@+id/myLine"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/light_title"
+                        android:textStyle="bold" />
+
+                <TextView
                         android:id="@+id/cap2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/myLine"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_toEndOf="@id/cap" />
+
                 <View
                         android:id="@+id/myLine"
-                        android:layout_centerVertical="true"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"/>
+                        android:layout_height="0dp"
+                        android:layout_centerVertical="true" />
+
                 <TextView
-                        android:layout_marginStart="15dp"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/light_title"
-                        android:textStyle="bold"
                         android:id="@+id/dom"
-                        android:layout_marginTop="5dp"
-                        android:layout_below="@+id/myLine"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@id/dom"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/myLine"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_title"
+                        android:textStyle="bold" />
+
+                <TextView
                         android:id="@+id/dom2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/myLine"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/dom" />
             </RelativeLayout>
 
 
             <RelativeLayout
-                    android:layout_below="@+id/myPagerLayout"
+                    android:id="@+id/BTC_r"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/BTC_r">
+                    android:layout_below="@+id/myPagerLayout">
 
 
                 <TextView
-                        android:layout_alignParentTop="true"
                         android:id="@+id/Symbol_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Symbol"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/myBlue"
-                        android:textStyle="bold"
-                        android:textSize="13sp"
+                        android:layout_alignParentTop="true"
                         android:layout_marginStart="15dp"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/Symbol"
+                        android:textColor="@color/myBlue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
 
                 <TextView
                         android:id="@+id/price_"
-                        android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Price"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/myBlue"
-                        android:textStyle="bold"
-                        android:textSize="13sp"
                         android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/Price"
+                        android:textColor="@color/myBlue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
 
 
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:paddingTop="0dp"
-                    android:overScrollMode="never"
-                    android:layout_below="@+id/BTC_r"
                     android:id="@+id/recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="3dp"/>
+                    android:layout_below="@+id/BTC_r"
+                    android:overScrollMode="never"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="3dp" />
 
             <View
-                    android:layout_below="@id/recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="80dp"
+                    android:layout_below="@id/recycler" />
         </RelativeLayout>
 
     </ScrollView>
 
-    <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-0355430122346055/5207727597"
-            android:layout_marginBottom="5dp"/>
+            ads:adUnitId="ca-app-pub-0355430122346055/5207727597" />
 
 </RelativeLayout>

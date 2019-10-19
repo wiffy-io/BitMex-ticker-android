@@ -9,7 +9,8 @@ import java.lang.Thread.sleep
 import java.net.URL
 
 
-class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, mData: CoinInfo?) :
+    MainContract.Presenter {
 
     private val mSymbol = mData?.Symbol
     private val coinBaseURL = "https://api.pro.coinbase.com/products/${mData?.parse_str}/ticker"

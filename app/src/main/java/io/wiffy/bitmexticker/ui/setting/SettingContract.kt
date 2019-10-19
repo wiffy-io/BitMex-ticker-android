@@ -18,12 +18,13 @@ interface SettingContract {
             listener3: android.view.View.OnClickListener,
             listener4: android.view.View.OnClickListener,
             listener5: android.view.View.OnClickListener,
-            listener6: CompoundButton.OnCheckedChangeListener
+            listener6: CompoundButton.OnCheckedChangeListener,
+            listener7: android.view.View.OnClickListener
         )
 
         abstract fun startDialog(title: String, context: String): AlertDialog
         abstract fun getStringTo(id: Int): String
-        abstract fun clipOnBoard(clipBoardMessage: String):ClipboardManager
+        abstract fun clipOnBoard(clipBoardMessage: String): ClipboardManager
         abstract fun urlParseToMarket(url: String)
         abstract fun openLanguageSetting()
     }

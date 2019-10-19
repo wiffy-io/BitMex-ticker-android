@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">BitMEX Ticker</string>
-    <string name="app_name_uppercase">BITMEX Ticker</string>
     <string name="Ticker">Ticker</string>
 
 
@@ -13,7 +12,6 @@
     <string name="Recent_Trades">最近取引</string>
 
     <!-- setting String Sources -->
-    <string name="open_source">AndroidWebSocket\nhttps://www.naver.com\n</string>
     <string name="admin_mail">iveinvalue@gmail.com</string>
     <string name="store_url">io.wiffy.bitmexticker</string>
 
@@ -35,7 +33,6 @@
     <string name="Notification">アラーム</string>
 
     <!-- Fragment OrderBook Sources -->
-    <string name="Sell_example">0000 - Sell - 00</string>
 
     <string name="Ask">売り</string>
     <string name="Price">価格</string>
@@ -47,7 +44,6 @@
     <string name="UserSettings">ユーザー設定</string>
     <string name="LightTheme">軽いテーマ</string>
     <string name="Symbol">名称</string>
-    <string name="NotificationWarning">アップデートされる予定です</string>
     <string name="alert">追加</string>
     <string name="market">時価総額</string>
     <string name="dominance">BTC ドミナンス</string>
@@ -57,7 +53,6 @@
     <string name="PRO_UPGRADE">プロ ゲット-</string>
     <string name="subscribe_now">今すぐ購読！</string>
     <string name="price_notification">価格通知</string>
-    <string name="support_in_widgets">ウィジェットでのサポート</string>
     <string name="remove_ad">広告を削除</string>
     <string name="continuously">継続的なアップグレード</string>
     <string name="month">$4.99 / 月</string>

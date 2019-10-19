@@ -31,40 +31,42 @@ class OrderBookAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: OrderBookViewHolder, position: Int) = items[position].let { item ->
-        with(holder) {
-            setIsRecyclable(false)
-            val flag = item.bid == null
-            orderCount += 1
+    override fun onBindViewHolder(holder: OrderBookViewHolder, position: Int) =
+        items[position].let { item ->
+            with(holder) {
+                setIsRecyclable(false)
+                val flag = item.bid == null
+                orderCount += 1
 
-            val ratio: Double
+                val ratio: Double
 
-            ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
-            bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
+                ask.setTextColor(ContextCompat.getColor(context, getTitle2()))
+                bid.setTextColor(ContextCompat.getColor(context, getTitle2()))
 
-            itemView.backgroundTintList = ContextCompat.getColorStateList(context, getTableOut())
+                itemView.backgroundTintList =
+                    ContextCompat.getColorStateList(context, getTableOut())
 
-            ask.text = item.ask
-            price.text = item.price
-            bid.text = item.bid
+                ask.text = item.ask
+                price.text = item.price
+                bid.text = item.bid
 
-            if (flag) {
-                price.setTextColor(ContextCompat.getColor(context, R.color.red))
-                ratio = item.ask?.toDouble()?.div(sum) ?: 0.0
-                right.visibility = View.GONE
-                left.visibility = View.VISIBLE
-                if (ratio >= 0.0) left.layoutParams.width =
-                    Component.width.times(ratio).toInt()
-            } else {
-                price.setTextColor(ContextCompat.getColor(context, R.color.green))
-                ratio = item.bid?.toDouble()?.div(sum) ?: 0.0
-                left.visibility = View.GONE
-                right.visibility = View.VISIBLE
-                if (ratio >= 0.0) right.layoutParams.width =
-                    Component.width.times(ratio).toInt()
+                if (flag) {
+                    price.setTextColor(ContextCompat.getColor(context, R.color.red))
+                    ratio = item.ask?.toDouble()?.div(sum) ?: 0.0
+                    right.visibility = View.GONE
+                    left.visibility = View.VISIBLE
+                    if (ratio >= 0.0) left.layoutParams.width =
+                        Component.width.times(ratio).toInt()
+                } else {
+                    price.setTextColor(ContextCompat.getColor(context, R.color.green))
+                    ratio = item.bid?.toDouble()?.div(sum) ?: 0.0
+                    left.visibility = View.GONE
+                    right.visibility = View.VISIBLE
+                    if (ratio >= 0.0) right.layoutParams.width =
+                        Component.width.times(ratio).toInt()
+                }
             }
         }
-    }
 
     fun update(list: ArrayList<OrderBookInfo>, sum: Int) {
         this.sum = sum

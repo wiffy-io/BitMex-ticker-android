@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/parent_information"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/parent_information">
+        android:layout_height="match_parent">
+
     <RelativeLayout
             android:id="@+id/information_toolbar"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@color/dark_navi"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:background="@color/dark_navi">
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/information_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:text="@string/Title"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
-                android:layout_centerInParent="true"
-                android:id="@+id/information_title"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:text="@string/Title"/>
+                android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/toMainFromInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:gravity="center_vertical"
-                android:id="@+id/toMainFromInformation"
-                android:textSize="15sp"
-                android:layout_alignParentStart="true"
                 android:text="@string/Ticker"
                 android:textColor="@drawable/text_setting_selector"
-        />
+                android:textSize="15sp" />
     </RelativeLayout>
+
     <FrameLayout
+            android:id="@+id/information_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/information_frame"
-            android:layout_below="@id/information_toolbar"
             android:layout_above="@+id/information_navi"
-    />
+            android:layout_below="@id/information_toolbar" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/information_navi"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            app:menu="@menu/information_menu"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/information_menu" />
 </RelativeLayout>

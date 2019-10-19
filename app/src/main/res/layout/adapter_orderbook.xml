@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp">
 
     <View
-            android:layout_alignParentStart="true"
             android:id="@+id/percentageViewLeft"
-            android:background="@color/red_tra"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:background="@color/red_tra" />
+
     <View
-            android:layout_alignParentEnd="true"
             android:id="@+id/percentageViewRight"
-            android:background="@color/green_tra"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/green_tra" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
-            android:textAlignment="viewStart"
             android:id="@+id/ask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
             android:text="@string/Ask"
-    />
+            android:textAlignment="viewStart" />
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
             android:id="@+id/price"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:text="@string/Price"
-    />
-    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
-            android:textAlignment="viewEnd"
+            android:text="@string/Price"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    <TextView
             android:id="@+id/bid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
             android:text="@string/Bid"
-    />
+            android:textAlignment="viewEnd" />
 
 </RelativeLayout>

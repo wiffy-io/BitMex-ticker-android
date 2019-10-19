@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:background="@color/light_table_out"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/parent_setting"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_table_out"
+        android:orientation="vertical">
 
     <include
-            layout="@layout/app_bar_setting"
-            android:id="@+id/toolbar_setting"/>
+            android:id="@+id/toolbar_setting"
+            layout="@layout/app_bar_setting" />
+
     <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,202 +17,278 @@
             android:stretchColumns="*">
 
         <TableRow>
+
             <RelativeLayout
-                    android:layout_height="60dp"
-                    android:layout_width="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
-                        android:textColor="@color/light_title2"
-                        android:textStyle="bold"
                         android:text="@string/UserSettings"
-                        android:layout_alignParentBottom="true"/>
+                        android:textColor="@color/light_title2"
+                        android:textStyle="bold" />
             </RelativeLayout>
         </TableRow>
+
         <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:id="@+id/Language"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/setting_button_light_r">
+
+            <RelativeLayout
+                    android:id="@+id/Language"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
                 <TextView
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
                         android:text="@string/Language"
-                />
+                        android:textColor="@color/light_title" />
+
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/setting_right_arrow"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
             </RelativeLayout>
         </TableRow>
+
         <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:id="@+id/Theme"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/setting_button_light_r">
+
+            <RelativeLayout
+                    android:id="@+id/Theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="false"
+                    android:focusable="false">
+
                 <TextView
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
                         android:text="@string/LightTheme"
-                />
+                        android:textColor="@color/light_title" />
+
                 <androidx.appcompat.widget.SwitchCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"/>
-            </RelativeLayout>
-        </TableRow>
-        <TableRow>
-            <RelativeLayout
-                    android:layout_height="60dp"
-                    android:layout_width="match_parent">
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="@color/light_title2"
-                        android:textStyle="bold"
-                        android:text="@string/Info"
-                        android:layout_alignParentBottom="true"/>
+                        android:layout_marginEnd="10dp" />
             </RelativeLayout>
         </TableRow>
 
         <TableRow>
+
             <RelativeLayout
-                    android:layout_height="50dp"
                     android:layout_width="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:id="@+id/OpenSource"
-                    android:background="@drawable/setting_button_light_r">
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
-                        android:text="@string/OpenSource"
-                        android:layout_alignParentStart="true"/>
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/setting_right_arrow"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"/>
-            </RelativeLayout>
-        </TableRow>
+                    android:layout_height="60dp">
 
-        <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:id="@+id/Version"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/setting_button_light_r">
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
-                        android:text="@string/Version"
-                />
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/setting_right_arrow"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"/>
-            </RelativeLayout>
-        </TableRow>
-
-
-        <TableRow>
-            <RelativeLayout
-                    android:layout_height="60dp"
-                    android:layout_width="match_parent">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
+                        android:text="@string/Info"
                         android:textColor="@color/light_title2"
-                        android:textStyle="bold"
+                        android:textStyle="bold" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <RelativeLayout
+                    android:id="@+id/OpenSource"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/OpenSource"
+                        android:textColor="@color/light_title" />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <RelativeLayout
+                    android:id="@+id/Version"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/Version"
+                        android:textColor="@color/light_title" />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
+            </RelativeLayout>
+        </TableRow>
+
+
+        <TableRow>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
                         android:text="@string/FEEDBACK"
-                        android:layout_alignParentBottom="true"/>
+                        android:textColor="@color/light_title2"
+                        android:textStyle="bold" />
             </RelativeLayout>
         </TableRow>
 
         <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:layout_width="match_parent"
-                            android:clickable="true"
-                            android:id="@+id/Review"
-                            android:focusable="true"
-                            android:background="@drawable/setting_button_light_r">
+
+            <RelativeLayout
+                    android:id="@+id/Review"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
                 <TextView
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
-                        android:text="@string/Play_store_review"/>
+                        android:text="@string/Play_store_review"
+                        android:textColor="@color/light_title" />
+
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/setting_right_arrow"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
             </RelativeLayout>
         </TableRow>
 
         <TableRow>
-            <RelativeLayout android:layout_height="50dp"
-                            android:layout_width="match_parent"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:id="@+id/Email"
-                            android:background="@drawable/setting_button_light_r">
+
+            <RelativeLayout
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
                 <TextView
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_title"
-                        android:text="@string/Developer_Email"/>
+                        android:text="@string/Developer_Email"
+                        android:textColor="@color/light_title" />
+
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/setting_right_arrow"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/PRO_UPGRADE"
+                        android:textColor="@color/light_title2"
+                        android:textStyle="bold" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <RelativeLayout
+                    android:id="@+id/gopro"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/setting_button_light_r"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/PRO_UPGRADE"
+                        android:textColor="@color/light_title" />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/setting_right_arrow" />
             </RelativeLayout>
         </TableRow>
 

@@ -50,8 +50,8 @@ class MainActivity : MainContract.View() {
         MobileAds.initialize(this, "ca-app-pub-0355430122346055~1344719802")
         adView.loadAd(AdRequest.Builder().build())
 
-        if(isConsumer) {
-            proupgrade.visibility=View.GONE
+        if (isConsumer) {
+            proupgrade.visibility = View.GONE
             adView.visibility = View.GONE
         }
         agreement()
@@ -141,7 +141,7 @@ class MainActivity : MainContract.View() {
             )
         )
         proupgrade.setOnClickListener {
-            if(subscription_on) {
+            if (subscription_on) {
                 subscription_on = false
                 startActivity(Intent(this@MainActivity, SubscriptionActivity::class.java))
                 overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity)
