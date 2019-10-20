@@ -33,8 +33,7 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
     }
 
     fun releaseBillingProcessor() {
-        if (mBillingProcessor != null)
-            mBillingProcessor?.release()
+        mBillingProcessor?.release()
     }
 
     fun getBillingProcessor(): BillingProcessor? {

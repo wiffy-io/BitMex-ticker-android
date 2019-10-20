@@ -29,8 +29,8 @@ import kotlin.math.abs
 
 
 class SettingActivity : SettingContract.View() {
-    lateinit var mPresenter: SettingPresenter
-    lateinit var gestureScanner: GestureDetector
+    private lateinit var mPresenter: SettingPresenter
+    private lateinit var gestureScanner: GestureDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
