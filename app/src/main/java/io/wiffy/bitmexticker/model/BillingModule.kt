@@ -46,7 +46,7 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
             Component.isConsumer = true
             helu("Success", "Purchase, Succeed!")
         } else {
-            helu("Error", "Try again!")
+            helu("Error", "Try Again!")
         }
     }
 
@@ -66,7 +66,7 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
                 }
             }
             if (callback != {}) {
-                callback.invoke("");
+                callback.invoke("")
             }
         }
 
@@ -87,7 +87,7 @@ class BillingModule(private val activity: AppCompatActivity) : BillingProcessor.
     }
 
     override fun onBillingError(errorCode: Int, error: Throwable?) {
-        helu("Error", "Try again!")
+        helu("Error", "Try Again!")
     }
 
     private fun helu(title: String, context: String) {

@@ -58,7 +58,7 @@ class MainActivity : MainContract.View() {
         initLoading()
         mPresenter = MainPresenter(this, applicationContext)
         mPresenter.changeUI()
-        mPresenter.getCoin(intent.getStringExtra("symbol"))
+        mPresenter.getCoin(intent.getStringExtra("symbol")!!)
 
     }
 
