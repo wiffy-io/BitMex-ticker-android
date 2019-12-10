@@ -37,7 +37,6 @@ class InformationTask(private val mPresenter: MainPresenter, private val mView: 
             }.inputStream)).run {
                 var inputLine: String?
                 val response = StringBuffer()
-
                 do {
                     inputLine = readLine()
                     if (inputLine == null) break
