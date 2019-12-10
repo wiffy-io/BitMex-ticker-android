@@ -41,11 +41,11 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/card_in"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_width="110dp"
+                android:layout_height="33dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="0dp">
 

@@ -15,8 +15,8 @@
             android:gravity="center_vertical"
             android:text="@string/Ticker"
             android:textColor="#ffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/setting_main"

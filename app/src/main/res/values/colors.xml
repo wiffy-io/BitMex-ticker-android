@@ -22,13 +22,13 @@
     <color name="light_title2">#ff646464</color> <!--Light_title2-->
     <color name="light_edittext">#0D000000</color>
 
-    <color name="red">#E6C84646</color> <!--Light_title2-->
-    <color name="green">#E646AA46</color> <!--Light_title2-->
+    <color name="red">#CCC84646</color> <!--Light_title2-->
+    <color name="green">#CC46AA46</color> <!--Light_title2-->
     <color name="red_tr">#1AC84646</color> <!--Light_title2-->
     <color name="green_tr">#1A46AA46</color> <!--Light_title2-->
     <color name="red_tra">#4DC84646</color>
     <color name="green_tra">#4D46AA46</color>
-    <color name="normal">#E6808080</color> <!--Light_title2-->
+    <color name="normal">#CC808080</color> <!--Light_title2-->
 
     <color name="cardBack">#333B7AD2</color>
 

@@ -14,7 +14,7 @@
             android:gravity="center_vertical"
             android:text="@string/Setting_title"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
