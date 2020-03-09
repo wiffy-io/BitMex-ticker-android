@@ -72,7 +72,7 @@ class SettingActivity : SettingContract.View() {
             (Email[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (Theme[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
             (gopro[0] as TextView).setTextColor(getColor(io.wiffy.bitmexticker.function.getTitle()))
-            if(Component.isConsumer){
+            if (Component.isConsumer) {
                 (gopro[0] as TextView).text = "MANGE PRO"
             }
         })
