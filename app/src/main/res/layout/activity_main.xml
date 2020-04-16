@@ -64,6 +64,7 @@
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/myPagerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"

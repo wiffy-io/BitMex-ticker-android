@@ -24,7 +24,7 @@
                 android:layout_alignParentStart="true"
                 android:gravity="left"
                 android:textColor="@color/red"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
         <TextView
@@ -36,7 +36,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="left"
                 android:textColor="@color/light_title2"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
         <TextView
                 android:id="@+id/bitstamp"
@@ -48,7 +48,7 @@
                 android:gravity="left"
                 android:text="Bitstamp"
                 android:textColor="@color/light_title"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
         <TextView
                 android:id="@+id/coinbase"
@@ -61,7 +61,7 @@
                 android:gravity="left"
                 android:text="Coinbase"
                 android:textColor="@color/light_title"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/bitstamp_p"
